@@ -1,0 +1,13 @@
+---
+description: UI/UX project constraints
+globs: "*.tsx"
+alwaysApply: false
+---
+
+# UI/UX ルール
+
+- UIコンポーネントライブラリはインフラ設計後に確定（shadcn/ui + Lucide Icons を想定）
+- UIUXの実装は docs/ 配下の仕様・プロトタイプを忠実に再現
+- 既存UIの変更は承認フロー必須（CLAUDE.md参照）
+- 新規アニメーションライブラリの導入はPRで合意
+- 通知/トーストはプロジェクト標準実装を使用（なければPRで追加提案）

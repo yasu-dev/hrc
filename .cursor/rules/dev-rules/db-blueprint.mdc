@@ -1,0 +1,12 @@
+---
+description: Database design conventions
+globs:
+alwaysApply: false
+---
+
+# DB設計ルール
+
+- DB・ORMはインフラ設計後に確定（AWS DynamoDB / RDS / Supabase PostgreSQL 等を想定）
+- スキーマ変更は必ずマイグレーション経由
+- マイグレーション名は変更内容を明確に記述
+- 本番適用前にテスト環境で検証
