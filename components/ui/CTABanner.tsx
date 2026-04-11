@@ -13,7 +13,7 @@ export function CTABanner() {
         <Button
           variant="outline"
           size="lg"
-          className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary mt-8"
+          className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary mt-8 bg-transparent"
           render={<Link href="/contact" />}
         >
           お問い合わせ

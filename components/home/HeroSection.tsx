@@ -37,7 +37,7 @@ export function HeroSection() {
           <Button
             size="lg"
             variant="outline"
-            className="border-white text-white hover:bg-white/10"
+            className="border-white bg-transparent text-white hover:bg-white/10"
             render={<Link href="/contact" />}
           >
             お問い合わせ
