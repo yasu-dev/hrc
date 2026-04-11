@@ -1,6 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/button';
+
+export const metadata: Metadata = {
+  title: 'ページが見つかりません',
+};
 
 export default function NotFound() {
   return (

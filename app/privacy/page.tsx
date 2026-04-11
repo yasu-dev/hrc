@@ -7,6 +7,10 @@ import { COMPANY } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'プライバシーポリシー',
   description: 'HRtep株式会社の個人情報保護方針（プライバシーポリシー）です。',
+  openGraph: {
+    title: 'プライバシーポリシー | HRtep株式会社',
+    description: 'HRtep株式会社の個人情報保護方針（プライバシーポリシー）です。',
+  },
 };
 
 export default function PrivacyPage() {

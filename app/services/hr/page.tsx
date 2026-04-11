@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: '外国人材事業',
   description:
     'HRtepプラットフォームを活用した外国人材紹介・就労マッチング。有料職業紹介事業として企業と外国籍人財をつなぎます。',
+  openGraph: {
+    title: '外国人材事業 | HRtep株式会社',
+    description:
+      'HRtepプラットフォームを活用した外国人材紹介・就労マッチング。有料職業紹介事業として企業と外国籍人財をつなぎます。',
+  },
 };
 
 const icons = [Users, ClipboardList, GraduationCap, Briefcase];

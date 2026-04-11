@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: 'お問い合わせ',
   description:
     'HRtep株式会社へのお問い合わせ。外国人材紹介・DX支援・AI活用支援・システム開発・Webアプリ開発に関するご相談はこちらから。',
+  openGraph: {
+    title: 'お問い合わせ | HRtep株式会社',
+    description:
+      'HRtep株式会社へのお問い合わせ。外国人材紹介・DX支援・AI活用支援・システム開発・Webアプリ開発に関するご相談はこちらから。',
+  },
 };
 
 export default function ContactPage() {

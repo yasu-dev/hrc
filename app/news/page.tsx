@@ -8,6 +8,10 @@ import { NEWS_ITEMS } from '@/data/news';
 export const metadata: Metadata = {
   title: 'お知らせ',
   description: 'HRtep株式会社のお知らせ・プレスリリース一覧。最新のニュースをお届けします。',
+  openGraph: {
+    title: 'お知らせ | HRtep株式会社',
+    description: 'HRtep株式会社のお知らせ・プレスリリース一覧。最新のニュースをお届けします。',
+  },
 };
 
 export default function NewsPage() {

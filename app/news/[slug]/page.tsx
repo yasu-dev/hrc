@@ -20,6 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: item.title,
     description: item.excerpt,
+    openGraph: {
+      title: `${item.title} | HRtep株式会社`,
+      description: item.excerpt,
+    },
   };
 }
 
