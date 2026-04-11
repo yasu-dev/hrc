@@ -1,0 +1,179 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "HRtep株式会社 人手不足の課題解消・真の共生社会実現へ" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "HRtep株式会社" [ref=e6]
+        - paragraph [ref=e7]: 人手不足の課題解消・真の共生社会実現へ
+      - navigation [ref=e9]:
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "HRtepについて" [ref=e12] [cursor=pointer]:
+              - /url: /company
+          - listitem [ref=e13]:
+            - link "サービス案内" [ref=e14] [cursor=pointer]:
+              - /url: /service
+          - listitem [ref=e15]:
+            - link "お役立ち情報" [ref=e16] [cursor=pointer]:
+              - /url: /helpful
+          - listitem [ref=e17]:
+            - link "必ず読んでほしい記事" [ref=e18] [cursor=pointer]:
+              - /url: /surely
+          - listitem [ref=e19]:
+            - link "プレスリリース" [ref=e20] [cursor=pointer]:
+              - /url: /press
+          - listitem [ref=e21]:
+            - link "無料登録はこちら" [ref=e22] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=e23]:
+            - link "お問い合わせ" [ref=e24] [cursor=pointer]:
+              - /url: /contact
+              - generic [ref=e25]: お問い合わせ
+  - generic [ref=e26]:
+    - heading "HRtepについて" [level=1] [ref=e27]
+    - img "HRtepについて" [ref=e28]
+  - list [ref=e30]:
+    - listitem [ref=e31]:
+      - link "ホーム" [ref=e32] [cursor=pointer]:
+        - /url: /
+      - text: ＞
+    - listitem [ref=e33]: HRtepについて
+  - generic [ref=e34]:
+    - generic [ref=e35]:
+      - heading "Feeling" [level=2] [ref=e36]
+      - generic [ref=e37]: HRtepの思い
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - heading "単純な外国籍人材の紹介・マッチングでは無い" [level=3] [ref=e40]
+        - paragraph [ref=e41]: 私たちHRtepは、単純に外国籍人材の就労マッチングを行うものではありません。一時的には就労の機会を得ることはとても大事なことです。でもそれが日本にわざわざ働きに来る外国籍人材・労働者の真の目的では無いと考えます。
+        - heading "日本での就労を終えた、その先にあるもの" [level=3] [ref=e42]
+        - paragraph [ref=e43]: 私たちは、外国籍人材の方々が日本での就労を終え、母国に帰った後が本当の意味でも就労支援と考えています。もちろん、日本に留まる方も多くはいますが、大多数は就労を終えると母国に帰ります。そこで日本での就労経験を活かして貰えれば、この上ない喜びですが、それが出来ずに母国に戻った後は、日本に来る前と同様の生活になってしまう事も多々あります。そのような状況を少しでも改善するべく我々HRtepの本当の支援があると考え、HRtep株式会社を創業しました。
+      - img "HRtepの思い" [ref=e45]
+  - generic [ref=e46]:
+    - generic [ref=e47]:
+      - heading "Message" [level=2] [ref=e48]
+      - generic [ref=e49]: 代表挨拶
+    - generic [ref=e52]:
+      - paragraph [ref=e53]: ＨＲｔｅｐ株式会社は、“世界から貧困をなくそう”を掲げ、外国籍人財の就労促進事業を皮切りに創業いたしました。
+      - paragraph [ref=e54]: 国内の経済社会の活性化に向け、世界の人財との共創並びに真の共生社会実現への貢献を図る観点から、外国籍人財の雇用機会をより積極的に推進すべく、最適なHRTechエコシステムを創造してまいります。
+      - paragraph [ref=e55]: 戦略的パートナーシップとコラボレーションを通じ、外国籍人財の就労にかかわるすべての事業者が合理的な就労マッチングを可能とするプラットフォームを導入し、経済合理性を実現することを目指してまいります。そして、世界の優秀な人財と日本企業との間で、より多くの雇用機会を創出し、持続可能な活力ある経済社会の実現に貢献できればと考えております。
+      - paragraph [ref=e56]: また、企業がAIを活用して業務プロセスやビジネスモデルを革新し、効率化と生産性向上を促進するためのAX（AIトランスフォーメーション）業務の受託を積極的に展開するとともに、人財育成開発事業にも力を注いでおります。こうした取り組みを通じ、人財の活用とテクノロジーを融合させることで、企業の生産性向上と持続的な成長に貢献してまいります。
+      - paragraph [ref=e57]: 中長期的な視点としては、後発開発途上国が抱える社会問題である貧困家庭や教育格差の是正、並びに雇用の創出に寄与する支援や援助を実施し、世界から“一人でも多く”の貧困をなくしたいという思いが込められております。これらを実現することが、ＨＲｔｅｐの存在意義であり使命であると考えております。
+      - paragraph [ref=e58]:
+        - text: ＨＲｔｅｐ 株式会社
+        - text: 代表取締役社長 津賀平 隆浩
+  - generic [ref=e59]:
+    - generic [ref=e60]:
+      - heading "Philosophy" [level=2] [ref=e61]
+      - generic [ref=e62]: 経営理念
+    - generic [ref=e64]:
+      - heading "”世界から貧困をなくそう”" [level=3] [ref=e65]
+      - paragraph [ref=e66]:
+        - text: 私どもの強みを活かしたマーケットを創造し、外国籍人財の就労支援にかかわる事業者と共に
+        - text: 世界の人財との共存共栄に貢献し、関わる全ての人たちとの相互繁栄に邁進する。
+  - generic [ref=e67]:
+    - generic [ref=e68]:
+      - heading "Vision" [level=2] [ref=e69]
+      - generic [ref=e70]: ビジョン
+    - generic [ref=e71]:
+      - generic [ref=e72]:
+        - heading "10年間で外国籍人財50万人の日本での就労の機会の創出。" [level=4] [ref=e73]
+        - heading "国内企業の海外投資の機会の創出。" [level=4] [ref=e74]
+        - heading "後発開発途上国の半数に学業運営施設への支援。" [level=4] [ref=e75]
+        - heading "ＳＤＧsにのっとり、世界の家族全てが１日３食を安全に食べられる収入の提供。" [level=4] [ref=e76]
+      - img "ビジョン" [ref=e78]
+  - generic [ref=e79]:
+    - generic [ref=e80]:
+      - heading "Outline" [level=2] [ref=e81]
+      - generic [ref=e82]: 会社概要
+    - generic [ref=e84]:
+      - term [ref=e85]: 会社名
+      - definition [ref=e86]: ＨＲｔｅｐ株式会社
+      - term [ref=e87]: 英文社名
+      - definition [ref=e88]: HRtep Co., Ltd.
+      - term [ref=e89]: 代表取締役
+      - definition [ref=e90]: 津賀平 隆浩
+      - term [ref=e91]: 設立
+      - definition [ref=e92]: 2021年9月1日
+      - term [ref=e93]: 所在地
+      - definition [ref=e94]:
+        - text: 本社所在地：東京都中央区京橋3-12-1 エコー京橋ビル 5階
+        - text: 銀座営業所：東京都中央区銀座1-16-7 銀座大栄ビル
+      - term [ref=e95]: TEL
+      - definition [ref=e96]: 03-6228-7866
+      - term [ref=e97]: 事業内容
+      - definition [ref=e98]:
+        - list [ref=e99]:
+          - listitem [ref=e100]: 求人・求職者情報提供サービスの企画、運営及び管理業務並びに関連情報の取次ぎサービス
+          - listitem [ref=e101]: 人材紹介に関わる情報提供サービスの運営
+          - listitem [ref=e102]: アウトソーシング事業の受託、請負及び委託の取次ぎサービス
+          - listitem [ref=e103]: 外国籍人財受け入れ研修のサービス取次ぎ
+  - generic [ref=e104]:
+    - generic [ref=e105]:
+      - heading "Access" [level=2] [ref=e106]
+      - generic [ref=e107]: アクセス
+    - generic [ref=e108]:
+      - iframe [ref=e110]
+      - generic [ref=e112]:
+        - term [ref=e113]: 本社住所
+        - definition [ref=e114]:
+          - text: 東京都中央区京橋3-12-1 エコー京橋ビル 5階
+          - text: ※１階がファミリーマートのビルの５階
+        - term [ref=e115]: 最寄り駅
+        - definition [ref=e116]:
+          - text: 「宝町」駅 徒歩1分
+          - text: 「京橋」駅 1番出口 徒歩4分>
+        - term [ref=e117]: 営業時間
+        - definition [ref=e118]: 平日9:00～18:00 / 土日祝定休
+    - generic [ref=e119]:
+      - iframe [ref=e121]
+      - generic [ref=e123]:
+        - term [ref=e124]: 銀座営業所住所
+        - definition [ref=e125]:
+          - text: 東京都中央区銀座1-16-7 銀座大栄ビル
+          - text: ※１階がファミリーマートのビル
+        - term [ref=e126]: 最寄り駅
+        - definition [ref=e127]:
+          - text: 「宝町」駅 徒歩2分
+          - text: 「京橋」駅 徒歩3分
+          - text: 「銀座一丁目」駅 徒歩3分
+        - term [ref=e128]: 営業時間
+        - definition [ref=e129]: 平日9:00～18:00 / 土日祝定休
+  - contentinfo [ref=e130]:
+    - generic [ref=e131]:
+      - generic [ref=e132]:
+        - link "HRtep株式会社" [ref=e133] [cursor=pointer]:
+          - /url: /
+          - img "HRtep株式会社" [ref=e134]
+        - paragraph [ref=e135]:
+          - text: 本社所在地：東京都中央区京橋 3-12-1 エコー京橋ビル 5階
+          - text: 銀座営業所：東京都中央区銀座1-16-7 銀座大栄ビル
+          - text: TEL:03-6228-7866
+      - navigation [ref=e137]:
+        - list [ref=e138]:
+          - listitem [ref=e139]:
+            - link "HRtepについて" [ref=e140] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e141]:
+            - link "サービス案内" [ref=e142] [cursor=pointer]:
+              - /url: /service
+          - listitem [ref=e143]:
+            - link "お役立ち情報" [ref=e144] [cursor=pointer]:
+              - /url: /helpful
+          - listitem [ref=e145]:
+            - link "必ず読んでほしい記事" [ref=e146] [cursor=pointer]:
+              - /url: /surely
+          - listitem [ref=e147]:
+            - link "プレスリリース" [ref=e148] [cursor=pointer]:
+              - /url: /press
+          - listitem [ref=e149]:
+            - link "無料登録はこちら" [ref=e150] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=e151]:
+            - link "お問い合わせ" [ref=e152] [cursor=pointer]:
+              - /url: /contact
+      - paragraph [ref=e154]: © HRtep Co., Ltd.
+  - iframe [ref=e157]:
+    - generic [ref=f11e6]:
+      - strong [ref=f11e7]: reCAPTCHA
+      - text: で保護されています

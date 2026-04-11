@@ -1,0 +1,317 @@
+- generic [active] [ref=e1]:
+  - navigation "Skip link navigation":
+    - list:
+      - listitem:
+        - link "主要ページへ移動":
+          - /url: "#dcms_layoutPageBlock"
+      - listitem:
+        - link "メニューへ移動":
+          - /url: "#lib-header-nav"
+      - listitem:
+        - link "ページ下へ移動":
+          - /url: "#footer"
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - banner [ref=e5]:
+        - link "国際ソフトウェア株式会社" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "国際ソフトウェア株式会社" [ref=e9]
+        - button "Menu Open" [ref=e10] [cursor=pointer]
+      - text:              
+    - heading "サービス内容" [level=1] [ref=e17]
+    - navigation "Breadcrumbs" [ref=e18]:
+      - list [ref=e20]:
+        - listitem [ref=e21]:
+          - link "HOME" [ref=e22] [cursor=pointer]:
+            - /url: https://www.ksw.co.jp/
+        - listitem [ref=e23]:
+          - link "サービス内容":
+            - /url: https://www.ksw.co.jp/service/
+          - text: 
+    - main [ref=e24]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: 当社は、特定の企業グループに属さない独立系システムインテグレーターです。
+          - paragraph [ref=e29]:
+            - text: 特定のメーカーに縛られることなく製品・プランを選択できるため、お客様にとって最適なソリューションをご提案できます。
+            - text: 独立系でありながら、インフラ構築からシステム開発、運用までワンストップで対応できる技術力を有していることも特長です。
+            - text: 持続可能なパートナーシップで一社一社のお困りごとに寄り添うことを大切にしています。
+        - list [ref=e31]:
+          - listitem [ref=e32]:
+            - link "カテゴリから探す" [ref=e33] [cursor=pointer]:
+              - /url: "#ac01"
+              - paragraph [ref=e35]: カテゴリから探す
+          - listitem [ref=e37]:
+            - link "サービスタイプから探す" [ref=e38] [cursor=pointer]:
+              - /url: "#ac02"
+              - paragraph [ref=e40]: サービスタイプから探す
+          - listitem [ref=e42]:
+            - link "お悩みから探す" [ref=e43] [cursor=pointer]:
+              - /url: "#ac03"
+              - paragraph [ref=e45]: お悩みから探す
+          - listitem [ref=e47]:
+            - link "部署別から探す" [ref=e48] [cursor=pointer]:
+              - /url: "#ac04"
+              - paragraph [ref=e50]: 部署別から探す
+        - heading "カテゴリから探す" [level=2] [ref=e54]
+        - generic [ref=e56]:
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - heading "IT業務効率化/DX支援" [level=3] [ref=e61]
+                - generic [ref=e62]: 業務効率化やDX（デジタルトランスフォーメーション）の成功に向け、最新のIT技術とノウハウを活用し、業務プロセスの最適化とデジタル化を推進します。それにより、生産性の向上と新たな価値の創出を支援します。国際ソフトウェアでは、Pleasanter、MattermostをはじめとするDX支援や、IT業務効率化の支援をしております。
+              - link "DX支援サービスをみる " [ref=e64] [cursor=pointer]:
+                - /url: /service/dx/
+                - generic [ref=e65]: DX支援サービスをみる 
+            - img "IT業務効率化/DX支援" [ref=e67]
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]:
+                - heading "クラウド導入運用" [level=3] [ref=e72]
+                - generic [ref=e73]: クラウドサービスを活用することで、BCP（事業継続計画）の確保、ITインフラの拡張性向上、コスト削減を実現します。これにより、迅速なサービス展開やビジネスの変化への柔軟な対応が可能になります。国際ソフトウェアでは、AWSやAzureの導入・構築を含むクラウド導入や運用の支援をしております。
+              - link "クラウドサービスをみる " [ref=e75] [cursor=pointer]:
+                - /url: /service/cloud/
+                - generic [ref=e76]: クラウドサービスをみる 
+            - img "クラウド導入運用" [ref=e78]
+          - generic [ref=e80]:
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - heading "ネットワークセキュリティ" [level=3] [ref=e83]
+                - generic [ref=e84]: 標的型攻撃や情報漏洩リスク増大に対し、最先端のセキュリティ技術と信頼のサポートで、情報資産を守り、安全なビジネス運営を支援します。
+              - link "受託開発をみる " [ref=e86] [cursor=pointer]:
+                - /url: /service/ses/
+                - generic [ref=e87]: 受託開発をみる 
+            - img "ネットワークセキュリティ" [ref=e89]
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - heading "ITインフラ構築/ アプリケーション開発" [level=3] [ref=e94]:
+                  - text: ITインフラ構築/
+                  - text: アプリケーション開発
+                - generic [ref=e95]: ビジネスニーズに合わせた最適なIT基盤を構築。アジャイル開発やDevOpsを取り入れ、迅速な開発と高品質なシステム提供を支援します。
+              - link "受託開発をみる " [ref=e97] [cursor=pointer]:
+                - /url: /service/ses/
+                - generic [ref=e98]: 受託開発をみる 
+            - img "ITインフラ構築/アプリケーション開発" [ref=e100]
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - heading "システム運用" [level=3] [ref=e105]
+                - generic [ref=e106]: システムの安定稼働とパフォーマンス維持には、適切な運用管理が欠かせません。自動化ツールの導入や監視体制の強化を通じて、運用効率の向上と障害対応の迅速化を支援します。
+              - link "受託開発をみる " [ref=e108] [cursor=pointer]:
+                - /url: /service/ses/
+                - generic [ref=e109]: 受託開発をみる 
+            - img "システム運用" [ref=e111]
+        - heading "サービスタイプから探す" [level=2] [ref=e113]
+        - generic [ref=e115]:
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - heading "クラウドサービス" [level=2] [ref=e121]
+              - generic [ref=e122]:
+                - text: お客様のニーズに最適なプランを、AWSやAzureからご提案し、クラウド環境の構築を迅速かつ簡単に実現します。
+                - text: 必要なときに、必要な分だけサーバーやストレージをすぐに利用でき、サーバーの監視やメンテナンス作業は一切不要です。
+            - link "クラウドサービスをみる " [ref=e124] [cursor=pointer]:
+              - /url: /service/cloud/
+              - generic [ref=e125]: クラウドサービスをみる 
+          - img "クラウドサービス" [ref=e128]
+        - generic [ref=e130]:
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - heading "DX支援" [level=2] [ref=e136]
+              - generic [ref=e137]:
+                - text: 中小企業のDX推進を支援する国際ソフトウェアの「DX支援サービス」は、中小企業が抱える様々な課題を解決し、DX推進を成功に導くための包括的なソリューションを提供します。
+                - text: 業務効率化を実現するためのサポートを提供し、システムの導入からカスタマイズ、運用支援まで、幅広く対応し、 お客様の業務に最適なシステムをスムーズに構築いたします。
+            - link "DX支援サービスをみる " [ref=e139] [cursor=pointer]:
+              - /url: /service/dx/
+              - generic [ref=e140]: DX支援サービスをみる 
+          - img "DX支援" [ref=e143]
+        - generic [ref=e145]:
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - heading "受託開発・SES" [level=2] [ref=e151]
+              - generic [ref=e152]:
+                - text: 長年に培った様々なプロジェクトに携わった実績と、多彩な技術知見から、大型案件から小型カスタマイズ案件まで幅広く対応します。
+                - text: 技術力と柔軟性で、ビジネスを加速し、お客様のニーズに最適な解決方法を提供します。お客様の成功に課題解決力×技術力✕人間力で貢献します。
+            - link "受託開発・SESをみる " [ref=e154] [cursor=pointer]:
+              - /url: /service/ses/
+              - generic [ref=e155]: 受託開発・SESをみる 
+          - img "DX支援" [ref=e158]
+        - heading "お悩みから探す" [level=2] [ref=e160]
+        - heading "業務効率化・生産性向上" [level=3] [ref=e162]
+        - list [ref=e164]:
+          - listitem [ref=e165]:
+            - link "プリザンター" [ref=e166] [cursor=pointer]:
+              - /url: /service/dx/pleasanter/
+              - generic [ref=e167]: プリザンター
+          - listitem [ref=e168]:
+            - link "Mattermost" [ref=e169] [cursor=pointer]:
+              - /url: /service/dx/Mattermost/
+              - generic [ref=e170]: Mattermost
+        - heading "業務見える化・データ活用" [level=3] [ref=e172]
+        - list [ref=e174]:
+          - listitem [ref=e175]:
+            - link "プリザンター" [ref=e176] [cursor=pointer]:
+              - /url: /service/dx/pleasanter/
+              - generic [ref=e177]: プリザンター
+          - listitem [ref=e178]:
+            - link "AWS" [ref=e179] [cursor=pointer]:
+              - /url: /service/cloud/aws/
+              - generic [ref=e180]: AWS
+          - listitem [ref=e181]:
+            - link "Azure" [ref=e182] [cursor=pointer]:
+              - /url: /service/cloud/azure/
+              - generic [ref=e183]: Azure
+        - heading "人材・技術支援" [level=3] [ref=e185]
+        - list [ref=e187]:
+          - listitem [ref=e188]:
+            - link "受託開発" [ref=e189] [cursor=pointer]:
+              - /url: /service/ses/
+              - generic [ref=e190]: 受託開発
+        - heading "部署別から探す" [level=2] [ref=e192]
+        - heading "情報システム" [level=3] [ref=e194]
+        - list [ref=e196]:
+          - listitem [ref=e197]:
+            - link "AWS" [ref=e198] [cursor=pointer]:
+              - /url: /service/cloud/aws/
+              - generic [ref=e199]: AWS
+          - listitem [ref=e200]:
+            - link "Azure" [ref=e201] [cursor=pointer]:
+              - /url: /service/cloud/azure/
+              - generic [ref=e202]: Azure
+          - listitem [ref=e203]:
+            - link "受託開発" [ref=e204] [cursor=pointer]:
+              - /url: /service/ses/
+              - generic [ref=e205]: 受託開発
+        - heading "経営・人事" [level=3] [ref=e207]
+        - list [ref=e209]:
+          - listitem [ref=e210]:
+            - link "プリザンター" [ref=e211] [cursor=pointer]:
+              - /url: /service/dx/pleasanter/
+              - generic [ref=e212]: プリザンター
+          - listitem [ref=e213]:
+            - link "Mattemost" [ref=e214] [cursor=pointer]:
+              - /url: /service/dx/Mattermost/
+              - generic [ref=e215]: Mattemost
+        - heading "営業・生産管理" [level=3] [ref=e217]
+        - list [ref=e219]:
+          - listitem [ref=e220]:
+            - link "プリザンター" [ref=e221] [cursor=pointer]:
+              - /url: /service/dx/pleasanter/
+              - generic [ref=e222]: プリザンター
+          - listitem [ref=e223]:
+            - link "Mattermost" [ref=e224] [cursor=pointer]:
+              - /url: /service/dx/Mattermost/
+              - generic [ref=e225]: Mattermost
+    - generic [ref=e229]:
+      - heading "資料請求・お問い合わせ・ 無料トライアル" [level=2] [ref=e231]:
+        - text: 資料請求・お問い合わせ・
+        - generic [ref=e232]: 無料トライアル
+      - generic [ref=e233]:
+        - paragraph [ref=e234]: 中小企業DX支援なら国際ソフトウェアにお任せください！フォームから無料で資料ダウンロードいただけます。
+        - paragraph [ref=e235]: まずは相談してみたい方は下の「お問い合わせ」よりお気軽にご相談ください。
+      - generic [ref=e236]:
+        - heading "IT支援・DX化でお悩みの方に おすすめの資料です" [level=3] [ref=e238]:
+          - text: IT支援・DX化でお悩みの方に
+          - generic [ref=e239]: おすすめの資料です
+        - list [ref=e241]:
+          - listitem [ref=e242]: 豊富な知識と手厚いサポート体制
+          - listitem [ref=e243]: DXによる生産性向上
+          - listitem [ref=e244]: 業務効率化をIT支援
+      - list [ref=e246]:
+        - listitem [ref=e247]:
+          - link "お問い合わせ " [ref=e248] [cursor=pointer]:
+            - /url: /contact/
+            - generic [ref=e249]: お問い合わせ 
+        - listitem [ref=e250]:
+          - link "無料トライアル " [ref=e251] [cursor=pointer]:
+            - /url: /service/dx/demo/
+            - generic [ref=e252]: 無料トライアル 
+    - contentinfo [ref=e253]:
+      - generic:
+        - link "ページTOPへ戻る":
+          - /url: "#"
+          - generic [ref=e254] [cursor=pointer]:
+            - text: 
+            - generic [ref=e255]: PAGE TOP
+      - generic [ref=e256]:
+        - generic [ref=e257]:
+          - generic [ref=e258]:
+            - paragraph [ref=e259]:
+              - link "国際ソフトウェア株式会社" [ref=e260] [cursor=pointer]:
+                - /url: /
+                - img "国際ソフトウェア株式会社" [ref=e262]
+            - generic [ref=e263]:
+              - term [ref=e264]: 国際ソフトウェア株式会社
+              - definition [ref=e265]:
+                - paragraph [ref=e266]:
+                  - text: 〒183-0034
+                  - generic [ref=e267]:
+                    - text: 東京都府中市住吉町1-81-12
+                    - generic [ref=e268]: KSWビル
+          - generic [ref=e270]:
+            - generic [ref=e272]:
+              - list [ref=e274]:
+                - listitem [ref=e275]:
+                  - link "国際ソフトウェアについて" [ref=e276] [cursor=pointer]:
+                    - /url: /about/
+                    - generic [ref=e277]: 国際ソフトウェアについて
+                - listitem [ref=e278]:
+                  - link "サービス内容" [ref=e279] [cursor=pointer]:
+                    - /url: /service/
+                    - generic [ref=e280]: サービス内容
+                  - list [ref=e281]:
+                    - listitem [ref=e282]:
+                      - link "クラウドサービス" [ref=e283] [cursor=pointer]:
+                        - /url: /service/cloud/
+                    - listitem [ref=e284]:
+                      - link "DX支援" [ref=e285] [cursor=pointer]:
+                        - /url: /service/dx/
+                    - listitem [ref=e286]:
+                      - link "受託開発・SES" [ref=e287] [cursor=pointer]:
+                        - /url: /service/ses/
+              - list [ref=e289]:
+                - listitem [ref=e290]:
+                  - link "導入事例" [ref=e291] [cursor=pointer]:
+                    - /url: /case/
+                    - generic [ref=e292]: 導入事例
+                - listitem [ref=e293]:
+                  - link "企業情報" [ref=e294] [cursor=pointer]:
+                    - /url: /company/
+                    - generic [ref=e295]: 企業情報
+                  - list [ref=e296]:
+                    - listitem [ref=e297]:
+                      - link "ご挨拶・理念と指針" [ref=e298] [cursor=pointer]:
+                        - /url: /company/overview/
+                    - listitem [ref=e299]:
+                      - link "会社概要・沿革・アクセス" [ref=e300] [cursor=pointer]:
+                        - /url: /company/history/
+                    - listitem [ref=e301]:
+                      - link "健康経営の取り組み" [ref=e302] [cursor=pointer]:
+                        - /url: /company/health_management/
+            - list [ref=e304]:
+              - listitem [ref=e305]:
+                - link "お役立ち情報・事例" [ref=e306] [cursor=pointer]:
+                  - /url: /media/column/
+                  - generic [ref=e307]: お役立ち情報・事例
+              - listitem [ref=e308]:
+                - link "お知らせ" [ref=e309] [cursor=pointer]:
+                  - /url: /news/
+                  - generic [ref=e310]: お知らせ
+              - listitem [ref=e311]:
+                - link "採用情報" [ref=e312] [cursor=pointer]:
+                  - /url: /recruit/
+                  - generic [ref=e313]: 採用情報
+        - list [ref=e314]:
+          - listitem [ref=e315]:
+            - link "個人情報保護に関する取り扱いについて" [ref=e316] [cursor=pointer]:
+              - /url: /privacy/
+          - listitem [ref=e317]:
+            - link "基本方針" [ref=e318] [cursor=pointer]:
+              - /url: /basic_policy/
+          - listitem [ref=e319]:
+            - link "アクセシビリティ対応方針" [ref=e320] [cursor=pointer]:
+              - /url: /accessibility/
+          - listitem [ref=e321]:
+            - link "サイトマップ" [ref=e322] [cursor=pointer]:
+              - /url: /sitemap/
+      - paragraph [ref=e323]: © Kokusai Software Co., Ltd.

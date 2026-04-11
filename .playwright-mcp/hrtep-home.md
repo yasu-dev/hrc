@@ -1,0 +1,123 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "HRtep株式会社 人手不足の課題解消・真の共生社会実現へ" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "HRtep株式会社" [ref=e6]
+        - paragraph [ref=e7]: 人手不足の課題解消・真の共生社会実現へ
+      - navigation [ref=e9]:
+        - list [ref=e10]:
+          - listitem [ref=e11]:
+            - link "HRtepについて" [ref=e12] [cursor=pointer]:
+              - /url: /company
+          - listitem [ref=e13]:
+            - link "サービス案内" [ref=e14] [cursor=pointer]:
+              - /url: /service
+          - listitem [ref=e15]:
+            - link "お役立ち情報" [ref=e16] [cursor=pointer]:
+              - /url: /helpful
+          - listitem [ref=e17]:
+            - link "必ず読んでほしい記事" [ref=e18] [cursor=pointer]:
+              - /url: /surely
+          - listitem [ref=e19]:
+            - link "プレスリリース" [ref=e20] [cursor=pointer]:
+              - /url: /press
+          - listitem [ref=e21]:
+            - link "無料登録はこちら" [ref=e22] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=e23]:
+            - link "お問い合わせ" [ref=e24] [cursor=pointer]:
+              - /url: /contact
+              - generic [ref=e25]: お問い合わせ
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - heading "Menu" [level=2] [ref=e30]
+      - generic [ref=e31]: メニュー
+    - list [ref=e33]:
+      - listitem [ref=e34]:
+        - link "HRtepについて HRtepについて" [ref=e35] [cursor=pointer]:
+          - /url: /?page_id=10
+          - img "HRtepについて" [ref=e36]
+          - paragraph [ref=e37]: HRtepについて
+      - listitem [ref=e38]:
+        - link "サービス案内 サービス案内" [ref=e39] [cursor=pointer]:
+          - /url: /?page_id=13
+          - img "サービス案内" [ref=e40]
+          - paragraph [ref=e41]: サービス案内
+      - listitem [ref=e42]:
+        - link "お役立ち情報 お役立ち情報" [ref=e43] [cursor=pointer]:
+          - /url: /?page_id=28
+          - img "お役立ち情報" [ref=e44]
+          - paragraph [ref=e45]: お役立ち情報
+      - listitem [ref=e46]:
+        - link "必ず読んでほしい記事 必ず読んでほしい記事" [ref=e47] [cursor=pointer]:
+          - /url: /?page_id=30
+          - img "必ず読んでほしい記事" [ref=e48]
+          - paragraph [ref=e49]: 必ず読んでほしい記事
+      - listitem [ref=e50]:
+        - link "HRtepについて プレスリリース" [ref=e51] [cursor=pointer]:
+          - /url: /?page_id=20
+          - img "HRtepについて" [ref=e52]
+          - paragraph [ref=e53]: プレスリリース
+  - generic [ref=e54]:
+    - generic [ref=e55]:
+      - heading "NEWS" [level=2] [ref=e56]
+      - generic [ref=e57]: お知らせ
+    - text: ":"
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - paragraph [ref=e61]: 2022年12月5日
+          - link "外国籍人財の就労促進マッチングサービス「HRtepプラットフォーム」をプレローンチしました。" [ref=e62] [cursor=pointer]:
+            - /url: https://hrtep.com/news/prelaunch/
+            - paragraph [ref=e63]: 外国籍人財の就労促進マッチングサービス「HRtepプラットフォーム」をプレローンチしました。
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: 2022年10月11日
+          - link "少子高齢化・人口減少で644万人の労働力が不足する2030年問題の解決方法〜業界初となる外国籍人材特化の人材マッチングプラットフォームがベータ版を公開" [ref=e66] [cursor=pointer]:
+            - /url: https://hrtep.com/news/beta_release/
+            - paragraph [ref=e67]: 少子高齢化・人口減少で644万人の労働力が不足する2030年問題の解決方法〜業界初となる外国籍人材特化の人材マッチングプラットフォームがベータ版を公開
+        - generic [ref=e68]:
+          - paragraph [ref=e69]: 2022年9月19日
+          - link "サービス開始に伴い、ホームページをリニューアルいたしました。" [ref=e70] [cursor=pointer]:
+            - /url: https://hrtep.com/news/%e3%83%9b%e3%83%bc%e3%83%a0%e3%83%9a%e3%83%bc%e3%82%b8%e3%83%aa%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab/
+            - paragraph [ref=e71]: サービス開始に伴い、ホームページをリニューアルいたしました。
+      - link "お知らせ一覧へ" [ref=e74] [cursor=pointer]:
+        - /url: /?page_id=60
+  - contentinfo [ref=e75]:
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - link "HRtep株式会社" [ref=e78] [cursor=pointer]:
+          - /url: /
+          - img "HRtep株式会社" [ref=e79]
+        - paragraph [ref=e80]:
+          - text: 本社所在地：東京都中央区京橋 3-12-1 エコー京橋ビル 5階
+          - text: 銀座営業所：東京都中央区銀座1-16-7 銀座大栄ビル
+          - text: TEL:03-6228-7866
+      - navigation [ref=e82]:
+        - list [ref=e83]:
+          - listitem [ref=e84]:
+            - link "HRtepについて" [ref=e85] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e86]:
+            - link "サービス案内" [ref=e87] [cursor=pointer]:
+              - /url: /service
+          - listitem [ref=e88]:
+            - link "お役立ち情報" [ref=e89] [cursor=pointer]:
+              - /url: /helpful
+          - listitem [ref=e90]:
+            - link "必ず読んでほしい記事" [ref=e91] [cursor=pointer]:
+              - /url: /surely
+          - listitem [ref=e92]:
+            - link "プレスリリース" [ref=e93] [cursor=pointer]:
+              - /url: /press
+          - listitem [ref=e94]:
+            - link "無料登録はこちら" [ref=e95] [cursor=pointer]:
+              - /url: /register
+          - listitem [ref=e96]:
+            - link "お問い合わせ" [ref=e97] [cursor=pointer]:
+              - /url: /contact
+      - paragraph [ref=e99]: © HRtep Co., Ltd.
+  - iframe [ref=e102]:
+    - generic [ref=f1e6]:
+      - strong [ref=f1e7]: reCAPTCHA
+      - text: で保護されています

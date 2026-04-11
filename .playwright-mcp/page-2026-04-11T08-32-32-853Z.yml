@@ -1,0 +1,348 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - text:           
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "リベロエンジニア" [ref=e7] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob
+          - img "リベロエンジニア" [ref=e8]
+        - navigation [ref=e9]:
+          - list [ref=e10]:
+            - listitem [ref=e11]:
+              - link "ホーム" [ref=e12] [cursor=pointer]:
+                - /url: https://libero-en.jp/btob/
+                - generic [ref=e13]: ホーム
+            - listitem [ref=e14]:
+              - link "サービス" [ref=e15] [cursor=pointer]:
+                - /url: https://libero-en.jp/btob/service/
+                - generic [ref=e16]: サービス
+            - listitem [ref=e17]:
+              - link "実績" [ref=e18] [cursor=pointer]:
+                - /url: /btob/case/
+                - generic [ref=e19]: 実績
+            - listitem [ref=e20]:
+              - link "メンバー紹介" [ref=e21] [cursor=pointer]:
+                - /url: https://libero-en.jp/btob/member/
+                - generic [ref=e22]: メンバー紹介
+            - listitem [ref=e23]:
+              - link "会社概要" [ref=e24] [cursor=pointer]:
+                - /url: https://libero-en.jp/btob/about/
+                - generic [ref=e25]: 会社概要
+            - listitem [ref=e26]:
+              - link "ニュース" [ref=e27] [cursor=pointer]:
+                - /url: /btob/news/
+                - generic [ref=e28]: ニュース
+            - listitem [ref=e29]:
+              - link "リベロ情報局" [ref=e30] [cursor=pointer]:
+                - /url: /btob/blog/
+                - generic [ref=e31]: リベロ情報局
+            - listitem [ref=e32]:
+              - link "採用情報" [ref=e33] [cursor=pointer]:
+                - /url: https://libero-en.jp/btob/recruit/
+                - generic [ref=e34]: 採用情報
+            - listitem [ref=e35]:
+              - link "Libero Sight™" [ref=e36] [cursor=pointer]:
+                - /url: https://liberosight.jp/
+                - generic [ref=e37]: Libero Sight™
+            - listitem [ref=e38]:
+              - link "ご相談・お問い合わせ" [ref=e39] [cursor=pointer]:
+                - /url: https://libero-en.jp/btob/contact/
+                - generic [ref=e40]: ご相談・お問い合わせ
+        - text: 
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - text: CREATING
+        - text: DIGITAL INNOVATIONS
+      - generic [ref=e46]:
+        - text: デジタルを核とした 多角的なアプローチで
+        - text: イノベーションを起こす。
+    - generic:
+      - main
+    - generic [ref=e48]:
+      - heading "プロダクト PRODUCT" [level=2] [ref=e49]:
+        - generic [ref=e50]: プロダクト
+        - generic [ref=e51]: PRODUCT
+      - generic [ref=e53]:
+        - link "リベロサイト" [ref=e55] [cursor=pointer]:
+          - /url: https://liberosight.jp/
+          - img "リベロサイト" [ref=e56]
+        - generic [ref=e57]:
+          - heading "倉庫向けスマートグラスソリューションLibero Sight（リベロサイト）" [level=2] [ref=e58]
+          - paragraph [ref=e59]: かんたん操作のスマートグラスで、倉庫DXを実現。「Libero Sight（リベロサイト）」は、入出庫の効率化、ケアレスミス防止、人材教育までを幅広く支援する次世代型ソリューションです。
+          - link "製品を見る" [ref=e61] [cursor=pointer]:
+            - /url: https://liberosight.jp/
+            - text: 製品を見る
+    - generic [ref=e63]:
+      - heading "ニュース NEWS" [level=2] [ref=e64]:
+        - generic [ref=e65]: ニュース
+        - generic [ref=e66]: NEWS
+      - generic [ref=e68]:
+        - list [ref=e69]:
+          - listitem [ref=e70]:
+            - generic [ref=e71]:
+              - link:
+                - /url: https://libero-en.jp/btob/news/%e3%80%90%e5%87%ba%e5%b1%95%e6%83%85%e5%a0%b1%e3%80%91%e3%82%b9%e3%83%9e%e3%83%bc%e3%83%88%e3%82%b0%e3%83%a9%e3%82%b9dx%e3%80%8clibero-sight%ef%bc%88%e3%83%aa%e3%83%99%e3%83%ad%e3%82%b5/
+            - generic [ref=e72]: NEWS
+            - paragraph [ref=e73]: 2026.04.01
+            - heading "【出展情報】スマートグラスDX「Libero Sight™（リベロサイト）」が第7回関西物流展に出展" [level=3] [ref=e74]
+            - link "【出展情報】スマートグラスDX「Libero Sight™（リベロサイト）」が第7回関西物流展に出展" [ref=e75] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/news/%e3%80%90%e5%87%ba%e5%b1%95%e6%83%85%e5%a0%b1%e3%80%91%e3%82%b9%e3%83%9e%e3%83%bc%e3%83%88%e3%82%b0%e3%83%a9%e3%82%b9dx%e3%80%8clibero-sight%ef%bc%88%e3%83%aa%e3%83%99%e3%83%ad%e3%82%b5/
+          - listitem [ref=e76]:
+            - generic [ref=e77]:
+              - link:
+                - /url: https://libero-en.jp/btob/news/libero-sight-tokkyosyutoku/
+            - generic [ref=e78]: NEWS
+            - paragraph [ref=e79]: 2026.02.03
+            - heading "【お知らせ】スマートグラスDX「Libero Sight™」が特許取得しました" [level=3] [ref=e80]
+            - link "【お知らせ】スマートグラスDX「Libero Sight™」が特許取得しました" [ref=e81] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/news/libero-sight-tokkyosyutoku/
+          - listitem [ref=e82]:
+            - generic [ref=e83]:
+              - link:
+                - /url: https://libero-en.jp/btob/news/mediajils/
+            - generic [ref=e84]: NEWS
+            - paragraph [ref=e85]: 2026.01.22
+            - heading "【メディア掲載情報】JILS機関誌2026年新年号にリベロエンジニアの記事が掲載されました" [level=3] [ref=e86]
+            - link "【メディア掲載情報】JILS機関誌2026年新年号にリベロエンジニアの記事が掲載されました" [ref=e87] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/news/mediajils/
+          - listitem [ref=e88]:
+            - generic [ref=e89]:
+              - link:
+                - /url: https://libero-en.jp/btob/news/hyakunie-character/
+            - generic [ref=e90]: NEWS
+            - paragraph [ref=e91]: 2026.01.13
+            - heading "完全新作乙女ゲーム「百目ノ花贄」2026年リリース予定。主要キャラクター紹介" [level=3] [ref=e92]
+            - link "完全新作乙女ゲーム「百目ノ花贄」2026年リリース予定。主要キャラクター紹介" [ref=e93] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/news/hyakunie-character/
+        - link "ニュース一覧" [ref=e94] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/news
+          - text: ニュース一覧
+    - generic [ref=e97]:
+      - heading "サービス SERVICE" [level=2] [ref=e98]:
+        - generic [ref=e99]: サービス
+        - generic [ref=e100]: SERVICE
+      - generic [ref=e102]:
+        - link "コンサルティング事業" [ref=e104] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/service/consulting
+          - img "コンサルティング事業" [ref=e105]
+        - generic [ref=e106]:
+          - heading "Consulting" [level=2] [ref=e108]
+          - heading "経営・ITコンサルティング" [level=2] [ref=e109]
+          - paragraph [ref=e110]: DX戦略策定、システム導入コンサルティング、ITガバナンス/コンプライアンス設計など幅広く対応。 PoCから並走する事により、既成概念にとらわれない新しいビジネスのご支援ができます。
+          - link "詳しく見る" [ref=e112] [cursor=pointer]:
+            - /url: https://libero-en.jp/btob/service/consulting
+            - text: 詳しく見る
+      - generic [ref=e114]:
+        - link "受託開発・準委任開発" [ref=e116] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/service/development
+          - img "受託開発・準委任開発" [ref=e117]
+        - generic [ref=e118]:
+          - heading "development" [level=2] [ref=e120]
+          - heading "受託・準委任開発" [level=2] [ref=e121]
+          - paragraph [ref=e122]: グラス型デバイスなどの新領域の開発から半世紀以上の歴史を持つレガシーな開発まで幅広く対応しています。 高度な知見と技術を誇るITエンジニアがチームを組み、安定感のある開発を実現。当社に持ち帰っての準委任開発も可能です。
+          - link "詳しく見る" [ref=e124] [cursor=pointer]:
+            - /url: https://libero-en.jp/btob/service/development
+            - text: 詳しく見る
+      - generic [ref=e126]:
+        - link "ゲーム・エンターテインメント事業" [ref=e128] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/service/game_entertainment
+          - img "ゲーム・エンターテインメント事業" [ref=e129]
+        - generic [ref=e130]:
+          - heading "game & entertainment" [level=2] [ref=e132]
+          - heading "ゲーム・エンターテインメント事業" [level=2] [ref=e133]
+          - paragraph [ref=e134]: ゲーム・エンターテインメント領域における企画、開発、プロモーションなどに幅広く対応。 少数精鋭の専門チームが、感動体験の創出に向けてご支援いたします。
+          - link "詳しく見る" [ref=e136] [cursor=pointer]:
+            - /url: https://libero-en.jp/btob/service/game_entertainment
+            - text: 詳しく見る
+      - generic [ref=e138]:
+        - link "エンジニア派遣" [ref=e140] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/service/ses
+          - img "エンジニア派遣" [ref=e141]
+        - generic [ref=e142]:
+          - heading "Engineer Staffing" [level=2] [ref=e144]
+          - heading "エンジニア派遣" [level=2] [ref=e145]
+          - paragraph [ref=e146]: 圧倒的な技術力と自走力を持つ、優秀なエンジニアのみが在籍。開発現場の複雑な課題やスキル・リソースの不足をスマートに解決します。
+          - link "詳しく見る" [ref=e148] [cursor=pointer]:
+            - /url: https://libero-en.jp/btob/service/ses
+            - text: 詳しく見る
+      - generic [ref=e150]:
+        - link "自社サービスの運営" [ref=e152] [cursor=pointer]:
+          - /url: https://encount-l.com/
+          - img "自社サービスの運営" [ref=e153]
+        - generic [ref=e154]:
+          - heading "In-house service" [level=2] [ref=e156]
+          - heading "自社サービスの運営" [level=2] [ref=e157]
+          - paragraph [ref=e158]: 企業と求職者のスマートな出会いを創出するプラットフォーム「ENCOUNT」を運営しています。ボタンひとつで即座に5分間の面談が可能です。
+          - link "詳しく見る" [ref=e160] [cursor=pointer]:
+            - /url: https://encount-l.com/
+            - text: 詳しく見る
+      - generic [ref=e162]:
+        - link "IP事業" [ref=e164] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/service/ip
+          - img "IP事業" [ref=e165]
+        - generic [ref=e166]:
+          - heading "Content Creation" [level=2] [ref=e168]
+          - heading "コンテンツ制作" [level=2] [ref=e169]
+          - paragraph [ref=e170]: 自社制作でさまざまなコンテンツを展開。弊社公式キャラの運営や調味料擬人化企画、グッズ販売、XやInstagram、TikTok等のSNS運用を行っています。
+          - link "詳しく見る" [ref=e172] [cursor=pointer]:
+            - /url: https://libero-en.jp/btob/service/ip
+            - text: 詳しく見る
+    - generic [ref=e174]:
+      - heading "トピックス TOPICS" [level=2] [ref=e175]:
+        - generic [ref=e176]: トピックス
+        - generic [ref=e177]: TOPICS
+      - generic [ref=e179]:
+        - list [ref=e180]:
+          - listitem [ref=e181]:
+            - generic [ref=e182]:
+              - link "倉庫改善のアイデア8選｜現場の課題別に即効策からDX活用まで解説":
+                - /url: https://libero-en.jp/btob/blog/5154/
+                - img "倉庫改善のアイデア8選｜現場の課題別に即効策からDX活用まで解説" [ref=e183] [cursor=pointer]
+            - generic [ref=e184]: 倉庫DX・物流DX
+            - paragraph [ref=e185]: 2026.04.10
+            - heading "倉庫改善のアイデア8選｜現場の課題別に即効策からDX活用まで解説" [level=3] [ref=e186]
+            - generic [ref=e188]:
+              - figure [ref=e189]
+              - generic [ref=e190]: リベロ広報部
+            - link "倉庫改善のアイデア8選｜現場の課題別に即効策からDX活用まで解説" [ref=e191] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/blog/5154/
+          - listitem [ref=e192]:
+            - generic [ref=e193]:
+              - link "アイキャッチ男性":
+                - /url: https://libero-en.jp/btob/blog/5164/
+                - img "アイキャッチ男性" [ref=e194] [cursor=pointer]
+            - generic [ref=e195]: エンジニア業界動向
+            - paragraph [ref=e196]: 2026.04.09
+            - heading "【2026年版】AIに奪われる仕事・奪われない仕事。これから求められる人材とは？" [level=3] [ref=e197]
+            - generic [ref=e199]:
+              - figure [ref=e200]
+              - generic [ref=e201]: リベロ広報部
+            - link "【2026年版】AIに奪われる仕事・奪われない仕事。これから求められる人材とは？" [ref=e202] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/blog/5164/
+          - listitem [ref=e203]:
+            - generic [ref=e204]:
+              - link:
+                - /url: https://libero-en.jp/btob/blog/5105/
+            - generic [ref=e205]: 倉庫DX・物流DX
+            - paragraph [ref=e206]: 2026.04.06
+            - heading "物流倉庫のピッキング作業を効率化するには？システム活用とミス削減・人手不足対策を解説" [level=3] [ref=e207]
+            - generic [ref=e209]:
+              - figure [ref=e210]
+              - generic [ref=e211]: リベロ広報部
+            - link "物流倉庫のピッキング作業を効率化するには？システム活用とミス削減・人手不足対策を解説" [ref=e212] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/blog/5105/
+          - listitem [ref=e213]:
+            - generic [ref=e214]:
+              - link:
+                - /url: https://libero-en.jp/btob/blog/5082/
+            - generic [ref=e215]: 業界DX
+            - paragraph [ref=e216]: 2026.03.31
+            - heading "スマートグラスで変わる介護DX。人手不足を補う「遠隔指導」と「ハンズフリー」が現場の生産性を変える" [level=3] [ref=e217]
+            - generic [ref=e219]:
+              - figure [ref=e220]
+              - generic [ref=e221]: リベロ広報部
+            - link "スマートグラスで変わる介護DX。人手不足を補う「遠隔指導」と「ハンズフリー」が現場の生産性を変える" [ref=e222] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/blog/5082/
+        - link "リベロ情報局" [ref=e223] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/blog
+          - text: リベロ情報局
+    - generic [ref=e225]:
+      - img "ABOUT US" [ref=e227]
+      - generic [ref=e229]:
+        - heading "私たちについて ABOUT US" [level=2] [ref=e230]:
+          - generic [ref=e231]: 私たちについて
+          - text: ABOUT US
+        - link "メンバーを見る" [ref=e232] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/member
+          - text: メンバーを見る
+        - link "会社情報を見る" [ref=e234] [cursor=pointer]:
+          - /url: https://libero-en.jp/btob/about
+          - text: 会社情報を見る
+  - contentinfo [ref=e237]:
+    - generic [ref=e239]:
+      - paragraph [ref=e240]: お気軽にお問い合わせください
+      - link "お問い合わせ お問い合わせ" [ref=e241] [cursor=pointer]:
+        - /url: https://libero-en.jp/btob/contact/
+        - img "お問い合わせ" [ref=e242]
+        - generic [ref=e243]: お問い合わせ
+      - link "資料ダウンロード 資料ダウンロード" [ref=e244] [cursor=pointer]:
+        - /url: https://libero-en.jp/btob/dl/
+        - img "資料ダウンロード" [ref=e245]
+        - generic [ref=e246]: 資料ダウンロード
+    - generic [ref=e249]:
+      - generic [ref=e253]:
+        - img "リベロエンジニア" [ref=e255]
+        - generic [ref=e256]:
+          - text: 〒150-0001
+          - text: 東京都渋谷区神宮前6-35-3
+          - text: コープオリンピア 1F JUNCTION harajuku 008
+        - generic [ref=e257]:
+          - link "X X" [ref=e258] [cursor=pointer]:
+            - /url: https://twitter.com/LEngineers
+            - img "X" [ref=e259]
+            - generic [ref=e260]: X
+          - link "Facebook Facebook" [ref=e261] [cursor=pointer]:
+            - /url: https://www.facebook.com/liberoengineer
+            - img "Facebook" [ref=e262]
+            - generic [ref=e263]: Facebook
+          - link "note note" [ref=e264] [cursor=pointer]:
+            - /url: https://note.com/libero_engineer
+            - img "note" [ref=e265]
+            - generic [ref=e266]: note
+          - link "TikTok TikTok" [ref=e267] [cursor=pointer]:
+            - /url: https://www.tiktok.com/@libero_engineer/
+            - img "TikTok" [ref=e268]
+            - generic [ref=e269]: TikTok
+          - link "Instagram Instagram" [ref=e270] [cursor=pointer]:
+            - /url: https://www.instagram.com/libero_en/?hl=ja
+            - img "Instagram" [ref=e271]
+            - generic [ref=e272]: Instagram
+      - generic [ref=e273]:
+        - list [ref=e276]:
+          - listitem [ref=e277]:
+            - link "TOP" [ref=e278] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/
+        - list [ref=e281]:
+          - listitem [ref=e282]:
+            - link "SERVICE" [ref=e283] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/service/
+          - listitem [ref=e284]:
+            - link "コンサルティング" [ref=e285] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/service/consulting/
+          - listitem [ref=e286]:
+            - link "受託開発・準委任開発" [ref=e287] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/service/development/
+          - listitem [ref=e288]:
+            - link "ゲーム・エンターテインメント事業" [ref=e289] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/service/game_entertainment/
+          - listitem [ref=e290]:
+            - link "エンジニア派遣" [ref=e291] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/service/ses/
+          - listitem [ref=e292]:
+            - link "自社サービス運営" [ref=e293] [cursor=pointer]:
+              - /url: https://encount-l.com/
+          - listitem [ref=e294]:
+            - link "コンテンツ制作" [ref=e295] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/service/ip/
+        - list [ref=e298]:
+          - listitem [ref=e299]:
+            - link "CASE" [ref=e300] [cursor=pointer]:
+              - /url: /btob/case/
+          - listitem [ref=e301]:
+            - link "MEMBER" [ref=e302] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/member/
+          - listitem [ref=e303]:
+            - link "COMPANY" [ref=e304] [cursor=pointer]:
+              - /url: https://libero-en.jp/btob/about/
+          - listitem [ref=e305]:
+            - link "NEWS" [ref=e306] [cursor=pointer]:
+              - /url: /btob/news/
+          - listitem [ref=e307]:
+            - link "BLOG" [ref=e308] [cursor=pointer]:
+              - /url: /btob/blog/
+          - listitem [ref=e309]:
+            - link "RECRUIT" [ref=e310] [cursor=pointer]:
+              - /url: /btob/jobinformation/
+    - generic [ref=e312]:
+      - text: © 2022-2026 Libero Engineer Inc.
+      - generic [ref=e313]: 本サイト上の素材および画像について、事前の許諾なく無断で複製、複写、転載、転用、編集、改変、販売、送信、放送、配布、貸与、翻訳、変造などの二次利用を固く禁じます

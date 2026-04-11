@@ -1,0 +1,185 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "アイ・システム株式会社":
+        - /url: https://www.i-system.co.jp/
+        - img "アイ・システム株式会社" [ref=e4] [cursor=pointer]
+      - navigation [ref=e5]:
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - link "お知らせ" [ref=e9] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/news/
+          - listitem [ref=e10]:
+            - link "事業内容" [ref=e11] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/business/
+          - listitem [ref=e12]:
+            - link "企業情報" [ref=e13] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/company/
+          - listitem [ref=e14]:
+            - link "採用情報" [ref=e15] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/recruit/
+      - link "お問合せ" [ref=e17] [cursor=pointer]:
+        - /url: https://www.i-system.co.jp/contact/
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - heading "事業内容" [level=1] [ref=e20]:
+        - generic [ref=e21]: 事業内容
+      - list [ref=e28]:
+        - listitem [ref=e29]:
+          - link "金融公共事業 金融公共関係の業務システム開発から、保守／メンテナンス、一般利用者向けのユーザー側のWEBサイト構築などを行っています。" [ref=e30] [cursor=pointer]:
+            - /url: https://www.i-system.co.jp/business/financial-public/
+            - generic [ref=e32]:
+              - term [ref=e33]: 金融公共事業
+              - definition [ref=e34]: 金融公共関係の業務システム開発から、保守／メンテナンス、一般利用者向けのユーザー側のWEBサイト構築などを行っています。
+        - listitem [ref=e35]:
+          - link "通信プロダクト事業 主に通信事業者様の顧客管理システムの改修やメンテナンスを行っています。" [ref=e36] [cursor=pointer]:
+            - /url: https://www.i-system.co.jp/business/communication-products/
+            - generic [ref=e38]:
+              - term [ref=e39]: 通信プロダクト事業
+              - definition [ref=e40]: 主に通信事業者様の顧客管理システムの改修やメンテナンスを行っています。
+        - listitem [ref=e41]:
+          - link "エンタープライズSI事業 金融業界、総合商社、公共事業のITインフラを構築します。また、NonstopServerを用いたAPL開発支援も行っています。" [ref=e42] [cursor=pointer]:
+            - /url: https://www.i-system.co.jp/business/enterprise/
+            - generic [ref=e44]:
+              - term [ref=e45]: エンタープライズSI事業
+              - definition [ref=e46]: 金融業界、総合商社、公共事業のITインフラを構築します。また、NonstopServerを用いたAPL開発支援も行っています。
+        - listitem [ref=e47]:
+          - link "DX事業 クラウドシフトやアジャイル導入、AIやIoTなどの最新技術を用いて、デジタルトランスフォーメーションを行っています。" [ref=e48] [cursor=pointer]:
+            - /url: https://www.i-system.co.jp/business/dx/
+            - generic [ref=e50]:
+              - term [ref=e51]: DX事業
+              - definition [ref=e52]: クラウドシフトやアジャイル導入、AIやIoTなどの最新技術を用いて、デジタルトランスフォーメーションを行っています。
+        - listitem [ref=e53]:
+          - link "i-Tool事業 レガシーシステムを抱えているお客様向けにプログラムの可視化システム「i-Tool」を提供しています。" [ref=e54] [cursor=pointer]:
+            - /url: https://www.i-system.co.jp/business/i-tool/
+            - generic [ref=e56]:
+              - term [ref=e57]: i-Tool事業
+              - definition [ref=e58]: レガシーシステムを抱えているお客様向けにプログラムの可視化システム「i-Tool」を提供しています。
+    - list [ref=e60]:
+      - listitem [ref=e61]:
+        - link "金融公共事業" [ref=e62] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/business/financial-public/
+      - listitem [ref=e63]:
+        - link "通信プロダクト事業" [ref=e64] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/business/communication-products/
+      - listitem [ref=e65]:
+        - link "エンタープライズSI事業" [ref=e66] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/business/enterprise/
+      - listitem [ref=e67]:
+        - link "DX事業" [ref=e68] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/business/dx/
+      - listitem [ref=e69]:
+        - link "i-Tool事業" [ref=e70] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/business/i-tool/
+    - list [ref=e72]:
+      - listitem [ref=e73]:
+        - link "お問合せ" [ref=e74] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/contact/
+      - listitem [ref=e75]:
+        - link "採用エントリー" [ref=e76] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/recruit/entry/
+    - contentinfo [ref=e77]:
+      - generic [ref=e81]:
+        - list [ref=e83]:
+          - listitem [ref=e84]:
+            - link "事業内容" [ref=e85] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/business/
+            - list [ref=e86]:
+              - listitem [ref=e87]:
+                - link "金融公共事業" [ref=e88] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/business/financial-public/
+              - listitem [ref=e89]:
+                - link "通信プロダクト事業" [ref=e90] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/business/communication-products/
+              - listitem [ref=e91]:
+                - link "エンタープライズSI事業" [ref=e92] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/business/enterprise/
+              - listitem [ref=e93]:
+                - link "DX事業" [ref=e94] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/business/dx/
+              - listitem [ref=e95]:
+                - link "i-Tool事業" [ref=e96] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/business/i-tool/
+        - list [ref=e98]:
+          - listitem [ref=e99]:
+            - link "企業情報" [ref=e100] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/company/
+            - list [ref=e101]:
+              - listitem [ref=e102]:
+                - link "会社概要" [ref=e103] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/company/about/
+              - listitem [ref=e104]:
+                - link "アクセス" [ref=e105] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/company/access/
+              - listitem [ref=e106]:
+                - link "アイ・システムの歩み" [ref=e107] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/company/history/
+              - listitem [ref=e108]:
+                - link "代表挨拶" [ref=e109] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/company/message/
+              - listitem [ref=e110]:
+                - link "経営方針・VISION" [ref=e111] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/company/vision/
+              - listitem [ref=e112]:
+                - link "CSR（企業の社会的責任）" [ref=e113] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/company/csr/
+        - list [ref=e115]:
+          - listitem [ref=e116]:
+            - link "採用情報" [ref=e117] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/recruit/
+            - list [ref=e118]:
+              - listitem [ref=e119]:
+                - link "数字でみるアイ・システム" [ref=e120] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/recruit/numbers/
+              - listitem [ref=e121]:
+                - link "働く環境を知る" [ref=e122] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/recruit/working/
+              - listitem [ref=e123]:
+                - link "働き方改革への取り組み" [ref=e124] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/recruit/column/
+              - listitem [ref=e125]:
+                - link "社員を知る" [ref=e126] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/recruit/staff/
+              - listitem [ref=e127]:
+                - link "募集要項" [ref=e128] [cursor=pointer]:
+                  - /url: https://www.i-system.co.jp/recruit/offer/
+        - list [ref=e130]:
+          - listitem [ref=e131]:
+            - link "お問合せ" [ref=e132] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/contact/
+          - listitem [ref=e133]:
+            - link "プライバシーポリシー" [ref=e134] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/privacy/
+          - listitem [ref=e135]:
+            - link "セキュリティポリシー" [ref=e136] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/security/
+          - listitem [ref=e137]:
+            - link "品質方針" [ref=e138] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/quality/
+          - listitem [ref=e139]:
+            - link "環境方針" [ref=e140] [cursor=pointer]:
+              - /url: https://www.i-system.co.jp/environment/
+    - list [ref=e143]:
+      - listitem [ref=e144]:
+        - link "プライバシーマークの 付与認定を受けています。" [ref=e145] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/privacy/
+          - generic [ref=e147]:
+            - text: プライバシーマークの
+            - text: 付与認定を受けています。
+      - listitem [ref=e148]:
+        - link "ISMSの国際規格であるISO/ IEC27001の認証を取得しています。" [ref=e149] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/isms/
+          - generic [ref=e151]:
+            - text: ISMSの国際規格であるISO/
+            - text: IEC27001の認証を取得しています。
+      - listitem [ref=e152]:
+        - link "QMSの国際規格である ISO9001の認証を取得しています。" [ref=e153] [cursor=pointer]:
+          - /url: https://www.i-system.co.jp/qms/
+          - generic [ref=e155]:
+            - text: QMSの国際規格である
+            - text: ISO9001の認証を取得しています。
+    - generic [ref=e157]:
+      - link "アイ・システム株式会社" [ref=e158] [cursor=pointer]:
+        - /url: /
+        - img "アイ・システム株式会社" [ref=e159]
+      - generic [ref=e160]: Copyright ©i-system Co.,Ltd. All Rights Reserved.
