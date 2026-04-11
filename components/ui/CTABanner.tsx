@@ -10,7 +10,12 @@ export function CTABanner() {
         <p className="text-primary-foreground/80 mx-auto mt-4 max-w-2xl">
           外国人材紹介・IT事業に関するご相談は、お問い合わせフォームよりお送りください。
         </p>
-        <Button variant="secondary" size="lg" className="mt-8" render={<Link href="/contact" />}>
+        <Button
+          variant="outline"
+          size="lg"
+          className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary mt-8"
+          render={<Link href="/contact" />}
+        >
           お問い合わせ
         </Button>
       </Container>
