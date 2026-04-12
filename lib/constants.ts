@@ -26,7 +26,7 @@ export const COMPANY = {
     nearestStations: ['「宝町」駅 徒歩1分', '「京橋」駅 1番出口 徒歩4分'],
     hours: '平日 9:00〜18:00（土日祝定休）',
     mapEmbedUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.0!2d139.77!3d35.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5Lqs5qmL!5e0!3m2!1sja!2sjp!4v1',
+      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1620!2d139.7718015!3d35.6747207!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188be21ec2bf6f%3A0xfd1539d817edc117!2z44Ko44Kz44O85Lqs5qmL44OT44Or!5e0!3m2!1sja!2sjp',
   },
   ginzaOffice: {
     label: '銀座営業所',
@@ -36,7 +36,7 @@ export const COMPANY = {
     nearestStations: ['「宝町」駅 徒歩2分', '「京橋」駅 徒歩3分', '「銀座一丁目」駅 徒歩3分'],
     hours: '平日 9:00〜18:00（土日祝定休）',
     mapEmbedUrl:
-      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.0!2d139.77!3d35.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z6YqA5bqn!5e0!3m2!1sja!2sjp!4v1',
+      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1620!2d139.7704395!3d35.6741347!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188be22b162e8f%3A0x22b2f70fd18e99fc!2z6YqA5bqn5aSn5qCE44OT44Or!5e0!3m2!1sja!2sjp',
   },
 } as const;
 
