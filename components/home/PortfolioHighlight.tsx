@@ -20,9 +20,14 @@ export function PortfolioHighlight() {
                 <Image src={item.image} alt={item.title} fill className="object-cover" />
               </div>
               <div className="p-5">
-                <span className="bg-primary/10 text-primary inline-block rounded-full px-3 py-0.5 text-xs font-medium">
-                  {item.categoryLabel}
-                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="bg-primary/10 text-primary inline-block rounded-full px-3 py-0.5 text-xs font-medium">
+                    {item.categoryLabel}
+                  </span>
+                  <span className="bg-muted text-muted-foreground inline-block rounded-full px-3 py-0.5 text-xs font-medium">
+                    {item.industry}
+                  </span>
+                </div>
                 <h3 className="mt-2 font-bold">{item.title}</h3>
                 <p className="text-muted-foreground mt-1 line-clamp-2 text-sm">
                   {item.description}
