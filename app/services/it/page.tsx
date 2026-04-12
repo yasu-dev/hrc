@@ -82,8 +82,7 @@ export default function ItServicePage() {
       <section className="py-20 md:py-28">
         <Container>
           <p className="text-muted-foreground mx-auto max-w-3xl text-center leading-relaxed">
-            DX支援・AI活用支援・システム開発・Webアプリ開発を通じて、
-            企業のデジタルトランスフォーメーションを戦略策定から開発・運用まで一貫して支援します。
+            製造業の生産管理DX、物流の配送最適化、小売業の売上分析基盤など、業種ごとの課題に合わせたデジタル化を支援しています。現状業務のヒアリングから課題特定、PoC（概念実証）、本格導入、運用保守まで一貫して対応。30件以上のプロジェクト実績で培ったノウハウを活かし、投資対効果の高いIT戦略を実現します。
           </p>
         </Container>
       </section>

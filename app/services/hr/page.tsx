@@ -50,8 +50,7 @@ export default function HrServicePage() {
       <section className="py-20 md:py-28">
         <Container>
           <p className="text-muted-foreground mx-auto max-w-3xl text-center leading-relaxed">
-            HRtep株式会社は、外国籍人財の就労促進を通じて、企業の人材確保と国際社会の発展に貢献します。
-            HRtepプラットフォームを中心に、紹介・研修・アウトソーシングを包括的にサポートします。
+            ベトナム・ミャンマー・インドネシア・フィリピンなど東南アジアを中心に、製造業・IT・サービス業・建設業など幅広い業種へ外国籍人財をご紹介しています。独自のHRtepプラットフォームによるマッチングから、在留資格の申請サポート、来日前後の研修、入社後の定着フォローまでをワンストップで支援します。
           </p>
         </Container>
       </section>
