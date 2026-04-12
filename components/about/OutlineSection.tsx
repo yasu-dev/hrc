@@ -10,6 +10,7 @@ const rows = [
   { label: '本社所在地', value: COMPANY.headquarters.address },
   { label: '銀座営業所', value: COMPANY.ginzaOffice.address },
   { label: 'TEL', value: COMPANY.tel },
+  { label: '許認可', value: COMPANY.license },
   {
     label: '事業内容',
     value: COMPANY.business.join('、'),
