@@ -13,7 +13,7 @@ export function Footer() {
             <Link href="/">
               <Image
                 src="/images/logo-current.png"
-                alt="HRtep株式会社"
+                alt="ＨＲｔｅｐ株式会社"
                 width={120}
                 height={22}
                 className="h-6 w-auto"

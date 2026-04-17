@@ -7,11 +7,11 @@ import { ContactForm } from '@/components/contact/ContactForm';
 export const metadata: Metadata = {
   title: 'お問い合わせ',
   description:
-    'HRtep株式会社へのお問い合わせ。外国人材採用支援・DX支援・AI活用支援・システム開発・Webアプリ開発に関するご相談はこちらから。',
+    'ＨＲｔｅｐ株式会社へのお問い合わせ。外国人材採用支援・DX支援・AI活用支援・システム開発・Webアプリ開発に関するご相談はこちらから。',
   openGraph: {
-    title: 'お問い合わせ | HRtep株式会社',
+    title: 'お問い合わせ | ＨＲｔｅｐ株式会社',
     description:
-      'HRtep株式会社へのお問い合わせ。外国人材採用支援・DX支援・AI活用支援・システム開発・Webアプリ開発に関するご相談はこちらから。',
+      'ＨＲｔｅｐ株式会社へのお問い合わせ。外国人材採用支援・DX支援・AI活用支援・システム開発・Webアプリ開発に関するご相談はこちらから。',
   },
 };
 

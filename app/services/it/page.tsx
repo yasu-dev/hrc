@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     'DX支援・AI活用支援・システム開発・Webアプリ開発。企業のデジタル変革を戦略策定から開発・運用まで一貫して支援します。',
   openGraph: {
-    title: 'IT事業 | HRtep株式会社',
+    title: 'IT事業 | ＨＲｔｅｐ株式会社',
     description:
       'DX支援・AI活用支援・システム開発・Webアプリ開発。企業のデジタル変革を戦略策定から開発・運用まで一貫して支援します。',
   },
@@ -32,7 +32,7 @@ const serviceJsonLd = {
   '@type': 'Service',
   provider: {
     '@type': 'Organization',
-    name: 'HRtep株式会社',
+    name: 'ＨＲｔｅｐ株式会社',
   },
   serviceType: 'IT Consulting and Development',
   areaServed: 'JP',

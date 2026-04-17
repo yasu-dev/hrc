@@ -1,12 +1,12 @@
-export const SITE_NAME = 'HRtep株式会社';
-export const SITE_NAME_EN = 'HRtep Co., Ltd.';
+export const SITE_NAME = 'ＨＲｔｅｐ株式会社';
+export const SITE_NAME_EN = 'ＨＲｔｅｐ Co., Ltd.';
 export const SITE_URL = 'https://hrtep.com';
 export const SITE_DESCRIPTION =
-  '外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するHRtep株式会社の公式サイトです。';
+  '外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するＨＲｔｅｐ株式会社の公式サイトです。';
 
 export const COMPANY = {
   name: 'ＨＲｔｅｐ株式会社',
-  nameEn: 'HRtep Co., Ltd.',
+  nameEn: 'ＨＲｔｅｐ Co., Ltd.',
   ceo: '津賀平 隆浩',
   founded: '2021年9月1日',
   tel: '03-6228-7866',

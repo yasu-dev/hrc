@@ -29,7 +29,7 @@ export async function submitContact(data: ContactFormData): Promise<ContactResul
     const resend = new Resend(resendApiKey);
 
     await resend.emails.send({
-      from: 'HRtep お問い合わせ <noreply@hrtep.com>',
+      from: 'ＨＲｔｅｐ お問い合わせ <noreply@hrtep.com>',
       to: contactEmailTo,
       subject: `[お問い合わせ] ${parsed.data.inquiryType} - ${parsed.data.companyName}`,
       text: `

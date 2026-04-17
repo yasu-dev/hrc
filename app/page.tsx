@@ -9,8 +9,8 @@ import { SITE_URL, COMPANY } from '@/lib/constants';
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'HRtep株式会社',
-  alternateName: 'HRtep Co., Ltd.',
+  name: 'ＨＲｔｅｐ株式会社',
+  alternateName: 'ＨＲｔｅｐ Co., Ltd.',
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo-current.png`,
   telephone: COMPANY.tel,
@@ -23,7 +23,7 @@ const organizationJsonLd = {
     addressCountry: 'JP',
   },
   description:
-    '外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するHRtep株式会社です。',
+    '外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するＨＲｔｅｐ株式会社です。',
 };
 
 export default function Home() {

@@ -6,7 +6,7 @@ export function NumbersSection() {
   return (
     <section className="bg-muted/30 py-20 md:py-28">
       <Container>
-        <SectionHeading title="Numbers" subtitle="数字で見るHRtep" />
+        <SectionHeading title="Numbers" subtitle="数字で見るＨＲｔｅｐ" />
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">

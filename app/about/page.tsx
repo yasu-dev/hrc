@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: '会社概要',
   description: `${COMPANY.name}の企業情報。代表挨拶、経営理念、ビジョン、会社概要、アクセス情報をご紹介します。`,
   openGraph: {
-    title: '会社概要 | HRtep株式会社',
+    title: '会社概要 | ＨＲｔｅｐ株式会社',
     description: `${COMPANY.name}の企業情報。代表挨拶、経営理念、ビジョン、会社概要、アクセス情報をご紹介します。`,
   },
 };
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'HRtep株式会社',
+  name: 'ＨＲｔｅｐ株式会社',
   url: SITE_URL,
   telephone: COMPANY.tel,
   address: {
