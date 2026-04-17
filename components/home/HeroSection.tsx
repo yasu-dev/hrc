@@ -27,8 +27,7 @@ export function HeroSection() {
           企業の未来を共創する
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-white/80">
-          外国人材採用支援事業とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）の二軸で、
-          企業の持続的な成長を支援します。
+          外国人材採用支援事業とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）の二軸で、企業の持続的な成長を支援します。
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Button size="lg" variant="secondary" render={<Link href="/services" />}>
