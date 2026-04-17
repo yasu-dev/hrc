@@ -25,7 +25,7 @@ export default function ContactPage() {
       <section className="py-20 md:py-28">
         <Container className="max-w-2xl">
           <p className="text-muted-foreground mb-4 text-center">
-            外国人材採用支援・IT事業に関するご相談は、下記フォームよりお気軽にお問い合わせください。
+            外国人材採用支援・IT事業に関するご相談は、お問い合わせフォームよりお送りください。
           </p>
           <p className="text-muted-foreground mb-8 text-center text-sm">
             通常2営業日以内に担当者よりご連絡いたします。お急ぎの場合はお電話（03-6228-7866 /
