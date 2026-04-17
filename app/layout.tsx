@@ -27,7 +27,7 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | 外国人材紹介・IT事業`,
+    default: `${SITE_NAME} | 外国人材採用支援・IT事業`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,

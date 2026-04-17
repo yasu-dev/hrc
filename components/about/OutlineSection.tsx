@@ -10,11 +10,6 @@ const rows = [
   { label: '本社所在地', value: COMPANY.headquarters.address },
   { label: '銀座営業所', value: COMPANY.ginzaOffice.address },
   { label: 'TEL', value: COMPANY.tel },
-  { label: '許認可', value: COMPANY.license },
-  {
-    label: '事業内容',
-    value: COMPANY.business.join('、'),
-  },
 ];
 
 export function OutlineSection() {
@@ -29,6 +24,16 @@ export function OutlineSection() {
               <dd className="text-muted-foreground text-sm">{row.value}</dd>
             </div>
           ))}
+          <div className="grid gap-1 py-4 sm:grid-cols-[160px_1fr] sm:gap-4">
+            <dt className="text-sm font-semibold">事業内容</dt>
+            <dd className="text-muted-foreground text-sm">
+              <ul className="list-inside list-disc space-y-1">
+                {COMPANY.business.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
         </dl>
       </Container>
     </section>

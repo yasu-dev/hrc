@@ -23,7 +23,7 @@ const organizationJsonLd = {
     addressCountry: 'JP',
   },
   description:
-    '外国人材紹介とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するHRtep株式会社です。',
+    '外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するHRtep株式会社です。',
 };
 
 export default function Home() {

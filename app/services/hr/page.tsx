@@ -10,11 +10,11 @@ import { Users, ClipboardList, GraduationCap, Briefcase } from 'lucide-react';
 export const metadata: Metadata = {
   title: '外国人材事業',
   description:
-    'HRtepプラットフォームを活用した外国人材紹介・就労マッチング。有料職業紹介事業として企業と外国籍人財をつなぎます。',
+    'ＨＲｔｅｐプラットフォームを活用した外国人材の採用広報支援・採用実務支援。企業の外国人材採用を総合的にサポートします。',
   openGraph: {
     title: '外国人材事業 | HRtep株式会社',
     description:
-      'HRtepプラットフォームを活用した外国人材紹介・就労マッチング。有料職業紹介事業として企業と外国籍人財をつなぎます。',
+      'ＨＲｔｅｐプラットフォームを活用した外国人材の採用広報支援・採用実務支援。企業の外国人材採用を総合的にサポートします。',
   },
 };
 
@@ -50,7 +50,7 @@ export default function HrServicePage() {
       <section className="py-20 md:py-28">
         <Container>
           <p className="text-muted-foreground mx-auto max-w-3xl text-center leading-relaxed">
-            ベトナム・ミャンマー・インドネシア・フィリピンなど東南アジアを中心に、製造業・IT・サービス業・建設業など幅広い業種へ外国籍人財をご紹介しています。独自のHRtepプラットフォームによるマッチングから、在留資格の申請サポート、来日前後の研修、入社後の定着フォローまでをワンストップで支援します。
+            ベトナム・ミャンマー・インドネシア・フィリピンなど東南アジアを中心に、製造業・IT・サービス業・建設業など幅広い業種に対して、外国人材の採用広報支援・採用実務支援を行っています。ＨＲｔｅｐプラットフォームを活用し、求人情報の整備、応募受付支援、面接調整支援、在留資格申請に関する支援、来日前後の研修、入社後の定着フォローまでを一貫して支援します。
           </p>
         </Container>
       </section>

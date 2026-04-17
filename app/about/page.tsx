@@ -3,7 +3,6 @@ import { Container } from '@/components/ui/Container';
 import { PageHero } from '@/components/ui/PageHero';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { CTABanner } from '@/components/ui/CTABanner';
-import { FeelingSection } from '@/components/about/FeelingSection';
 import { MessageSection } from '@/components/about/MessageSection';
 import { PhilosophySection } from '@/components/about/PhilosophySection';
 import { VisionSection } from '@/components/about/VisionSection';
@@ -53,7 +52,6 @@ export default function AboutPage() {
       <Container>
         <Breadcrumb items={[{ label: '会社概要' }]} />
       </Container>
-      <FeelingSection />
       <MessageSection />
       <PhilosophySection />
       <VisionSection />

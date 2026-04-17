@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const INQUIRY_TYPES = [
-  '外国人材紹介',
+  '外国人材採用支援',
   'DX支援',
   'AI活用支援',
   'システム開発',
