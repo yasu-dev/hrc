@@ -5,6 +5,8 @@ import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { NewsCard } from '@/components/news/NewsCard';
 import { NEWS_ITEMS } from '@/data/news';
 
+const sortedNews = [...NEWS_ITEMS].sort((a, b) => b.date.localeCompare(a.date));
+
 export const metadata: Metadata = {
   title: 'お知らせ',
   description: 'ＨＲｔｅｐ株式会社のお知らせ・プレスリリース一覧。最新のニュースをお届けします。',
@@ -24,7 +26,7 @@ export default function NewsPage() {
       <section className="py-20 md:py-28">
         <Container className="max-w-3xl">
           <ul className="divide-y">
-            {NEWS_ITEMS.map((item) => (
+            {sortedNews.map((item) => (
               <NewsCard key={item.slug} item={item} />
             ))}
           </ul>

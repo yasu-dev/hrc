@@ -22,7 +22,7 @@ export function HeroSection() {
           Human Resources &times; Technology
         </p>
         <h1 className="mt-4 max-w-3xl text-3xl leading-tight font-bold md:text-5xl">
-          外国人材とテクノロジーで、
+          外国人材とテクノロジーで
           <br />
           企業の未来を共創する
         </h1>
