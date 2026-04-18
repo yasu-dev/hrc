@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/button';
 
 export function NewsSection() {
-  const latest = NEWS_ITEMS.slice(0, 3);
+  const latest = [...NEWS_ITEMS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 
   return (
     <section className="bg-muted/30 py-20 md:py-28">
