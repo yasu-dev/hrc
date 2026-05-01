@@ -7,3 +7,12 @@ playwright-report
 test-results
 *.min.js
 *.min.css
+
+# playwright session captures (auto-generated)
+.playwright-mcp
+
+# generated docs not for formatting
+docs/lighthouse-baseline.report.html
+docs/lighthouse-baseline.report.json
+docs/*.html
+docs/*.pdf
