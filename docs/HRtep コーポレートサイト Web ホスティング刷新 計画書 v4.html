@@ -10,7 +10,6 @@
         --navy: #1a2d4d;
         --cyan: #22b8e6;
         --cyan-soft: #d4f2fb;
-        --cyan-line: #1aa0c8;
         --ink: #0e1726;
         --muted: #556073;
         --line: #dfe5ee;
@@ -25,12 +24,9 @@
         --bad-bg: #fdecec;
         --bad-line: #d84040;
         --bad-deep: #8a1e1e;
-        --winner: #ffd84a;
-        --winner-line: #c89c00;
-        --aws-orange: #ff9900;
-        --aws-dark: #232f3e;
         --decision: #6e4cff;
         --decision-bg: #efeaff;
+        --winner-line: #c89c00;
       }
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
@@ -41,468 +37,876 @@
         background: var(--bg);
         line-height: 1.85;
         font-size: 15.5px;
-        -webkit-font-smoothing: antialiased;
       }
-      code, pre, kbd, .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', 'Liberation Mono', monospace; }
+      code { font-family: 'JetBrains Mono', 'Consolas', monospace; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; font-size: 13.5px; }
       .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 96px; }
-      header.hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: #fff; padding: 64px 0 56px; margin-bottom: 40px; }
+
+      /* ヒーロー */
+      header.hero {
+        background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+        color: #fff;
+        padding: 56px 0 48px;
+        margin-bottom: 32px;
+      }
       header.hero .wrap { padding-bottom: 0; }
-      header.hero .eyebrow { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 12px; letter-spacing: 0.18em; color: var(--cyan); text-transform: uppercase; margin: 0 0 12px; }
-      header.hero h1 { font-size: 32px; line-height: 1.3; margin: 0 0 14px; letter-spacing: 0.01em; font-weight: 700; }
-      header.hero p.lead { color: #c4cfe0; margin: 0; max-width: 820px; font-size: 16px; }
-      header.hero .meta { margin-top: 26px; display: flex; gap: 24px; flex-wrap: wrap; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 12px; color: #8ea1bc; }
-      header.hero .meta span b { color: #fff; font-weight: 500; }
-      .tldr { background: linear-gradient(135deg, #fff8d6, #fff5b8); border: 2px solid var(--winner-line); border-left: 6px solid var(--winner-line); border-radius: 10px; padding: 22px 26px; margin-bottom: 32px; }
-      .tldr h2 { margin: 0 0 14px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy-deep); font-family: 'JetBrains Mono', 'Consolas', monospace; }
-      .tldr ol { margin: 0; padding-left: 24px; font-size: 15.5px; color: var(--navy-deep); }
-      .tldr ol li { padding: 4px 0; line-height: 1.7; }
-      .decision-banner { background: var(--decision-bg); border: 2px solid var(--decision); border-left: 6px solid var(--decision); border-radius: 10px; padding: 18px 22px; margin: 18px 0 32px; }
-      .decision-banner h3 { margin: 0 0 6px; font-size: 13px; font-family: 'JetBrains Mono', 'Consolas', monospace; letter-spacing: 0.14em; color: var(--decision); text-transform: uppercase; }
-      .decision-banner p { margin: 0; font-size: 15px; color: var(--navy-deep); }
-      nav.toc { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 22px 26px; margin-bottom: 56px; }
-      nav.toc h2 { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; font-family: 'JetBrains Mono', 'Consolas', monospace; font-weight: 600; }
-      nav.toc ul { margin: 0; padding-left: 16px; list-style: none; }
-      nav.toc li { padding: 3px 0; font-size: 14px; }
-      nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
-      nav.toc a:hover { border-bottom-color: var(--cyan); }
-      section { margin-bottom: 60px; scroll-margin-top: 24px; }
-      section > h2 { font-size: 22px; margin: 0 0 6px; color: var(--navy-deep); font-weight: 700; line-height: 1.4; }
-      section > h2 .num { font-family: 'JetBrains Mono', 'Consolas', monospace; color: var(--cyan); font-size: 13px; margin-right: 10px; font-weight: 600; vertical-align: 2px; }
-      section > h2.decision-h .num { color: var(--decision); }
-      section > .subtitle { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
-      .oneliner { display: block; background: var(--bg-soft); border-left: 4px solid var(--navy); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0 24px; font-size: 15px; color: var(--navy-deep); }
-      .oneliner b { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-right: 10px; font-weight: 600; }
-      h3 { font-size: 17px; color: var(--navy); margin: 30px 0 10px; }
-      h4 { font-size: 14px; color: var(--navy-deep); margin: 18px 0 8px; }
+      header.hero h1 {
+        font-size: 30px;
+        line-height: 1.35;
+        margin: 0 0 16px;
+        font-weight: 700;
+      }
+      header.hero .now {
+        background: rgba(255,255,255,0.08);
+        border-left: 4px solid var(--cyan);
+        padding: 16px 22px;
+        border-radius: 0 8px 8px 0;
+        margin-top: 18px;
+      }
+      header.hero .now .label {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin: 0 0 6px;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      header.hero .now p { margin: 0; color: #e8eef8; font-size: 16px; line-height: 1.7; }
+      header.hero .meta {
+        margin-top: 20px;
+        display: flex; gap: 18px; flex-wrap: wrap;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        color: #8ea1bc;
+      }
+      header.hero .meta b { color: #fff; font-weight: 500; }
+
+      /* セクション基本 */
+      section { margin-bottom: 56px; scroll-margin-top: 24px; }
+      section > h2 {
+        font-size: 22px;
+        margin: 0 0 6px;
+        color: var(--navy-deep);
+        font-weight: 700;
+      }
+      section > h2 .num {
+        display: inline-block;
+        width: 28px; height: 28px;
+        line-height: 28px;
+        text-align: center;
+        background: var(--cyan);
+        color: #fff;
+        border-radius: 50%;
+        font-size: 13px;
+        font-family: 'JetBrains Mono', monospace;
+        margin-right: 12px;
+        vertical-align: 2px;
+      }
+      section > .lead { color: var(--muted); font-size: 14.5px; margin: 0 0 18px; }
+      h3 { font-size: 17px; color: var(--navy); margin: 28px 0 10px; }
       p { margin: 0 0 14px; }
-      strong { color: var(--navy-deep); }
-      a { color: var(--navy); }
-      table { width: 100%; border-collapse: collapse; margin: 16px 0 22px; font-size: 14.5px; }
-      table th, table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-      table th { background: var(--bg-soft); color: var(--navy-deep); font-weight: 600; font-size: 13px; }
-      table td code { font-size: 13px; }
-      code { background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; font-size: 13.5px; color: var(--navy-deep); }
-      .callout { border-left: 4px solid var(--cyan); background: var(--cyan-soft); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; font-size: 14.5px; }
+
+      /* 進捗バー */
+      .phase-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 14px 0 8px; }
+      .phase-step {
+        position: relative;
+        padding: 14px 12px 14px 16px;
+        border-radius: 6px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        font-size: 13px;
+      }
+      .phase-step.done { background: var(--ok-bg); border-color: var(--ok-line); }
+      .phase-step.now { background: #fff8d6; border-color: var(--winner-line); border-width: 2px; }
+      .phase-step.todo { background: #fff; }
+      .phase-step .ph-num { font-size: 10px; letter-spacing: 0.12em; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+      .phase-step.done .ph-num { color: var(--ok-deep); }
+      .phase-step.now .ph-num { color: var(--winner-line); }
+      .phase-step .ph-name { font-weight: 700; font-size: 14px; color: var(--navy-deep); margin: 4px 0 2px; }
+      .phase-step .ph-status { font-size: 11.5px; color: var(--muted); }
+      .phase-step.done .ph-status { color: var(--ok-deep); font-weight: 600; }
+      .phase-step.now .ph-status { color: var(--winner-line); font-weight: 600; }
+
+      /* ロール分担マップ */
+      .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0 22px; }
+      .role-card {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 18px 18px 14px;
+        background: #fff;
+      }
+      .role-card.us { border-top: 4px solid var(--cyan); }
+      .role-card.client { border-top: 4px solid var(--decision); }
+      .role-card.yasui { border-top: 4px solid var(--warn-line); }
+      .role-card .role-name {
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', monospace;
+        margin: 0 0 4px;
+      }
+      .role-card .role-who { font-weight: 700; color: var(--navy-deep); margin: 0 0 12px; font-size: 16px; }
+      .role-card ul { margin: 0; padding: 0; list-style: none; font-size: 13px; }
+      .role-card li {
+        padding: 5px 0 5px 22px;
+        position: relative;
+        line-height: 1.5;
+      }
+      .role-card li::before {
+        position: absolute; left: 0; top: 5px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .role-card li.done::before { content: '✓'; color: var(--ok-line); }
+      .role-card li.now::before { content: '▶'; color: var(--winner-line); }
+      .role-card li.wait::before { content: '◯'; color: var(--muted); }
+      .role-card li.done { color: var(--ok-deep); }
+      .role-card li.now { color: var(--navy-deep); font-weight: 600; }
+      .role-card li.wait { color: var(--muted); }
+
+      /* 次にやること（3 ステップ） */
+      .next-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0 24px; }
+      .step-card {
+        background: #fff;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        padding: 16px 18px;
+        position: relative;
+      }
+      .step-card.active { border-color: var(--winner-line); background: linear-gradient(180deg, #fff8d6 0%, #fff 60%); }
+      .step-card .step-num {
+        position: absolute;
+        top: -12px; left: 14px;
+        width: 24px; height: 24px;
+        line-height: 24px;
+        text-align: center;
+        background: var(--navy-deep);
+        color: #fff;
+        border-radius: 50%;
+        font-size: 12px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+      }
+      .step-card.active .step-num { background: var(--winner-line); }
+      .step-card .step-who { font-size: 11px; letter-spacing: 0.12em; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin: 0 0 4px; }
+      .step-card.active .step-who { color: var(--winner-line); font-weight: 600; }
+      .step-card .step-title { font-weight: 700; color: var(--navy-deep); font-size: 14.5px; margin: 0 0 6px; line-height: 1.4; }
+      .step-card .step-desc { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+      /* インライン用語注釈 */
+      .term { border-bottom: 1px dashed var(--muted); cursor: help; }
+      .term-note { font-size: 11.5px; color: var(--muted); font-style: normal; }
+
+      /* テーブル */
+      table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 14px; }
+      table th, table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      table th { background: var(--bg-soft); color: var(--navy-deep); font-weight: 600; font-size: 12.5px; }
+
+      /* タグ */
+      .tag {
+        display: inline-block;
+        padding: 2px 9px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      .tag.safe { background: var(--ok-bg); color: var(--ok-deep); }
+      .tag.warn { background: var(--warn-bg); color: var(--warn-deep); }
+      .tag.todo { background: var(--bg-soft); color: var(--muted); }
+
+      /* コールアウト */
+      .callout {
+        border-left: 4px solid var(--cyan);
+        background: var(--cyan-soft);
+        padding: 14px 18px;
+        border-radius: 0 8px 8px 0;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+      .callout.bad { border-color: var(--bad-line); background: var(--bad-bg); }
+      .callout.ok { border-color: var(--ok-line); background: var(--ok-bg); }
       .callout.warn { border-color: var(--warn-line); background: var(--warn-bg); }
-      .callout.bad  { border-color: var(--bad-line);  background: var(--bad-bg); }
-      .callout.ok   { border-color: var(--ok-line);   background: var(--ok-bg); }
-      .callout b { display: block; margin-bottom: 4px; color: var(--navy-deep); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-family: 'JetBrains Mono', 'Consolas', monospace; }
-      ul.check { list-style: none; padding: 0; margin: 14px 0; }
-      ul.check li { padding: 6px 0 6px 28px; position: relative; }
+      .callout b { display: block; margin-bottom: 6px; color: var(--navy-deep); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+
+      /* ご確認カード */
+      .ask {
+        border: 2px solid var(--decision);
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 16px 0;
+        background: #fff;
+      }
+      .ask-head {
+        display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+      }
+      .ask-badge {
+        background: var(--decision);
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.1em;
+      }
+      .ask-title { font-weight: 700; font-size: 16px; color: var(--navy-deep); margin: 0; }
+      .ask-q { font-size: 14.5px; color: var(--ink); margin: 8px 0 12px; line-height: 1.7; }
+      .ask-q strong { color: var(--navy-deep); }
+      .ask-why {
+        background: var(--bg-soft);
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .ask-why b { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; color: var(--decision); margin-right: 8px; }
+      .ask-form {
+        background: var(--decision-bg);
+        border-radius: 6px;
+        padding: 12px 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        white-space: pre-wrap;
+        color: var(--navy-deep);
+      }
+      .ask-form .label { color: var(--decision); font-weight: 600; }
+
+      /* 図解 */
+      .diagram { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin: 16px 0 22px; }
+      .diagram svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+      .diagram .caption { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+      /* チェックリスト */
+      ul.check { list-style: none; padding: 0; margin: 12px 0; }
+      ul.check li { padding: 5px 0 5px 26px; position: relative; font-size: 14px; }
       ul.check li::before { content: '✓'; position: absolute; left: 4px; color: var(--ok-line); font-weight: 700; }
-      .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-family: 'JetBrains Mono', 'Consolas', monospace; letter-spacing: 0.05em; vertical-align: middle; }
-      .tag.safe    { background: var(--ok-bg);  color: var(--ok-deep); }
-      .tag.danger  { background: var(--bad-bg); color: var(--bad-deep); }
-      .tag.neutral { background: var(--bg-soft); color: var(--muted); }
-      .tag.warn    { background: var(--warn-bg); color: var(--warn-deep); }
-      .tag.winner  { background: #fff4d6;       color: var(--winner-line); border: 1px solid var(--winner-line); }
-      .tag.alt     { background: #efeaff;       color: var(--decision);    border: 1px solid var(--decision); }
-      .q-card { border: 1px solid var(--decision); border-left: 6px solid var(--decision); border-radius: 10px; padding: 16px 20px; margin: 14px 0; background: #fff; }
-      .q-card .q-no { display: inline-block; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 11px; letter-spacing: 0.14em; color: var(--decision); margin-bottom: 6px; text-transform: uppercase; }
-      .q-card .q-title { font-size: 15.5px; font-weight: 700; color: var(--navy-deep); margin: 0 0 8px; }
-      .q-card .q-body { font-size: 14px; color: var(--ink); margin: 0 0 8px; }
-      .q-card .q-why { font-size: 13px; color: var(--muted); background: var(--bg-soft); padding: 8px 12px; border-radius: 6px; margin-top: 8px; }
-      .q-card .q-why b { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 10.5px; letter-spacing: 0.12em; color: var(--decision); margin-right: 8px; }
-      footer { border-top: 1px solid var(--line); margin-top: 56px; padding-top: 24px; font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', 'Consolas', monospace; }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 56px;
+        padding-top: 20px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', monospace;
+      }
       footer p { margin: 4px 0; }
-      @media (max-width: 720px) { header.hero h1 { font-size: 24px; } }
+
+      @media (max-width: 720px) {
+        .phase-bar, .roles, .next-steps { grid-template-columns: 1fr; }
+        header.hero h1 { font-size: 22px; }
+      }
       @media print {
-        @page { size: A4 portrait; margin: 5mm; }
-        html, body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        @page { size: A4 portrait; margin: 8mm; }
         body { margin: 0; }
-        .wrap { max-width: 100%; margin: 0; padding: 0 4mm 4mm; }
-        header.hero { margin-bottom: 8mm; padding: 14mm 0 10mm; break-after: avoid; page-break-after: avoid; }
-        header.hero .wrap { padding: 0 4mm; }
-        nav.toc { break-after: page; page-break-after: always; break-inside: avoid; page-break-inside: avoid; margin-bottom: 0; }
-        .tldr, .decision-banner { break-inside: avoid; page-break-inside: avoid; }
-        section { margin-bottom: 6mm; break-inside: auto; page-break-inside: auto; }
-        h2, h3, h4 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; }
-        table, .callout, .q-card, .oneliner, ul.check, ol { break-inside: avoid; page-break-inside: avoid; }
-        thead { display: table-header-group; }
-        tr { break-inside: avoid; page-break-inside: avoid; }
-        a { color: inherit; text-decoration: none; }
-        footer { break-before: avoid; page-break-before: avoid; }
+        .wrap { max-width: 100%; padding: 0 4mm 4mm; }
+        header.hero { margin-bottom: 6mm; padding: 8mm 0; }
+        section { margin-bottom: 5mm; break-inside: auto; }
+        .ask, .diagram, .callout, table, .step-card, .role-card, .phase-step { break-inside: avoid; }
+        h2, h3 { break-after: avoid; }
       }
     </style>
   </head>
   <body>
     <header class="hero">
       <div class="wrap">
-        <p class="eyebrow">Hosting Migration Plan — Rev. 4</p>
-        <h1>HRtep コーポレートサイト<br>Web ホスティング刷新 計画書 <span style="color: var(--cyan); font-size: 22px; vertical-align: 4px;">v4</span></h1>
-        <p class="lead">
-          <strong style="color:#fff;">Phase 1（Amplify Hosting 構築）完了。Phase 2（SES 構築・Server Action 移行・reCAPTCHA 統合）の弊社内作業すべて完了。</strong>残るは安井様 DNS 設定（4 件）→ DKIM 認証完了 → SES サンドボックス解除申請のみ。
-          <br><br>
-          v3 からの主な進捗: AWS 全リソース構築完了、Server Action の SES 実装移行完了、reCAPTCHA v3 本番稼働、運用マニュアル整備、Phase 3 切替計画策定。前半（背景・選定根拠）は v3 で確定済のため要点のみ。
-        </p>
+        <h1>HRtep コーポレートサイト 移行計画書 <span style="color: var(--cyan); font-size: 22px;">v4</span></h1>
+        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。本書面 1 通で貴社・安井様への必要事項がすべて完結します。</p>
+        <div class="now">
+          <p class="label">現在の状況</p>
+          <p>弊社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。貴社からのご回答 3 件と、その後の安井様 DNS 設定（4 件追加のみ）が揃えば、Phase 2 完了 → 新サイト切替へと進めます。</p>
+        </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
           <span>仮 URL: <b>main.d3561ojkga3nyn.amplifyapp.com</b></span>
+          <span>更新: <b>2026-05-01</b></span>
           <span>版数: <b>v4</b></span>
-          <span>更新日: <b>2026-05-01</b></span>
         </div>
       </div>
     </header>
 
     <div class="wrap">
 
-      <div class="tldr">
-        <h2>本計画の現状（v4 時点）</h2>
-        <ol>
-          <li><strong>Phase 1（Amplify Hosting 構築）</strong>: <span class="tag safe">完了</span> 仮 URL <code>https://main.d3561ojkga3nyn.amplifyapp.com</code> で全 13 ページ稼働中。</li>
-          <li><strong>Phase 2（SES 送信メール構築）</strong>: <span class="tag safe">弊社作業完了</span> AWS リソース全 9 件構築済、Server Action の SES 実装移行済、reCAPTCHA v3 本番稼働中。残作業は <strong>安井様 DNS 設定 4 件追加</strong>（CNAME 3 件 + SPF TXT 1 件）→ DKIM SUCCESS 確認 → SES Production Access 申請のみ。</li>
-          <li><strong>Phase 3（DNS 切替）</strong>: <span class="tag warn">計画策定済・着手前</span> 切替手順・ロールバック計画は <a href="#s09">第 9 章</a>に整理。</li>
-          <li><strong>貴社にご対応いただきたい事項</strong>: <a href="#s07">第 7 章</a> ACTION 02 / 03 / 04 のご回答（DMARC 受信先確認・社内通知メール宛先決定・お名前.com 月額確認）。</li>
-        </ol>
-      </div>
+      <!-- ▼ ひとめで分かる現状 -->
+      <section id="s00">
+        <h2><span class="num">0</span>ひとめで分かる現状</h2>
+        <p class="lead">移行作業は 4 段階。現在 2 段階目（Phase 2）の終盤、貴社のご回答待ち。</p>
 
-      <nav class="toc">
-        <h2>目次</h2>
-        <ul>
-          <li><a href="#s01">1. 移行計画の要点（背景・範囲・採用構成）</a></li>
-          <li><a href="#s02">2. ランニングコスト試算</a></li>
-          <li><a href="#s03">3. 移行プロセスとフェーズ定義</a></li>
-          <li><a href="#s04"><b>4. 実施結果（v4 時点） — AWS リソース・コード・運用文書</b></a></li>
-          <li><a href="#s05"><b>5. お問合せフォームの実装状態（reCAPTCHA + SES）</b></a></li>
-          <li><a href="#s06"><b>6. 残作業と完了条件</b></a></li>
-          <li><a href="#s07"><b>7. 貴社（HRtep 様）ご確認事項</b></a></li>
-          <li><a href="#s08"><b>8. お名前.com DNS 設定依頼 — 安井様向け（CNAME 3 + SPF TXT 1）</b></a></li>
-          <li><a href="#s09"><b>9. Phase 3 着手計画（DNS 切替）</b></a></li>
-        </ul>
-      </nav>
+        <h3>進捗</h3>
+        <div class="phase-bar">
+          <div class="phase-step done">
+            <div class="ph-num">PHASE 1</div>
+            <div class="ph-name">サイト構築</div>
+            <div class="ph-status">✓ 完了</div>
+          </div>
+          <div class="phase-step now">
+            <div class="ph-num">PHASE 2</div>
+            <div class="ph-name">メール送信構築</div>
+            <div class="ph-status">▶ 終盤・ご回答待ち</div>
+          </div>
+          <div class="phase-step todo">
+            <div class="ph-num">PHASE 3</div>
+            <div class="ph-name">DNS 切替</div>
+            <div class="ph-status">未着手</div>
+          </div>
+          <div class="phase-step todo">
+            <div class="ph-num">PHASE 4</div>
+            <div class="ph-name">旧サイト解約</div>
+            <div class="ph-status">未着手</div>
+          </div>
+        </div>
 
-      <!-- 01 移行計画の要点 -->
+        <h3>次の 3 ステップ</h3>
+        <div class="next-steps">
+          <div class="step-card active">
+            <div class="step-num">1</div>
+            <p class="step-who">貴社（津賀平様）</p>
+            <p class="step-title">3 件の確認事項にご回答</p>
+            <p class="step-desc">本書面 第 4 章（ACTION 02 / 03 / 04）にご記入のうえ弊社までご返送ください。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <p class="step-who">安井様（取次は貴社経由）</p>
+            <p class="step-title">DNS レコード 4 件を追加</p>
+            <p class="step-desc">本書面 第 5 章を安井様にお渡しください。お名前.com Navi での追加作業のみで完了。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <p class="step-who">弊社</p>
+            <p class="step-title">AWS への申請・本番切替</p>
+            <p class="step-desc">DNS 反映確認後、メール送信本番化を申請。承認後に Phase 3（DNS 切替）へ。</p>
+          </div>
+        </div>
+
+        <h3>役割分担</h3>
+        <div class="roles">
+          <div class="role-card us">
+            <p class="role-name">弊社（leadx）</p>
+            <p class="role-who">技術実装・運用</p>
+            <ul>
+              <li class="done">新サイト構築・テスト</li>
+              <li class="done">AWS 環境構築（メール送信基盤）</li>
+              <li class="done">問合せフォーム実装</li>
+              <li class="done">運用ドキュメント整備</li>
+              <li class="wait">AWS への本番申請（DNS 反映後）</li>
+              <li class="wait">DNS 切替の監視（Phase 3）</li>
+            </ul>
+          </div>
+          <div class="role-card client">
+            <p class="role-name">貴社（HRtep / 津賀平様）</p>
+            <p class="role-who">意思決定・取次</p>
+            <ul>
+              <li class="now">3 件の確認事項にご回答（本書面 第 4 章）</li>
+              <li class="wait">安井様への取次（本書面 第 5 章をお渡し）</li>
+              <li class="wait">切替後の動作確認</li>
+            </ul>
+          </div>
+          <div class="role-card yasui">
+            <p class="role-name">安井様（お名前.com 管理者）</p>
+            <p class="role-who">DNS 設定</p>
+            <ul>
+              <li class="wait">Phase 2: DNS レコード 4 件追加</li>
+              <li class="wait">Phase 3: DNS 切替（A レコード変更）</li>
+            </ul>
+            <p style="font-size:11.5px; color:var(--muted); margin: 8px 0 0; line-height:1.5;">※ 弊社からの直接連絡は行わず、貴社経由で取次いただきます。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ▼ 全体構成 -->
       <section id="s01">
-        <h2><span class="num">01</span>移行計画の要点（背景・範囲・採用構成）</h2>
-        <p class="subtitle">v3 で確定済の事項を要点のみ記載。詳細根拠は v3 を参照。</p>
+        <h2><span class="num">1</span>移行前と移行後の全体構成</h2>
+        <p class="lead">何が変わって、何が変わらないかを 1 枚の図で整理。</p>
 
-        <span class="oneliner"><b>結論</b>WordPress（お名前.com 上）→ Next.js + AWS Amplify Hosting + Amazon SES。レジストラ・権威 DNS・受信メール（Google Workspace）は据え置き。</span>
+        <div class="diagram">
+          <svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="移行前と移行後の構成比較">
+            <style>
+              .lbl { font: 600 12px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .lbl-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .lbl-hdr { font: 700 14px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
+              .box { fill: #fff; stroke: #dfe5ee; stroke-width: 1.5; }
+              .box-change { fill: #fff8d6; stroke: #c89c00; stroke-width: 2; }
+              .box-keep { fill: #e8f7ee; stroke: #2ea85a; stroke-width: 1.5; }
+              .arrow { stroke: #1a2d4d; stroke-width: 1.5; fill: none; marker-end: url(#a); }
+            </style>
+            <defs>
+              <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1a2d4d"/>
+              </marker>
+            </defs>
+            <!-- 左：移行前 -->
+            <text x="180" y="30" text-anchor="middle" class="lbl-hdr">移行前（現状）</text>
+            <rect x="50" y="50" width="260" height="50" rx="6" class="box-change"/>
+            <text x="180" y="72" text-anchor="middle" class="lbl">① レジストラ：お名前.com</text>
+            <text x="180" y="90" text-anchor="middle" class="lbl-sm">変更なし</text>
+            <rect x="50" y="110" width="260" height="50" rx="6" class="box-change"/>
+            <text x="180" y="132" text-anchor="middle" class="lbl">② DNS：お名前.com</text>
+            <text x="180" y="150" text-anchor="middle" class="lbl-sm">レコード追加のみ（メール用）</text>
+            <rect x="50" y="170" width="260" height="50" rx="6" class="box-change"/>
+            <text x="180" y="192" text-anchor="middle" class="lbl" style="fill:#8b5a00; font-weight:700;">③ サイト：WordPress</text>
+            <text x="180" y="210" text-anchor="middle" class="lbl-sm" style="fill:#8b5a00;">→ 刷新対象</text>
+            <rect x="50" y="230" width="260" height="50" rx="6" class="box-keep"/>
+            <text x="180" y="252" text-anchor="middle" class="lbl">④ 受信メール：Google Workspace</text>
+            <text x="180" y="270" text-anchor="middle" class="lbl-sm">変更なし</text>
+            <rect x="50" y="290" width="260" height="50" rx="6" class="box-change"/>
+            <text x="180" y="312" text-anchor="middle" class="lbl" style="fill:#8b5a00; font-weight:700;">⑤ 送信メール：Contact Form 7</text>
+            <text x="180" y="330" text-anchor="middle" class="lbl-sm" style="fill:#8b5a00;">→ 刷新対象</text>
 
-        <h3>1.1 採用技術スタック</h3>
-        <table>
-          <thead><tr><th style="width:24%">レイヤー</th><th>採用</th><th style="width:30%">理由（v3 §4-6 より要約）</th></tr></thead>
-          <tbody>
-            <tr><td>Web ホスティング</td><td><strong>AWS Amplify Hosting（東京リージョン）</strong></td><td>既存 AWS 環境内で完結、Free Tier 内、ベンダー一元化</td></tr>
-            <tr><td>送信メール</td><td><strong>Amazon SES</strong>（送信ドメイン <code>send.hrtep.com</code>）</td><td>同上、apex 受信メールへの影響ゼロ</td></tr>
-            <tr><td>ボット対策</td><td><strong>Google reCAPTCHA v3</strong>（スコアベース）</td><td>SES 申請文の commitment 達成</td></tr>
-            <tr><td>新サイト技術</td><td>Next.js 16 + React 19 + TypeScript + Tailwind CSS</td><td>新方針（IT 事業訴求）と整合、WordPress 保守負荷から解放</td></tr>
-          </tbody>
-        </table>
+            <!-- 矢印 -->
+            <path d="M340,180 L640,180" class="arrow"/>
+            <text x="490" y="170" text-anchor="middle" class="lbl-sm">刷新</text>
 
-        <h3>1.2 変更しない領域（受信メール無影響を担保）</h3>
-        <ul class="check">
-          <li>レジストラ（お名前.com）・権威 DNS（お名前.com Navi）・受信 MX（Google Workspace + onamae.ne.jp）は据え置き</li>
-          <li>apex の SPF（<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）・DMARC（<code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code>）も変更なし</li>
-          <li>SES 用の DKIM CNAME・SPF TXT はすべて <code>send.hrtep.com</code> サブドメイン配下への新規追加</li>
-        </ul>
+            <!-- 右：移行後 -->
+            <text x="800" y="30" text-anchor="middle" class="lbl-hdr">移行後</text>
+            <rect x="670" y="50" width="260" height="50" rx="6" class="box"/>
+            <text x="800" y="72" text-anchor="middle" class="lbl">① レジストラ：お名前.com</text>
+            <text x="800" y="90" text-anchor="middle" class="lbl-sm">そのまま</text>
+            <rect x="670" y="110" width="260" height="50" rx="6" class="box"/>
+            <text x="800" y="132" text-anchor="middle" class="lbl">② DNS：お名前.com</text>
+            <text x="800" y="150" text-anchor="middle" class="lbl-sm">そのまま（メール用レコードを追加）</text>
+            <rect x="670" y="170" width="260" height="50" rx="6" class="box-keep"/>
+            <text x="800" y="192" text-anchor="middle" class="lbl" style="fill:#1d6d3c; font-weight:700;">③ サイト：AWS Amplify</text>
+            <text x="800" y="210" text-anchor="middle" class="lbl-sm" style="fill:#1d6d3c;">Next.js + Tailwind</text>
+            <rect x="670" y="230" width="260" height="50" rx="6" class="box"/>
+            <text x="800" y="252" text-anchor="middle" class="lbl">④ 受信メール：Google Workspace</text>
+            <text x="800" y="270" text-anchor="middle" class="lbl-sm">そのまま</text>
+            <rect x="670" y="290" width="260" height="50" rx="6" class="box-keep"/>
+            <text x="800" y="312" text-anchor="middle" class="lbl" style="fill:#1d6d3c; font-weight:700;">⑤ 送信メール：Amazon SES</text>
+            <text x="800" y="330" text-anchor="middle" class="lbl-sm" style="fill:#1d6d3c;">AWS 内で完結</text>
+          </svg>
+          <p class="caption">黄色 = 変更あり ／ 緑 = 変更なし。受信メール（Google Workspace）には一切影響しません。</p>
+        </div>
+
+        <div class="callout">
+          <b>ポイント</b>
+          ① レジストラ・② DNS・④ 受信メールは<strong>そのまま継続</strong>。新しく構築するのは「③ サイトを置く場所」と「⑤ お問合せメールの送信経路」の 2 点のみ。受信メールへの影響はゼロです。
+        </div>
       </section>
 
-      <!-- 02 ランニングコスト -->
+      <!-- ▼ 完了済み -->
       <section id="s02">
-        <h2><span class="num">02</span>ランニングコスト試算</h2>
+        <h2><span class="num">2</span>弊社で完了している作業（参考）</h2>
+        <p class="lead">どこまで進んでいるか、ひと目で分かるように整理。詳細は不要なら読み飛ばしてください。</p>
 
-        <table>
-          <thead><tr><th>レイヤー</th><th>移行前</th><th>移行後</th></tr></thead>
-          <tbody>
-            <tr><td>Web ホスティング</td><td>月 500〜2,500 円（お名前.com 共用 — 解約予定）</td><td>月 0〜750 円（Amplify Free Tier）</td></tr>
-            <tr><td>送信メール</td><td>0 円（Contact Form 7 / WordPress <code>wp_mail()</code>）</td><td>月 0〜10 円（SES、$0.10 / 1,000 通）</td></tr>
-            <tr><td>HTTPS 証明書</td><td>0 円</td><td>0 円（ACM、自動更新）</td></tr>
-            <tr><td>レジストラ・権威 DNS・受信メール</td><td colspan="2">変動なし</td></tr>
-            <tr style="background:var(--bg-soft);"><td><strong>月額（変動分）</strong></td><td><strong>月 500〜2,500 円</strong></td><td><strong>月 0〜760 円</strong></td></tr>
-          </tbody>
-        </table>
-        <p class="subtitle">差し引き、月額 500〜2,000 円程度の削減見込み（年額 6,000〜24,000 円）。お名前.com 月額確定値は <a href="#s07">第 7 章 ACTION 04</a> で貴社にご確認依頼中。</p>
+        <h3>新サイト（Phase 1：完了）</h3>
+        <ul class="check">
+          <li>新サイトを <code>https://main.d3561ojkga3nyn.amplifyapp.com</code> で稼働中（仮 URL）</li>
+          <li>全 13 ページ動作確認済み（トップ・会社概要・サービス・実績・お知らせ・お問合せ・プライバシーポリシー など）</li>
+          <li>旧 WordPress URL からの自動転送を 11 件設定（旧 <code>/blog/</code> や <code>/company</code> へのアクセスを新サイトに正しく誘導）</li>
+        </ul>
+
+        <h3>メール送信基盤（Phase 2：弊社作業完了）</h3>
+        <ul class="check">
+          <li>Amazon SES（メール送信サービス）の AWS 環境を構築済み</li>
+          <li>お問合せフォームを Amazon SES から送信する形に書き換え済み</li>
+          <li>ロボットによる不正送信を防ぐ「reCAPTCHA」を本番稼働済み（実機テスト合格）</li>
+          <li>プライバシーポリシーへの同意チェックボックスを必須化（個人情報保護法に対応）</li>
+          <li>不正送信や苦情の自動監視（CloudWatch アラーム）を構築・テスト済み</li>
+          <li>運用マニュアル・障害対応手順を整備済み</li>
+        </ul>
+
+        <p style="font-size:13.5px; color:var(--muted); margin-top:18px;">
+          ※ 上記で「お問合せフォームから送信されたメールが届くまでの仕組み」が完成しています。残るは AWS の本番利用申請（弊社作業）と、その前提となる DNS 設定（安井様作業）のみです。
+        </p>
       </section>
 
-      <!-- 03 移行プロセス -->
+      <!-- ▼ ご確認事項 -->
       <section id="s03">
-        <h2><span class="num">03</span>移行プロセスとフェーズ定義</h2>
+        <h2><span class="num">3</span>貴社にご確認いただきたいこと（3 件）</h2>
+        <p class="lead">下記 3 件のご回答をお願いいたします。本書面の回答欄にご記入のうえ、弊社までご返送ください。</p>
 
-        <table>
-          <thead><tr><th style="width:14%">フェーズ</th><th>内容</th><th style="width:18%">状態</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Phase 1</strong></td><td>AWS Amplify Hosting 構築 / GitHub 連携 / 仮 URL での動作確認</td><td><span class="tag safe">完了</span></td></tr>
-            <tr><td><strong>Phase 2</strong></td><td>Amazon SES 構築 / Server Action 実装 / reCAPTCHA 統合 / DNS 4 件追加（安井様）/ DKIM 認証 / サンドボックス解除申請</td><td><span class="tag warn">弊社作業完了・安井様 DNS 待ち</span></td></tr>
-            <tr><td><strong>Phase 3</strong></td><td>DNS 切替（A レコード 2 件を旧 WP IP → Amplify ALIAS へ）/ ACM 証明書発行 / 本番動作確認</td><td><span class="tag neutral">計画策定済・未着手</span></td></tr>
-            <tr><td><strong>Phase 4</strong></td><td>14 日並行稼働後、お名前.com 共用ホスティング解約</td><td><span class="tag neutral">未着手</span></td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- 04 実施結果 -->
-      <section id="s04">
-        <h2><span class="num">04</span>実施結果（v4 時点） — AWS リソース・コード・運用文書</h2>
-        <p class="subtitle">Phase 1 完了および Phase 2 のうち弊社内作業すべて完了済。</p>
-
-        <h3>4.1 AWS リソース（全 9 件、すべて構築・動作確認済）</h3>
-        <table>
-          <thead><tr><th style="width:30%">種別</th><th>識別子</th><th style="width:14%">状態</th></tr></thead>
-          <tbody>
-            <tr><td>AWS アカウント</td><td><code>688518755365</code> ／ ap-northeast-1</td><td><span class="tag safe">運用中</span></td></tr>
-            <tr><td>IAM ユーザー（CLI 操作用）</td><td><code>claude-code-operator</code></td><td><span class="tag safe">運用中</span></td></tr>
-            <tr><td>SES Domain Identity</td><td><code>send.hrtep.com</code></td><td><span class="tag warn">DKIM PENDING</span></td></tr>
-            <tr><td>SES Configuration Set</td><td><code>hrtep-default</code>（Bounce/Complaint/Delivery/Delay/Reject を SNS 配信）</td><td><span class="tag safe">構築済</span></td></tr>
-            <tr><td>SNS Topic（SES イベント）</td><td><code>ses-bounces-complaints</code>（購読: <code>tbnkin@gmail.com</code>、Confirmation 待ち）</td><td><span class="tag safe">構築済</span></td></tr>
-            <tr><td>SNS Topic（CloudWatch アラーム）</td><td><code>hrtep-cloudwatch-alarms</code>（購読: <code>tbnkin@gmail.com</code> Confirmed）</td><td><span class="tag safe">構築済・実機テスト済</span></td></tr>
-            <tr><td>CloudWatch Alarm 4 件</td><td>BounceRate warning/critical（4% / 5%）+ ComplaintRate warning/critical（0.05% / 0.1%）</td><td><span class="tag safe">OK 状態・実機テスト済</span></td></tr>
-            <tr><td>SES Suppression List</td><td>BOUNCE / COMPLAINT を Suppressed に設定</td><td><span class="tag safe">有効</span></td></tr>
-            <tr><td>Amplify Hosting</td><td>App ID <code>d3561ojkga3nyn</code> ／ アプリ名 <code>hrtep-corporate</code> ／ ブランチ <code>main</code></td><td><span class="tag safe">運用中</span></td></tr>
-            <tr><td>IAM Compute Role</td><td><code>hrtep-amplify-compute-role</code>（最小権限：<code>ses:SendEmail</code> on send.hrtep.com / hrtep-default のみ）</td><td><span class="tag safe">構築済</span></td></tr>
-            <tr><td>CloudWatch Dashboard</td><td><code>hrtep-corporate</code></td><td><span class="tag safe">構築済</span></td></tr>
-          </tbody>
-        </table>
-
-        <h3>4.2 コード変更（main ブランチ反映済・ライブ稼働中）</h3>
-        <ul class="check">
-          <li><code>app/contact/actions.ts</code>: Resend → <code>@aws-sdk/client-sesv2</code>（SESv2Client + SendEmailCommand）に書き換え</li>
-          <li><code>components/contact/ContactForm.tsx</code>: プライバシー同意チェックボックス必須化 + reCAPTCHA v3 統合</li>
-          <li><code>lib/recaptcha.ts</code>: reCAPTCHA v3 のクライアント・サーバー両側検証ヘルパ新設</li>
-          <li><code>lib/validation.ts</code>: zod スキーマに <code>agreement: z.literal(true)</code> + <code>recaptchaToken</code> を追加</li>
-          <li><code>app/opengraph-image.tsx</code> + <code>app/news/[slug]/opengraph-image.tsx</code>: 動的 OG 画像（ImageResponse）</li>
-          <li><code>app/sitemap.ts</code>: lastmod を git history から自動算出</li>
-          <li><code>app/page.tsx</code>: WebSite + Organization JSON-LD（@id 相互参照）</li>
-          <li><code>app/news/[slug]/page.tsx</code>: NewsArticle JSON-LD（headline / datePublished / publisher）</li>
-          <li><code>app/not-found.tsx</code>: 主要 8 ページの Quick Links 追加</li>
-          <li><code>next.config.ts</code>: 旧 WordPress URL の 308 リダイレクト 11 件（<code>/blog/</code> / <code>/company</code> / <code>/service</code> / <code>/press</code> 他）</li>
-          <li>noindex 設定（<code>NEXT_PUBLIC_SITE_ENV=production</code> 以外でプレビュー URL を非インデックス化）</li>
-          <li>全ページ canonical URL 設定 / robots.txt + AI ボット制御 / llms.txt 設置</li>
-        </ul>
-
-        <h3>4.3 環境変数（Amplify アプリレベルで登録済）</h3>
-        <table>
-          <thead><tr><th style="width:34%">変数</th><th>状態</th></tr></thead>
-          <tbody>
-            <tr><td><code>NEXT_PUBLIC_RECAPTCHA_SITE_KEY</code></td><td><span class="tag safe">設定済</span> 公開キー</td></tr>
-            <tr><td><code>RECAPTCHA_SECRET_KEY</code></td><td><span class="tag safe">設定済</span> サーバー側検証用</td></tr>
-            <tr><td><code>CONTACT_EMAIL_TO</code></td><td><span class="tag warn">未設定</span> <a href="#s07">第 7 章 ACTION 03</a> 回答後に設定</td></tr>
-            <tr><td><code>NEXT_PUBLIC_SITE_ENV</code></td><td><span class="tag neutral">Phase 3 で <code>production</code> に切替予定</span></td></tr>
-          </tbody>
-        </table>
-
-        <h3>4.4 弊社内運用ドキュメント整備状況</h3>
-        <p>SES 申請文・運用マニュアル（フォームログ確認・bounce 対応・Suppression List 操作・Kill Switch）・DNS 移行前ベースライン凍結値・Server Action SES 移行設計などの内部運用ドキュメントは、弊社にて GitHub リポジトリ内に整備済。本計画書には貴社のご判断・ご対応に必要な情報をすべて転載しているため、貴社にて当該ドキュメントを直接ご参照いただく必要はない。</p>
-      </section>
-
-      <!-- 05 お問合せフォーム実装 -->
-      <section id="s05">
-        <h2><span class="num">05</span>お問合せフォームの実装状態（reCAPTCHA + SES）</h2>
-        <p class="subtitle">SES Production Access 申請文の commitment（同意必須・bot 排除）と実装が一致している状態を担保。</p>
-
-        <span class="oneliner"><b>動作経路</b>ユーザー入力 → zod バリデーション → reCAPTCHA v3 トークン取得 → サーバー側で Google siteverify → SES SendEmail（CONTACT_EMAIL_TO へ）</span>
-
-        <h3>5.1 クライアント側（<code>components/contact/ContactForm.tsx</code>）</h3>
-        <ul class="check">
-          <li>react-hook-form + zod（<code>@hookform/resolvers/zod</code>）でフロント検証</li>
-          <li>同意チェックボックス（<code>agreement: z.literal(true)</code>）必須化、未チェックで送信不可</li>
-          <li>送信時に <code>grecaptcha.execute(SITE_KEY, { action: 'contact_submit' })</code> でトークン取得</li>
-          <li>取得したトークンを Server Action へ POST</li>
-          <li>reCAPTCHA バッジ + Google プライバシー/利用規約リンク表示済（reCAPTCHA Terms 準拠）</li>
-        </ul>
-
-        <h3>5.2 サーバー側（<code>app/contact/actions.ts</code>）</h3>
-        <ul class="check">
-          <li>Server Action で zod 再検証（クライアント側回避を防止）</li>
-          <li>reCAPTCHA トークンを Google siteverify エンドポイントに POST、score ≥ 0.5 で許可</li>
-          <li>検証 OK の場合のみ <code>SESv2Client.send(SendEmailCommand)</code> を発火</li>
-          <li>送信元: <code>noreply@send.hrtep.com</code> ／ Reply-To: フォーム送信者本人 ／ Configuration Set 経由</li>
-          <li><code>CONTACT_EMAIL_TO</code> 未設定時は暫定無効化分岐（受付完了表示のみ・実メール送信なし）</li>
-        </ul>
-
-        <h3>5.3 ライブ動作確認（仮 URL 上で実証済）</h3>
-        <div class="callout ok">
-          <b>E2E 検証完了</b>
-          <code>https://main.d3561ojkga3nyn.amplifyapp.com/contact</code> でフォーム送信を実行 →
-          (a) <code>grecaptcha</code> が長さ 2105 のトークンを返却 →
-          (b) サーバー側で Google siteverify 通過（success=true / score ≥ 0.5）→
-          (c) CONTACT_EMAIL_TO 未設定分岐に到達し「お問い合わせを受け付けました」表示。
-          reCAPTCHA verify が成立していなければ「送信検証に失敗しました」が返るため、上記成功表示自体が verify path 動作の証跡。
-        </div>
-      </section>
-
-      <!-- 06 残作業 -->
-      <section id="s06">
-        <h2><span class="num">06</span>残作業と完了条件</h2>
-
-        <h3>6.1 残作業（Phase 2 完了までの順序）</h3>
-        <table>
-          <thead><tr><th style="width:6%">#</th><th>作業</th><th style="width:22%">担当</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>HRtep 様 ACTION 02/03/04 のご回答</td><td>HRtep 様（津賀平様）</td></tr>
-            <tr><td>2</td><td><code>CONTACT_EMAIL_TO</code> 環境変数を Amplify に登録</td><td>弊社（ACTION 03 回答後）</td></tr>
-            <tr><td>3</td><td>お名前.com DNS への CNAME 3 件 + SPF TXT 1 件 追加</td><td>安井様（取次は HRtep 様）</td></tr>
-            <tr><td>4</td><td>DKIM 認証完了確認（DNS 反映待ち：数時間〜最大 24h）</td><td>弊社</td></tr>
-            <tr><td>5</td><td>サンドボックス内テスト送信（送信先: <code>tbnkin@gmail.com</code>）</td><td>弊社</td></tr>
-            <tr><td>6</td><td>SES Production Access 申請提出（AWS 審査：通常 24h〜数日）</td><td>弊社</td></tr>
-            <tr><td>7</td><td>申請承認 → 本番フォーム送信を hrtep.com 仮 URL で E2E 確認</td><td>弊社</td></tr>
-          </tbody>
-        </table>
-
-        <h3>6.2 Phase 2 完了条件</h3>
-        <ul class="check">
-          <li>SES Production Access が承認され、<code>ProductionAccessEnabled: true</code> 状態</li>
-          <li>仮 URL からの実メール送信が <code>CONTACT_EMAIL_TO</code> 宛に到達</li>
-          <li>CloudWatch Alarm 4 件すべて OK 状態を維持</li>
-          <li>SNS Bounce/Complaint 通知の受信動作確認（<code>tbnkin@gmail.com</code> Subscription Confirmed）</li>
-        </ul>
-      </section>
-
-      <!-- 07 HRtep 様確認事項 -->
-      <section id="s07">
-        <h2 class="decision-h"><span class="num">07</span>貴社（HRtep 様）ご確認事項</h2>
-        <p class="subtitle">v3 §11 から繰り越し。DECISION 01 / 05 は確定済（v3 を参照）、ACTION 02 / 03 / 04 が未回答。</p>
-
-        <span class="oneliner"><b>趣旨</b>3 件のご回答が、安井様への DNS 設定依頼および SES 申請提出の前提条件。本章下部の回答欄にご記入の上、弊社までご返送ください。</span>
-
-        <div class="q-card">
-          <div class="q-no">ACTION 02 / 確認依頼</div>
-          <p class="q-title">DMARC レポート受信先アドレス（<code>mori@hrtep.com</code>）の現存確認</p>
-          <p class="q-body">
-            <code>_dmarc.hrtep.com</code> の <code>rua=mailto:mori@hrtep.com</code> が現在も受信可能であるかご確認ください。廃止されている場合、別アドレスへの DMARC 更新を安井様への次回依頼に追加する必要があります。
+        <div class="ask">
+          <div class="ask-head">
+            <span class="ask-badge">ACTION 02</span>
+            <p class="ask-title">DMARC レポート受信先（<code>mori@hrtep.com</code>）は今も使えますか？</p>
+          </div>
+          <p class="ask-q">
+            ドメイン認証の運用レポートを受け取るアドレスとして <code>mori@hrtep.com</code> が DNS に設定されています。<strong>このアドレスは現在も受信可能でしょうか？</strong>
           </p>
-          <div class="q-why"><b>影響</b>業務影響は通常なし。ただし当該アドレスが廃止されていると、SES 本番運用後の送信状況レポートが受信できない運用上の死角となる。</div>
-          <p class="q-body" style="margin-top:10px;"><strong>ご回答欄</strong></p>
-          <pre style="background:var(--bg-soft); padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.6; margin:0;">[ ] (a) mori@hrtep.com は現存・受信可能
+          <p class="ask-why">
+            <b>なぜ確認</b>このアドレスが既に廃止されている場合、メールの不正利用を監視するレポートが受け取れず運用上の死角となります。業務メールへの影響はありません。
+          </p>
+          <div class="ask-form">
+<span class="label">ご回答（該当に ✓）</span>
+
+[ ] (a) 現存・受信可能
 [ ] (b) 既に廃止／受信不能 → 新たな受信先: ____________________
-[ ] (c) わからない／確認が必要（弊社にて Google Workspace 管理画面の閲覧権限があれば調査可能）</pre>
+[ ] (c) わからない／確認が必要</div>
         </div>
 
-        <div class="q-card">
-          <div class="q-no">ACTION 03 / 確認依頼</div>
-          <p class="q-title">お問合せフォームの社内通知メール送信先アドレス決定</p>
-          <p class="q-body">
-            新サイトのお問合せフォームから送信があった際、貴社内の問合せ担当者宛に通知される 1 通のメールの宛先アドレスをご決定ください。AWS Amplify Hosting の環境変数 <code>CONTACT_EMAIL_TO</code> に設定し、SES 申請文にも明記します。
+        <div class="ask">
+          <div class="ask-head">
+            <span class="ask-badge">ACTION 03</span>
+            <p class="ask-title">お問合せフォームから届くメールを、貴社のどのアドレスで受け取りますか？</p>
+          </div>
+          <p class="ask-q">
+            新サイトのお問合せフォームから送信があったとき、その内容を貴社内に通知する 1 通のメールが送られます。<strong>その送信先アドレスをご決定ください。</strong>
           </p>
-          <div class="q-why"><b>制約</b>Google Workspace で受信可能な業務アドレス推奨。1 アドレスのみ指定可能（複数受信は Workspace 側のグループ/転送で実現）。担当者異動を考慮し個人アドレスではなく業務アドレスを推奨。</div>
-          <p class="q-body" style="margin-top:10px;"><strong>候補（あくまで例示）</strong>: <code>info@hrtep.com</code> ／ <code>contact@hrtep.com</code> ／ <code>mori@hrtep.com</code>（既存運用）／ <code>web-inquiry@hrtep.com</code>（新規作成） ／ その他</p>
-          <p class="q-body" style="margin-top:6px;"><strong>ご回答欄</strong></p>
-          <pre style="background:var(--bg-soft); padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.6; margin:0;">送信先アドレス: ____________________________________
+          <p class="ask-why">
+            <b>なぜ確認</b>この情報は AWS への本番申請文書にも明記する必要があるため、弊社の独断で決められません。貴社の運用に合うアドレスをご指定ください。
+          </p>
+          <p style="font-size:13px; color:var(--muted); margin: 0 0 8px;">
+            <strong>候補例</strong>: <code>info@hrtep.com</code> ／ <code>contact@hrtep.com</code> ／ <code>mori@hrtep.com</code> ／ <code>web-inquiry@hrtep.com</code>（新規）／ その他<br>
+            <strong>制約</strong>: Google Workspace で受信できる業務アドレス推奨。1 アドレスのみ指定可能（複数受信したい場合は Google Workspace のグループ機能でご対応ください）。
+          </p>
+          <div class="ask-form">
+<span class="label">ご回答</span>
 
-副担当者への展開方法（任意）:
+送信先アドレス: ____________________________________
+
+副担当者への展開（任意）:
 [ ] Google Workspace のグループアドレスを使う
-[ ] Google Workspace の転送設定で複数アドレスに展開する
-[ ] 単一アドレスのみで運用</pre>
+[ ] Google Workspace の転送設定で複数に展開する
+[ ] 単一アドレスのみで運用</div>
         </div>
 
-        <div class="q-card">
-          <div class="q-no">ACTION 04 / 確認依頼</div>
-          <p class="q-title">お名前.com 共用ホスティング契約の月額確認</p>
-          <p class="q-body">
-            Phase 4（旧 WP 解約）後の貴社コスト削減効果を確定するため、現行のお名前.com 共用ホスティング契約のプラン名・月額（または年額）・更新月をご教示ください。お名前.com Navi 「ご契約一覧」より確認可能です。
+        <div class="ask">
+          <div class="ask-head">
+            <span class="ask-badge">ACTION 04</span>
+            <p class="ask-title">お名前.com 共用ホスティングの月額料金はいくらですか？</p>
+          </div>
+          <p class="ask-q">
+            移行完了後（Phase 4）に解約予定の現行プランの料金が、コスト削減効果を確定するために必要です。お名前.com Navi の「ご契約一覧」より確認できます。
           </p>
-          <div class="q-why"><b>影響</b>本計画書 第 2 章ランニングコスト試算の確定値化のみ。技術的進行には影響なし。</div>
-          <p class="q-body" style="margin-top:10px;"><strong>ご回答欄</strong></p>
-          <pre style="background:var(--bg-soft); padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.6; margin:0;">契約プラン名（例: ベーシック、RS プラン 等）: ____________________________
+          <p class="ask-why">
+            <b>なぜ確認</b>本書 第 6 章コスト試算の確定値化のためのみ。技術的な進行には影響しません。
+          </p>
+          <div class="ask-form">
+<span class="label">ご回答</span>
+
+契約プラン名（例: ベーシック、RS プラン 等）: ____________________
 
 月額（税込）: ____________ 円  [または] 年額: ____________ 円
 
 契約終了予定日（更新月）: ______ 年 ______ 月
 
 [ ] お名前.com Navi の「ご契約一覧」で確認可能
-[ ] 安井様への確認が必要</pre>
+[ ] 安井様への確認が必要</div>
         </div>
       </section>
 
-      <!-- 08 安井様 DNS 設定依頼 -->
-      <section id="s08">
-        <h2><span class="num">08</span>お名前.com DNS 設定依頼 — 安井様向け（CNAME 3 + SPF TXT 1）</h2>
-        <p class="subtitle">本章をそのまま安井様にお渡しいただける形で記載。HRtep 様経由で取次ぎいただく。</p>
+      <!-- ▼ 安井様への依頼 -->
+      <section id="s04">
+        <h2><span class="num">4</span>安井様にお伝えいただく内容</h2>
+        <p class="lead">本章をそのまま安井様にお渡しください。お名前.com Navi で 4 件のレコードを追加するだけの作業です。</p>
 
-        <span class="oneliner"><b>ご依頼内容</b>新規レコード 4 件（CNAME 3 + TXT 1）の追加のみ。既存レコードの編集・削除は不要、apex（hrtep.com）レコードへの影響なし。</span>
+        <div class="callout warn">
+          <b>本章の使い方</b>
+          下記の表と手順を、貴社経由で安井様にお伝えください。所要時間は 10〜15 分程度の見込み。既存のレコードには一切手を加えず、新規 4 件の追加のみです。
+        </div>
 
-        <h3>8.1 追加いただきたいレコード 4 件</h3>
+        <h3>追加していただく 4 件のレコード</h3>
+
+        <div class="diagram">
+          <svg viewBox="0 0 940 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DNS レコード階層図">
+            <style>
+              .d-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .d-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .d-mono { font: 12px 'JetBrains Mono', monospace; fill: #0e1726; }
+              .d-hdr { font: 700 14px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
+              .d-keep { fill: #e8f7ee; stroke: #2ea85a; stroke-width: 1.5; }
+              .d-add { fill: #fff8d6; stroke: #c89c00; stroke-width: 2; }
+              .d-line { stroke: #556073; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+            </style>
+            <text x="470" y="22" text-anchor="middle" class="d-hdr">hrtep.com の DNS 構造</text>
+            <!-- ルート -->
+            <rect x="370" y="40" width="200" height="44" rx="6" class="d-keep"/>
+            <text x="470" y="60" text-anchor="middle" class="d-mono">hrtep.com</text>
+            <text x="470" y="76" text-anchor="middle" class="d-sm">既存レコード（変更しない）</text>
+
+            <!-- ルート下の既存 -->
+            <line x1="180" y1="84" x2="470" y2="84" class="d-line"/>
+            <line x1="470" y1="84" x2="470" y2="100" class="d-line"/>
+            <line x1="180" y1="84" x2="180" y2="100" class="d-line"/>
+            <line x1="760" y1="84" x2="760" y2="100" class="d-line"/>
+            <line x1="180" y1="84" x2="760" y2="84" class="d-line"/>
+
+            <rect x="80" y="100" width="200" height="60" rx="6" class="d-keep"/>
+            <text x="180" y="120" text-anchor="middle" class="d-lbl">MX（受信メール）</text>
+            <text x="180" y="138" text-anchor="middle" class="d-sm">Google Workspace 等 6 件</text>
+            <text x="180" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">変更しない</text>
+
+            <rect x="370" y="100" width="200" height="60" rx="6" class="d-keep"/>
+            <text x="470" y="120" text-anchor="middle" class="d-lbl">SPF / DMARC</text>
+            <text x="470" y="138" text-anchor="middle" class="d-sm">apex の TXT</text>
+            <text x="470" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">変更しない</text>
+
+            <rect x="660" y="100" width="200" height="60" rx="6" class="d-keep"/>
+            <text x="760" y="120" text-anchor="middle" class="d-lbl">A（サイト）</text>
+            <text x="760" y="138" text-anchor="middle" class="d-sm">現行 WP の IP</text>
+            <text x="760" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">Phase 3 で別途変更</text>
+
+            <!-- send.hrtep.com -->
+            <rect x="270" y="190" width="400" height="44" rx="6" class="d-add"/>
+            <text x="470" y="210" text-anchor="middle" class="d-mono" style="fill:#8b5a00; font-weight:700;">send.hrtep.com</text>
+            <text x="470" y="226" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新しいサブドメイン（今回追加）</text>
+
+            <!-- 矢印 ルート → send -->
+            <path d="M470,160 L470,190" stroke="#1a2d4d" stroke-width="1.5" fill="none" marker-end="url(#aa)"/>
+            <defs>
+              <marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1a2d4d"/>
+              </marker>
+            </defs>
+
+            <!-- send 配下の追加 4 件 -->
+            <line x1="180" y1="234" x2="470" y2="234" class="d-line"/>
+            <line x1="470" y1="234" x2="470" y2="248" class="d-line"/>
+            <line x1="180" y1="234" x2="180" y2="248" class="d-line"/>
+            <line x1="760" y1="234" x2="760" y2="248" class="d-line"/>
+
+            <rect x="80" y="248" width="160" height="32" rx="4" class="d-add"/>
+            <text x="160" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 1（DKIM）</text>
+
+            <rect x="250" y="248" width="160" height="32" rx="4" class="d-add"/>
+            <text x="330" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 2（DKIM）</text>
+
+            <rect x="420" y="248" width="160" height="32" rx="4" class="d-add"/>
+            <text x="500" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 3（DKIM）</text>
+
+            <rect x="600" y="248" width="220" height="32" rx="4" class="d-add"/>
+            <text x="710" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">TXT（SPF）</text>
+          </svg>
+          <p class="caption">緑 = 既存（触らない） ／ 黄色 = 今回追加。すべて <code>send.hrtep.com</code> 配下のため、apex (hrtep.com) には一切影響しません。</p>
+        </div>
+
         <table>
-          <thead><tr><th style="width:6%">#</th><th style="width:34%">ホスト名（お名前.com Navi 入力値）</th><th style="width:10%">TYPE</th><th>VALUE</th></tr></thead>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:34%">ホスト名（入力値）</th><th style="width:9%">TYPE</th><th>VALUE</th><th style="width:8%">TTL</th></tr>
+          </thead>
           <tbody>
-            <tr><td>1</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td></tr>
-            <tr><td>2</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td></tr>
-            <tr><td>3</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td></tr>
-            <tr><td>4</td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td></tr>
+            <tr><td>1</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td><td>3600</td></tr>
+            <tr><td>2</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td><td>3600</td></tr>
+            <tr><td>3</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td><td>3600</td></tr>
+            <tr><td>4</td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td><td>3600</td></tr>
           </tbody>
         </table>
-        <p class="subtitle">TTL はすべて 3600（既定）。お名前.com Navi のホスト名欄では末尾の <code>.hrtep.com</code> が自動付加されます。レコード 1〜3 は <code>send.hrtep.com</code> サブドメインに対する DKIM CNAME、レコード 4 は同サブドメインの SPF TXT。</p>
+        <p style="font-size:13px; color:var(--muted); margin-top:6px;">
+          お名前.com Navi のホスト名欄では、末尾の <code>.hrtep.com</code> が自動的に付加されます。TTL はすべて既定値 3600 のままで問題ありません。<br>
+          1〜3 はメール送信元を証明する DKIM、4 はなりすまし防止の SPF です。すべて新しいサブドメイン <code>send.hrtep.com</code> 配下に追加します。
+        </p>
 
-        <h3>8.2 お名前.com Navi での操作手順</h3>
-        <ol>
+        <h3>お名前.com Navi での操作手順</h3>
+        <ol style="font-size:14px; padding-left:20px;">
           <li>お名前.com Navi にログイン</li>
           <li>「ドメイン」 → 「DNS設定」</li>
           <li>対象ドメイン <code>hrtep.com</code> の「DNS設定 / 転送設定」を選択</li>
           <li>「DNSレコード設定を利用する」を選択して「次へ」</li>
-          <li>入力欄に上記 4 件をそれぞれ入力
-            <ul style="margin:6px 0 0 18px;">
-              <li><strong>CNAME 3 件</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみを入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 上記の値（末尾は <code>.dkim.amazonses.com</code>）</li>
-              <li><strong>TXT 1 件</strong>: ホスト名欄に <code>send</code> のみを入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
-              <li>TTL はすべて既定値（3600）でかまいません</li>
+          <li>上記 4 件をそれぞれ入力
+            <ul style="font-size:13.5px; margin-top:6px;">
+              <li><strong>1〜3（CNAME）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
+              <li><strong>4（TXT）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
             </ul>
           </li>
-          <li>4 件分入力したら「追加」を押し、「DNSレコード設定用テンプレート」のチェックを外したまま「確認画面へ進む」</li>
-          <li>内容確認の上「設定する」を押下</li>
+          <li>4 件入力後「追加」を押し、「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
         </ol>
 
-        <h3>8.3 注意事項（受信メールへの無影響を担保するための重要事項）</h3>
         <div class="callout bad">
           <b>絶対に変更しないでください</b>
-          以下のレコードは受信メールおよびドメイン認証の根幹に関わるため、編集・削除を行わないでください。新規 4 件の追加のみが本依頼の対象です。
-          <ul style="margin:8px 0 0 18px;">
-            <li><code>hrtep.com</code> の MX（6 件、Google Workspace + onamae.ne.jp 受信用）</li>
-            <li><code>hrtep.com</code> apex の SPF TXT（<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
-            <li><code>_dmarc.hrtep.com</code> の DMARC TXT（<code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code>）</li>
-            <li><code>hrtep.com</code> apex の A レコード（現行 WordPress IP <code>118.27.122.212</code>）— Phase 3 で別途依頼予定</li>
-            <li>その他、本依頼書に列挙されていない既存のあらゆるレコード</li>
+          以下のレコードに触れると受信メールやドメイン認証が壊れます。新規 4 件の追加のみが本作業の対象です。
+          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
+            <li><code>hrtep.com</code> の MX レコード（Google Workspace 等 6 件）</li>
+            <li><code>hrtep.com</code> apex の SPF レコード（apex の TXT）</li>
+            <li><code>_dmarc.hrtep.com</code> の DMARC レコード（TXT）</li>
+            <li><code>hrtep.com</code> apex の A レコード（現行 WordPress IP <code>118.27.122.212</code>） — Phase 3 で別途依頼予定</li>
+            <li>その他、本書面に列挙されていない既存のあらゆるレコード</li>
           </ul>
         </div>
 
         <div class="callout ok">
           <b>受信メールへの影響なし</b>
-          上記 4 件はすべて <code>send.hrtep.com</code> サブドメイン配下への追加です。apex（<code>hrtep.com</code>）のレコードには影響を与えません。Google Workspace ご利用の受信メールにも影響は一切ありません。
+          上記 4 件はすべて <code>send.hrtep.com</code> という新しいサブドメイン配下への追加です。apex（<code>hrtep.com</code>）の既存設定には影響しません。Google Workspace ご利用の受信メールにも影響は一切ありません。
         </div>
 
-        <h3>8.4 設定反映確認のためのご連絡</h3>
-        <p>設定完了後、お手数ですが HRtep 様経由で弊社（leadx 株式会社）までご一報ください。弊社にて <code>dig</code> コマンドにより DNS 反映状況および AWS SES 側の DKIM 認証完了を確認のうえ、以降の作業（サンドボックス解除申請等）を進めさせていただきます。DNS の反映には通常数時間〜最大 24 時間程度を要します。</p>
+        <h3>設定完了後のご連絡</h3>
+        <p style="font-size:14px;">
+          設定完了後、お手数ですが貴社経由で弊社までご一報ください。弊社にて反映状況を確認のうえ、続く作業（メール送信の本番化申請）に進みます。<br>
+          DNS の反映には通常数時間〜最大 24 時間程度かかります。
+        </p>
       </section>
 
-      <!-- 09 Phase 3 -->
-      <section id="s09">
-        <h2><span class="num">09</span>Phase 3 着手計画（DNS 切替）</h2>
-        <p class="subtitle">Phase 2 完了後に着手。本章に手順・ロールバック計画を全文記載。</p>
+      <!-- ▼ 切替の流れ -->
+      <section id="s05">
+        <h2><span class="num">5</span>このあとの全体の流れ</h2>
+        <p class="lead">DNS 設定完了から新サイト本番化までの 7 ステップ。</p>
 
-        <h3>9.1 切替対象</h3>
+        <div class="diagram">
+          <svg viewBox="0 0 980 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="切替全体フロー">
+            <style>
+              .f-lbl { font: 600 12.5px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .f-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .f-num { font: 700 14px 'JetBrains Mono', monospace; fill: #fff; }
+              .f-who { font: 600 10.5px 'JetBrains Mono', monospace; }
+              .f-box-us { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
+              .f-box-client { fill: #efeaff; stroke: #6e4cff; stroke-width: 1.5; }
+              .f-box-yasui { fill: #fff4e5; stroke: #ffb258; stroke-width: 1.5; }
+              .f-circle-us { fill: #1aa0c8; }
+              .f-circle-client { fill: #6e4cff; }
+              .f-circle-yasui { fill: #ffb258; }
+              .f-arrow { stroke: #556073; stroke-width: 1.5; fill: none; marker-end: url(#fa); }
+            </style>
+            <defs>
+              <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#556073"/>
+              </marker>
+            </defs>
+
+            <!-- Phase 2 -->
+            <text x="20" y="22" class="f-lbl" style="font-size:13px;">Phase 2（メール送信構築・終盤）</text>
+            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
+
+            <!-- Step 1 -->
+            <rect x="40" y="50" width="220" height="60" rx="8" class="f-box-client"/>
+            <circle cx="60" cy="70" r="14" class="f-circle-client"/>
+            <text x="60" y="74" text-anchor="middle" class="f-num">1</text>
+            <text x="84" y="68" class="f-who" style="fill:#6e4cff;">貴社</text>
+            <text x="84" y="86" class="f-lbl">3 件の確認事項にご回答</text>
+            <text x="84" y="102" class="f-sm">本書 第 3 章</text>
+
+            <!-- Step 2 -->
+            <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-us"/>
+            <circle cx="300" cy="70" r="14" class="f-circle-us"/>
+            <text x="300" y="74" text-anchor="middle" class="f-num">2</text>
+            <text x="324" y="68" class="f-who" style="fill:#1aa0c8;">弊社</text>
+            <text x="324" y="86" class="f-lbl">送信先アドレスを設定</text>
+            <text x="324" y="102" class="f-sm">回答 03 受領後</text>
+
+            <path d="M260,80 L280,80" class="f-arrow"/>
+
+            <!-- Step 3 -->
+            <rect x="520" y="50" width="220" height="60" rx="8" class="f-box-client"/>
+            <circle cx="540" cy="70" r="14" class="f-circle-client"/>
+            <text x="540" y="74" text-anchor="middle" class="f-num">3</text>
+            <text x="564" y="68" class="f-who" style="fill:#6e4cff;">貴社</text>
+            <text x="564" y="86" class="f-lbl">本書 第 4 章を安井様へ取次</text>
+            <text x="564" y="102" class="f-sm">DNS 4 件追加の依頼</text>
+
+            <path d="M500,80 L520,80" class="f-arrow"/>
+
+            <!-- Step 4 -->
+            <rect x="760" y="50" width="200" height="60" rx="8" class="f-box-yasui"/>
+            <circle cx="780" cy="70" r="14" class="f-circle-yasui"/>
+            <text x="780" y="74" text-anchor="middle" class="f-num">4</text>
+            <text x="804" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
+            <text x="804" y="86" class="f-lbl">DNS レコード 4 件追加</text>
+            <text x="804" y="102" class="f-sm">10〜15 分</text>
+
+            <path d="M740,80 L760,80" class="f-arrow"/>
+
+            <!-- Step 5 -->
+            <rect x="40" y="160" width="220" height="60" rx="8" class="f-box-us"/>
+            <circle cx="60" cy="180" r="14" class="f-circle-us"/>
+            <text x="60" y="184" text-anchor="middle" class="f-num">5</text>
+            <text x="84" y="178" class="f-who" style="fill:#1aa0c8;">弊社</text>
+            <text x="84" y="196" class="f-lbl">DNS 反映確認・テスト送信</text>
+            <text x="84" y="212" class="f-sm">数時間〜24h 自動</text>
+
+            <path d="M860,110 L860,140 L160,140 L160,160" class="f-arrow"/>
+
+            <!-- Step 6 -->
+            <rect x="280" y="160" width="220" height="60" rx="8" class="f-box-us"/>
+            <circle cx="300" cy="180" r="14" class="f-circle-us"/>
+            <text x="300" y="184" text-anchor="middle" class="f-num">6</text>
+            <text x="324" y="178" class="f-who" style="fill:#1aa0c8;">弊社</text>
+            <text x="324" y="196" class="f-lbl">AWS への本番化申請</text>
+            <text x="324" y="212" class="f-sm">審査 24h〜数日</text>
+
+            <path d="M260,190 L280,190" class="f-arrow"/>
+
+            <!-- Step 7 (Phase 2 完了) -->
+            <rect x="520" y="160" width="220" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
+            <circle cx="540" cy="180" r="14" fill="#2ea85a"/>
+            <text x="540" y="184" text-anchor="middle" class="f-num">✓</text>
+            <text x="564" y="178" class="f-who" style="fill:#1d6d3c;">完了</text>
+            <text x="564" y="196" class="f-lbl" style="fill:#1d6d3c;">Phase 2 完了</text>
+            <text x="564" y="212" class="f-sm">フォーム送信が本番稼働</text>
+
+            <path d="M500,190 L520,190" class="f-arrow"/>
+
+            <!-- Phase 3 -->
+            <text x="20" y="262" class="f-lbl" style="font-size:13px;">Phase 3（DNS 切替・本番ドメイン化）</text>
+            <line x1="20" y1="270" x2="960" y2="270" stroke="#dfe5ee"/>
+
+            <!-- Step 8 -->
+            <rect x="40" y="290" width="220" height="60" rx="8" class="f-box-client"/>
+            <circle cx="60" cy="310" r="14" class="f-circle-client"/>
+            <text x="60" y="314" text-anchor="middle" class="f-num">8</text>
+            <text x="84" y="308" class="f-who" style="fill:#6e4cff;">貴社</text>
+            <text x="84" y="326" class="f-lbl">第 2 弾 DNS 依頼の取次</text>
+            <text x="84" y="342" class="f-sm">A レコード変更 2 件</text>
+
+            <!-- Step 9 -->
+            <rect x="280" y="290" width="220" height="60" rx="8" class="f-box-yasui"/>
+            <circle cx="300" cy="310" r="14" class="f-circle-yasui"/>
+            <text x="300" y="314" text-anchor="middle" class="f-num">9</text>
+            <text x="324" y="308" class="f-who" style="fill:#8b5a00;">安井様</text>
+            <text x="324" y="326" class="f-lbl">A レコードを Amplify に変更</text>
+            <text x="324" y="342" class="f-sm">10〜15 分</text>
+
+            <path d="M260,320 L280,320" class="f-arrow"/>
+
+            <!-- Step 10 -->
+            <rect x="520" y="290" width="220" height="60" rx="8" class="f-box-us"/>
+            <circle cx="540" cy="310" r="14" class="f-circle-us"/>
+            <text x="540" y="314" text-anchor="middle" class="f-num">10</text>
+            <text x="564" y="308" class="f-who" style="fill:#1aa0c8;">弊社</text>
+            <text x="564" y="326" class="f-lbl">SSL 証明書発行・動作確認</text>
+            <text x="564" y="342" class="f-sm">30〜60 分</text>
+
+            <path d="M500,320 L520,320" class="f-arrow"/>
+
+            <!-- Step 11 (Phase 3 完了) -->
+            <rect x="760" y="290" width="200" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
+            <circle cx="780" cy="310" r="14" fill="#2ea85a"/>
+            <text x="780" y="314" text-anchor="middle" class="f-num">✓</text>
+            <text x="804" y="308" class="f-who" style="fill:#1d6d3c;">完了</text>
+            <text x="804" y="326" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働</text>
+            <text x="804" y="342" class="f-sm">hrtep.com で表示</text>
+
+            <path d="M740,320 L760,320" class="f-arrow"/>
+
+            <!-- Phase 4 -->
+            <text x="20" y="392" class="f-lbl" style="font-size:13px;">Phase 4（旧サイト解約）</text>
+            <line x1="20" y1="400" x2="960" y2="400" stroke="#dfe5ee"/>
+
+            <text x="20" y="425" class="f-sm">Phase 3 完了から 14 日間の並行稼働期間ののち、お名前.com 共用ホスティング契約を解約。</text>
+            <text x="20" y="443" class="f-sm">並行稼働期間中はいつでも旧サイトに戻せる安全網を確保。</text>
+          </svg>
+          <p class="caption">青 = 弊社作業 ／ 紫 = 貴社作業 ／ オレンジ = 安井様作業</p>
+        </div>
+
+        <h3>もしものときのロールバック</h3>
+        <p style="font-size:14px;">
+          Phase 3 切替後に問題（HTTPS 表示不可・フォーム送信失敗・受信メール影響など）が発生した場合は、安井様にて A レコードを元の値（<code>118.27.122.212</code>）に戻すだけで旧サイトに復帰します。DNS の TTL は 1 時間設定なので、最長 1 時間で完全復旧。<br>
+          特に <strong>受信メール（MX レコード）に意図せず変更が起きた場合は最優先でロールバック</strong>とする運用です。
+        </p>
+      </section>
+
+      <!-- ▼ コスト -->
+      <section id="s06">
+        <h2><span class="num">6</span>ランニングコストの変化</h2>
+        <p class="lead">移行後は月額 500〜2,000 円程度の削減見込み。</p>
+
         <table>
-          <thead><tr><th style="width:24%">ホスト名</th><th>現状</th><th>切替後</th></tr></thead>
+          <thead>
+            <tr><th>項目</th><th style="width:24%">移行前</th><th style="width:24%">移行後</th></tr>
+          </thead>
           <tbody>
-            <tr><td><code>hrtep.com</code>（apex）</td><td>A <code>118.27.122.212</code></td><td>Amplify Custom Domain で発行される A 値</td></tr>
-            <tr><td><code>www.hrtep.com</code></td><td>A <code>118.27.122.212</code></td><td>CNAME <code>main.d3561ojkga3nyn.amplifyapp.com.</code></td></tr>
+            <tr><td>Web ホスティング</td><td>月 500〜2,500 円<br><span style="font-size:12px;color:var(--muted);">お名前.com 共用 → 解約予定</span></td><td>月 0〜750 円<br><span style="font-size:12px;color:var(--muted);">AWS Amplify（無料枠内）</span></td></tr>
+            <tr><td>送信メール</td><td>0 円<br><span style="font-size:12px;color:var(--muted);">Contact Form 7</span></td><td>月 0〜10 円<br><span style="font-size:12px;color:var(--muted);">Amazon SES</span></td></tr>
+            <tr><td>HTTPS 証明書</td><td>0 円</td><td>0 円<br><span style="font-size:12px;color:var(--muted);">AWS で自動発行・自動更新</span></td></tr>
+            <tr><td>レジストラ・DNS・受信メール</td><td colspan="2" style="text-align:center;">変動なし</td></tr>
+            <tr style="background:#fff8d6;"><td><strong>合計（変動分）</strong></td><td><strong>月 500〜2,500 円</strong></td><td><strong>月 0〜760 円</strong></td></tr>
           </tbody>
         </table>
-        <p class="subtitle">MX / SPF（apex）/ DMARC は<strong>絶対に触れない</strong>。事前に Amplify Custom Domain を pre-associate し、ACM 検証用 CNAME も同時に取得して安井様への 1 回の依頼にまとめる。</p>
-
-        <h3>9.2 切替日の進行</h3>
-        <ol>
-          <li>推奨時刻: 平日 10:00〜11:00（業務時間内・トラフィック低）</li>
-          <li>安井様: お名前.com Navi で A レコード 2 件 + ACM 検証用 CNAME を更新</li>
-          <li>弊社: 5 分おきに <code>dig hrtep.com</code> で伝播確認、ACM 証明書 AVAILABLE 化を確認</li>
-          <li>HTTPS 接続・主要ページ・お問合せフォーム E2E 動作確認</li>
-          <li>切替後 24h で MX / SPF / DMARC が baseline と完全一致することを確認</li>
-        </ol>
-
-        <h3>9.3 ロールバック発火条件と手順</h3>
-        <table>
-          <thead><tr><th style="width:48%">事象</th><th>判断</th></tr></thead>
-          <tbody>
-            <tr><td>HTTPS 表示不可（証明書エラー）</td><td>即時ロールバック</td></tr>
-            <tr><td>お問合せフォーム送信が一切成功しない</td><td>即時ロールバック</td></tr>
-            <tr style="background:var(--bad-bg);"><td><strong>MX レコードが意図せず変更された</strong></td><td><strong>即時、最優先</strong>でロールバック</td></tr>
-            <tr><td>indexed ページ数 50% 以上減少</td><td>24h 様子見後判断</td></tr>
-          </tbody>
-        </table>
-        <p class="subtitle">ロールバック手順: 安井様にて A レコードを <code>118.27.122.212</code> に戻す。DNS TTL = 3600 秒なので最長 1 時間で旧サイトに復帰。</p>
-
-        <h3>9.4 Phase 4 接続条件</h3>
-        <p>Phase 3 完了から最低 14 日間の並行稼働期間後、お名前.com 共用ホスティング契約解約手続き（Phase 4）に進む。期間中は緊急ロールバック窓を確保。</p>
+        <p style="font-size:13px; color:var(--muted);">
+          ※ お名前.com 共用ホスティングの正確な月額は、<a href="#s03" style="color:var(--decision);">第 3 章 ACTION 04</a> でご確認をお願いしています。<br>
+          ※ AWS の課金は使用量ベース。新サイトの想定アクセス量では無料枠内に収まる見込みです。
+        </p>
       </section>
 
       <footer>
         <p>HRtep コーポレートサイト Web ホスティング刷新 計画書 v4 — 2026-05-01</p>
-        <p>起案: leadx 株式会社 — 宛先: HRtep 株式会社 津賀平 隆浩 様</p>
+        <p>起案: leadx 株式会社 ／ 宛先: HRtep 株式会社 津賀平 隆浩 様</p>
       </footer>
 
     </div>
