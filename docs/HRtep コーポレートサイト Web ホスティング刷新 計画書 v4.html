@@ -313,7 +313,7 @@
         <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。本書面 1 通でHRtep社・安井様への必要事項がすべて完結します。</p>
         <div class="now">
           <p class="label">現在の状況</p>
-          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（6 件）+ 津賀平様の Verification メールクリック 1 回</strong>で Phase 2 + 3 を一括完了し、新サイト本番稼働に至ります。</p>
+          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（6 件）+ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 を一括完了し、新サイト本番稼働に至ります。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
@@ -360,7 +360,7 @@
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
-            <p class="step-who">津賀平様</p>
+            <p class="step-who">HRtep社</p>
             <p class="step-title">Verification メールのリンクをクリック</p>
             <p class="step-desc">LeadX 社が SES 設定を進めると、AWS から Verification メール（no-reply-aws@amazon.com）が届きます。リンクを 1 回クリックするだけで完了。</p>
           </div>
@@ -387,7 +387,7 @@
             </ul>
           </div>
           <div class="role-card client">
-            <p class="role-name">HRtep社（津賀平様）</p>
+            <p class="role-name">HRtep社</p>
             <p class="role-who">取次・1 回作業</p>
             <ul>
               <li class="now">安井様への DNS 依頼の取次（本書面 第 4 章をお渡し）</li>
@@ -513,7 +513,7 @@
           <thead><tr><th style="width:30%">項目</th><th>内容</th></tr></thead>
           <tbody>
             <tr><td><strong>送信元（From）</strong></td><td><code>noreply@send.hrtep.com</code><br><span style="font-size:12.5px;color:var(--muted);">SES から送信されるメールの差出人</span></td></tr>
-            <tr><td><strong>受信先（CONTACT_EMAIL_TO）</strong></td><td><code>tsukahira@hrtep.com</code>（津賀平様）<br><span style="font-size:12.5px;color:var(--muted);">問合せフォーム送信時に通知メールが届く宛先。Amplify 環境変数として登録</span></td></tr>
+            <tr><td><strong>受信先（CONTACT_EMAIL_TO）</strong></td><td><code>tsukahira@hrtep.com</code>（HRtep社）<br><span style="font-size:12.5px;color:var(--muted);">問合せフォーム送信時に通知メールが届く宛先。Amplify 環境変数として登録</span></td></tr>
             <tr><td><strong>Reply-To</strong></td><td>フォーム送信者本人のメールアドレス（フォーム入力値）<br><span style="font-size:12.5px;color:var(--muted);">受信メールクライアントの「返信」ボタン押下時の宛先</span></td></tr>
             <tr><td><strong>返信時の差出人運用</strong></td><td><code>info@hrtep.com</code> 推奨<br><span style="font-size:12.5px;color:var(--muted);">Google Workspace の Email Alias を <code>tsukahira@</code> に設定 + Gmail "Send mail as" で <code>info@</code> から返信。SES は関与しない</span></td></tr>
           </tbody>
@@ -523,7 +523,7 @@
           <b>HRtep 様の作業</b>
           以下 2 点のみ。どちらも 1 分以内で完了します。
           <ol style="margin:8px 0 0 18px; font-size:14px;">
-            <li><strong>Verification メールのリンククリック（津賀平様、1 回）</strong>: LeadX 社が SES に <code>tsukahira@hrtep.com</code> を Identity 登録すると、AWS から <code>no-reply-aws@amazon.com</code> 名義の Verification メールが届きます。本文中のリンクを 1 回クリックいただくだけで Identity が有効化され、SES からメールが届くようになります。リンク有効期限 24 時間。</li>
+            <li><strong>Verification メールのリンククリック（HRtep社、1 回）</strong>: LeadX 社が SES に <code>tsukahira@hrtep.com</code> を Identity 登録すると、AWS から <code>no-reply-aws@amazon.com</code> 名義の Verification メールが届きます。本文中のリンクを 1 回クリックいただくだけで Identity が有効化され、SES からメールが届くようになります。リンク有効期限 24 時間。</li>
             <li><strong>Google Workspace で <code>info@hrtep.com</code> Alias 設定（Workspace 管理者・任意）</strong>: 返信時の差出人を個人アドレスではなく <code>info@</code> にしたい場合のみ実施。<code>tsukahira@</code> アカウントに <code>info</code> を Email Alias 追加し、Gmail の "Send mail as" で <code>info@hrtep.com</code> を有効化。</li>
           </ol>
         </div>
@@ -677,7 +677,7 @@
 
         <h3>設定完了後のご連絡</h3>
         <p style="font-size:14px;">
-          設定完了後、お手数ですがHRtep社経由でLeadX社までご一報ください。LeadX社にて DNS 反映状況を確認のうえ、SES Identity 登録 → 津賀平様への Verification メール送信 → SSL 証明書発行 → 動作確認 → 新サイト本番稼働の順で進めます。<br>
+          設定完了後、お手数ですがHRtep社経由でLeadX社までご一報ください。LeadX社にて DNS 反映状況を確認のうえ、SES Identity 登録 → HRtep社への Verification メール送信 → SSL 証明書発行 → 動作確認 → 新サイト本番稼働の順で進めます。<br>
           DNS の反映には通常数時間〜最大 24 時間程度かかります。この間、新サイト切替直後は問合せフォーム送信時のメール送信が一時的に失敗する可能性がありますが、DKIM 認証完了後（24 時間以内に自動完了）に正常稼働します。
         </p>
       </section>
@@ -739,7 +739,7 @@
             <rect x="760" y="50" width="200" height="60" rx="8" class="f-box-client"/>
             <circle cx="780" cy="70" r="14" class="f-circle-client"/>
             <text x="780" y="74" text-anchor="middle" class="f-num">4</text>
-            <text x="804" y="68" class="f-who" style="fill:#6e4cff;">津賀平様</text>
+            <text x="804" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
             <text x="804" y="86" class="f-lbl">Verification リンクをクリック</text>
             <text x="804" y="102" class="f-sm">1 回・1 分</text>
 
