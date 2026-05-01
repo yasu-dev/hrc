@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HRtep コーポレートサイト メール運用ご確認 v1</title>
+    <style>
+      :root {
+        --navy-deep: #0b1a30;
+        --navy: #1a2d4d;
+        --cyan: #22b8e6;
+        --cyan-soft: #d4f2fb;
+        --ink: #0e1726;
+        --muted: #556073;
+        --line: #dfe5ee;
+        --bg: #ffffff;
+        --bg-soft: #f5f7fb;
+        --warn-bg: #fff4e5;
+        --warn-line: #ffb258;
+        --warn-deep: #8b5a00;
+        --ok-bg: #e8f7ee;
+        --ok-line: #2ea85a;
+        --ok-deep: #1d6d3c;
+        --bad-bg: #fdecec;
+        --bad-line: #d84040;
+        --bad-deep: #8a1e1e;
+        --decision: #6e4cff;
+        --decision-bg: #efeaff;
+        --winner-line: #c89c00;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.85;
+        font-size: 15.5px;
+      }
+      code { font-family: 'JetBrains Mono', 'Consolas', monospace; background: var(--bg-soft); padding: 2px 6px; border-radius: 4px; font-size: 13.5px; }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px 96px; }
+
+      header.hero {
+        background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+        color: #fff;
+        padding: 56px 0 48px;
+        margin-bottom: 32px;
+      }
+      header.hero .wrap { padding-bottom: 0; }
+      header.hero h1 { font-size: 28px; line-height: 1.35; margin: 0 0 16px; font-weight: 700; }
+      header.hero .now {
+        background: rgba(255,255,255,0.08);
+        border-left: 4px solid var(--cyan);
+        padding: 16px 22px;
+        border-radius: 0 8px 8px 0;
+        margin-top: 18px;
+      }
+      header.hero .now .label {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin: 0 0 6px;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      header.hero .now p { margin: 0; color: #e8eef8; font-size: 15.5px; line-height: 1.7; }
+      header.hero .meta {
+        margin-top: 20px;
+        display: flex; gap: 18px; flex-wrap: wrap;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11.5px;
+        color: #8ea1bc;
+      }
+      header.hero .meta b { color: #fff; font-weight: 500; }
+
+      section { margin-bottom: 48px; scroll-margin-top: 24px; }
+      section > h2 {
+        font-size: 22px;
+        margin: 0 0 6px;
+        color: var(--navy-deep);
+        font-weight: 700;
+      }
+      section > h2 .num {
+        display: inline-block;
+        width: 28px; height: 28px;
+        line-height: 28px;
+        text-align: center;
+        background: var(--cyan);
+        color: #fff;
+        border-radius: 50%;
+        font-size: 13px;
+        font-family: 'JetBrains Mono', monospace;
+        margin-right: 12px;
+        vertical-align: 2px;
+      }
+      section > .lead { color: var(--muted); font-size: 14.5px; margin: 0 0 18px; }
+      h3 { font-size: 17px; color: var(--navy); margin: 28px 0 10px; }
+      h4 { font-size: 14.5px; color: var(--navy); margin: 18px 0 8px; }
+      p { margin: 0 0 14px; }
+
+      table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 14px; }
+      table th, table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      table th { background: var(--bg-soft); color: var(--navy-deep); font-weight: 600; font-size: 12.5px; }
+
+      .callout {
+        border-left: 4px solid var(--cyan);
+        background: var(--cyan-soft);
+        padding: 14px 18px;
+        border-radius: 0 8px 8px 0;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+      .callout.ok { border-color: var(--ok-line); background: var(--ok-bg); }
+      .callout.warn { border-color: var(--warn-line); background: var(--warn-bg); }
+      .callout b { display: block; margin-bottom: 6px; color: var(--navy-deep); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+
+      .diagram { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin: 16px 0 22px; }
+      .diagram svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+      .diagram .caption { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+      .ask {
+        border: 2px solid var(--decision);
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin: 18px 0;
+        background: #fff;
+      }
+      .ask-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+      .ask-badge {
+        background: var(--decision);
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.1em;
+      }
+      .ask-title { font-weight: 700; font-size: 17px; color: var(--navy-deep); margin: 0; }
+      .ask-q { font-size: 14.5px; color: var(--ink); margin: 8px 0 14px; line-height: 1.75; }
+
+      ol { margin: 0 0 14px; padding-left: 22px; line-height: 1.85; }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 56px;
+        padding-top: 20px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', monospace;
+      }
+      footer p { margin: 4px 0; }
+
+      @media (max-width: 720px) {
+        header.hero h1 { font-size: 22px; }
+      }
+      @media print {
+        @page { size: A4 portrait; margin: 8mm; }
+        body { margin: 0; }
+        .wrap { max-width: 100%; padding: 0 4mm 4mm; }
+        header.hero { margin-bottom: 6mm; padding: 8mm 0; }
+        section { margin-bottom: 5mm; break-inside: auto; }
+        .ask, .diagram, .callout, table { break-inside: avoid; }
+        h2, h3 { break-after: avoid; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <h1>HRtep コーポレートサイト メール運用ご確認 <span style="color: var(--cyan); font-size: 22px;">v1</span></h1>
+        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">新サイトのお問合せフォームから届くメールについて、2 点だけご確認とご対応をお願いいたします。所要 5 分程度です。</p>
+        <div class="now">
+          <p class="label">ご確認事項</p>
+          <p>① <strong style="color:#fff;">tsukahira@hrtep.com</strong> を受信先にしてよいか／② <strong style="color:#fff;">info@hrtep.com</strong> から返信できる設定（任意）。</p>
+        </div>
+        <div class="meta">
+          <span>宛先: <b>HRtep 株式会社 津賀平 様</b></span>
+          <span>差出: <b>LeadX 株式会社</b></span>
+          <span>更新: <b>2026-05-02</b></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ▼ §1 メール経路（参考） -->
+      <section id="s01">
+        <h2><span class="num">1</span>メール経路（参考）</h2>
+        <p class="lead">問合せフォームから届くメール、そのメールへの返信が、それぞれどう流れるかを 1 枚に整理しました。</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 980 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="メール経路図">
+            <style>
+              .m-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .m-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .m-mono { font: 11px 'JetBrains Mono', monospace; fill: #0e1726; }
+              .m-hdr { font: 700 13.5px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
+              .m-arrow-fwd { stroke: #1aa0c8; stroke-width: 2; fill: none; marker-end: url(#mfwd); }
+              .m-arrow-rev { stroke: #c89c00; stroke-width: 2; fill: none; marker-end: url(#mrev); }
+              .m-box-user { fill: #f5f7fb; stroke: #95a3b9; stroke-width: 1.5; }
+              .m-box-aws { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
+              .m-box-client { fill: #efeaff; stroke: #6e4cff; stroke-width: 1.5; }
+              .m-box-gws { fill: #fff8d6; stroke: #c89c00; stroke-width: 1.5; }
+            </style>
+            <defs>
+              <marker id="mfwd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1aa0c8"/>
+              </marker>
+              <marker id="mrev" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#c89c00"/>
+              </marker>
+            </defs>
+
+            <text x="20" y="22" class="m-hdr">① 問合せ受信フロー（青矢印）</text>
+            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
+
+            <rect x="20" y="50" width="180" height="80" rx="8" class="m-box-user"/>
+            <text x="110" y="76" text-anchor="middle" class="m-lbl">サイト訪問者</text>
+            <text x="110" y="96" text-anchor="middle" class="m-sm">お問合せフォーム入力</text>
+            <text x="110" y="114" text-anchor="middle" class="m-sm">名前・メール・本文・送信</text>
+
+            <path d="M200,90 L240,90" class="m-arrow-fwd"/>
+
+            <rect x="240" y="50" width="200" height="80" rx="8" class="m-box-aws"/>
+            <text x="340" y="74" text-anchor="middle" class="m-lbl">AWS（送信サーバー）</text>
+            <text x="340" y="92" text-anchor="middle" class="m-sm">From: <tspan class="m-mono">noreply@send.hrtep.com</tspan></text>
+            <text x="340" y="108" text-anchor="middle" class="m-sm">Reply-To: 送信者本人のアドレス</text>
+            <text x="340" y="122" text-anchor="middle" class="m-sm" style="font-style:italic;">迷惑メール対策の認証付きで送信</text>
+
+            <path d="M440,90 L480,90" class="m-arrow-fwd"/>
+
+            <rect x="480" y="50" width="200" height="80" rx="8" class="m-box-gws"/>
+            <text x="580" y="74" text-anchor="middle" class="m-lbl">Google Workspace</text>
+            <text x="580" y="92" text-anchor="middle" class="m-sm">既存の受信メール経路</text>
+            <text x="580" y="110" text-anchor="middle" class="m-sm" style="font-style:italic;">変更なし</text>
+
+            <path d="M680,90 L720,90" class="m-arrow-fwd"/>
+
+            <rect x="720" y="50" width="240" height="80" rx="8" class="m-box-client"/>
+            <text x="840" y="74" text-anchor="middle" class="m-lbl">HRtep 社（津賀平 様）</text>
+            <text x="840" y="92" text-anchor="middle" class="m-mono">tsukahira@hrtep.com</text>
+            <text x="840" y="110" text-anchor="middle" class="m-sm">受信トレイで通知メールを確認</text>
+
+            <text x="20" y="170" class="m-hdr">② 返信フロー（黄色矢印・任意設定）</text>
+            <line x1="20" y1="178" x2="960" y2="178" stroke="#dfe5ee"/>
+
+            <rect x="720" y="200" width="240" height="80" rx="8" class="m-box-client"/>
+            <text x="840" y="224" text-anchor="middle" class="m-lbl">HRtep 社（津賀平 様）</text>
+            <text x="840" y="242" text-anchor="middle" class="m-sm">通知メールを開いて「返信」</text>
+            <text x="840" y="260" text-anchor="middle" class="m-sm" style="font-style:italic;">設定済みなら差出人を切替</text>
+            <text x="840" y="274" text-anchor="middle" class="m-mono">→ info@hrtep.com で送信</text>
+
+            <path d="M720,240 L680,240" class="m-arrow-rev"/>
+
+            <rect x="480" y="200" width="200" height="80" rx="8" class="m-box-gws"/>
+            <text x="580" y="224" text-anchor="middle" class="m-lbl">Google Workspace</text>
+            <text x="580" y="242" text-anchor="middle" class="m-sm">送信メール経路</text>
+            <text x="580" y="260" text-anchor="middle" class="m-sm">From: <tspan class="m-mono">info@hrtep.com</tspan></text>
+            <text x="580" y="274" text-anchor="middle" class="m-sm" style="font-style:italic;">普段のメールと同じ経路</text>
+
+            <path d="M480,240 L240,240" class="m-arrow-rev"/>
+
+            <rect x="20" y="200" width="220" height="80" rx="8" class="m-box-user"/>
+            <text x="130" y="224" text-anchor="middle" class="m-lbl">サイト訪問者（送信者）</text>
+            <text x="130" y="244" text-anchor="middle" class="m-sm">差出人: <tspan class="m-mono">info@hrtep.com</tspan></text>
+            <text x="130" y="262" text-anchor="middle" class="m-sm">で返信メール受信</text>
+
+            <text x="490" y="305" text-anchor="middle" class="m-sm" style="font-size:11.5px;">青 = 受信フロー（フォームから HRtep 社へ） ／ 黄色 = 返信フロー（HRtep 社から訪問者へ）</text>
+          </svg>
+          <p class="caption">受信は新サイト経由 → Google Workspace → 津賀平様へ。返信は普段使われている Workspace の標準機能のみで送信されます。</p>
+        </div>
+
+        <div class="callout ok">
+          <b>受信メール（Google Workspace）への影響なし</b>
+          現在ご利用中の <code>@hrtep.com</code> のメール受信・送信に影響する変更は一切ありません。本書面でご相談しているのは <strong>新サイトのお問合せフォームに限った通知メールの宛先</strong> と、その <strong>返信時の差出人を <code>info@hrtep.com</code> にするための任意設定</strong> の 2 点のみです。
+        </div>
+      </section>
+
+      <!-- ▼ §2 ご確認① 受信先 -->
+      <section id="s02">
+        <h2><span class="num">2</span>ご確認① 受信先アドレスについて</h2>
+        <p class="lead">新サイトのお問合せフォームから送信された通知メールを、どのアドレスでお受けになるかをご確認ください。</p>
+
+        <div class="ask">
+          <div class="ask-head">
+            <span class="ask-badge">ASK 1</span>
+            <p class="ask-title">受信先を <code>tsukahira@hrtep.com</code> としてよろしいでしょうか？</p>
+          </div>
+          <p class="ask-q">
+            新サイトのお問合せフォームから問合せが届いた際、通知メールを <code>tsukahira@hrtep.com</code> に送信する設定で進めてよいか、ご確認をお願いいたします。
+          </p>
+
+          <h4>運用イメージ</h4>
+          <ul style="font-size:14px; line-height:1.85; padding-left:20px;">
+            <li>サイト訪問者がフォームを送信 → 通知メールが <code>tsukahira@hrtep.com</code> に届きます</li>
+            <li>普段ご利用の Gmail（<code>tsukahira@hrtep.com</code>）の受信トレイで確認できます</li>
+            <li>1 日 1〜3 件程度の想定、迷惑メール混入のリスクは低い構成です</li>
+          </ul>
+
+          <h4>別アドレスがご希望の場合</h4>
+          <p style="font-size:14px;">
+            別のメールアドレス（例：<code>info@hrtep.com</code>、<code>mori@hrtep.com</code> 等）で受けたい場合は、ご希望のアドレスを LeadX 社までお知らせください。設定変更で対応可能です。
+          </p>
+        </div>
+      </section>
+
+      <!-- ▼ §3 ご対応② info@ 返信設定 -->
+      <section id="s03">
+        <h2><span class="num">3</span>ご対応② <code>info@hrtep.com</code> から返信できる設定（任意）</h2>
+        <p class="lead">問合せに返信する際、差出人を <code>info@hrtep.com</code> にしたい場合のみ実施いただく任意の設定です。設定しない場合は <code>tsukahira@hrtep.com</code> から返信する運用となります。</p>
+
+        <div class="callout">
+          <b>この設定の効果</b>
+          通知メール（<code>tsukahira@</code> 宛）を受けた後、Gmail の「返信」を押すだけで、自動的に <strong><code>info@hrtep.com</code> から返信メールが送信</strong>されます。会社代表アドレスからの返信としたい場合に有効な設定です。
+        </div>
+
+        <h3>Phase A: Workspace 管理者作業（<code>info</code> Alias の追加）</h3>
+        <p style="font-size:14px;">Google Workspace の管理者権限をお持ちの方が、<code>tsukahira@hrtep.com</code> ユーザーに <code>info@</code> をエイリアスとして追加します。所要 3〜5 分。</p>
+        <ol style="font-size:13.5px;">
+          <li>Google Admin Console（<code>admin.google.com</code>）に管理者アカウントでログイン</li>
+          <li>左メニュー「ディレクトリ」→「ユーザー」</li>
+          <li>ユーザー一覧から <code>tsukahira@hrtep.com</code> を選択</li>
+          <li>「ユーザー情報」→「メールエイリアス」→「エイリアスを追加」</li>
+          <li>「エイリアスのメール アドレス」欄に <code>info</code> を入力（ドメインは自動で <code>@hrtep.com</code>）→「保存」</li>
+          <li>数分後、<code>info@hrtep.com</code> 宛のメールが <code>tsukahira@</code> の受信トレイに届くようになります</li>
+        </ol>
+
+        <h3>Phase B: 津賀平様 個人作業（Gmail の Send mail as 設定）</h3>
+        <p style="font-size:14px;">Phase A 完了後、津賀平様ご自身の Gmail で「<code>info@</code> から送信できるようにする」設定を行います。所要 1〜2 分。</p>
+        <ol style="font-size:13.5px;">
+          <li>Gmail（<code>mail.google.com</code>）に <code>tsukahira@hrtep.com</code> でログイン</li>
+          <li>右上の歯車アイコン →「すべての設定を表示」</li>
+          <li>「アカウント」タブ →「他のメールアドレスを追加」</li>
+          <li>名前: <code>HRtep 株式会社</code>（任意の表示名）／ メールアドレス: <code>info@hrtep.com</code></li>
+          <li>「エイリアスとして扱う」にチェック →「次のステップ」→「アカウントを追加」（Phase A の Alias 設定済なら確認コード不要、即追加）</li>
+          <li>同じ「アカウント」タブ内の「メールを送信する場合」で「<strong>メールを受信したアドレスから返信する</strong>」を選択</li>
+        </ol>
+
+        <div class="callout warn">
+          <b>設定後の挙動</b>
+          お問合せフォーム経由で届いた通知メール（<code>tsukahira@</code> 宛）に「返信」を押すと、自動的に <code>info@hrtep.com</code> から送信されます。手動で <code>tsukahira@</code> や別アドレスから送信することも引き続き可能です。
+        </div>
+
+        <h3>設定しない場合の運用</h3>
+        <p style="font-size:14px;">
+          Phase A・B のいずれも実施しない場合、返信は <code>tsukahira@hrtep.com</code> から送信されます。問合せ対応に支障はなく、設定有無は完全に運用上のご判断です。後日設定することも可能です。
+        </p>
+      </section>
+
+      <footer>
+        <p>HRtep コーポレートサイト メール運用ご確認 v1 — 2026-05-02</p>
+        <p>差出: LeadX 株式会社</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
