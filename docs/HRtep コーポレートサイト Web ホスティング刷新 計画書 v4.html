@@ -313,7 +313,7 @@
         <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。本書面 1 通でHRtep社・安井様への必要事項がすべて完結します。</p>
         <div class="now">
           <p class="label">現在の状況</p>
-          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 DNS 設定（4 件追加のみ）+ 津賀平様の Verification メールクリック 1 回</strong>で Phase 2 完了 → 新サイト切替へと進めます。</p>
+          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（6 件）+ 津賀平様の Verification メールクリック 1 回</strong>で Phase 2 + 3 を一括完了し、新サイト本番稼働に至ります。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
@@ -339,19 +339,14 @@
             <div class="ph-status">✓ 完了</div>
           </div>
           <div class="phase-step now">
-            <div class="ph-num">PHASE 2</div>
-            <div class="ph-name">メール送信構築</div>
+            <div class="ph-num">PHASE 2 + 3</div>
+            <div class="ph-name">メール構築・DNS 切替（統合）</div>
             <div class="ph-status">▶ 終盤・安井様 DNS 待ち</div>
           </div>
-          <div class="phase-step todo">
-            <div class="ph-num">PHASE 3</div>
-            <div class="ph-name">DNS 切替</div>
-            <div class="ph-status">未着手</div>
-          </div>
-          <div class="phase-step todo">
+          <div class="phase-step todo" style="grid-column: span 2;">
             <div class="ph-num">PHASE 4</div>
             <div class="ph-name">旧サイト解約</div>
-            <div class="ph-status">未着手</div>
+            <div class="ph-status">未着手（Phase 3 完了から 14 日後）</div>
           </div>
         </div>
 
@@ -359,9 +354,9 @@
         <div class="next-steps">
           <div class="step-card active">
             <div class="step-num">1</div>
-            <p class="step-who">安井様（取次は HRtep 社経由）</p>
-            <p class="step-title">DNS レコード 4 件を追加</p>
-            <p class="step-desc">本書面 第 4 章をお渡しください。お名前.com Navi での追加作業のみ、所要 10〜15 分。</p>
+            <p class="step-who">安井様（取次は HRtep 社経由・1 回のみ）</p>
+            <p class="step-title">DNS レコード 6 件を一括設定</p>
+            <p class="step-desc">本書面 第 4 章をお渡しください。CNAME 4 件 + A レコード変更 2 件を一度の依頼で完結（所要 15〜20 分）。</p>
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
@@ -373,7 +368,7 @@
             <div class="step-num">3</div>
             <p class="step-who">LeadX社</p>
             <p class="step-title">本番切替・動作確認</p>
-            <p class="step-desc">DNS 反映と Verification 完了を確認後、フォーム送信の E2E テストを実施し、新サイト本番化。</p>
+            <p class="step-desc">DNS 反映と Verification 完了を確認後、SSL 証明書発行・フォーム送信 E2E テストを実施し、新サイト本番化。</p>
           </div>
         </div>
 
@@ -402,10 +397,10 @@
           </div>
           <div class="role-card yasui">
             <p class="role-name">安井様（お名前.com 管理者）</p>
-            <p class="role-who">DNS 設定</p>
+            <p class="role-who">DNS 設定（1 回のみ）</p>
             <ul>
-              <li class="wait">Phase 2: DNS レコード 4 件追加</li>
-              <li class="wait">Phase 3: DNS 切替（A レコード変更）</li>
+              <li class="wait">DNS レコード 6 件を一括設定</li>
+              <li style="font-size:12px; color:var(--muted); padding-left:22px;">　└ DKIM CNAME 4 + A レコード変更 2</li>
             </ul>
             <p style="font-size:11.5px; color:var(--muted); margin: 8px 0 0; line-height:1.5;">※ LeadX社からの直接連絡は行わず、HRtep社経由で取次いただきます。</p>
           </div>
@@ -545,13 +540,16 @@
 
         <div class="callout warn">
           <b>本章の使い方</b>
-          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 10〜15 分程度の見込み。既存のレコードには一切手を加えず、新規 4 件の追加のみです。
+          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 15〜20 分程度の見込み。今回の DNS 設定で Phase 2（メール送信構築）と Phase 3（DNS 切替）を一括完了させます。
         </div>
 
-        <h3>追加していただく 4 件のレコード</h3>
+        <h3>設定していただく 6 件のレコード</h3>
+        <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">
+          内訳: <strong>新規追加 4 件</strong>（DKIM CNAME 3 + SPF TXT 1）+ <strong>既存変更 2 件</strong>（A レコード）。1〜4 はメール送信に関する追加、5〜6 は新サイト本番化のための既存 A レコードの値変更です。
+        </p>
 
         <div class="diagram">
-          <svg viewBox="0 0 940 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DNS レコード階層図">
+          <svg viewBox="0 0 940 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DNS レコード階層図">
             <style>
               .d-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
               .d-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
@@ -559,6 +557,7 @@
               .d-hdr { font: 700 14px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
               .d-keep { fill: #e8f7ee; stroke: #2ea85a; stroke-width: 1.5; }
               .d-add { fill: #fff8d6; stroke: #c89c00; stroke-width: 2; }
+              .d-change { fill: #fff4e5; stroke: #ffb258; stroke-width: 2; }
               .d-line { stroke: #556073; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
             </style>
             <defs>
@@ -569,19 +568,16 @@
 
             <text x="470" y="22" text-anchor="middle" class="d-hdr">hrtep.com の DNS 構造</text>
 
-            <!-- ルート -->
             <rect x="370" y="40" width="200" height="44" rx="6" class="d-keep"/>
             <text x="470" y="60" text-anchor="middle" class="d-mono">hrtep.com</text>
-            <text x="470" y="76" text-anchor="middle" class="d-sm">既存レコード（変更しない）</text>
+            <text x="470" y="76" text-anchor="middle" class="d-sm">既存レコード</text>
 
-            <!-- ルート→3 子（既存）への破線：兄弟バス y=92 -->
             <line x1="470" y1="84" x2="470" y2="92" class="d-line"/>
             <line x1="180" y1="92" x2="760" y2="92" class="d-line"/>
             <line x1="180" y1="92" x2="180" y2="100" class="d-line"/>
             <line x1="470" y1="92" x2="470" y2="100" class="d-line"/>
             <line x1="760" y1="92" x2="760" y2="100" class="d-line"/>
 
-            <!-- 既存 3 子 -->
             <rect x="80" y="100" width="200" height="60" rx="6" class="d-keep"/>
             <text x="180" y="120" text-anchor="middle" class="d-lbl">MX（受信メール）</text>
             <text x="180" y="138" text-anchor="middle" class="d-sm">Google Workspace 等 6 件</text>
@@ -592,20 +588,17 @@
             <text x="470" y="138" text-anchor="middle" class="d-sm">apex の TXT</text>
             <text x="470" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">変更しない</text>
 
-            <rect x="660" y="100" width="200" height="60" rx="6" class="d-keep"/>
-            <text x="760" y="120" text-anchor="middle" class="d-lbl">A（サイト）</text>
-            <text x="760" y="138" text-anchor="middle" class="d-sm">現行 WP の IP</text>
-            <text x="760" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">Phase 3 で別途変更</text>
+            <rect x="660" y="100" width="200" height="60" rx="6" class="d-change"/>
+            <text x="760" y="120" text-anchor="middle" class="d-lbl" style="fill:#8b5a00;">A（apex / www）</text>
+            <text x="760" y="138" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">現行 WP の IP</text>
+            <text x="760" y="152" text-anchor="middle" class="d-sm" style="font-style:italic; fill:#8b5a00; font-weight:600;">→ Amplify 値に変更</text>
 
-            <!-- ルート→send（追加サブドメイン）への矢印 -->
             <path d="M470,160 L470,190" stroke="#1a2d4d" stroke-width="1.5" fill="none" marker-end="url(#aa)"/>
 
-            <!-- send.hrtep.com -->
             <rect x="270" y="190" width="400" height="44" rx="6" class="d-add"/>
             <text x="470" y="210" text-anchor="middle" class="d-mono" style="fill:#8b5a00; font-weight:700;">send.hrtep.com</text>
             <text x="470" y="226" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新しいサブドメイン（今回追加）</text>
 
-            <!-- send→4 子（追加）への破線：兄弟バス y=240 -->
             <line x1="470" y1="234" x2="470" y2="240" class="d-line"/>
             <line x1="185" y1="240" x2="755" y2="240" class="d-line"/>
             <line x1="185" y1="240" x2="185" y2="248" class="d-line"/>
@@ -613,7 +606,6 @@
             <line x1="565" y1="240" x2="565" y2="248" class="d-line"/>
             <line x1="755" y1="240" x2="755" y2="248" class="d-line"/>
 
-            <!-- 追加 4 子（等幅 180、間隔 10） -->
             <rect x="95" y="248" width="180" height="32" rx="4" class="d-add"/>
             <text x="185" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 1（DKIM）</text>
 
@@ -625,24 +617,29 @@
 
             <rect x="665" y="248" width="180" height="32" rx="4" class="d-add"/>
             <text x="755" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">TXT（SPF）</text>
+
+            <text x="470" y="305" text-anchor="middle" class="d-sm" style="font-size:12px;">緑 = 変更しない ／ 黄色 = 新規追加 ／ オレンジ = 既存値を変更</text>
           </svg>
           <p class="caption">緑 = 既存（触らない） ／ 黄色 = 今回追加。すべて <code>send.hrtep.com</code> 配下のため、apex (hrtep.com) には一切影響しません。</p>
         </div>
 
         <table>
           <thead>
-            <tr><th style="width:5%">#</th><th style="width:34%">ホスト名（入力値）</th><th style="width:9%">TYPE</th><th>VALUE</th><th style="width:8%">TTL</th></tr>
+            <tr><th style="width:4%">#</th><th style="width:8%">操作</th><th style="width:30%">ホスト名（入力値）</th><th style="width:8%">TYPE</th><th>VALUE</th><th style="width:7%">TTL</th></tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td><td>3600</td></tr>
-            <tr><td>2</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td><td>3600</td></tr>
-            <tr><td>3</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td><td>3600</td></tr>
-            <tr><td>4</td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td><td>3600</td></tr>
+            <tr><td>1</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td><td>3600</td></tr>
+            <tr><td>2</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td><td>3600</td></tr>
+            <tr><td>3</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td><td>3600</td></tr>
+            <tr><td>4</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td><td>3600</td></tr>
+            <tr style="background:#fff4e5;"><td>5</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>@</code>（apex / 入力欄空欄）</td><td>A</td><td><strong>LeadX 社が依頼書送付時に確定値を記載</strong><br><span style="font-size:11.5px; color:var(--muted);">Amplify Custom Domain で発行される A レコード値で、現行 <code>118.27.122.212</code> を置換</span></td><td>3600</td></tr>
+            <tr style="background:#fff4e5;"><td>6</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>www</code></td><td>CNAME</td><td><strong>LeadX 社が依頼書送付時に確定値を記載</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>main.d3561ojkga3nyn.amplifyapp.com</code> 形式の値を指定</span></td><td>3600</td></tr>
           </tbody>
         </table>
         <p style="font-size:13px; color:var(--muted); margin-top:6px;">
           お名前.com Navi のホスト名欄では、末尾の <code>.hrtep.com</code> が自動的に付加されます。TTL はすべて既定値 3600 のままで問題ありません。<br>
-          1〜3 はメール送信元を証明する DKIM、4 はなりすまし防止の SPF です。すべて新しいサブドメイン <code>send.hrtep.com</code> 配下に追加します。
+          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への追加（メール送信認証用）。5〜6 は新サイト本番化のための既存 A レコード値置換です。<br>
+          <strong>5〜6 の VALUE は、LeadX 社が依頼送付直前に Amplify Custom Domain で発行される確定値を記入してお渡しします。</strong>
         </p>
 
         <h3>お名前.com Navi での操作手順</h3>
@@ -651,46 +648,47 @@
           <li>「ドメイン」 → 「DNS設定」</li>
           <li>対象ドメイン <code>hrtep.com</code> の「DNS設定 / 転送設定」を選択</li>
           <li>「DNSレコード設定を利用する」を選択して「次へ」</li>
-          <li>上記 4 件をそれぞれ入力
+          <li>上記 6 件を以下の要領で操作
             <ul style="font-size:13.5px; margin-top:6px;">
-              <li><strong>1〜3（CNAME）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
-              <li><strong>4（TXT）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
+              <li><strong>1〜3（CNAME 追加）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
+              <li><strong>4（TXT 追加）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
+              <li><strong>5（A レコード変更）</strong>: ホスト名欄を空欄（apex 用）／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 値に置換</li>
+              <li><strong>6（www の A もしくは CNAME 変更）</strong>: ホスト名 <code>www</code> ／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 値に置換</li>
             </ul>
           </li>
-          <li>4 件入力後「追加」を押し、「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
+          <li>6 件分すべて操作後「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
         </ol>
 
         <div class="callout bad">
           <b>絶対に変更しないでください</b>
-          以下のレコードに触れると受信メールやドメイン認証が壊れます。新規 4 件の追加のみが本作業の対象です。
+          以下のレコードに触れると受信メール・ドメイン認証が壊れます。本作業の対象は前掲 6 件のみです。
           <ul style="margin:8px 0 0 18px; font-size:13.5px;">
             <li><code>hrtep.com</code> の MX レコード（Google Workspace 等 6 件）</li>
-            <li><code>hrtep.com</code> apex の SPF レコード（apex の TXT）</li>
+            <li><code>hrtep.com</code> apex の SPF レコード（apex の TXT、<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
             <li><code>_dmarc.hrtep.com</code> の DMARC レコード（TXT）</li>
-            <li><code>hrtep.com</code> apex の A レコード（現行 WordPress IP <code>118.27.122.212</code>） — Phase 3 で別途依頼予定</li>
             <li>その他、本書面に列挙されていない既存のあらゆるレコード</li>
           </ul>
         </div>
 
         <div class="callout ok">
           <b>受信メールへの影響なし</b>
-          上記 4 件はすべて <code>send.hrtep.com</code> という新しいサブドメイン配下への追加です。apex（<code>hrtep.com</code>）の既存設定には影響しません。Google Workspace ご利用の受信メールにも影響は一切ありません。
+          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への新規追加、5〜6 は apex / www の A レコード値の置換です。MX・apex SPF・DMARC レコードには一切手を加えません。Google Workspace ご利用の受信メールには影響しません。
         </div>
 
         <h3>設定完了後のご連絡</h3>
         <p style="font-size:14px;">
-          設定完了後、お手数ですがHRtep社経由でLeadX社までご一報ください。LeadX社にて反映状況を確認のうえ、続く作業（メール送信の本番化申請）に進みます。<br>
-          DNS の反映には通常数時間〜最大 24 時間程度かかります。
+          設定完了後、お手数ですがHRtep社経由でLeadX社までご一報ください。LeadX社にて DNS 反映状況を確認のうえ、SES Identity 登録 → 津賀平様への Verification メール送信 → SSL 証明書発行 → 動作確認 → 新サイト本番稼働の順で進めます。<br>
+          DNS の反映には通常数時間〜最大 24 時間程度かかります。この間、新サイト切替直後は問合せフォーム送信時のメール送信が一時的に失敗する可能性がありますが、DKIM 認証完了後（24 時間以内に自動完了）に正常稼働します。
         </p>
       </section>
 
       <!-- ▼ 切替の流れ -->
       <section id="s05">
         <h2><span class="num">5</span>このあとの全体の流れ</h2>
-        <p class="lead">今後の進行を時系列で整理。Phase 2 終盤 → Phase 3（DNS 切替）→ Phase 4（旧サイト解約）の順。</p>
+        <p class="lead">安井様 1 回の DNS 設定で Phase 2（メール送信構築）と Phase 3（新サイト公開）を同時完了する流れ。Phase 4（旧サイト解約）は後日。</p>
 
         <div class="diagram">
-          <svg viewBox="0 0 980 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="切替全体フロー">
+          <svg viewBox="0 0 980 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="切替全体フロー">
             <style>
               .f-lbl { font: 600 12.5px 'Noto Sans JP', sans-serif; fill: #0e1726; }
               .f-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
@@ -710,7 +708,7 @@
               </marker>
             </defs>
 
-            <text x="20" y="22" class="f-lbl" style="font-size:13px;">Phase 2（メール送信構築・終盤）</text>
+            <text x="20" y="22" class="f-lbl" style="font-size:13px;">Phase 2 + 3 統合フロー（安井様作業 1 回で完結）</text>
             <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
 
             <rect x="40" y="50" width="220" height="60" rx="8" class="f-box-client"/>
@@ -718,14 +716,14 @@
             <text x="60" y="74" text-anchor="middle" class="f-num">1</text>
             <text x="84" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
             <text x="84" y="86" class="f-lbl">本書 第 4 章を安井様へ取次</text>
-            <text x="84" y="102" class="f-sm">DNS 4 件追加の依頼</text>
+            <text x="84" y="102" class="f-sm">DNS 6 件分の依頼を 1 通で</text>
 
             <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-yasui"/>
             <circle cx="300" cy="70" r="14" class="f-circle-yasui"/>
             <text x="300" y="74" text-anchor="middle" class="f-num">2</text>
             <text x="324" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
-            <text x="324" y="86" class="f-lbl">DNS レコード 4 件追加</text>
-            <text x="324" y="102" class="f-sm">10〜15 分</text>
+            <text x="324" y="86" class="f-lbl">DNS 6 件を一括設定</text>
+            <text x="324" y="102" class="f-sm">DKIM 4 + A レコード 2 = 15〜20 分</text>
 
             <path d="M260,80 L280,80" class="f-arrow"/>
 
@@ -733,8 +731,8 @@
             <circle cx="540" cy="70" r="14" class="f-circle-us"/>
             <text x="540" y="74" text-anchor="middle" class="f-num">3</text>
             <text x="564" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="564" y="86" class="f-lbl">DKIM 反映確認 + Identity 登録</text>
-            <text x="564" y="102" class="f-sm">DNS 反映 24h 以内</text>
+            <text x="564" y="86" class="f-lbl">DNS 反映確認 + Identity 登録</text>
+            <text x="564" y="102" class="f-sm">数時間〜24h（自動）</text>
 
             <path d="M500,80 L520,80" class="f-arrow"/>
 
@@ -751,56 +749,19 @@
             <circle cx="60" cy="180" r="14" class="f-circle-us"/>
             <text x="60" y="184" text-anchor="middle" class="f-num">5</text>
             <text x="84" y="178" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="84" y="196" class="f-lbl">環境変数設定 + E2E テスト</text>
+            <text x="84" y="196" class="f-lbl">SSL 証明書発行・E2E テスト</text>
             <text x="84" y="212" class="f-sm">フォーム送信動作確認</text>
 
             <path d="M860,110 L860,140 L160,140 L160,160" class="f-arrow"/>
 
-            <rect x="280" y="160" width="220" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
+            <rect x="280" y="160" width="440" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
             <circle cx="300" cy="180" r="14" fill="#2ea85a"/>
             <text x="300" y="184" text-anchor="middle" class="f-num">✓</text>
             <text x="324" y="178" class="f-who" style="fill:#1d6d3c;">完了</text>
-            <text x="324" y="196" class="f-lbl" style="fill:#1d6d3c;">Phase 2 完了</text>
-            <text x="324" y="212" class="f-sm">フォーム送信が稼働</text>
+            <text x="324" y="196" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働 + フォーム送信稼働</text>
+            <text x="324" y="212" class="f-sm">hrtep.com で表示・問合せメール送信が機能</text>
 
             <path d="M260,190 L280,190" class="f-arrow"/>
-
-            <text x="20" y="262" class="f-lbl" style="font-size:13px;">Phase 3（DNS 切替・本番ドメイン化）</text>
-            <line x1="20" y1="270" x2="960" y2="270" stroke="#dfe5ee"/>
-
-            <rect x="40" y="290" width="220" height="60" rx="8" class="f-box-client"/>
-            <circle cx="60" cy="310" r="14" class="f-circle-client"/>
-            <text x="60" y="314" text-anchor="middle" class="f-num">7</text>
-            <text x="84" y="308" class="f-who" style="fill:#6e4cff;">HRtep社</text>
-            <text x="84" y="326" class="f-lbl">第 2 弾 DNS 依頼の取次</text>
-            <text x="84" y="342" class="f-sm">A レコード変更 2 件</text>
-
-            <rect x="280" y="290" width="220" height="60" rx="8" class="f-box-yasui"/>
-            <circle cx="300" cy="310" r="14" class="f-circle-yasui"/>
-            <text x="300" y="314" text-anchor="middle" class="f-num">8</text>
-            <text x="324" y="308" class="f-who" style="fill:#8b5a00;">安井様</text>
-            <text x="324" y="326" class="f-lbl">A レコードを Amplify に変更</text>
-            <text x="324" y="342" class="f-sm">10〜15 分</text>
-
-            <path d="M260,320 L280,320" class="f-arrow"/>
-
-            <rect x="520" y="290" width="220" height="60" rx="8" class="f-box-us"/>
-            <circle cx="540" cy="310" r="14" class="f-circle-us"/>
-            <text x="540" y="314" text-anchor="middle" class="f-num">9</text>
-            <text x="564" y="308" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="564" y="326" class="f-lbl">SSL 証明書発行・動作確認</text>
-            <text x="564" y="342" class="f-sm">30〜60 分</text>
-
-            <path d="M500,320 L520,320" class="f-arrow"/>
-
-            <rect x="760" y="290" width="200" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
-            <circle cx="780" cy="310" r="14" fill="#2ea85a"/>
-            <text x="780" y="314" text-anchor="middle" class="f-num">✓</text>
-            <text x="804" y="308" class="f-who" style="fill:#1d6d3c;">完了</text>
-            <text x="804" y="326" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働</text>
-            <text x="804" y="342" class="f-sm">hrtep.com で表示</text>
-
-            <path d="M740,320 L760,320" class="f-arrow"/>
           </svg>
           <p class="caption">青 = LeadX社作業 ／ 紫 = HRtep社作業 ／ オレンジ = 安井様作業</p>
         </div>
@@ -820,9 +781,21 @@
           <li>必要に応じて将来 Production Access に切替可能。サンドボックスから本番運用へは 1 日で移行できる</li>
         </ul>
 
+        <h3>切替直後の一時的なフォーム送信不通について</h3>
+        <div class="callout warn">
+          <b>DNS 反映待ち中（最大 24 時間）の留意点</b>
+          安井様の DNS 設定後、<strong>DKIM 認証が完了するまで（数時間〜最大 24 時間）の間、新サイト <code>hrtep.com</code> でのお問合せフォーム送信時に SES からのメール送信が一時的に失敗する可能性</strong>があります。<br>
+          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
+            <li>ユーザーには「お問合せを受け付けました」表示が出るが、内部メールが LeadX 社・HRtep 社に届かない期間が発生し得る</li>
+            <li>DKIM 認証は DNS 反映後に AWS が自動完了する処理。手動操作は不要</li>
+            <li>HRtep の問合せ流量（1 日 1〜3 件想定）から、影響を受ける問合せ件数は最大でも 0〜3 件程度</li>
+            <li>DKIM 完了後は自動で正常稼働。LeadX 社が反映状況を監視し、完了次第 HRtep 様にご報告</li>
+          </ul>
+        </div>
+
         <h3>もしものときのロールバック</h3>
         <p style="font-size:14px;">
-          Phase 3 切替後に問題（HTTPS 表示不可・フォーム送信失敗・受信メール影響など）が発生した場合は、安井様にて A レコードを元の値（<code>118.27.122.212</code>）に戻すだけで旧サイトに復帰します。DNS の TTL は 1 時間設定なので、最長 1 時間で完全復旧。<br>
+          切替後に問題（HTTPS 表示不可・受信メール影響など）が発生した場合は、安井様にて A レコードを元の値（<code>118.27.122.212</code>）に戻すだけで旧サイトに復帰します。DNS の TTL は 1 時間設定なので、最長 1 時間で完全復旧。<br>
           特に <strong>受信メール（MX レコード）に意図せず変更が起きた場合は最優先でロールバック</strong>とする運用です。
         </p>
       </section>
