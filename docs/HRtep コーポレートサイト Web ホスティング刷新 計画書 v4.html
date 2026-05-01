@@ -279,20 +279,8 @@
           </tbody>
         </table>
 
-        <h3>4.4 運用文書一式（<code>docs/</code> 配下に整備済）</h3>
-        <table>
-          <thead><tr><th style="width:38%">ファイル</th><th>用途</th></tr></thead>
-          <tbody>
-            <tr><td><code>dns-request-yasui.md</code></td><td>安井様 DNS 設定依頼書（CNAME 3 + SPF TXT 1）</td></tr>
-            <tr><td><code>hrtep-action-requests.md</code></td><td>HRtep 様 ACTION 02/03/04 確認依頼書</td></tr>
-            <tr><td><code>ses-production-access-request.md</code></td><td>SES サンドボックス解除申請文（チェックリスト + 本文）</td></tr>
-            <tr><td><code>contact-actions-ses-migration.md</code></td><td>Server Action SES 移行設計（実装は完了済）</td></tr>
-            <tr><td><code>dns-baseline-pre-migration.md</code></td><td>移行前 DNS 凍結値（Phase 3 切替前後の差分検証用）</td></tr>
-            <tr><td><code>operations-manual.md</code></td><td>運用マニュアル（ログ確認・bounce 対応・Suppression List・Kill Switch）</td></tr>
-            <tr><td><code>phase3-cutover-plan.md</code></td><td>Phase 3 切替計画（手順・ロールバック・完了判定）</td></tr>
-            <tr><td><code>redirect-mapping-todo.md</code></td><td>301 リダイレクトマッピング（v3 §11 DECISION 01 確定済）</td></tr>
-          </tbody>
-        </table>
+        <h3>4.4 弊社内運用ドキュメント整備状況</h3>
+        <p>SES 申請文・運用マニュアル（フォームログ確認・bounce 対応・Suppression List 操作・Kill Switch）・DNS 移行前ベースライン凍結値・Server Action SES 移行設計などの内部運用ドキュメントは、弊社にて GitHub リポジトリ内に整備済。本計画書には貴社のご判断・ご対応に必要な情報をすべて転載しているため、貴社にて当該ドキュメントを直接ご参照いただく必要はない。</p>
       </section>
 
       <!-- 05 お問合せフォーム実装 -->
@@ -363,7 +351,7 @@
         <h2 class="decision-h"><span class="num">07</span>貴社（HRtep 様）ご確認事項</h2>
         <p class="subtitle">v3 §11 から繰り越し。DECISION 01 / 05 は確定済（v3 を参照）、ACTION 02 / 03 / 04 が未回答。</p>
 
-        <span class="oneliner"><b>趣旨</b>3 件のご回答が、安井様への DNS 設定依頼および SES 申請提出の前提条件。詳細・回答欄付きの依頼書は <code>docs/hrtep-action-requests.md</code> に整備済。</span>
+        <span class="oneliner"><b>趣旨</b>3 件のご回答が、安井様への DNS 設定依頼および SES 申請提出の前提条件。本章下部の回答欄にご記入の上、弊社までご返送ください。</span>
 
         <div class="q-card">
           <div class="q-no">ACTION 02 / 確認依頼</div>
@@ -372,6 +360,10 @@
             <code>_dmarc.hrtep.com</code> の <code>rua=mailto:mori@hrtep.com</code> が現在も受信可能であるかご確認ください。廃止されている場合、別アドレスへの DMARC 更新を安井様への次回依頼に追加する必要があります。
           </p>
           <div class="q-why"><b>影響</b>業務影響は通常なし。ただし当該アドレスが廃止されていると、SES 本番運用後の送信状況レポートが受信できない運用上の死角となる。</div>
+          <p class="q-body" style="margin-top:10px;"><strong>ご回答欄</strong></p>
+          <pre style="background:var(--bg-soft); padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.6; margin:0;">[ ] (a) mori@hrtep.com は現存・受信可能
+[ ] (b) 既に廃止／受信不能 → 新たな受信先: ____________________
+[ ] (c) わからない／確認が必要（弊社にて Google Workspace 管理画面の閲覧権限があれば調査可能）</pre>
         </div>
 
         <div class="q-card">
@@ -380,7 +372,15 @@
           <p class="q-body">
             新サイトのお問合せフォームから送信があった際、貴社内の問合せ担当者宛に通知される 1 通のメールの宛先アドレスをご決定ください。AWS Amplify Hosting の環境変数 <code>CONTACT_EMAIL_TO</code> に設定し、SES 申請文にも明記します。
           </p>
-          <div class="q-why"><b>制約</b>Google Workspace で受信可能な業務アドレス推奨。1 アドレスのみ指定可能（複数受信は Workspace 側のグループ/転送で実現）。</div>
+          <div class="q-why"><b>制約</b>Google Workspace で受信可能な業務アドレス推奨。1 アドレスのみ指定可能（複数受信は Workspace 側のグループ/転送で実現）。担当者異動を考慮し個人アドレスではなく業務アドレスを推奨。</div>
+          <p class="q-body" style="margin-top:10px;"><strong>候補（あくまで例示）</strong>: <code>info@hrtep.com</code> ／ <code>contact@hrtep.com</code> ／ <code>mori@hrtep.com</code>（既存運用）／ <code>web-inquiry@hrtep.com</code>（新規作成） ／ その他</p>
+          <p class="q-body" style="margin-top:6px;"><strong>ご回答欄</strong></p>
+          <pre style="background:var(--bg-soft); padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.6; margin:0;">送信先アドレス: ____________________________________
+
+副担当者への展開方法（任意）:
+[ ] Google Workspace のグループアドレスを使う
+[ ] Google Workspace の転送設定で複数アドレスに展開する
+[ ] 単一アドレスのみで運用</pre>
         </div>
 
         <div class="q-card">
@@ -390,19 +390,28 @@
             Phase 4（旧 WP 解約）後の貴社コスト削減効果を確定するため、現行のお名前.com 共用ホスティング契約のプラン名・月額（または年額）・更新月をご教示ください。お名前.com Navi 「ご契約一覧」より確認可能です。
           </p>
           <div class="q-why"><b>影響</b>本計画書 第 2 章ランニングコスト試算の確定値化のみ。技術的進行には影響なし。</div>
+          <p class="q-body" style="margin-top:10px;"><strong>ご回答欄</strong></p>
+          <pre style="background:var(--bg-soft); padding:10px 14px; border-radius:6px; font-size:13px; line-height:1.6; margin:0;">契約プラン名（例: ベーシック、RS プラン 等）: ____________________________
+
+月額（税込）: ____________ 円  [または] 年額: ____________ 円
+
+契約終了予定日（更新月）: ______ 年 ______ 月
+
+[ ] お名前.com Navi の「ご契約一覧」で確認可能
+[ ] 安井様への確認が必要</pre>
         </div>
       </section>
 
       <!-- 08 安井様 DNS 設定依頼 -->
       <section id="s08">
         <h2><span class="num">08</span>お名前.com DNS 設定依頼 — 安井様向け（CNAME 3 + SPF TXT 1）</h2>
-        <p class="subtitle">v3 §12 から更新。SPF TXT 1 件を追加し計 4 件構成に変更（申請文 §7 SPF 記述との整合のため）。</p>
+        <p class="subtitle">本章をそのまま安井様にお渡しいただける形で記載。HRtep 様経由で取次ぎいただく。</p>
 
-        <span class="oneliner"><b>取次方針</b>本依頼の取次は HRtep 様経由。安井様への直接連絡は行わない。詳細依頼書は <code>docs/dns-request-yasui.md</code>。</span>
+        <span class="oneliner"><b>ご依頼内容</b>新規レコード 4 件（CNAME 3 + TXT 1）の追加のみ。既存レコードの編集・削除は不要、apex（hrtep.com）レコードへの影響なし。</span>
 
-        <h3>8.1 追加レコード 4 件</h3>
+        <h3>8.1 追加いただきたいレコード 4 件</h3>
         <table>
-          <thead><tr><th style="width:6%">#</th><th style="width:32%">ホスト名</th><th style="width:10%">TYPE</th><th>VALUE</th></tr></thead>
+          <thead><tr><th style="width:6%">#</th><th style="width:34%">ホスト名（お名前.com Navi 入力値）</th><th style="width:10%">TYPE</th><th>VALUE</th></tr></thead>
           <tbody>
             <tr><td>1</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td></tr>
             <tr><td>2</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td></tr>
@@ -410,24 +419,51 @@
             <tr><td>4</td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td></tr>
           </tbody>
         </table>
-        <p class="subtitle">TTL はすべて 3600（既定）。お名前.com Navi のホスト名欄では末尾の <code>.hrtep.com</code> が自動付加されます。</p>
+        <p class="subtitle">TTL はすべて 3600（既定）。お名前.com Navi のホスト名欄では末尾の <code>.hrtep.com</code> が自動付加されます。レコード 1〜3 は <code>send.hrtep.com</code> サブドメインに対する DKIM CNAME、レコード 4 は同サブドメインの SPF TXT。</p>
 
+        <h3>8.2 お名前.com Navi での操作手順</h3>
+        <ol>
+          <li>お名前.com Navi にログイン</li>
+          <li>「ドメイン」 → 「DNS設定」</li>
+          <li>対象ドメイン <code>hrtep.com</code> の「DNS設定 / 転送設定」を選択</li>
+          <li>「DNSレコード設定を利用する」を選択して「次へ」</li>
+          <li>入力欄に上記 4 件をそれぞれ入力
+            <ul style="margin:6px 0 0 18px;">
+              <li><strong>CNAME 3 件</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみを入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 上記の値（末尾は <code>.dkim.amazonses.com</code>）</li>
+              <li><strong>TXT 1 件</strong>: ホスト名欄に <code>send</code> のみを入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
+              <li>TTL はすべて既定値（3600）でかまいません</li>
+            </ul>
+          </li>
+          <li>4 件分入力したら「追加」を押し、「DNSレコード設定用テンプレート」のチェックを外したまま「確認画面へ進む」</li>
+          <li>内容確認の上「設定する」を押下</li>
+        </ol>
+
+        <h3>8.3 注意事項（受信メールへの無影響を担保するための重要事項）</h3>
         <div class="callout bad">
-          <b>絶対に変更してはならないレコード</b>
+          <b>絶対に変更しないでください</b>
+          以下のレコードは受信メールおよびドメイン認証の根幹に関わるため、編集・削除を行わないでください。新規 4 件の追加のみが本依頼の対象です。
           <ul style="margin:8px 0 0 18px;">
             <li><code>hrtep.com</code> の MX（6 件、Google Workspace + onamae.ne.jp 受信用）</li>
-            <li><code>hrtep.com</code> apex の SPF（<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
-            <li><code>_dmarc.hrtep.com</code> の DMARC（<code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code>）</li>
-            <li><code>hrtep.com</code> apex の A レコード（現行 WordPress IP）— Phase 3 で別途依頼予定</li>
+            <li><code>hrtep.com</code> apex の SPF TXT（<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
+            <li><code>_dmarc.hrtep.com</code> の DMARC TXT（<code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code>）</li>
+            <li><code>hrtep.com</code> apex の A レコード（現行 WordPress IP <code>118.27.122.212</code>）— Phase 3 で別途依頼予定</li>
+            <li>その他、本依頼書に列挙されていない既存のあらゆるレコード</li>
           </ul>
-          上記 4 件はすべて <code>send.hrtep.com</code> サブドメイン配下への新規追加で、apex には影響を与えません。
         </div>
+
+        <div class="callout ok">
+          <b>受信メールへの影響なし</b>
+          上記 4 件はすべて <code>send.hrtep.com</code> サブドメイン配下への追加です。apex（<code>hrtep.com</code>）のレコードには影響を与えません。Google Workspace ご利用の受信メールにも影響は一切ありません。
+        </div>
+
+        <h3>8.4 設定反映確認のためのご連絡</h3>
+        <p>設定完了後、お手数ですが HRtep 様経由で弊社（leadx 株式会社）までご一報ください。弊社にて <code>dig</code> コマンドにより DNS 反映状況および AWS SES 側の DKIM 認証完了を確認のうえ、以降の作業（サンドボックス解除申請等）を進めさせていただきます。DNS の反映には通常数時間〜最大 24 時間程度を要します。</p>
       </section>
 
       <!-- 09 Phase 3 -->
       <section id="s09">
         <h2><span class="num">09</span>Phase 3 着手計画（DNS 切替）</h2>
-        <p class="subtitle">Phase 2 完了後に着手。詳細手順・ロールバック計画は <code>docs/phase3-cutover-plan.md</code>。</p>
+        <p class="subtitle">Phase 2 完了後に着手。本章に手順・ロールバック計画を全文記載。</p>
 
         <h3>9.1 切替対象</h3>
         <table>
