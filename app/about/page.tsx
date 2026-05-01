@@ -13,6 +13,7 @@ import { SITE_URL, COMPANY } from '@/lib/constants';
 export const metadata: Metadata = {
   title: '会社概要',
   description: `${COMPANY.name}の企業情報。代表挨拶、経営理念、ビジョン、会社概要、アクセス情報をご紹介します。`,
+  alternates: { canonical: '/about' },
   openGraph: {
     title: '会社概要 | ＨＲｔｅｐ株式会社',
     description: `${COMPANY.name}の企業情報。代表挨拶、経営理念、ビジョン、会社概要、アクセス情報をご紹介します。`,

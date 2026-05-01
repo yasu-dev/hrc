@@ -29,6 +29,10 @@ export const contactSchema = z.object({
     .string()
     .min(1, 'お問い合わせ内容を入力してください')
     .max(2000, '2000文字以内で入力してください'),
+  agreement: z.literal(true, {
+    message: 'プライバシーポリシーへの同意が必要です',
+  }),
+  recaptchaToken: z.string().optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;

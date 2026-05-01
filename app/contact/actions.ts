@@ -1,6 +1,7 @@
 'use server';
 
 import { contactSchema, type ContactFormData } from '@/lib/validation';
+import { verifyRecaptcha } from '@/lib/recaptcha';
 
 export type ContactResult = {
   success: boolean;
@@ -11,6 +12,15 @@ export async function submitContact(data: ContactFormData): Promise<ContactResul
   const parsed = contactSchema.safeParse(data);
   if (!parsed.success) {
     return { success: false, message: 'バリデーションエラーが発生しました。' };
+  }
+
+  const recaptcha = await verifyRecaptcha(parsed.data.recaptchaToken, 'contact_submit');
+  if (!recaptcha.ok) {
+    console.warn('[Contact] reCAPTCHA verify rejected:', recaptcha.reason);
+    return {
+      success: false,
+      message: '送信検証に失敗しました。お手数ですが時間をおいて再度お試しください。',
+    };
   }
 
   try {

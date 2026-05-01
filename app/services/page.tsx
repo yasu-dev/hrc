@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'サービス一覧',
   description:
     'ＨＲｔｅｐ株式会社のサービス一覧。外国人材事業とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）をご紹介します。',
+  alternates: { canonical: '/services' },
   openGraph: {
     title: 'サービス一覧 | ＨＲｔｅｐ株式会社',
     description:

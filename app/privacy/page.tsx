@@ -7,6 +7,7 @@ import { COMPANY } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'プライバシーポリシー',
   description: 'ＨＲｔｅｐ株式会社の個人情報保護方針（プライバシーポリシー）です。',
+  alternates: { canonical: '/privacy' },
   openGraph: {
     title: 'プライバシーポリシー | ＨＲｔｅｐ株式会社',
     description: 'ＨＲｔｅｐ株式会社の個人情報保護方針（プライバシーポリシー）です。',
