@@ -313,7 +313,7 @@
         <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。HRtep社および安井様への必要事項を本書面に記載。</p>
         <div class="now">
           <p class="label">現在の状況</p>
-          <p>LeadX社の事前作業は<strong style="color:#fff;">完了済み</strong>。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（8 件）+ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 が完了し、新サイトが本番稼働します。</p>
+          <p>LeadX社の事前作業は<strong style="color:#fff;">完了済み</strong>。残るは<strong style="color:#fff;">HRtep 社内の事前調整（受信先 OK 確認・任意の返信設定・安井様の作業日打診）→ 安井様 1 回の DNS 設定（8 件）→ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 が完了し、新サイトが本番稼働します。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
@@ -350,23 +350,29 @@
           </div>
         </div>
 
-        <h3>次の 3 ステップ</h3>
-        <div class="next-steps">
+        <h3>次の 4 ステップ</h3>
+        <div class="next-steps" style="grid-template-columns: repeat(4, 1fr);">
           <div class="step-card active">
             <div class="step-num">1</div>
-            <p class="step-who">安井様（取次は HRtep 社経由・1 回のみ）</p>
-            <p class="step-title">DNS レコード 8 件を設定</p>
-            <p class="step-desc">本書面 第 4 章を安井様にお渡しください。DKIM CNAME 3 件 + SPF TXT 1 件 + ACM 検証 CNAME 2 件 + 既存 A/CNAME 変更 2 件、所要 20〜25 分。</p>
+            <p class="step-who">HRtep 社（津賀平様）</p>
+            <p class="step-title">事前調整 3 項目</p>
+            <p class="step-desc">① <code>tsukahira@hrtep.com</code> 受信先で OK か確認<br>② <code>info@hrtep.com</code> の返信設定（任意・第 3 章）<br>③ 安井様への作業日打診（HRtep 社経由）</p>
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
-            <p class="step-who">HRtep社</p>
+            <p class="step-who">安井様（取次は HRtep 社経由・1 回のみ）</p>
+            <p class="step-title">DNS レコード 8 件を設定</p>
+            <p class="step-desc">作業日確定後、LeadX 社が確定値を記入した第 4 章を HRtep 社経由で安井様へお渡しします。所要 20〜25 分。</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <p class="step-who">HRtep 社</p>
             <p class="step-title">Verification メールのリンクをクリック</p>
             <p class="step-desc">LeadX 社が SES 設定を進めると、AWS から Verification メール（no-reply-aws@amazon.com）が届きます。リンクを 1 回クリックするだけで完了。</p>
           </div>
           <div class="step-card">
-            <div class="step-num">3</div>
-            <p class="step-who">LeadX社</p>
+            <div class="step-num">4</div>
+            <p class="step-who">LeadX 社</p>
             <p class="step-title">本番切替・動作確認</p>
             <p class="step-desc">DNS 反映と Verification 完了を確認後、SSL 証明書発行・フォーム送信 E2E テストを実施し、新サイト本番化。</p>
           </div>
@@ -389,9 +395,10 @@
           </div>
           <div class="role-card client">
             <p class="role-name">HRtep社</p>
-            <p class="role-who">取次・1 回作業</p>
+            <p class="role-who">事前調整・取次・1 回作業</p>
             <ul>
-              <li class="now">安井様への DNS 依頼の取次（本書面 第 4 章をお渡し）</li>
+              <li class="now">事前調整 3 項目（受信先確認・<code>info@</code> 返信設定・安井様作業日打診）</li>
+              <li class="wait">確定値入りの第 4 章を安井様へ取次</li>
               <li class="wait">Verification メールのリンクをクリック（1 回）</li>
               <li class="wait">切替後の動作確認</li>
             </ul>
@@ -508,8 +515,91 @@
       <!-- ▼ メール経路の確定事項 -->
       <section id="s03">
         <h2><span class="num">3</span>お問合せフォームのメール経路（確定事項）</h2>
-        <p class="lead">受信先アドレス・返信運用は以下で確定済。HRtep 社にご確認いただく事項はありません。</p>
+        <p class="lead">フォームに入力された問合せが届くまで、返信が送信者に戻るまでの流れを 1 枚に整理。</p>
 
+        <div class="diagram">
+          <svg viewBox="0 0 980 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="メール経路図">
+            <style>
+              .m-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .m-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .m-mono { font: 11px 'JetBrains Mono', monospace; fill: #0e1726; }
+              .m-hdr { font: 700 13.5px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
+              .m-arrow-fwd { stroke: #1aa0c8; stroke-width: 2; fill: none; marker-end: url(#mfwd); }
+              .m-arrow-rev { stroke: #c89c00; stroke-width: 2; fill: none; marker-end: url(#mrev); }
+              .m-box-user { fill: #f5f7fb; stroke: #95a3b9; stroke-width: 1.5; }
+              .m-box-aws { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
+              .m-box-client { fill: #efeaff; stroke: #6e4cff; stroke-width: 1.5; }
+              .m-box-gws { fill: #fff8d6; stroke: #c89c00; stroke-width: 1.5; }
+            </style>
+            <defs>
+              <marker id="mfwd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1aa0c8"/>
+              </marker>
+              <marker id="mrev" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#c89c00"/>
+              </marker>
+            </defs>
+
+            <text x="20" y="22" class="m-hdr">① 問合せ受信フロー（青矢印）</text>
+            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
+
+            <rect x="20" y="50" width="180" height="80" rx="8" class="m-box-user"/>
+            <text x="110" y="76" text-anchor="middle" class="m-lbl">サイト訪問者</text>
+            <text x="110" y="96" text-anchor="middle" class="m-sm">お問合せフォーム入力</text>
+            <text x="110" y="114" text-anchor="middle" class="m-sm">名前・メール・本文・送信</text>
+
+            <path d="M200,90 L240,90" class="m-arrow-fwd"/>
+
+            <rect x="240" y="50" width="200" height="80" rx="8" class="m-box-aws"/>
+            <text x="340" y="74" text-anchor="middle" class="m-lbl">AWS SES</text>
+            <text x="340" y="92" text-anchor="middle" class="m-sm">From: <tspan class="m-mono">noreply@send.hrtep.com</tspan></text>
+            <text x="340" y="108" text-anchor="middle" class="m-sm">Reply-To: 送信者本人のアドレス</text>
+            <text x="340" y="122" text-anchor="middle" class="m-sm" style="font-style:italic;">DKIM 認証で送信</text>
+
+            <path d="M440,90 L480,90" class="m-arrow-fwd"/>
+
+            <rect x="480" y="50" width="200" height="80" rx="8" class="m-box-gws"/>
+            <text x="580" y="74" text-anchor="middle" class="m-lbl">Google Workspace</text>
+            <text x="580" y="92" text-anchor="middle" class="m-sm">受信メールサーバー</text>
+            <text x="580" y="110" text-anchor="middle" class="m-sm" style="font-style:italic;">既存 MX 経路（変更なし）</text>
+
+            <path d="M680,90 L720,90" class="m-arrow-fwd"/>
+
+            <rect x="720" y="50" width="240" height="80" rx="8" class="m-box-client"/>
+            <text x="840" y="74" text-anchor="middle" class="m-lbl">HRtep 社（津賀平様）</text>
+            <text x="840" y="92" text-anchor="middle" class="m-mono">tsukahira@hrtep.com</text>
+            <text x="840" y="110" text-anchor="middle" class="m-sm">受信トレイで通知メールを確認</text>
+
+            <text x="20" y="170" class="m-hdr">② 返信フロー（黄色矢印・任意設定）</text>
+            <line x1="20" y1="178" x2="960" y2="178" stroke="#dfe5ee"/>
+
+            <rect x="720" y="200" width="240" height="80" rx="8" class="m-box-client"/>
+            <text x="840" y="224" text-anchor="middle" class="m-lbl">HRtep 社（津賀平様）</text>
+            <text x="840" y="242" text-anchor="middle" class="m-sm">通知メールを開いて「返信」</text>
+            <text x="840" y="260" text-anchor="middle" class="m-sm" style="font-style:italic;">Send mail as 設定済みなら</text>
+            <text x="840" y="274" text-anchor="middle" class="m-sm" style="font-style:italic;"><tspan class="m-mono" style="font-style:normal;">info@hrtep.com</tspan> から自動送信</text>
+
+            <path d="M720,240 L680,240" class="m-arrow-rev"/>
+
+            <rect x="480" y="200" width="200" height="80" rx="8" class="m-box-gws"/>
+            <text x="580" y="224" text-anchor="middle" class="m-lbl">Google Workspace</text>
+            <text x="580" y="242" text-anchor="middle" class="m-sm">送信メールサーバー</text>
+            <text x="580" y="260" text-anchor="middle" class="m-sm">From: <tspan class="m-mono">info@hrtep.com</tspan></text>
+            <text x="580" y="274" text-anchor="middle" class="m-sm" style="font-style:italic;">SES は関与しない</text>
+
+            <path d="M480,240 L240,240" class="m-arrow-rev"/>
+
+            <rect x="20" y="200" width="220" height="80" rx="8" class="m-box-user"/>
+            <text x="130" y="224" text-anchor="middle" class="m-lbl">サイト訪問者（送信者）</text>
+            <text x="130" y="244" text-anchor="middle" class="m-sm">差出人: <tspan class="m-mono">info@hrtep.com</tspan></text>
+            <text x="130" y="262" text-anchor="middle" class="m-sm">で返信メール受信</text>
+
+            <text x="490" y="305" text-anchor="middle" class="m-sm" style="font-size:11.5px;">青 = 受信フロー（フォームから HRtep 社へ） ／ 黄色 = 返信フロー（HRtep 社から訪問者へ）</text>
+          </svg>
+          <p class="caption">受信は SES → Google Workspace → tsukahira@ の単方向。返信は Workspace の標準機能のみ使用し、SES は関わりません。</p>
+        </div>
+
+        <h3>確定事項の一覧</h3>
         <table>
           <thead><tr><th style="width:30%">項目</th><th>内容</th></tr></thead>
           <tbody>
@@ -729,8 +819,72 @@
       <!-- ▼ 切替の流れ -->
       <section id="s05">
         <h2><span class="num">5</span>このあとの全体の流れ</h2>
-        <p class="lead">安井様 1 回の DNS 設定で Phase 2（メール送信構築）と Phase 3（新サイト公開）を同時完了する流れ。Phase 4（旧サイト解約）は後日。</p>
+        <p class="lead">2 段階で進めます。<strong>事前調整</strong>（HRtep 社内＋安井氏日程確認＋LeadX 社内）→ <strong>本作業</strong>（安井様 1 回の DNS 設定で Phase 2＋3 同時完了）。Phase 4（旧サイト解約）は後日。</p>
 
+        <h3>事前調整フェーズ（安井様への正式依頼前）</h3>
+        <p style="font-size:13.5px; color:var(--muted); margin-bottom:10px;">本書面を安井様に正式送付する前に、HRtep 社内の確認 → 安井様の作業日打診 → LeadX 社の AWS 関連付け、の 3 段の事前調整を行います。</p>
+        <div class="diagram">
+          <svg viewBox="0 0 980 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="事前調整フェーズフロー">
+            <style>
+              .p-lbl { font: 600 12.5px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .p-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .p-num { font: 700 14px 'JetBrains Mono', monospace; fill: #fff; }
+              .p-who { font: 600 10.5px 'JetBrains Mono', monospace; }
+              .p-box-us { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
+              .p-box-client { fill: #efeaff; stroke: #6e4cff; stroke-width: 1.5; }
+              .p-box-yasui { fill: #fff4e5; stroke: #ffb258; stroke-width: 1.5; }
+              .p-circle-us { fill: #1aa0c8; }
+              .p-circle-client { fill: #6e4cff; }
+              .p-circle-yasui { fill: #ffb258; }
+              .p-arrow { stroke: #556073; stroke-width: 1.5; fill: none; marker-end: url(#pa); }
+            </style>
+            <defs>
+              <marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#556073"/>
+              </marker>
+            </defs>
+
+            <text x="20" y="22" class="p-lbl" style="font-size:13px;">事前調整フェーズ（本書面を安井様へ送る前に実施）</text>
+            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
+
+            <rect x="40" y="50" width="280" height="100" rx="8" class="p-box-client"/>
+            <circle cx="60" cy="70" r="14" class="p-circle-client"/>
+            <text x="60" y="74" text-anchor="middle" class="p-num">A</text>
+            <text x="84" y="68" class="p-who" style="fill:#6e4cff;">HRtep社（津賀平様）</text>
+            <text x="84" y="86" class="p-lbl">3 項目を確認・準備</text>
+            <text x="50" y="106" class="p-sm">① <tspan style="font-weight:600;">tsukahira@hrtep.com</tspan> 受信先で OK か</text>
+            <text x="50" y="122" class="p-sm">② <tspan style="font-weight:600;">info@hrtep.com</tspan> 返信設定（任意・第 3 章）</text>
+            <text x="50" y="138" class="p-sm">③ 安井様への作業日打診（次工程）</text>
+
+            <rect x="340" y="50" width="280" height="100" rx="8" class="p-box-yasui"/>
+            <circle cx="360" cy="70" r="14" class="p-circle-yasui"/>
+            <text x="360" y="74" text-anchor="middle" class="p-num">B</text>
+            <text x="384" y="68" class="p-who" style="fill:#8b5a00;">HRtep社 ↔ 安井様</text>
+            <text x="384" y="86" class="p-lbl">作業日のすり合わせ</text>
+            <text x="350" y="106" class="p-sm">「○月○日にお名前.com Navi で</text>
+            <text x="350" y="122" class="p-sm">DNS 8 件をご設定いただけますか」と</text>
+            <text x="350" y="138" class="p-sm">HRtep 社経由で打診 → 作業日確定</text>
+
+            <path d="M320,100 L340,100" class="p-arrow"/>
+
+            <rect x="640" y="50" width="300" height="100" rx="8" class="p-box-us"/>
+            <circle cx="660" cy="70" r="14" class="p-circle-us"/>
+            <text x="660" y="74" text-anchor="middle" class="p-num">C</text>
+            <text x="684" y="68" class="p-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="684" y="86" class="p-lbl">AWS 関連付け・書面に確定値記入</text>
+            <text x="650" y="106" class="p-sm">安井様作業日の <strong>24〜48 時間前</strong> に</text>
+            <text x="650" y="122" class="p-sm"><tspan style="font-family:'JetBrains Mono',monospace; font-size:10.5px;">aws amplify create-domain-association</tspan></text>
+            <text x="650" y="138" class="p-sm">→ 5・7・8 の確定値を第 4 章表に記入</text>
+
+            <path d="M620,100 L640,100" class="p-arrow"/>
+
+            <text x="490" y="180" text-anchor="middle" class="p-sm" style="font-style:italic;">事前調整完了 → 確定値入りの第 4 章を HRtep 社経由で安井様へ正式送付（本作業フェーズへ）</text>
+            <path d="M790,150 L790,170 L490,170 L490,180" class="p-arrow"/>
+          </svg>
+          <p class="caption">青 = LeadX社作業 ／ 紫 = HRtep社作業 ／ オレンジ = HRtep社経由で安井様と調整</p>
+        </div>
+
+        <h3>本作業フェーズ（安井様への正式依頼後）</h3>
         <div class="diagram">
           <svg viewBox="0 0 980 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="切替全体フロー">
             <style>
