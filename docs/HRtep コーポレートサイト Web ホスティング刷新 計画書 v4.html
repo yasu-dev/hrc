@@ -680,78 +680,95 @@
         </p>
 
         <div class="diagram">
-          <svg viewBox="0 0 940 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DNS レコード階層図">
+          <svg viewBox="0 0 940 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DNS 8 件の用途別内訳図">
             <style>
               .d-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
               .d-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
-              .d-mono { font: 12px 'JetBrains Mono', monospace; fill: #0e1726; }
+              .d-mono { font: 11px 'JetBrains Mono', monospace; fill: #0e1726; }
               .d-hdr { font: 700 14px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
+              .d-grp-hdr { font: 700 13px 'Noto Sans JP', sans-serif; }
               .d-keep { fill: #e8f7ee; stroke: #2ea85a; stroke-width: 1.5; }
               .d-add { fill: #fff8d6; stroke: #c89c00; stroke-width: 2; }
               .d-change { fill: #fff4e5; stroke: #ffb258; stroke-width: 2; }
               .d-line { stroke: #556073; stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+              .d-row-add { fill: #fffceb; stroke: #c89c00; stroke-width: 1; }
+              .d-row-change { fill: #fff8eb; stroke: #ffb258; stroke-width: 1; }
             </style>
-            <defs>
-              <marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill="#1a2d4d"/>
-              </marker>
-            </defs>
 
-            <text x="470" y="22" text-anchor="middle" class="d-hdr">hrtep.com の DNS 構造</text>
+            <text x="470" y="22" text-anchor="middle" class="d-hdr">DNS 8 件の用途別内訳</text>
 
-            <rect x="370" y="40" width="200" height="44" rx="6" class="d-keep"/>
-            <text x="470" y="60" text-anchor="middle" class="d-mono">hrtep.com</text>
-            <text x="470" y="76" text-anchor="middle" class="d-sm">既存レコード</text>
+            <rect x="350" y="36" width="240" height="40" rx="6" class="d-keep"/>
+            <text x="470" y="54" text-anchor="middle" class="d-mono" style="font-size:13px;">hrtep.com</text>
+            <text x="470" y="70" text-anchor="middle" class="d-sm">対象ドメイン</text>
 
-            <line x1="470" y1="84" x2="470" y2="92" class="d-line"/>
-            <line x1="180" y1="92" x2="760" y2="92" class="d-line"/>
-            <line x1="180" y1="92" x2="180" y2="100" class="d-line"/>
-            <line x1="470" y1="92" x2="470" y2="100" class="d-line"/>
-            <line x1="760" y1="92" x2="760" y2="100" class="d-line"/>
+            <line x1="470" y1="76" x2="470" y2="86" class="d-line"/>
+            <line x1="170" y1="86" x2="780" y2="86" class="d-line"/>
+            <line x1="170" y1="86" x2="170" y2="96" class="d-line"/>
+            <line x1="470" y1="86" x2="470" y2="96" class="d-line"/>
+            <line x1="780" y1="86" x2="780" y2="96" class="d-line"/>
 
-            <rect x="80" y="100" width="200" height="60" rx="6" class="d-keep"/>
-            <text x="180" y="120" text-anchor="middle" class="d-lbl">MX（受信メール）</text>
-            <text x="180" y="138" text-anchor="middle" class="d-sm">Google Workspace 等 6 件</text>
-            <text x="180" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">変更しない</text>
+            <!-- Group ① メール送信 (rows 1-4) -->
+            <rect x="30" y="100" width="280" height="320" rx="8" class="d-add"/>
+            <text x="170" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">① メール送信認証</text>
+            <text x="170" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新規追加 4 件 (rows 1〜4)</text>
+            <text x="170" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">送信ドメイン send.hrtep.com 配下</text>
+            <line x1="50" y1="170" x2="290" y2="170" stroke="#c89c00" stroke-width="0.8" stroke-dasharray="2 2"/>
 
-            <rect x="370" y="100" width="200" height="60" rx="6" class="d-keep"/>
-            <text x="470" y="120" text-anchor="middle" class="d-lbl">SPF / DMARC</text>
-            <text x="470" y="138" text-anchor="middle" class="d-sm">apex の TXT</text>
-            <text x="470" y="152" text-anchor="middle" class="d-sm" style="font-style:italic;">変更しない</text>
+            <rect x="50" y="180" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="170" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 1: DKIM CNAME #1</text>
+            <text x="170" y="216" text-anchor="middle" class="d-mono">qwfs5s5b...._domainkey.send</text>
 
-            <rect x="660" y="100" width="200" height="60" rx="6" class="d-change"/>
-            <text x="760" y="120" text-anchor="middle" class="d-lbl" style="fill:#8b5a00;">A（apex / www）</text>
-            <text x="760" y="138" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">現行 WP の IP</text>
-            <text x="760" y="152" text-anchor="middle" class="d-sm" style="font-style:italic; fill:#8b5a00; font-weight:600;">→ Amplify 値に変更</text>
+            <rect x="50" y="236" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="170" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 2: DKIM CNAME #2</text>
+            <text x="170" y="272" text-anchor="middle" class="d-mono">x4mutpss...._domainkey.send</text>
 
-            <path d="M470,160 L470,190" stroke="#1a2d4d" stroke-width="1.5" fill="none" marker-end="url(#aa)"/>
+            <rect x="50" y="292" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="170" y="310" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 3: DKIM CNAME #3</text>
+            <text x="170" y="328" text-anchor="middle" class="d-mono">u26vbziy...._domainkey.send</text>
 
-            <rect x="270" y="190" width="400" height="44" rx="6" class="d-add"/>
-            <text x="470" y="210" text-anchor="middle" class="d-mono" style="fill:#8b5a00; font-weight:700;">send.hrtep.com</text>
-            <text x="470" y="226" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新しいサブドメイン（今回追加）</text>
+            <rect x="50" y="348" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="170" y="366" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 4: SPF TXT</text>
+            <text x="170" y="384" text-anchor="middle" class="d-mono">send / v=spf1 ...</text>
 
-            <line x1="470" y1="234" x2="470" y2="240" class="d-line"/>
-            <line x1="185" y1="240" x2="755" y2="240" class="d-line"/>
-            <line x1="185" y1="240" x2="185" y2="248" class="d-line"/>
-            <line x1="375" y1="240" x2="375" y2="248" class="d-line"/>
-            <line x1="565" y1="240" x2="565" y2="248" class="d-line"/>
-            <line x1="755" y1="240" x2="755" y2="248" class="d-line"/>
+            <!-- Group ② サイト切替 (rows 5-6) -->
+            <rect x="330" y="100" width="280" height="200" rx="8" class="d-change"/>
+            <text x="470" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">② 新サイト切替</text>
+            <text x="470" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">既存変更 2 件 (rows 5〜6)</text>
+            <text x="470" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">apex / www のレコード値置換</text>
+            <line x1="350" y1="170" x2="590" y2="170" stroke="#ffb258" stroke-width="0.8" stroke-dasharray="2 2"/>
 
-            <rect x="95" y="248" width="180" height="32" rx="4" class="d-add"/>
-            <text x="185" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 1（DKIM）</text>
+            <rect x="350" y="180" width="240" height="48" rx="4" class="d-row-change"/>
+            <text x="470" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 5: A（apex）</text>
+            <text x="470" y="216" text-anchor="middle" class="d-mono">@ → Amplify IP（依頼直前確定）</text>
 
-            <rect x="285" y="248" width="180" height="32" rx="4" class="d-add"/>
-            <text x="375" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 2（DKIM）</text>
+            <rect x="350" y="236" width="240" height="48" rx="4" class="d-row-change"/>
+            <text x="470" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 6: CNAME（www）</text>
+            <text x="470" y="272" text-anchor="middle" class="d-mono">main.d3561ojkga3nyn.amplifyapp.com</text>
 
-            <rect x="475" y="248" width="180" height="32" rx="4" class="d-add"/>
-            <text x="565" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">CNAME 3（DKIM）</text>
+            <!-- Group ③ HTTPS 検証 (rows 7-8) -->
+            <rect x="630" y="100" width="280" height="200" rx="8" class="d-add"/>
+            <text x="770" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">③ HTTPS 化（ACM 検証）</text>
+            <text x="770" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新規追加 2 件 (rows 7〜8)</text>
+            <text x="770" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">SSL 証明書の所有権検証用</text>
+            <line x1="650" y1="170" x2="890" y2="170" stroke="#c89c00" stroke-width="0.8" stroke-dasharray="2 2"/>
 
-            <rect x="665" y="248" width="180" height="32" rx="4" class="d-add"/>
-            <text x="755" y="268" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:600;">TXT（SPF）</text>
+            <rect x="650" y="180" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="770" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 7: ACM 検証 CNAME（apex 用）</text>
+            <text x="770" y="216" text-anchor="middle" class="d-mono">_xxx → _yyy.acm-validations.aws</text>
 
-            <text x="470" y="305" text-anchor="middle" class="d-sm" style="font-size:12px;">緑 = 変更しない ／ 黄色 = 新規追加 ／ オレンジ = 既存値を変更</text>
+            <rect x="650" y="236" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="770" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 8: ACM 検証 CNAME（www 用）</text>
+            <text x="770" y="272" text-anchor="middle" class="d-mono">_xxx.www → _yyy.acm-validations.aws</text>
+
+            <!-- 触らない既存レコードの注記 -->
+            <rect x="330" y="320" width="580" height="80" rx="8" class="d-keep"/>
+            <text x="620" y="342" text-anchor="middle" class="d-grp-hdr" style="fill:#1d6d3c;">変更しない既存レコード</text>
+            <text x="620" y="360" text-anchor="middle" class="d-sm" style="fill:#1d6d3c;">MX（Google Workspace 6 件）／ apex SPF TXT ／ DMARC TXT ／ その他</text>
+            <text x="620" y="378" text-anchor="middle" class="d-sm" style="fill:#1d6d3c; font-style:italic;">受信メール・既存サービスに影響なし</text>
+
+            <text x="470" y="438" text-anchor="middle" class="d-sm" style="font-size:12px;">緑 = 触らない既存／黄色 = 新規追加（① メール 4 件 + ③ HTTPS 2 件）／オレンジ = 既存値の変更（② 切替 2 件）</text>
           </svg>
-          <p class="caption">緑 = 既存（触らない） ／ 黄色 = 今回追加。すべて <code>send.hrtep.com</code> 配下のため、apex (hrtep.com) には一切影響しません。</p>
+          <p class="caption">3 グループ計 8 件。① メール送信認証は <code>send.hrtep.com</code> 配下、② サイト切替は <code>hrtep.com</code> apex / www の値変更、③ HTTPS 化は ACM 証明書の所有権検証用 CNAME。受信メールに使う MX / SPF / DMARC は触りません。</p>
         </div>
 
         <table>
