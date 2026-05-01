@@ -1,0 +1,40 @@
+# ＨＲｔｅｐ株式会社
+
+> 外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するＨＲｔｅｐ株式会社の公式コーポレートサイト。
+
+ＨＲｔｅｐ株式会社（HRtep Co., Ltd.）は2021年9月設立の人材紹介・IT事業会社です。本社は東京都中央区京橋。代表取締役は津賀平 隆浩。
+
+主要事業は以下の2軸：
+
+1. **外国人材事業** — ＨＲｔｅｐプラットフォームを活用した外国人材採用支援。ベトナム・ミャンマー・インドネシア・フィリピン等東南アジアからの採用支援、在留資格（技術・人文知識・国際業務、特定技能1号・2号）対応、受入研修支援、アウトソーシング。
+2. **IT事業** — DX支援、AI活用支援（生成AI・業務自動化）、システム開発、Webアプリ開発、システム運用・保守、IT教育・研修。30件以上のプロジェクト実績。
+
+## 会社概要・代表挨拶
+
+- [会社概要](https://hrtep.com/about): 代表挨拶、経営理念、企業理念・ビジョン（Purpose / Mission / Vision）、設立、所在地、事業内容、アクセス情報
+
+## サービス
+
+- [サービス一覧](https://hrtep.com/services): 2事業領域の概観
+- [外国人材事業](https://hrtep.com/services/hr): ＨＲｔｅｐプラットフォーム、外国人材採用支援、受入研修支援、アウトソーシングのサービス詳細とFAQ
+- [IT事業](https://hrtep.com/services/it): DX支援、AI活用支援、システム開発、Webアプリ開発、運用・保守、IT教育・研修のサービス詳細とFAQ
+
+## 実績
+
+- [ポートフォリオ](https://hrtep.com/portfolio): 製造業・物流・不動産・コールセンター・人材サービス・医療・小売・教育・EC・金融など各業界での導入事例10件
+
+## お知らせ
+
+- [お知らせ一覧](https://hrtep.com/news): 全プレスリリース・お知らせ
+- [IT事業（DX支援・AI活用支援・システム開発）を開始しました](https://hrtep.com/news/it-service-launch) (2024-04-01)
+- [ＨＲｔｅｐプラットフォームをリリースしました](https://hrtep.com/news/hrtep-platform-release) (2022-09-01)
+- [ＨＲｔｅｐ株式会社を設立しました](https://hrtep.com/news/company-established) (2021-09-01)
+
+## 問い合わせ・法務
+
+- [お問い合わせ](https://hrtep.com/contact): 採用支援・IT事業に関するご相談フォーム（通常2営業日以内に返信）
+- [プライバシーポリシー](https://hrtep.com/privacy): 個人情報の取扱いに関する方針
+
+## 構造化データ
+
+サイト全体で schema.org の Organization / LocalBusiness / Service / OfferCatalog / FAQPage / NewsArticle / BreadcrumbList を提供。`sitemap.xml` も提供。

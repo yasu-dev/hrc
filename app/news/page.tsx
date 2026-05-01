@@ -10,6 +10,7 @@ const sortedNews = [...NEWS_ITEMS].sort((a, b) => b.date.localeCompare(a.date));
 export const metadata: Metadata = {
   title: 'お知らせ',
   description: 'ＨＲｔｅｐ株式会社のお知らせ・プレスリリース一覧。最新のニュースをお届けします。',
+  alternates: { canonical: '/news' },
   openGraph: {
     title: 'お知らせ | ＨＲｔｅｐ株式会社',
     description: 'ＨＲｔｅｐ株式会社のお知らせ・プレスリリース一覧。最新のニュースをお届けします。',

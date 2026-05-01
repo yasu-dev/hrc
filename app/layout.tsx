@@ -24,6 +24,8 @@ const notoSansJP = Noto_Sans_JP({
   display: 'swap',
 });
 
+const isProduction = process.env.NEXT_PUBLIC_SITE_ENV === 'production';
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -31,6 +33,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: [
       { url: '/favicon-current-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -49,10 +54,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: isProduction
+    ? { index: true, follow: true }
+    : { index: false, follow: false, nocache: true },
 };
 
 export default function RootLayout({

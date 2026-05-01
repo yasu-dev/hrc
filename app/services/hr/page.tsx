@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: '外国人材事業',
   description:
     'ＨＲｔｅｐプラットフォームを活用した外国人材の採用広報支援・採用実務支援。企業の外国人材採用を総合的にサポートします。',
+  alternates: { canonical: '/services/hr' },
   openGraph: {
     title: '外国人材事業 | ＨＲｔｅｐ株式会社',
     description:

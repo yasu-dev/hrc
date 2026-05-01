@@ -3,12 +3,14 @@ import { Container } from '@/components/ui/Container';
 import { PageHero } from '@/components/ui/PageHero';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { CTABanner } from '@/components/ui/CTABanner';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { PortfolioGrid } from '@/components/portfolio/PortfolioGrid';
 
 export const metadata: Metadata = {
   title: 'ポートフォリオ',
   description:
     'ＨＲｔｅｐ株式会社のIT事業の実績一覧。DX支援・AI活用支援・システム開発・Webアプリ開発のプロジェクト事例をご紹介します。',
+  alternates: { canonical: '/portfolio' },
   openGraph: {
     title: 'ポートフォリオ | ＨＲｔｅｐ株式会社',
     description:
@@ -25,6 +27,7 @@ export default function PortfolioPage() {
       </Container>
       <section className="py-20 md:py-28">
         <Container>
+          <SectionHeading title="Case Studies" subtitle="実績一覧" />
           <PortfolioGrid />
         </Container>
       </section>

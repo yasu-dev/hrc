@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // 旧 WordPress 由来の trailing-slash 付き URL（例 `/blog/post/`）は、Next.js の
+  // 既定の trailing-slash 正規化 308 → 後段の本 redirects 308 で 2-hop となる。
+  // Google は 2-hop を許容するため SEO 実害は微小と判断し、サイト全体挙動への影響を
+  // 避けるため `skipTrailingSlashRedirect: true` は採用しない。
   async redirects() {
     return [
       // 既存 WP のページ → 新サイトの対応ページ

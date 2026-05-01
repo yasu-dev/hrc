@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'IT事業',
   description:
     'DX支援・AI活用支援・システム開発・Webアプリ開発。企業のデジタル変革を戦略策定から開発・運用まで一貫して支援します。',
+  alternates: { canonical: '/services/it' },
   openGraph: {
     title: 'IT事業 | ＨＲｔｅｐ株式会社',
     description:
