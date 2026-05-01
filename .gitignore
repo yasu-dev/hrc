@@ -44,3 +44,16 @@ next-env.d.ts
 # Local Netlify folder
 .netlify
 public/images/about/ceo-original.jpg
+
+# AWS access keys / credentials (NEVER commit)
+*accessKeys*.csv
+*credentials*.csv
+*_accessKeys.csv
+.aws/
+*.pem
+
+# Documents not for public repo (Phase 1 prep)
+docs/概要.m4a
+docs/old/
+docs/Untitled-1.ini
+docs/申請内容（日本語）.txt

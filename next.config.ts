@@ -3,6 +3,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // 既存 WP のページ → 新サイトの対応ページ
       {
         source: '/company',
         destination: '/about',
@@ -16,6 +17,47 @@ const nextConfig: NextConfig = {
       {
         source: '/press',
         destination: '/news',
+        permanent: true,
+      },
+      // 既存 WP の廃止ページ群（新サイトに対応なし）→ トップへ集約 301
+      {
+        source: '/helpful/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/surely/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/document/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/e-magazine/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/blog/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/article/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/register/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/speciallist/:path*',
+        destination: '/',
         permanent: true,
       },
     ];
