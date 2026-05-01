@@ -310,10 +310,10 @@
     <header class="hero">
       <div class="wrap">
         <h1>HRtep コーポレートサイト 移行計画書 <span style="color: var(--cyan); font-size: 22px;">v4</span></h1>
-        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。本書面 1 通でHRtep社・安井様への必要事項がすべて完結します。</p>
+        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。HRtep社および安井様への必要事項を本書面に記載。</p>
         <div class="now">
           <p class="label">現在の状況</p>
-          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（6 件）+ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 を一括完了し、新サイト本番稼働に至ります。</p>
+          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（6 件）+ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 が完了し、新サイトが本番稼働します。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
@@ -326,9 +326,9 @@
 
     <div class="wrap">
 
-      <!-- ▼ ひとめで分かる現状 -->
+      <!-- ▼ 現状 -->
       <section id="s00">
-        <h2><span class="num">0</span>ひとめで分かる現状</h2>
+        <h2><span class="num">0</span>現状</h2>
         <p class="lead">移行作業は 4 段階。現在 2 段階目（Phase 2）の終盤、安井様 DNS 設定待ち。</p>
 
         <h3>進捗</h3>
@@ -355,8 +355,8 @@
           <div class="step-card active">
             <div class="step-num">1</div>
             <p class="step-who">安井様（取次は HRtep 社経由・1 回のみ）</p>
-            <p class="step-title">DNS レコード 6 件を一括設定</p>
-            <p class="step-desc">本書面 第 4 章をお渡しください。CNAME 4 件 + A レコード変更 2 件を一度の依頼で完結（所要 15〜20 分）。</p>
+            <p class="step-title">DNS レコード 6 件を設定</p>
+            <p class="step-desc">本書面 第 4 章を安井様にお渡しください。CNAME 3 件 + SPF TXT 1 件 + A レコード変更 2 件、所要 15〜20 分。</p>
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
@@ -399,7 +399,7 @@
             <p class="role-name">安井様（お名前.com 管理者）</p>
             <p class="role-who">DNS 設定（1 回のみ）</p>
             <ul>
-              <li class="wait">DNS レコード 6 件を一括設定</li>
+              <li class="wait">DNS レコード 6 件を設定</li>
               <li style="font-size:12px; color:var(--muted); padding-left:22px;">　└ DKIM CNAME 4 + A レコード変更 2</li>
             </ul>
             <p style="font-size:11.5px; color:var(--muted); margin: 8px 0 0; line-height:1.5;">※ LeadX社からの直接連絡は行わず、HRtep社経由で取次いただきます。</p>
@@ -540,7 +540,7 @@
 
         <div class="callout warn">
           <b>本章の使い方</b>
-          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 15〜20 分程度の見込み。今回の DNS 設定で Phase 2（メール送信構築）と Phase 3（DNS 切替）を一括完了させます。
+          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 15〜20 分程度の見込み。今回の DNS 設定で Phase 2（メール送信構築）と Phase 3（DNS 切替）を同時に完了します。
         </div>
 
         <h3>設定していただく 6 件のレコード</h3>
@@ -708,7 +708,7 @@
               </marker>
             </defs>
 
-            <text x="20" y="22" class="f-lbl" style="font-size:13px;">Phase 2 + 3 統合フロー（安井様作業 1 回で完結）</text>
+            <text x="20" y="22" class="f-lbl" style="font-size:13px;">Phase 2 + 3 統合フロー（安井様作業 1 回）</text>
             <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
 
             <rect x="40" y="50" width="220" height="60" rx="8" class="f-box-client"/>
@@ -722,7 +722,7 @@
             <circle cx="300" cy="70" r="14" class="f-circle-yasui"/>
             <text x="300" y="74" text-anchor="middle" class="f-num">2</text>
             <text x="324" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
-            <text x="324" y="86" class="f-lbl">DNS 6 件を一括設定</text>
+            <text x="324" y="86" class="f-lbl">DNS 6 件を設定</text>
             <text x="324" y="102" class="f-sm">DKIM 4 + A レコード 2 = 15〜20 分</text>
 
             <path d="M260,80 L280,80" class="f-arrow"/>
