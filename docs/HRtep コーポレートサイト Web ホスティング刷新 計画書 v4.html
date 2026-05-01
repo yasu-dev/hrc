@@ -309,16 +309,16 @@
   <body>
     <header class="hero">
       <div class="wrap">
-        <h1>HRtep コーポレートサイト 移行計画書 <span style="color: var(--cyan); font-size: 22px;">v4</span></h1>
-        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。HRtep社および安井様への必要事項を本書面に記載。</p>
+        <h1>HRtep コーポレートサイト DNS 設定ご依頼書 <span style="color: var(--cyan); font-size: 22px;">v4</span></h1>
+        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">HRtep 株式会社のコーポレートサイトを AWS Amplify Hosting に切替えるため、お名前.com Navi で DNS レコード 8 件のご設定をお願いする依頼書です。</p>
         <div class="now">
-          <p class="label">現在の状況</p>
-          <p>LeadX社の事前作業は<strong style="color:#fff;">完了済み</strong>。残るは<strong style="color:#fff;">HRtep 社内の事前調整（受信先 OK 確認・任意の返信設定・安井様の作業日打診）→ 安井様 1 回の DNS 設定（8 件）→ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 が完了し、新サイトが本番稼働します。</p>
+          <p class="label">ご依頼内容</p>
+          <p><strong style="color:#fff;">DNS レコード 8 件の設定を 1 回でお願いいたします。</strong>新規追加 6 件（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）+ 既存値変更 2 件（apex A / www CNAME）。所要 20〜25 分程度の見込みです。受信メール（MX）には影響しません。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
-          <span>仮 URL: <b>main.d3561ojkga3nyn.amplifyapp.com</b></span>
-          <span>更新: <b>2026-05-01</b></span>
+          <span>レジストラ・DNS 管理: <b>お名前.com Navi</b></span>
+          <span>更新: <b>2026-05-02</b></span>
           <span>版数: <b>v4</b></span>
         </div>
       </div>
@@ -326,352 +326,43 @@
 
     <div class="wrap">
 
-      <!-- ▼ 現状 -->
+      <!-- ▼ §0 ご依頼の概要 -->
       <section id="s00">
-        <h2><span class="num">0</span>現状</h2>
-        <p class="lead">移行作業は 4 段階。現在 2 段階目（Phase 2）の終盤、安井様 DNS 設定待ち。</p>
+        <h2><span class="num">0</span>ご依頼の概要</h2>
+        <p class="lead">HRtep 株式会社のコーポレートサイトを、現行の WordPress（お名前.com 共用ホスティング）から AWS Amplify Hosting へ切替えます。これに伴い、お名前.com Navi で DNS レコード 8 件のご設定をお願いいたします。</p>
 
-        <h3>進捗</h3>
-        <div class="phase-bar">
-          <div class="phase-step done">
-            <div class="ph-num">PHASE 1</div>
-            <div class="ph-name">サイト構築</div>
-            <div class="ph-status">✓ 完了</div>
-          </div>
-          <div class="phase-step now">
-            <div class="ph-num">PHASE 2 + 3</div>
-            <div class="ph-name">メール構築・DNS 切替（統合）</div>
-            <div class="ph-status">▶ 終盤・安井様 DNS 待ち</div>
-          </div>
-          <div class="phase-step todo" style="grid-column: span 2;">
-            <div class="ph-num">PHASE 4</div>
-            <div class="ph-name">旧サイト解約</div>
-            <div class="ph-status">未着手（Phase 3 完了から 14 日後・LeadX 社→HRtep 社→安井様の取次で開始）</div>
-          </div>
-        </div>
-
-        <h3>次の 4 ステップ</h3>
-        <div class="next-steps" style="grid-template-columns: repeat(4, 1fr);">
-          <div class="step-card active">
-            <div class="step-num">1</div>
-            <p class="step-who">HRtep 社（津賀平様）</p>
-            <p class="step-title">事前調整 3 項目</p>
-            <p class="step-desc">① <code>tsukahira@hrtep.com</code> 受信先で OK か確認<br>② <code>info@hrtep.com</code> の返信設定（任意・第 3 章）<br>③ 安井様への作業日打診（HRtep 社経由）</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">2</div>
-            <p class="step-who">安井様（取次は HRtep 社経由・1 回のみ）</p>
-            <p class="step-title">DNS レコード 8 件を設定</p>
-            <p class="step-desc">作業日確定後、LeadX 社が確定値を記入した第 4 章を HRtep 社経由で安井様へお渡しします。所要 20〜25 分。</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">3</div>
-            <p class="step-who">HRtep 社</p>
-            <p class="step-title">Verification メールのリンクをクリック</p>
-            <p class="step-desc">LeadX 社が SES 設定を進めると、AWS から Verification メール（no-reply-aws@amazon.com）が届きます。リンクを 1 回クリックするだけで完了。</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">4</div>
-            <p class="step-who">LeadX 社</p>
-            <p class="step-title">本番切替・動作確認</p>
-            <p class="step-desc">DNS 反映と Verification 完了を確認後、SSL 証明書発行・フォーム送信 E2E テストを実施し、新サイト本番化。</p>
-          </div>
-        </div>
-
-        <h3>役割分担</h3>
-        <div class="roles">
-          <div class="role-card us">
-            <p class="role-name">LeadX社</p>
-            <p class="role-who">技術実装・運用</p>
-            <ul>
-              <li class="done">新サイト構築・テスト</li>
-              <li class="done">AWS 環境構築（メール送信基盤）</li>
-              <li class="done">問合せフォーム実装</li>
-              <li class="done">運用ドキュメント整備</li>
-              <li class="wait">Amplify Custom Domain 関連付け（依頼書送付直前に実行 → 5・7・8 の確定値を取得）</li>
-              <li class="wait">SES Identity 登録・環境変数設定</li>
-              <li class="wait">DNS 切替の監視（Phase 3）</li>
-            </ul>
-          </div>
-          <div class="role-card client">
-            <p class="role-name">HRtep社</p>
-            <p class="role-who">事前調整・取次・1 回作業</p>
-            <ul>
-              <li class="now">事前調整 3 項目（受信先確認・<code>info@</code> 返信設定・安井様作業日打診）</li>
-              <li class="wait">確定値入りの第 4 章を安井様へ取次</li>
-              <li class="wait">Verification メールのリンクをクリック（1 回）</li>
-              <li class="wait">切替後の動作確認</li>
-            </ul>
-          </div>
-          <div class="role-card yasui">
-            <p class="role-name">安井様（お名前.com 管理者）</p>
-            <p class="role-who">DNS 設定（1 回のみ）</p>
-            <ul>
-              <li class="wait">DNS レコード 8 件を設定</li>
-              <li style="font-size:12px; color:var(--muted); padding-left:22px;">　└ DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2 + 既存 A/CNAME 変更 2</li>
-            </ul>
-            <p style="font-size:11.5px; color:var(--muted); margin: 8px 0 0; line-height:1.5;">※ LeadX社からの直接連絡は行わず、HRtep社経由で取次いただきます。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ▼ 全体構成 -->
-      <section id="s01">
-        <h2><span class="num">1</span>移行前と移行後の全体構成</h2>
-        <p class="lead">何が変わって、何が変わらないかを 1 枚の図で整理。</p>
-
-        <div class="diagram">
-          <svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="移行前と移行後の構成比較">
-            <style>
-              .lbl { font: 600 12px 'Noto Sans JP', sans-serif; fill: #0e1726; }
-              .lbl-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
-              .lbl-hdr { font: 700 14px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
-              .box { fill: #fff; stroke: #dfe5ee; stroke-width: 1.5; }
-              .box-change { fill: #fff8d6; stroke: #c89c00; stroke-width: 2; }
-              .box-keep { fill: #e8f7ee; stroke: #2ea85a; stroke-width: 1.5; }
-              .arrow { stroke: #1a2d4d; stroke-width: 1.5; fill: none; marker-end: url(#a); }
-            </style>
-            <defs>
-              <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill="#1a2d4d"/>
-              </marker>
-            </defs>
-            <!-- 左：移行前 -->
-            <text x="180" y="30" text-anchor="middle" class="lbl-hdr">移行前（現状）</text>
-            <rect x="50" y="50" width="260" height="50" rx="6" class="box-keep"/>
-            <text x="180" y="72" text-anchor="middle" class="lbl">① レジストラ：お名前.com</text>
-            <text x="180" y="90" text-anchor="middle" class="lbl-sm">変更なし</text>
-            <rect x="50" y="110" width="260" height="50" rx="6" class="box-keep"/>
-            <text x="180" y="132" text-anchor="middle" class="lbl">② DNS：お名前.com</text>
-            <text x="180" y="150" text-anchor="middle" class="lbl-sm">レコード追加のみ（メール用）</text>
-            <rect x="50" y="170" width="260" height="50" rx="6" class="box-change"/>
-            <text x="180" y="192" text-anchor="middle" class="lbl" style="fill:#8b5a00; font-weight:700;">③ サイト：WordPress</text>
-            <text x="180" y="210" text-anchor="middle" class="lbl-sm" style="fill:#8b5a00;">→ 刷新対象</text>
-            <rect x="50" y="230" width="260" height="50" rx="6" class="box-keep"/>
-            <text x="180" y="252" text-anchor="middle" class="lbl">④ 受信メール：Google Workspace</text>
-            <text x="180" y="270" text-anchor="middle" class="lbl-sm">変更なし</text>
-            <rect x="50" y="290" width="260" height="50" rx="6" class="box-change"/>
-            <text x="180" y="312" text-anchor="middle" class="lbl" style="fill:#8b5a00; font-weight:700;">⑤ 送信メール：Contact Form 7</text>
-            <text x="180" y="330" text-anchor="middle" class="lbl-sm" style="fill:#8b5a00;">→ 刷新対象</text>
-
-            <!-- 矢印 -->
-            <path d="M340,180 L640,180" class="arrow"/>
-            <text x="490" y="170" text-anchor="middle" class="lbl-sm">刷新</text>
-
-            <!-- 右：移行後 -->
-            <text x="800" y="30" text-anchor="middle" class="lbl-hdr">移行後</text>
-            <rect x="670" y="50" width="260" height="50" rx="6" class="box"/>
-            <text x="800" y="72" text-anchor="middle" class="lbl">① レジストラ：お名前.com</text>
-            <text x="800" y="90" text-anchor="middle" class="lbl-sm">そのまま</text>
-            <rect x="670" y="110" width="260" height="50" rx="6" class="box"/>
-            <text x="800" y="132" text-anchor="middle" class="lbl">② DNS：お名前.com</text>
-            <text x="800" y="150" text-anchor="middle" class="lbl-sm">そのまま（メール用レコードを追加）</text>
-            <rect x="670" y="170" width="260" height="50" rx="6" class="box-keep"/>
-            <text x="800" y="192" text-anchor="middle" class="lbl" style="fill:#1d6d3c; font-weight:700;">③ サイト：AWS Amplify</text>
-            <text x="800" y="210" text-anchor="middle" class="lbl-sm" style="fill:#1d6d3c;">Next.js + Tailwind</text>
-            <rect x="670" y="230" width="260" height="50" rx="6" class="box"/>
-            <text x="800" y="252" text-anchor="middle" class="lbl">④ 受信メール：Google Workspace</text>
-            <text x="800" y="270" text-anchor="middle" class="lbl-sm">そのまま</text>
-            <rect x="670" y="290" width="260" height="50" rx="6" class="box-keep"/>
-            <text x="800" y="312" text-anchor="middle" class="lbl" style="fill:#1d6d3c; font-weight:700;">⑤ 送信メール：Amazon SES</text>
-            <text x="800" y="330" text-anchor="middle" class="lbl-sm" style="fill:#1d6d3c;">AWS 内で完結</text>
-          </svg>
-          <p class="caption">黄色 = 変更あり ／ 緑 = 変更なし。受信メール（Google Workspace）には一切影響しません。</p>
-        </div>
-
-        <div class="callout">
-          <b>ポイント</b>
-          ① レジストラ・② DNS・④ 受信メールは<strong>そのまま継続</strong>。新しく構築するのは「③ サイトを置く場所」と「⑤ お問合せメールの送信経路」の 2 点のみ。受信メールへの影響はゼロです。
-        </div>
-      </section>
-
-      <!-- ▼ 完了済み -->
-      <section id="s02">
-        <h2><span class="num">2</span>LeadX社で完了している作業（参考）</h2>
-        <p class="lead">どこまで進んでいるか、ひと目で分かるように整理。詳細は不要なら読み飛ばしてください。</p>
-
-        <h3>新サイト（Phase 1：完了）</h3>
-        <ul class="check">
-          <li>新サイトを <code>https://main.d3561ojkga3nyn.amplifyapp.com</code> で稼働中（仮 URL）</li>
-          <li>全 13 ページ動作確認済み（トップ・会社概要・サービス・実績・お知らせ・お問合せ・プライバシーポリシー など）</li>
-          <li>旧 WordPress URL からの自動転送を 11 件設定（旧 <code>/blog/</code> や <code>/company</code> へのアクセスを新サイトに正しく誘導）</li>
-        </ul>
-
-        <h3>メール送信基盤（Phase 2：LeadX社作業完了）</h3>
-        <ul class="check">
-          <li>Amazon SES（メール送信サービス）の AWS 環境を構築済み</li>
-          <li>お問合せフォームを Amazon SES から送信する形に書き換え済み</li>
-          <li>ロボットによる不正送信を防ぐ「reCAPTCHA」を本番稼働済み（実機テスト合格）</li>
-          <li>プライバシーポリシーへの同意チェックボックスを必須化（個人情報保護法に対応）</li>
-          <li>不正送信や苦情の自動監視（CloudWatch アラーム）を構築・テスト済み</li>
-          <li>運用マニュアル・障害対応手順を整備済み</li>
-        </ul>
-
-        <p style="font-size:13.5px; color:var(--muted); margin-top:18px;">
-          ※ 上記で「お問合せフォームから送信されたメールが届くまでの仕組み」が完成しています。残るは安井様への DNS 設定依頼（8 件・1 回）と、HRtep社の Verification メールクリック（1 回）のみです。
-        </p>
-      </section>
-
-      <!-- ▼ メール経路の確定事項 -->
-      <section id="s03">
-        <h2><span class="num">3</span>お問合せフォームのメール経路（確定事項）</h2>
-        <p class="lead">フォームに入力された問合せが届くまで、返信が送信者に戻るまでの流れを 1 枚に整理。</p>
-
-        <div class="diagram">
-          <svg viewBox="0 0 980 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="メール経路図">
-            <style>
-              .m-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
-              .m-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
-              .m-mono { font: 11px 'JetBrains Mono', monospace; fill: #0e1726; }
-              .m-hdr { font: 700 13.5px 'Noto Sans JP', sans-serif; fill: #0b1a30; }
-              .m-arrow-fwd { stroke: #1aa0c8; stroke-width: 2; fill: none; marker-end: url(#mfwd); }
-              .m-arrow-rev { stroke: #c89c00; stroke-width: 2; fill: none; marker-end: url(#mrev); }
-              .m-box-user { fill: #f5f7fb; stroke: #95a3b9; stroke-width: 1.5; }
-              .m-box-aws { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
-              .m-box-client { fill: #efeaff; stroke: #6e4cff; stroke-width: 1.5; }
-              .m-box-gws { fill: #fff8d6; stroke: #c89c00; stroke-width: 1.5; }
-            </style>
-            <defs>
-              <marker id="mfwd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill="#1aa0c8"/>
-              </marker>
-              <marker id="mrev" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill="#c89c00"/>
-              </marker>
-            </defs>
-
-            <text x="20" y="22" class="m-hdr">① 問合せ受信フロー（青矢印）</text>
-            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
-
-            <rect x="20" y="50" width="180" height="80" rx="8" class="m-box-user"/>
-            <text x="110" y="76" text-anchor="middle" class="m-lbl">サイト訪問者</text>
-            <text x="110" y="96" text-anchor="middle" class="m-sm">お問合せフォーム入力</text>
-            <text x="110" y="114" text-anchor="middle" class="m-sm">名前・メール・本文・送信</text>
-
-            <path d="M200,90 L240,90" class="m-arrow-fwd"/>
-
-            <rect x="240" y="50" width="200" height="80" rx="8" class="m-box-aws"/>
-            <text x="340" y="74" text-anchor="middle" class="m-lbl">AWS SES</text>
-            <text x="340" y="92" text-anchor="middle" class="m-sm">From: <tspan class="m-mono">noreply@send.hrtep.com</tspan></text>
-            <text x="340" y="108" text-anchor="middle" class="m-sm">Reply-To: 送信者本人のアドレス</text>
-            <text x="340" y="122" text-anchor="middle" class="m-sm" style="font-style:italic;">DKIM 認証で送信</text>
-
-            <path d="M440,90 L480,90" class="m-arrow-fwd"/>
-
-            <rect x="480" y="50" width="200" height="80" rx="8" class="m-box-gws"/>
-            <text x="580" y="74" text-anchor="middle" class="m-lbl">Google Workspace</text>
-            <text x="580" y="92" text-anchor="middle" class="m-sm">受信メールサーバー</text>
-            <text x="580" y="110" text-anchor="middle" class="m-sm" style="font-style:italic;">既存 MX 経路（変更なし）</text>
-
-            <path d="M680,90 L720,90" class="m-arrow-fwd"/>
-
-            <rect x="720" y="50" width="240" height="80" rx="8" class="m-box-client"/>
-            <text x="840" y="74" text-anchor="middle" class="m-lbl">HRtep 社（津賀平様）</text>
-            <text x="840" y="92" text-anchor="middle" class="m-mono">tsukahira@hrtep.com</text>
-            <text x="840" y="110" text-anchor="middle" class="m-sm">受信トレイで通知メールを確認</text>
-
-            <text x="20" y="170" class="m-hdr">② 返信フロー（黄色矢印・任意設定）</text>
-            <line x1="20" y1="178" x2="960" y2="178" stroke="#dfe5ee"/>
-
-            <rect x="720" y="200" width="240" height="80" rx="8" class="m-box-client"/>
-            <text x="840" y="224" text-anchor="middle" class="m-lbl">HRtep 社（津賀平様）</text>
-            <text x="840" y="242" text-anchor="middle" class="m-sm">通知メールを開いて「返信」</text>
-            <text x="840" y="260" text-anchor="middle" class="m-sm" style="font-style:italic;">Send mail as 設定済みなら</text>
-            <text x="840" y="274" text-anchor="middle" class="m-sm" style="font-style:italic;"><tspan class="m-mono" style="font-style:normal;">info@hrtep.com</tspan> から自動送信</text>
-
-            <path d="M720,240 L680,240" class="m-arrow-rev"/>
-
-            <rect x="480" y="200" width="200" height="80" rx="8" class="m-box-gws"/>
-            <text x="580" y="224" text-anchor="middle" class="m-lbl">Google Workspace</text>
-            <text x="580" y="242" text-anchor="middle" class="m-sm">送信メールサーバー</text>
-            <text x="580" y="260" text-anchor="middle" class="m-sm">From: <tspan class="m-mono">info@hrtep.com</tspan></text>
-            <text x="580" y="274" text-anchor="middle" class="m-sm" style="font-style:italic;">SES は関与しない</text>
-
-            <path d="M480,240 L240,240" class="m-arrow-rev"/>
-
-            <rect x="20" y="200" width="220" height="80" rx="8" class="m-box-user"/>
-            <text x="130" y="224" text-anchor="middle" class="m-lbl">サイト訪問者（送信者）</text>
-            <text x="130" y="244" text-anchor="middle" class="m-sm">差出人: <tspan class="m-mono">info@hrtep.com</tspan></text>
-            <text x="130" y="262" text-anchor="middle" class="m-sm">で返信メール受信</text>
-
-            <text x="490" y="305" text-anchor="middle" class="m-sm" style="font-size:11.5px;">青 = 受信フロー（フォームから HRtep 社へ） ／ 黄色 = 返信フロー（HRtep 社から訪問者へ）</text>
-          </svg>
-          <p class="caption">受信は SES → Google Workspace → tsukahira@ の単方向。返信は Workspace の標準機能のみ使用し、SES は関わりません。</p>
-        </div>
-
-        <h3>確定事項の一覧</h3>
         <table>
           <thead><tr><th style="width:30%">項目</th><th>内容</th></tr></thead>
           <tbody>
-            <tr><td><strong>送信元（From）</strong></td><td><code>noreply@send.hrtep.com</code><br><span style="font-size:12.5px;color:var(--muted);">SES から送信されるメールの差出人</span></td></tr>
-            <tr><td><strong>受信先（CONTACT_EMAIL_TO）</strong></td><td><code>tsukahira@hrtep.com</code>（HRtep社）<br><span style="font-size:12.5px;color:var(--muted);">問合せフォーム送信時に通知メールが届く宛先。Amplify 環境変数として登録</span></td></tr>
-            <tr><td><strong>Reply-To</strong></td><td>フォーム送信者本人のメールアドレス（フォーム入力値）<br><span style="font-size:12.5px;color:var(--muted);">受信メールクライアントの「返信」ボタン押下時の宛先</span></td></tr>
-            <tr><td><strong>返信時の差出人運用</strong></td><td><code>info@hrtep.com</code> 推奨<br><span style="font-size:12.5px;color:var(--muted);">Google Workspace の Email Alias を <code>tsukahira@</code> に設定 + Gmail "Send mail as" で <code>info@</code> から返信。SES は関与しない</span></td></tr>
+            <tr><td><strong>対象ドメイン</strong></td><td><code>hrtep.com</code></td></tr>
+            <tr><td><strong>ご依頼者</strong></td><td>HRtep 株式会社（取次：HRtep 社 → 安井様）</td></tr>
+            <tr><td><strong>技術設計・運用</strong></td><td>LeadX 株式会社</td></tr>
+            <tr><td><strong>ご依頼内容</strong></td><td>お名前.com Navi での DNS 設定。新規追加 6 件 + 既存値変更 2 件 = 計 8 件のレコード操作</td></tr>
+            <tr><td><strong>所要時間</strong></td><td>20〜25 分程度の見込み</td></tr>
+            <tr><td><strong>受信メール（Google Workspace）への影響</strong></td><td><strong style="color:var(--ok-deep);">なし</strong>（MX レコードには触れません）</td></tr>
           </tbody>
         </table>
 
-        <h3>HRtep 様の作業 1: Verification メールのリンククリック（必須）</h3>
-        <p style="font-size:14px;">LeadX 社が SES に <code>tsukahira@hrtep.com</code> を Identity 登録した直後、AWS から <code>tsukahira@hrtep.com</code> 宛に Verification メールが届きます。リンクを 1 回クリックするだけで完了します。</p>
-
-        <table>
-          <thead><tr><th style="width:24%">手順</th><th>内容</th></tr></thead>
-          <tbody>
-            <tr><td>① LeadX 社作業</td><td><code>aws sesv2 create-email-identity</code> を実行（数秒）</td></tr>
-            <tr><td>② AWS 自動送信</td><td>送信元: <code>no-reply-aws@amazon.com</code>／件名: 「Amazon Web Services - Email Address Verification Request in region Asia Pacific (Tokyo)」（英文）／到達: 通常 1〜5 分以内</td></tr>
-            <tr><td>③ HRtep 様作業</td><td><code>tsukahira@hrtep.com</code> の受信トレイで該当メールを開封 → 本文中のリンク（<code>https://email-verification.us-east-1.amazonaws.com/?...</code> で始まる長い URL）を 1 回クリック → 「Congratulations!」等の英文確認画面が表示されれば完了</td></tr>
-            <tr><td>④ LeadX 社作業</td><td>AWS CLI で Verified ステータス確認（自動）</td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:13px; color:var(--muted);">
-          ※ リンクの有効期限は 24 時間。期限内であれば任意のタイミングでクリック可能。<br>
-          ※ 受信トレイに見当たらない場合は<strong>迷惑メールフォルダ</strong>もご確認ください（AWS の自動送信メールが稀に分類されることがあります）。<br>
-          ※ 期限切れの場合は LeadX 社で再登録し、新しい Verification メールをお送りします。
-        </p>
-
-        <h3>HRtep 様の作業 2: Google Workspace で <code>info@hrtep.com</code> 返信設定（任意）</h3>
-        <p style="font-size:14px;">返信時の差出人を個人アドレス <code>tsukahira@</code> ではなく <code>info@hrtep.com</code> にしたい場合のみ実施します。Phase A は Workspace 管理者作業、Phase B は HRtep 様（津賀平様）個人作業です。</p>
-
-        <h4 style="margin-top:14px;">Phase A: Workspace 管理者作業（<code>info</code> Alias 追加）</h4>
-        <ol style="font-size:13.5px; padding-left:20px;">
-          <li>Google Admin Console（<code>admin.google.com</code>）に管理者アカウントでログイン</li>
-          <li>左メニュー「ディレクトリ」→「ユーザー」</li>
-          <li>ユーザー一覧から <code>tsukahira@hrtep.com</code> を選択</li>
-          <li>「ユーザー情報」→「メールエイリアス」→「エイリアスを追加」</li>
-          <li>「エイリアスのメール アドレス」欄に <code>info</code> を入力（ドメインは自動で <code>@hrtep.com</code>）→「保存」</li>
-          <li>数分後、<code>info@hrtep.com</code> 宛のメールが <code>tsukahira@</code> の受信トレイに届くようになります</li>
-        </ol>
-
-        <h4 style="margin-top:14px;">Phase B: HRtep 様（津賀平様）個人作業（Gmail Send mail as 設定）</h4>
-        <ol style="font-size:13.5px; padding-left:20px;">
-          <li>Gmail（<code>mail.google.com</code>）に <code>tsukahira@hrtep.com</code> でログイン</li>
-          <li>右上の歯車アイコン →「すべての設定を表示」</li>
-          <li>「アカウント」タブ →「他のメールアドレスを追加」</li>
-          <li>名前: <code>HRtep株式会社</code>（任意の表示名）／ メールアドレス: <code>info@hrtep.com</code></li>
-          <li>「エイリアスとして扱う」にチェック →「次のステップ」→「アカウントを追加」（Workspace の Alias 設定済なら確認コード不要、即追加）</li>
-          <li>同じ「アカウント」タブ内の「メールを送信する場合」で「メールを受信したアドレスから返信する」を選択（推奨）</li>
-        </ol>
-        <p style="font-size:13px; color:var(--muted); margin-top:10px;">
-          設定完了後、お問合せフォーム経由で届いた通知メールに「返信」を押すと、自動的に <code>info@hrtep.com</code> から送信されます。手動で <code>tsukahira@</code> や別アドレスから送信することも引き続き可能です。
-        </p>
-
+        <h3>変更の趣旨（3 つの目的）</h3>
+        <ul style="font-size:14px; line-height:1.85;">
+          <li><strong>① サイト本体の置き場所を切替</strong>：<code>hrtep.com</code> apex / www の値を、現行 WP の IP から Amplify が払い出す値に変更します（行 5・行 6）</li>
+          <li><strong>② お問合せフォームの送信メールに DKIM 認証を追加</strong>：Amazon SES で送信するため、新規サブドメイン <code>send.hrtep.com</code> 配下に DKIM CNAME 3 件 + SPF TXT 1 件を追加します（行 1〜4）</li>
+          <li><strong>③ HTTPS 化のための ACM 証明書検証</strong>：apex / www 用に ACM 検証 CNAME 2 件を追加します（行 7・行 8）</li>
+        </ul>
         <p style="font-size:13.5px; color:var(--muted); margin-top:14px;">
-          ※ 将来 <code>info@</code> や別アドレスに <code>CONTACT_EMAIL_TO</code> 自体を切替えたい場合は、LeadX 社で Amplify 環境変数を変更し、新アドレスに対して上記「作業 1」を 1 回繰り返すだけで切替可能。
+          ※ 既存の MX（受信メール）・apex SPF・DMARC・その他のレコードには一切手を加えません（第 1 章末尾「絶対に変更しないでください」を参照）。<br>
+          ※ 行 5・7・8 の VALUE は、LeadX 社が依頼送付直前に Amplify から払い出される確定値を表に記入したうえでお渡しします。行 1〜4・行 6 は固定値です。
         </p>
       </section>
 
-      <!-- ▼ 安井様への依頼 -->
+      <!-- ▼ §1 設定していただく DNS 8 件 -->
       <section id="s04">
-        <h2><span class="num">4</span>安井様にお伝えいただく内容</h2>
-        <p class="lead">本章をそのまま安井様にお渡しください。お名前.com Navi で 8 件のレコード操作（追加 6 + 変更 2）を行う作業です。</p>
-
-        <div class="callout warn">
-          <b>本章の使い方</b>
-          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 20〜25 分程度の見込み。今回の DNS 設定で Phase 2（メール送信構築）と Phase 3（DNS 切替）を同時に完了します。
-        </div>
+        <h2><span class="num">1</span>設定していただく DNS 8 件</h2>
+        <p class="lead">お名前.com Navi で行っていただく 8 件のレコード操作の一覧と手順です。新規追加 6 件＋既存値変更 2 件、所要 20〜25 分程度の見込み。</p>
 
         <div class="callout">
-          <b>本書面送付前の LeadX 社内作業</b>
-          下表のうち <strong>5・7・8</strong> の VALUE は、Amplify Custom Domain（<code>aws amplify create-domain-association</code>）の実行結果として AWS から払い出される値です。LeadX 社にて本書面を安井様へお渡しする<strong>直前</strong>に同コマンドを実行し、確定値を表に記入したうえで送付します。安井様への依頼は 1 回で完結します。
+          <b>表中の VALUE について</b>
+          下表のうち <strong>行 5・7・8</strong> の VALUE は、AWS の Amplify Custom Domain 関連付け結果として払い出される値です。LeadX 社が本書面送付直前に値を確定させて記入のうえお渡ししますので、安井様には記載のとおりご入力いただくだけで完結します。
         </div>
 
         <h3>設定していただく 8 件のレコード</h3>
@@ -828,82 +519,17 @@
 
         <h3>設定完了後のご連絡</h3>
         <p style="font-size:14px;">
-          設定完了後、お手数ですがHRtep社経由でLeadX社までご一報ください。LeadX社にて DNS 反映状況を確認のうえ、SES Identity 登録 → HRtep社への Verification メール送信 → SSL 証明書発行 → 動作確認 → 新サイト本番稼働の順で進めます。<br>
-          DNS の反映には通常数時間〜最大 24 時間程度かかります。この間、新サイト切替直後は問合せフォーム送信時のメール送信が一時的に失敗する可能性がありますが、DKIM 認証完了後（24 時間以内に自動完了）に正常稼働します。
+          DNS 設定完了後、お手数ですが HRtep 社経由で LeadX 社までご一報ください。以降の流れ（DNS 反映確認 → SES 登録 → SSL 発行 → 本番化）は LeadX 社が自動で進めます。詳細は第 2 章をご参照ください。
         </p>
       </section>
 
-      <!-- ▼ 切替の流れ -->
+      <!-- ▼ §2 設定後の流れ -->
       <section id="s05">
-        <h2><span class="num">5</span>このあとの全体の流れ</h2>
-        <p class="lead">2 段階で進めます。<strong>事前調整</strong>（HRtep 社内＋安井氏日程確認＋LeadX 社内）→ <strong>本作業</strong>（安井様 1 回の DNS 設定で Phase 2＋3 同時完了）。Phase 4（旧サイト解約）は後日。</p>
+        <h2><span class="num">2</span>設定後の流れ（参考）</h2>
+        <p class="lead">安井様の DNS 設定完了後、LeadX 社が以下の流れで本番化を進めます。安井様にお願いする作業は本書面の DNS 設定 1 回のみで、以降は HRtep 社の Verification メールクリック 1 回（数十秒）以外、追加作業は発生しません。</p>
 
-        <h3>事前調整フェーズ（安井様への正式依頼前）</h3>
-        <p style="font-size:13.5px; color:var(--muted); margin-bottom:10px;">本書面を安井様に正式送付する前に、HRtep 社内の確認 → 安井様の作業日打診 → LeadX 社の AWS 関連付け、の 3 段の事前調整を行います。</p>
         <div class="diagram">
-          <svg viewBox="0 0 980 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="事前調整フェーズフロー">
-            <style>
-              .p-lbl { font: 600 12.5px 'Noto Sans JP', sans-serif; fill: #0e1726; }
-              .p-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
-              .p-num { font: 700 14px 'JetBrains Mono', monospace; fill: #fff; }
-              .p-who { font: 600 10.5px 'JetBrains Mono', monospace; }
-              .p-box-us { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
-              .p-box-client { fill: #efeaff; stroke: #6e4cff; stroke-width: 1.5; }
-              .p-box-yasui { fill: #fff4e5; stroke: #ffb258; stroke-width: 1.5; }
-              .p-circle-us { fill: #1aa0c8; }
-              .p-circle-client { fill: #6e4cff; }
-              .p-circle-yasui { fill: #ffb258; }
-              .p-arrow { stroke: #556073; stroke-width: 1.5; fill: none; marker-end: url(#pa); }
-            </style>
-            <defs>
-              <marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                <path d="M0,0 L10,5 L0,10 z" fill="#556073"/>
-              </marker>
-            </defs>
-
-            <text x="20" y="22" class="p-lbl" style="font-size:13px;">事前調整フェーズ（本書面を安井様へ送る前に実施）</text>
-            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
-
-            <rect x="40" y="50" width="280" height="100" rx="8" class="p-box-client"/>
-            <circle cx="60" cy="70" r="14" class="p-circle-client"/>
-            <text x="60" y="74" text-anchor="middle" class="p-num">A</text>
-            <text x="84" y="68" class="p-who" style="fill:#6e4cff;">HRtep社（津賀平様）</text>
-            <text x="84" y="86" class="p-lbl">3 項目を確認・準備</text>
-            <text x="50" y="106" class="p-sm">① <tspan style="font-weight:600;">tsukahira@hrtep.com</tspan> 受信先で OK か</text>
-            <text x="50" y="122" class="p-sm">② <tspan style="font-weight:600;">info@hrtep.com</tspan> 返信設定（任意・第 3 章）</text>
-            <text x="50" y="138" class="p-sm">③ 安井様への作業日打診（次工程）</text>
-
-            <rect x="340" y="50" width="280" height="100" rx="8" class="p-box-yasui"/>
-            <circle cx="360" cy="70" r="14" class="p-circle-yasui"/>
-            <text x="360" y="74" text-anchor="middle" class="p-num">B</text>
-            <text x="384" y="68" class="p-who" style="fill:#8b5a00;">HRtep社 ↔ 安井様</text>
-            <text x="384" y="86" class="p-lbl">作業日のすり合わせ</text>
-            <text x="350" y="106" class="p-sm">「○月○日にお名前.com Navi で</text>
-            <text x="350" y="122" class="p-sm">DNS 8 件をご設定いただけますか」と</text>
-            <text x="350" y="138" class="p-sm">HRtep 社経由で打診 → 作業日確定</text>
-
-            <path d="M320,100 L340,100" class="p-arrow"/>
-
-            <rect x="640" y="50" width="300" height="100" rx="8" class="p-box-us"/>
-            <circle cx="660" cy="70" r="14" class="p-circle-us"/>
-            <text x="660" y="74" text-anchor="middle" class="p-num">C</text>
-            <text x="684" y="68" class="p-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="684" y="86" class="p-lbl">AWS 関連付け・書面に確定値記入</text>
-            <text x="650" y="106" class="p-sm">安井様作業日の <strong>24〜48 時間前</strong> に</text>
-            <text x="650" y="122" class="p-sm"><tspan style="font-family:'JetBrains Mono',monospace; font-size:10.5px;">aws amplify create-domain-association</tspan></text>
-            <text x="650" y="138" class="p-sm">→ 5・7・8 の確定値を第 4 章表に記入</text>
-
-            <path d="M620,100 L640,100" class="p-arrow"/>
-
-            <text x="490" y="180" text-anchor="middle" class="p-sm" style="font-style:italic;">事前調整完了 → 確定値入りの第 4 章を HRtep 社経由で安井様へ正式送付（本作業フェーズへ）</text>
-            <path d="M790,150 L790,170 L490,170 L490,180" class="p-arrow"/>
-          </svg>
-          <p class="caption">青 = LeadX社作業 ／ 紫 = HRtep社作業 ／ オレンジ = HRtep社経由で安井様と調整</p>
-        </div>
-
-        <h3>本作業フェーズ（安井様への正式依頼後）</h3>
-        <div class="diagram">
-          <svg viewBox="0 0 980 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="切替全体フロー">
+          <svg viewBox="0 0 980 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="設定後の本番化フロー">
             <style>
               .f-lbl { font: 600 12.5px 'Noto Sans JP', sans-serif; fill: #0e1726; }
               .f-sm { font: 11px 'Noto Sans JP', sans-serif; fill: #556073; }
@@ -923,51 +549,42 @@
               </marker>
             </defs>
 
-            <text x="20" y="22" class="f-lbl" style="font-size:13px;">Phase 2 + 3 統合フロー（安井様作業 1 回）</text>
+            <text x="20" y="22" class="f-lbl" style="font-size:13px;">DNS 設定後の本番化フロー</text>
             <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
 
-            <rect x="40" y="50" width="220" height="60" rx="8" class="f-box-client"/>
-            <circle cx="60" cy="70" r="14" class="f-circle-client"/>
+            <rect x="40" y="50" width="220" height="60" rx="8" class="f-box-yasui"/>
+            <circle cx="60" cy="70" r="14" class="f-circle-yasui"/>
             <text x="60" y="74" text-anchor="middle" class="f-num">1</text>
-            <text x="84" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
-            <text x="84" y="86" class="f-lbl">本書 第 4 章を安井様へ取次</text>
-            <text x="84" y="102" class="f-sm">DNS 8 件分の依頼を 1 通で</text>
+            <text x="84" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
+            <text x="84" y="86" class="f-lbl">DNS 8 件を設定（本書面）</text>
+            <text x="84" y="102" class="f-sm">所要 20〜25 分</text>
 
-            <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-yasui"/>
-            <circle cx="300" cy="70" r="14" class="f-circle-yasui"/>
+            <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-us"/>
+            <circle cx="300" cy="70" r="14" class="f-circle-us"/>
             <text x="300" y="74" text-anchor="middle" class="f-num">2</text>
-            <text x="324" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
-            <text x="324" y="86" class="f-lbl">DNS 8 件を設定</text>
-            <text x="324" y="102" class="f-sm">所要 20〜25 分</text>
+            <text x="324" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="324" y="86" class="f-lbl">DNS 反映確認・SES 登録</text>
+            <text x="324" y="102" class="f-sm">数時間〜24h（自動）</text>
 
             <path d="M260,80 L280,80" class="f-arrow"/>
 
-            <rect x="520" y="50" width="220" height="60" rx="8" class="f-box-us"/>
-            <circle cx="540" cy="70" r="14" class="f-circle-us"/>
+            <rect x="520" y="50" width="220" height="60" rx="8" class="f-box-client"/>
+            <circle cx="540" cy="70" r="14" class="f-circle-client"/>
             <text x="540" y="74" text-anchor="middle" class="f-num">3</text>
-            <text x="564" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="564" y="86" class="f-lbl">DNS 反映確認 + Identity 登録</text>
-            <text x="564" y="102" class="f-sm">数時間〜24h（自動）</text>
+            <text x="564" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
+            <text x="564" y="86" class="f-lbl">Verification リンクをクリック</text>
+            <text x="564" y="102" class="f-sm">1 回・数十秒</text>
 
             <path d="M500,80 L520,80" class="f-arrow"/>
 
-            <rect x="760" y="50" width="200" height="60" rx="8" class="f-box-client"/>
-            <circle cx="780" cy="70" r="14" class="f-circle-client"/>
+            <rect x="760" y="50" width="200" height="60" rx="8" class="f-box-us"/>
+            <circle cx="780" cy="70" r="14" class="f-circle-us"/>
             <text x="780" y="74" text-anchor="middle" class="f-num">4</text>
-            <text x="804" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
-            <text x="804" y="86" class="f-lbl">Verification リンクをクリック</text>
-            <text x="804" y="102" class="f-sm">1 回・1 分</text>
+            <text x="804" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="804" y="86" class="f-lbl">SSL 発行・E2E テスト</text>
+            <text x="804" y="102" class="f-sm">30〜60 分（自動）</text>
 
             <path d="M740,80 L760,80" class="f-arrow"/>
-
-            <rect x="40" y="160" width="220" height="60" rx="8" class="f-box-us"/>
-            <circle cx="60" cy="180" r="14" class="f-circle-us"/>
-            <text x="60" y="184" text-anchor="middle" class="f-num">5</text>
-            <text x="84" y="178" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="84" y="196" class="f-lbl">SSL 証明書発行・E2E テスト</text>
-            <text x="84" y="212" class="f-sm">フォーム送信動作確認</text>
-
-            <path d="M860,110 L860,140 L160,140 L160,160" class="f-arrow"/>
 
             <rect x="280" y="160" width="440" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
             <circle cx="300" cy="180" r="14" fill="#2ea85a"/>
@@ -976,36 +593,19 @@
             <text x="324" y="196" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働 + フォーム送信稼働</text>
             <text x="324" y="212" class="f-sm">hrtep.com で表示・問合せメール送信が機能</text>
 
-            <path d="M260,190 L280,190" class="f-arrow"/>
+            <path d="M860,110 L860,140 L500,140 L500,160" class="f-arrow"/>
           </svg>
           <p class="caption">青 = LeadX社作業 ／ 紫 = HRtep社作業 ／ オレンジ = 安井様作業</p>
         </div>
 
-        <div class="callout">
-          <b>Phase 4（旧サイト解約）</b>
-          Phase 3 完了から 14 日間の並行稼働期間ののち、お名前.com 共用ホスティング契約を解約します。期間中はいつでも旧サイトに戻せる安全網を確保。<br>
-          <span style="display:inline-block; margin-top:6px;">作業実施は安井様。<strong>開始合図は LeadX 社 → HRtep 社 → 安井様</strong>の取次経路で伝達します（Phase 2＋3 と同じ運用）。LeadX 社が新サイト稼働 14 日経過時点で並行稼働期間中の障害有無・アクセスログ動向を確認し、問題なしを確認次第 HRtep 社に解約依頼の取次を依頼します。</span>
-        </div>
-
-        <h3>SES サンドボックス継続運用について</h3>
-        <p style="font-size:14px;">
-          AWS の本番化申請（Production Access）は<strong>取得しません</strong>。理由：
-        </p>
-        <ul style="font-size:13.5px; line-height:1.8;">
-          <li>HRtep の問合せ件数想定（月 30〜100 件 = 1 日 1〜3 件）に対し、サンドボックスの上限（1 日 200 件）は <strong>60 倍以上の余裕</strong></li>
-          <li>送信先は <code>tsukahira@hrtep.com</code> 1 アドレスに固定。サンドボックスの「Verified Identity 限定」制約は影響しない</li>
-          <li>必要に応じて将来 Production Access に切替可能。サンドボックスから本番運用へは 1 日で移行できる</li>
-        </ul>
-
         <h3>切替直後の一時的なフォーム送信不通について</h3>
         <div class="callout warn">
           <b>DNS 反映待ち中（最大 24 時間）の留意点</b>
-          安井様の DNS 設定後、<strong>DKIM 認証が完了するまで（数時間〜最大 24 時間）の間、新サイト <code>hrtep.com</code> でのお問合せフォーム送信時に SES からのメール送信が一時的に失敗する可能性</strong>があります。<br>
+          安井様の DNS 設定後、<strong>DKIM 認証が完了するまで（数時間〜最大 24 時間）の間、新サイト <code>hrtep.com</code> でのお問合せフォーム送信時にメール送信が一時的に失敗する可能性</strong>があります。<br>
           <ul style="margin:8px 0 0 18px; font-size:13.5px;">
-            <li>ユーザーには「お問合せを受け付けました」表示が出るが、内部メールが LeadX 社・HRtep 社に届かない期間が発生し得る</li>
             <li>DKIM 認証は DNS 反映後に AWS が自動完了する処理。手動操作は不要</li>
             <li>HRtep の問合せ流量（1 日 1〜3 件想定）から、影響を受ける問合せ件数は最大でも 0〜3 件程度</li>
-            <li>DKIM 完了後は自動で正常稼働。LeadX 社が反映状況を監視し、完了次第 HRtep 様にご報告</li>
+            <li>DKIM 完了後は自動で正常稼働。LeadX 社が反映状況を監視します</li>
           </ul>
         </div>
 
@@ -1016,31 +616,8 @@
         </p>
       </section>
 
-      <!-- ▼ コスト -->
-      <section id="s06">
-        <h2><span class="num">6</span>ランニングコストの変化</h2>
-        <p class="lead">移行後は月額 500〜2,000 円程度の削減見込み。</p>
-
-        <table>
-          <thead>
-            <tr><th>項目</th><th style="width:24%">移行前</th><th style="width:24%">移行後</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Web ホスティング</td><td>月 500〜2,500 円<br><span style="font-size:12px;color:var(--muted);">お名前.com 共用 → 解約予定</span></td><td>月 0〜750 円<br><span style="font-size:12px;color:var(--muted);">AWS Amplify（無料枠内）</span></td></tr>
-            <tr><td>送信メール</td><td>0 円<br><span style="font-size:12px;color:var(--muted);">Contact Form 7</span></td><td>月 0〜10 円<br><span style="font-size:12px;color:var(--muted);">Amazon SES</span></td></tr>
-            <tr><td>HTTPS 証明書</td><td>0 円</td><td>0 円<br><span style="font-size:12px;color:var(--muted);">AWS で自動発行・自動更新</span></td></tr>
-            <tr><td>レジストラ・DNS・受信メール</td><td colspan="2" style="text-align:center;">変動なし</td></tr>
-            <tr style="background:#fff8d6;"><td><strong>合計（変動分）</strong></td><td><strong>月 500〜2,500 円</strong></td><td><strong>月 0〜760 円</strong></td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:13px; color:var(--muted);">
-          ※ お名前.com 共用ホスティングの正確な月額は、お名前.com Navi の「ご契約一覧」よりご確認可能（コスト試算の確定値化のみで技術進行には影響しないため、本書ではご回答を必須としていません）。<br>
-          ※ AWS の課金は使用量ベース。新サイトの想定アクセス量では無料枠内に収まる見込みです。
-        </p>
-      </section>
-
       <footer>
-        <p>HRtep コーポレートサイト Web ホスティング刷新 計画書 v4 — 2026-05-01</p>
+        <p>HRtep コーポレートサイト DNS 設定ご依頼書 v4 — 2026-05-02</p>
       </footer>
 
     </div>
