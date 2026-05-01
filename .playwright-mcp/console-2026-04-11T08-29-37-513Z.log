@@ -1,9 +1,0 @@
-[    1104ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://liginc.co.jp/services:0
-[    1772ms] [LOG] JQMIGRATE: Migrate is installed, version 3.3.2 @ https://liginc.co.jp/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2:1
-[    2881ms] [LOG] [INFO] there is not a8 parameter @ https://statics.a8.net/a8sales/a8sales.js:24
-[    5093ms] [LOG] [MAIN] main_A8(a,,a8CrossDomain,a8) start @ https://statics.a8.net/a8sales/a8crossDomain.js:24
-[    5093ms] [LOG] [INFO] no a8 param @ https://statics.a8.net/a8sales/a8crossDomain.js:24
-[    5093ms] [LOG] [MAIN] main_A8(a,,a8CrossDomain,a8) end @ https://statics.a8.net/a8sales/a8crossDomain.js:24
-[    5093ms] [LOG] [MAIN] main_A8(form,,a8CrossDomain,a8) start @ https://statics.a8.net/a8sales/a8crossDomain.js:24
-[    5093ms] [LOG] [INFO] no a8 param @ https://statics.a8.net/a8sales/a8crossDomain.js:24
-[    5093ms] [LOG] [MAIN] main_A8(form,,a8CrossDomain,a8) end @ https://statics.a8.net/a8sales/a8crossDomain.js:24

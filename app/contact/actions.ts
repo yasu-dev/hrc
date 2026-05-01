@@ -2,11 +2,16 @@
 
 import { contactSchema, type ContactFormData } from '@/lib/validation';
 import { verifyRecaptcha } from '@/lib/recaptcha';
+import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2';
 
 export type ContactResult = {
   success: boolean;
   message: string;
 };
+
+const FROM_ADDRESS = 'ＨＲｔｅｐ お問い合わせ <noreply@send.hrtep.com>';
+const CONFIGURATION_SET = 'hrtep-default';
+const SES_REGION = 'ap-northeast-1';
 
 export async function submitContact(data: ContactFormData): Promise<ContactResult> {
   const parsed = contactSchema.safeParse(data);
@@ -23,26 +28,32 @@ export async function submitContact(data: ContactFormData): Promise<ContactResul
     };
   }
 
+  const contactEmailTo = process.env.CONTACT_EMAIL_TO;
+  if (!contactEmailTo) {
+    console.log('[Contact] メール設定未完了。送信データ:', parsed.data);
+    return {
+      success: true,
+      message: 'お問い合わせを受け付けました。（メール送信は環境設定完了後に有効化されます）',
+    };
+  }
+
   try {
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const contactEmailTo = process.env.CONTACT_EMAIL_TO;
-
-    if (!resendApiKey || !contactEmailTo) {
-      console.log('[Contact] メール設定未完了。送信データ:', parsed.data);
-      return {
-        success: true,
-        message: 'お問い合わせを受け付けました。（メール送信は環境設定完了後に有効化されます）',
-      };
-    }
-
-    const { Resend } = await import('resend');
-    const resend = new Resend(resendApiKey);
-
-    await resend.emails.send({
-      from: 'ＨＲｔｅｐ お問い合わせ <noreply@hrtep.com>',
-      to: contactEmailTo,
-      subject: `[お問い合わせ] ${parsed.data.inquiryType} - ${parsed.data.companyName}`,
-      text: `
+    const ses = new SESv2Client({ region: SES_REGION });
+    await ses.send(
+      new SendEmailCommand({
+        FromEmailAddress: FROM_ADDRESS,
+        Destination: { ToAddresses: [contactEmailTo] },
+        ConfigurationSetName: CONFIGURATION_SET,
+        ReplyToAddresses: [parsed.data.email],
+        Content: {
+          Simple: {
+            Subject: {
+              Data: `[お問い合わせ] ${parsed.data.inquiryType} - ${parsed.data.companyName}`,
+              Charset: 'UTF-8',
+            },
+            Body: {
+              Text: {
+                Data: `
 会社名: ${parsed.data.companyName}
 氏名: ${parsed.data.name}
 メール: ${parsed.data.email}
@@ -51,12 +62,17 @@ export async function submitContact(data: ContactFormData): Promise<ContactResul
 
 お問い合わせ内容:
 ${parsed.data.message}
-      `.trim(),
-    });
-
+                `.trim(),
+                Charset: 'UTF-8',
+              },
+            },
+          },
+        },
+      })
+    );
     return { success: true, message: 'お問い合わせを受け付けました。' };
   } catch (error) {
-    console.error('[Contact] メール送信エラー:', error);
+    console.error('[Contact] SES SendEmail エラー:', error);
     return {
       success: false,
       message: '送信に失敗しました。時間をおいて再度お試しください。',

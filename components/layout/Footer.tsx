@@ -21,7 +21,16 @@ export function Footer() {
             </Link>
             <address className="text-muted-foreground mt-4 text-sm not-italic">
               <p>{COMPANY.headquarters.address}</p>
-              <p className="mt-1">TEL: {COMPANY.tel}</p>
+              <p className="mt-1">
+                TEL:{' '}
+                <a
+                  href={`tel:${COMPANY.tel.replace(/-/g, '')}`}
+                  className="hover:text-foreground transition-colors"
+                  aria-label={`電話 ${COMPANY.tel}`}
+                >
+                  {COMPANY.tel}
+                </a>
+              </p>
             </address>
           </div>
 
