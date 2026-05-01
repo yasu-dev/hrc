@@ -313,7 +313,7 @@
         <p style="color:#c4cfe0; margin: 0; font-size: 15px;">現行の WordPress サイトを、Next.js + AWS Amplify による新サイトへ刷新する計画。HRtep社および安井様への必要事項を本書面に記載。</p>
         <div class="now">
           <p class="label">現在の状況</p>
-          <p>LeadX社が用意できる作業は<strong style="color:#fff;">すべて完了</strong>しました。HRtep社にご確認いただく事項はありません。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（6 件）+ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 が完了し、新サイトが本番稼働します。</p>
+          <p>LeadX社の事前作業は<strong style="color:#fff;">完了済み</strong>。残るは<strong style="color:#fff;">安井様 1 回の DNS 設定（8 件）+ HRtep社の Verification メールクリック 1 回</strong>で Phase 2 + 3 が完了し、新サイトが本番稼働します。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
@@ -355,8 +355,8 @@
           <div class="step-card active">
             <div class="step-num">1</div>
             <p class="step-who">安井様（取次は HRtep 社経由・1 回のみ）</p>
-            <p class="step-title">DNS レコード 6 件を設定</p>
-            <p class="step-desc">本書面 第 4 章を安井様にお渡しください。CNAME 3 件 + SPF TXT 1 件 + A レコード変更 2 件、所要 15〜20 分。</p>
+            <p class="step-title">DNS レコード 8 件を設定</p>
+            <p class="step-desc">本書面 第 4 章を安井様にお渡しください。DKIM CNAME 3 件 + SPF TXT 1 件 + ACM 検証 CNAME 2 件 + 既存 A/CNAME 変更 2 件、所要 20〜25 分。</p>
           </div>
           <div class="step-card">
             <div class="step-num">2</div>
@@ -382,6 +382,7 @@
               <li class="done">AWS 環境構築（メール送信基盤）</li>
               <li class="done">問合せフォーム実装</li>
               <li class="done">運用ドキュメント整備</li>
+              <li class="wait">Amplify Custom Domain 関連付け（依頼書送付直前に実行 → 5・7・8 の確定値を取得）</li>
               <li class="wait">SES Identity 登録・環境変数設定</li>
               <li class="wait">DNS 切替の監視（Phase 3）</li>
             </ul>
@@ -399,8 +400,8 @@
             <p class="role-name">安井様（お名前.com 管理者）</p>
             <p class="role-who">DNS 設定（1 回のみ）</p>
             <ul>
-              <li class="wait">DNS レコード 6 件を設定</li>
-              <li style="font-size:12px; color:var(--muted); padding-left:22px;">　└ DKIM CNAME 4 + A レコード変更 2</li>
+              <li class="wait">DNS レコード 8 件を設定</li>
+              <li style="font-size:12px; color:var(--muted); padding-left:22px;">　└ DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2 + 既存 A/CNAME 変更 2</li>
             </ul>
             <p style="font-size:11.5px; color:var(--muted); margin: 8px 0 0; line-height:1.5;">※ LeadX社からの直接連絡は行わず、HRtep社経由で取次いただきます。</p>
           </div>
@@ -500,7 +501,7 @@
         </ul>
 
         <p style="font-size:13.5px; color:var(--muted); margin-top:18px;">
-          ※ 上記で「お問合せフォームから送信されたメールが届くまでの仕組み」が完成しています。残るは AWS の本番利用申請（LeadX社作業）と、その前提となる DNS 設定（安井様作業）のみです。
+          ※ 上記で「お問合せフォームから送信されたメールが届くまでの仕組み」が完成しています。残るは安井様への DNS 設定依頼（8 件・1 回）と、HRtep社の Verification メールクリック（1 回）のみです。
         </p>
       </section>
 
@@ -519,33 +520,73 @@
           </tbody>
         </table>
 
-        <div class="callout">
-          <b>HRtep 様の作業</b>
-          以下 2 点のみ。どちらも 1 分以内で完了します。
-          <ol style="margin:8px 0 0 18px; font-size:14px;">
-            <li><strong>Verification メールのリンククリック（HRtep社、1 回）</strong>: LeadX 社が SES に <code>tsukahira@hrtep.com</code> を Identity 登録すると、AWS から <code>no-reply-aws@amazon.com</code> 名義の Verification メールが届きます。本文中のリンクを 1 回クリックいただくだけで Identity が有効化され、SES からメールが届くようになります。リンク有効期限 24 時間。</li>
-            <li><strong>Google Workspace で <code>info@hrtep.com</code> Alias 設定（Workspace 管理者・任意）</strong>: 返信時の差出人を個人アドレスではなく <code>info@</code> にしたい場合のみ実施。<code>tsukahira@</code> アカウントに <code>info</code> を Email Alias 追加し、Gmail の "Send mail as" で <code>info@hrtep.com</code> を有効化。</li>
-          </ol>
-        </div>
+        <h3>HRtep 様の作業 1: Verification メールのリンククリック（必須）</h3>
+        <p style="font-size:14px;">LeadX 社が SES に <code>tsukahira@hrtep.com</code> を Identity 登録した直後、AWS から <code>tsukahira@hrtep.com</code> 宛に Verification メールが届きます。リンクを 1 回クリックするだけで完了します。</p>
 
-        <p style="font-size:13.5px; color:var(--muted);">
-          ※ 将来 <code>info@</code> や別アドレスに切替えたい場合は、Amplify 環境変数 <code>CONTACT_EMAIL_TO</code> を変更し、新アドレスに対する Verification メールクリックを 1 回行うだけで切替可能。
+        <table>
+          <thead><tr><th style="width:24%">手順</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td>① LeadX 社作業</td><td><code>aws sesv2 create-email-identity</code> を実行（数秒）</td></tr>
+            <tr><td>② AWS 自動送信</td><td>送信元: <code>no-reply-aws@amazon.com</code>／件名: 「Amazon Web Services - Email Address Verification Request in region Asia Pacific (Tokyo)」（英文）／到達: 通常 1〜5 分以内</td></tr>
+            <tr><td>③ HRtep 様作業</td><td><code>tsukahira@hrtep.com</code> の受信トレイで該当メールを開封 → 本文中のリンク（<code>https://email-verification.us-east-1.amazonaws.com/?...</code> で始まる長い URL）を 1 回クリック → 「Congratulations!」等の英文確認画面が表示されれば完了</td></tr>
+            <tr><td>④ LeadX 社作業</td><td>AWS CLI で Verified ステータス確認（自動）</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13px; color:var(--muted);">
+          ※ リンクの有効期限は 24 時間。期限内であれば任意のタイミングでクリック可能。<br>
+          ※ 受信トレイに見当たらない場合は<strong>迷惑メールフォルダ</strong>もご確認ください（AWS の自動送信メールが稀に分類されることがあります）。<br>
+          ※ 期限切れの場合は LeadX 社で再登録し、新しい Verification メールをお送りします。
+        </p>
+
+        <h3>HRtep 様の作業 2: Google Workspace で <code>info@hrtep.com</code> 返信設定（任意）</h3>
+        <p style="font-size:14px;">返信時の差出人を個人アドレス <code>tsukahira@</code> ではなく <code>info@hrtep.com</code> にしたい場合のみ実施します。Phase A は Workspace 管理者作業、Phase B は HRtep 様（津賀平様）個人作業です。</p>
+
+        <h4 style="margin-top:14px;">Phase A: Workspace 管理者作業（<code>info</code> Alias 追加）</h4>
+        <ol style="font-size:13.5px; padding-left:20px;">
+          <li>Google Admin Console（<code>admin.google.com</code>）に管理者アカウントでログイン</li>
+          <li>左メニュー「ディレクトリ」→「ユーザー」</li>
+          <li>ユーザー一覧から <code>tsukahira@hrtep.com</code> を選択</li>
+          <li>「ユーザー情報」→「メールエイリアス」→「エイリアスを追加」</li>
+          <li>「エイリアスのメール アドレス」欄に <code>info</code> を入力（ドメインは自動で <code>@hrtep.com</code>）→「保存」</li>
+          <li>数分後、<code>info@hrtep.com</code> 宛のメールが <code>tsukahira@</code> の受信トレイに届くようになります</li>
+        </ol>
+
+        <h4 style="margin-top:14px;">Phase B: HRtep 様（津賀平様）個人作業（Gmail Send mail as 設定）</h4>
+        <ol style="font-size:13.5px; padding-left:20px;">
+          <li>Gmail（<code>mail.google.com</code>）に <code>tsukahira@hrtep.com</code> でログイン</li>
+          <li>右上の歯車アイコン →「すべての設定を表示」</li>
+          <li>「アカウント」タブ →「他のメールアドレスを追加」</li>
+          <li>名前: <code>HRtep株式会社</code>（任意の表示名）／ メールアドレス: <code>info@hrtep.com</code></li>
+          <li>「エイリアスとして扱う」にチェック →「次のステップ」→「アカウントを追加」（Workspace の Alias 設定済なら確認コード不要、即追加）</li>
+          <li>同じ「アカウント」タブ内の「メールを送信する場合」で「メールを受信したアドレスから返信する」を選択（推奨）</li>
+        </ol>
+        <p style="font-size:13px; color:var(--muted); margin-top:10px;">
+          設定完了後、お問合せフォーム経由で届いた通知メールに「返信」を押すと、自動的に <code>info@hrtep.com</code> から送信されます。手動で <code>tsukahira@</code> や別アドレスから送信することも引き続き可能です。
+        </p>
+
+        <p style="font-size:13.5px; color:var(--muted); margin-top:14px;">
+          ※ 将来 <code>info@</code> や別アドレスに <code>CONTACT_EMAIL_TO</code> 自体を切替えたい場合は、LeadX 社で Amplify 環境変数を変更し、新アドレスに対して上記「作業 1」を 1 回繰り返すだけで切替可能。
         </p>
       </section>
 
       <!-- ▼ 安井様への依頼 -->
       <section id="s04">
         <h2><span class="num">4</span>安井様にお伝えいただく内容</h2>
-        <p class="lead">本章をそのまま安井様にお渡しください。お名前.com Navi で 4 件のレコードを追加するだけの作業です。</p>
+        <p class="lead">本章をそのまま安井様にお渡しください。お名前.com Navi で 8 件のレコード操作（追加 6 + 変更 2）を行う作業です。</p>
 
         <div class="callout warn">
           <b>本章の使い方</b>
-          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 15〜20 分程度の見込み。今回の DNS 設定で Phase 2（メール送信構築）と Phase 3（DNS 切替）を同時に完了します。
+          下記の表と手順を、HRtep社経由で安井様にお伝えください。所要時間は 20〜25 分程度の見込み。今回の DNS 設定で Phase 2（メール送信構築）と Phase 3（DNS 切替）を同時に完了します。
         </div>
 
-        <h3>設定していただく 6 件のレコード</h3>
+        <div class="callout">
+          <b>本書面送付前の LeadX 社内作業</b>
+          下表のうち <strong>5・7・8</strong> の VALUE は、Amplify Custom Domain（<code>aws amplify create-domain-association</code>）の実行結果として AWS から払い出される値です。LeadX 社にて本書面を安井様へお渡しする<strong>直前</strong>に同コマンドを実行し、確定値を表に記入したうえで送付します。安井様への依頼は 1 回で完結します。
+        </div>
+
+        <h3>設定していただく 8 件のレコード</h3>
         <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">
-          内訳: <strong>新規追加 4 件</strong>（DKIM CNAME 3 + SPF TXT 1）+ <strong>既存変更 2 件</strong>（A レコード）。1〜4 はメール送信に関する追加、5〜6 は新サイト本番化のための既存 A レコードの値変更です。
+          内訳: <strong>新規追加 6 件</strong>（DKIM CNAME 3 + SPF TXT 1 + ACM 証明書検証用 CNAME 2）+ <strong>既存変更 2 件</strong>（A レコード apex / CNAME www）。1〜4 はメール送信に関する追加、5〜6 は新サイト本番化のための既存レコード置換、7〜8 は HTTPS 化に必要な ACM 証明書の所有権検証用です。
         </p>
 
         <div class="diagram">
@@ -632,14 +673,16 @@
             <tr><td>2</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td><td>3600</td></tr>
             <tr><td>3</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td><td>3600</td></tr>
             <tr><td>4</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td><td>3600</td></tr>
-            <tr style="background:#fff4e5;"><td>5</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>@</code>（apex / 入力欄空欄）</td><td>A</td><td><strong>LeadX 社が依頼書送付時に確定値を記載</strong><br><span style="font-size:11.5px; color:var(--muted);">Amplify Custom Domain で発行される A レコード値で、現行 <code>118.27.122.212</code> を置換</span></td><td>3600</td></tr>
-            <tr style="background:#fff4e5;"><td>6</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>www</code></td><td>CNAME</td><td><strong>LeadX 社が依頼書送付時に確定値を記載</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>main.d3561ojkga3nyn.amplifyapp.com</code> 形式の値を指定</span></td><td>3600</td></tr>
+            <tr style="background:#fff4e5;"><td>5</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>@</code>（apex / 入力欄空欄）</td><td>A</td><td><strong>LeadX 社が依頼送付直前に Amplify から払い出される確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);">現行 <code>118.27.122.212</code> を、Amplify が払い出す A レコード値（IP アドレス）に置換</span></td><td>3600</td></tr>
+            <tr style="background:#fff4e5;"><td>6</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>www</code></td><td>CNAME</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code><br><span style="font-size:11.5px; color:var(--muted);">既存値（現行 WP の IP <code>118.27.122.212</code> 等）を、左記の値に置換</span></td><td>3600</td></tr>
+            <tr><td>7</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx</code> 形式（apex 用 ACM 検証）</span></td><td>CNAME</td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyyyyyyyyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>3600</td></tr>
+            <tr><td>8</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx.www</code> 形式（www 用 ACM 検証）</span></td><td>CNAME</td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyyyyyyyyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>3600</td></tr>
           </tbody>
         </table>
         <p style="font-size:13px; color:var(--muted); margin-top:6px;">
           お名前.com Navi のホスト名欄では、末尾の <code>.hrtep.com</code> が自動的に付加されます。TTL はすべて既定値 3600 のままで問題ありません。<br>
-          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への追加（メール送信認証用）。5〜6 は新サイト本番化のための既存 A レコード値置換です。<br>
-          <strong>5〜6 の VALUE は、LeadX 社が依頼送付直前に Amplify Custom Domain で発行される確定値を記入してお渡しします。</strong>
+          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への追加（メール送信認証用）。5〜6 は新サイト本番化のための既存レコード置換、7〜8 は HTTPS 化のための ACM 証明書検証用 CNAME 追加です。<br>
+          <strong>5・7・8 の値は、LeadX 社が依頼送付直前に Amplify から払い出される確定値を記入したうえでお渡しします。6 は固定値です。</strong>
         </p>
 
         <h3>お名前.com Navi での操作手順</h3>
@@ -648,20 +691,21 @@
           <li>「ドメイン」 → 「DNS設定」</li>
           <li>対象ドメイン <code>hrtep.com</code> の「DNS設定 / 転送設定」を選択</li>
           <li>「DNSレコード設定を利用する」を選択して「次へ」</li>
-          <li>上記 6 件を以下の要領で操作
+          <li>上記 8 件を以下の要領で操作
             <ul style="font-size:13.5px; margin-top:6px;">
               <li><strong>1〜3（CNAME 追加）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
               <li><strong>4（TXT 追加）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
-              <li><strong>5（A レコード変更）</strong>: ホスト名欄を空欄（apex 用）／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 値に置換</li>
-              <li><strong>6（www の A もしくは CNAME 変更）</strong>: ホスト名 <code>www</code> ／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 値に置換</li>
+              <li><strong>5（A レコード変更）</strong>: ホスト名欄を空欄（apex 用）／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 確定値に置換</li>
+              <li><strong>6（www CNAME 変更）</strong>: ホスト名 <code>www</code> ／ 既存値を <code>main.d3561ojkga3nyn.amplifyapp.com</code> に置換（TYPE が A の場合は CNAME に変更）</li>
+              <li><strong>7〜8（ACM 検証 CNAME 追加）</strong>: ホスト名欄・VALUE ともに依頼書記載のとおり入力／ TYPE: <code>CNAME</code>／ ホスト名は末尾の <code>.hrtep.com</code> を除いた部分のみ入力（自動付加されます）</li>
             </ul>
           </li>
-          <li>6 件分すべて操作後「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
+          <li>8 件分すべて操作後「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
         </ol>
 
         <div class="callout bad">
           <b>絶対に変更しないでください</b>
-          以下のレコードに触れると受信メール・ドメイン認証が壊れます。本作業の対象は前掲 6 件のみです。
+          以下のレコードに触れると受信メール・ドメイン認証が壊れます。本作業の対象は前掲 8 件のみです。
           <ul style="margin:8px 0 0 18px; font-size:13.5px;">
             <li><code>hrtep.com</code> の MX レコード（Google Workspace 等 6 件）</li>
             <li><code>hrtep.com</code> apex の SPF レコード（apex の TXT、<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
@@ -716,14 +760,14 @@
             <text x="60" y="74" text-anchor="middle" class="f-num">1</text>
             <text x="84" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
             <text x="84" y="86" class="f-lbl">本書 第 4 章を安井様へ取次</text>
-            <text x="84" y="102" class="f-sm">DNS 6 件分の依頼を 1 通で</text>
+            <text x="84" y="102" class="f-sm">DNS 8 件分の依頼を 1 通で</text>
 
             <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-yasui"/>
             <circle cx="300" cy="70" r="14" class="f-circle-yasui"/>
             <text x="300" y="74" text-anchor="middle" class="f-num">2</text>
             <text x="324" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
-            <text x="324" y="86" class="f-lbl">DNS 6 件を設定</text>
-            <text x="324" y="102" class="f-sm">DKIM 4 + A レコード 2 = 15〜20 分</text>
+            <text x="324" y="86" class="f-lbl">DNS 8 件を設定</text>
+            <text x="324" y="102" class="f-sm">DKIM/SPF 4 + ACM 2 + 既存 2 = 20〜25 分</text>
 
             <path d="M260,80 L280,80" class="f-arrow"/>
 
