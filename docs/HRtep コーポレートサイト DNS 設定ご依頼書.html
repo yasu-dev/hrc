@@ -313,7 +313,7 @@
         <p style="color:#c4cfe0; margin: 0; font-size: 15px;">HRtep 株式会社のコーポレートサイトを AWS Amplify Hosting に切替えるため、お名前.com Navi で DNS レコード 8 件のご設定をお願いする依頼書です。</p>
         <div class="now">
           <p class="label">ご依頼内容</p>
-          <p><strong style="color:#fff;">DNS レコード 8 件の設定を 1 回でお願いいたします。</strong>新規追加 6 件（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）+ 既存値変更 2 件（apex A / www CNAME）。所要 20〜25 分程度の見込みです。受信メール（MX）には影響しません。</p>
+          <p><strong style="color:#fff;">お名前.com Navi で DNS レコード 8 件のご設定をお願いいたします。</strong>新規追加 6 件（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）+ 既存値変更 2 件（apex A / www CNAME）。受信メール（MX）には影響しません。</p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
@@ -337,7 +337,6 @@
             <tr><td><strong>ご依頼者</strong></td><td>HRtep 株式会社（取次：HRtep 社 → 安井様）</td></tr>
             <tr><td><strong>技術設計・運用</strong></td><td>LeadX 株式会社</td></tr>
             <tr><td><strong>ご依頼内容</strong></td><td>お名前.com Navi での DNS 設定。新規追加 6 件 + 既存値変更 2 件 = 計 8 件のレコード操作</td></tr>
-            <tr><td><strong>所要時間</strong></td><td>20〜25 分程度の見込み</td></tr>
             <tr><td><strong>受信メール（Google Workspace）への影響</strong></td><td><strong style="color:var(--ok-deep);">なし</strong>（MX レコードには触れません）</td></tr>
           </tbody>
         </table>
@@ -357,7 +356,7 @@
       <!-- ▼ §1 設定していただく DNS 8 件 -->
       <section id="s04">
         <h2><span class="num">1</span>設定していただく DNS 8 件</h2>
-        <p class="lead">お名前.com Navi で行っていただく 8 件のレコード操作の一覧と手順です。新規追加 6 件＋既存値変更 2 件、所要 20〜25 分程度の見込み。</p>
+        <p class="lead">お名前.com Navi で行っていただく 8 件のレコード操作の一覧と手順です。新規追加 6 件＋既存値変更 2 件。</p>
 
         <h3>設定していただく 8 件のレコード</h3>
         <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">
@@ -521,7 +520,7 @@
       <!-- ▼ §2 設定後の流れ -->
       <section id="s05">
         <h2><span class="num">2</span>設定後の流れ（参考）</h2>
-        <p class="lead">安井様の DNS 設定完了後、LeadX 社が以下の流れで本番化を進めます。安井様にお願いする作業は本書面の DNS 設定 1 回のみで、以降は HRtep 社の Verification メールクリック 1 回（数十秒）以外、追加作業は発生しません。</p>
+        <p class="lead">安井様の DNS 設定完了後、LeadX 社が以下の流れで本番化を進めます。安井様にご依頼するのは本書面の DNS 設定のみで、以降は LeadX 社で完了させます（途中、HRtep 社で Verification メールのリンクをクリックする作業が 1 件発生します）。</p>
 
         <div class="diagram">
           <svg viewBox="0 0 980 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="設定後の本番化フロー">
@@ -552,7 +551,7 @@
             <text x="60" y="74" text-anchor="middle" class="f-num">1</text>
             <text x="84" y="68" class="f-who" style="fill:#8b5a00;">安井様</text>
             <text x="84" y="86" class="f-lbl">DNS 8 件を設定（本書面）</text>
-            <text x="84" y="102" class="f-sm">所要 20〜25 分</text>
+            <text x="84" y="102" class="f-sm">お名前.com Navi で操作</text>
 
             <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-us"/>
             <circle cx="300" cy="70" r="14" class="f-circle-us"/>
@@ -568,7 +567,7 @@
             <text x="540" y="74" text-anchor="middle" class="f-num">3</text>
             <text x="564" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
             <text x="564" y="86" class="f-lbl">Verification リンクをクリック</text>
-            <text x="564" y="102" class="f-sm">1 回・数十秒</text>
+            <text x="564" y="102" class="f-sm">受信トレイから操作</text>
 
             <path d="M500,80 L520,80" class="f-arrow"/>
 
@@ -577,7 +576,7 @@
             <text x="780" y="74" text-anchor="middle" class="f-num">4</text>
             <text x="804" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
             <text x="804" y="86" class="f-lbl">SSL 発行・E2E テスト</text>
-            <text x="804" y="102" class="f-sm">30〜60 分（自動）</text>
+            <text x="804" y="102" class="f-sm">AWS が自動発行</text>
 
             <path d="M740,80 L760,80" class="f-arrow"/>
 
