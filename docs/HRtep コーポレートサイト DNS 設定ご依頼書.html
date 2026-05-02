@@ -478,22 +478,100 @@
         </p>
 
         <h3>お名前.com Navi での操作手順</h3>
-        <ol style="font-size:14px; padding-left:20px;">
-          <li>お名前.com Navi にログイン</li>
-          <li>「ドメイン」 → 「DNS設定」</li>
-          <li>対象ドメイン <code>hrtep.com</code> の「DNS設定 / 転送設定」を選択</li>
-          <li>「DNSレコード設定を利用する」を選択して「次へ」</li>
-          <li>上記 8 件を以下の要領で操作
+        <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">画面遷移と各レコードの入力欄を、操作順にすべて記載します。事前確認の結果、現在 <code>www.hrtep.com</code> は A レコードで <code>118.27.122.212</code> を指しているため、<strong>行 8 は「既存 A レコードの削除 → 新規 CNAME の追加」の 2 操作</strong>になります（A から CNAME への TYPE 変更は不可のため）。</p>
+
+        <h4 style="margin-top:18px;">Step 1. ログイン〜 DNS レコード設定画面まで</h4>
+        <ol style="font-size:14px; padding-left:22px;">
+          <li>ブラウザで <code>https://navi.onamae.com/login</code> を開く</li>
+          <li>お名前 ID（会員 ID）とパスワードを入力 →「ログイン」</li>
+          <li>上部メニュー「ドメイン」をクリック</li>
+          <li>左メニュー「ドメイン機能一覧」 →「DNS関連機能の設定」をクリック<br><span style="font-size:12.5px; color:var(--muted);">（古い UI では「ドメイン設定」 →「DNS設定 / 転送設定」と表記される場合があります）</span></li>
+          <li>ドメイン一覧から <code>hrtep.com</code> の行を選択（チェックボックスを入れる）→「次へ進む」</li>
+          <li>機能選択画面で「DNSレコード設定を利用する」の「設定する」をクリック</li>
+          <li>DNSレコード設定画面が開き、現在登録されているレコード一覧（MX 6 件、A 2 件、TXT 等）が表示される</li>
+        </ol>
+
+        <div class="callout warn">
+          <b>ここで現在の状態を必ず確認</b>
+          画面下部の「現在 DNS レコード設定」一覧で、以下のレコードが残っていることを必ず目視確認してください。これらは作業終了まで一切触れません。
+          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
+            <li>MX（<code>aspmx.l.google.com</code> 等の Google Workspace 系 5 件 + <code>mail74.onamae.ne.jp</code> 1 件 = 計 6 件）</li>
+            <li>TXT @（apex SPF：<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
+            <li>TXT @（Google site verification：<code>google-site-verification=Ug3jABUVGPbGte0RAFkevh6O5owhVgntGGFWNaXXulc</code>）</li>
+            <li>TXT _dmarc（DMARC：<code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code>）</li>
+            <li>A @（apex：<code>118.27.122.212</code>）← <strong>行 7 で値を変更します</strong></li>
+            <li>A www（<code>118.27.122.212</code>）← <strong>行 8 でこのレコードを削除し、CNAME を追加します</strong></li>
+          </ul>
+        </div>
+
+        <h4 style="margin-top:24px;">Step 2. 行 1〜6（新規追加 6 件）の入力</h4>
+        <p style="font-size:13.5px; color:var(--muted);">画面上部の「DNSレコード設定」フォームに、1 件ずつ入力 →「追加」ボタンで行を増やしていきます。<strong>「ホスト名」欄は末尾の <code>.hrtep.com</code> が自動付加</strong>されるため、ドメイン部分は入力しないでください。<strong>TTL は既定の 3600 のまま</strong>で問題ありません。</p>
+
+        <table>
+          <thead>
+            <tr><th style="width:4%">#</th><th style="width:10%">操作</th><th style="width:32%">ホスト名（入力欄）</th><th style="width:9%">TYPE</th><th>VALUE（入力欄）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td></tr>
+            <tr><td>2</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td></tr>
+            <tr><td>3</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td></tr>
+            <tr><td>4</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td></tr>
+            <tr><td>5</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（先頭 <code>_</code> 付きの長いハッシュ。末尾 <code>.hrtep.com</code> は除いた形で記入済）</span></td><td>CNAME</td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（<code>_yyyyy....acm-validations.aws</code> 形式）</span></td></tr>
+            <tr><td>6</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（先頭 <code>_</code> 付きハッシュ + <code>.www</code>。末尾 <code>.hrtep.com</code> は除いた形で記入済）</span></td><td>CNAME</td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（<code>_yyyyy....acm-validations.aws</code> 形式）</span></td></tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:13.5px;">
+          <strong>各行の入力手順</strong>：<br>
+          ① ホスト名欄に上記「ホスト名」をコピペ ／ ② TYPE プルダウンから <code>CNAME</code> または <code>TXT</code> を選択 ／ ③ TTL は <code>3600</code> のまま ／ ④ VALUE 欄に上記「VALUE」をコピペ ／ ⑤「追加」ボタン押下で 1 件確定<br>
+          1〜6 をすべて追加すると、画面下部の「現在 DNS レコード設定」一覧に追加した 6 件が並びます。
+        </p>
+
+        <h4 style="margin-top:24px;">Step 3. 行 7（apex A レコードの値を変更）</h4>
+        <ol style="font-size:14px; padding-left:22px;">
+          <li>「現在 DNS レコード設定」一覧の中から <strong>ホスト名が空欄（apex）で TYPE が A、VALUE が <code>118.27.122.212</code></strong> の行を探す</li>
+          <li>その行の右端「修正」ボタン（または鉛筆アイコン）をクリック</li>
+          <li>編集モードで <strong>VALUE 欄の <code>118.27.122.212</code> を、本書面記載の Amplify 確定 IP（数字 4 ブロック）に置換</strong></li>
+          <li>「修正」または「確定」ボタン押下</li>
+        </ol>
+
+        <h4 style="margin-top:24px;">Step 4. 行 8（www の A レコード削除 → CNAME 追加）</h4>
+        <p style="font-size:13.5px; color:var(--bad-deep); margin-bottom:6px;"><strong>注意</strong>：A から CNAME への TYPE 変更は UI 上不可のため、以下の 2 操作で行います。</p>
+        <ol style="font-size:14px; padding-left:22px;">
+          <li>「現在 DNS レコード設定」一覧の中から <strong>ホスト名が <code>www</code> で TYPE が A、VALUE が <code>118.27.122.212</code></strong> の行を探す</li>
+          <li>その行の右端「<strong>削除</strong>」ボタン（または ✕ / ゴミ箱アイコン）をクリック → 確認ダイアログで「OK」</li>
+          <li>続いて画面上部の「DNSレコード設定」フォームに新規 CNAME を入力<br>
+            　ホスト名: <code>www</code><br>
+            　TYPE: <code>CNAME</code><br>
+            　VALUE: <code>main.d3561ojkga3nyn.amplifyapp.com</code><br>
+            　TTL: <code>3600</code> のまま
+          </li>
+          <li>「追加」ボタン押下</li>
+        </ol>
+
+        <h4 style="margin-top:24px;">Step 5. 反映確定</h4>
+        <ol style="font-size:14px; padding-left:22px;">
+          <li>画面下部の「現在 DNS レコード設定」一覧で、以下を最終確認：
             <ul style="font-size:13.5px; margin-top:6px;">
-              <li><strong>1〜3（DKIM CNAME 追加）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
-              <li><strong>4（SPF TXT 追加）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
-              <li><strong>5〜6（ACM 検証 CNAME 追加）</strong>: ホスト名欄・VALUE ともに依頼書記載のとおり入力／ TYPE: <code>CNAME</code>／ ホスト名は末尾の <code>.hrtep.com</code> を除いた部分のみ入力（自動付加されます）</li>
-              <li><strong>7（A レコード変更）</strong>: ホスト名欄を空欄（apex 用）／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 確定値に置換</li>
-              <li><strong>8（www CNAME 変更）</strong>: ホスト名 <code>www</code> ／ 既存値を <code>main.d3561ojkga3nyn.amplifyapp.com</code> に置換（TYPE が A の場合は CNAME に変更）</li>
+              <li>追加された 7 件（行 1〜6 の新規 6 件 + 行 8 の新 CNAME）が一覧にある</li>
+              <li>行 7 の apex A レコードの VALUE が新しい IP になっている</li>
+              <li>www の A レコード（旧 <code>118.27.122.212</code>）が消えている</li>
+              <li>MX 6 件・apex SPF・DMARC・Google site verification・行 7 を除く既存 A は無傷</li>
             </ul>
           </li>
-          <li>8 件分すべて操作後「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
+          <li>画面下部「確認画面へ進む」ボタンをクリック</li>
+          <li>変更内容のサマリ画面で全 9 操作（追加 7 件・修正 1 件・削除 1 件）を確認</li>
+          <li>「設定する」ボタンをクリック</li>
+          <li>「DNSレコードの設定が完了しました」のメッセージが表示されれば完了</li>
         </ol>
+
+        <div class="callout">
+          <b>反映確認（任意作業）</b>
+          設定完了後、ターミナル等で以下のコマンドで反映状況を確認できます。反映には数分〜最大 24 時間かかります。<br>
+          <code>nslookup -type=cname qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send.hrtep.com 8.8.8.8</code><br>
+          <code>nslookup -type=a hrtep.com 8.8.8.8</code>（行 7 の新 IP が返れば反映済）<br>
+          <code>nslookup -type=cname www.hrtep.com 8.8.8.8</code>（行 8 の <code>main.d3561...amplifyapp.com</code> が返れば反映済）
+        </div>
 
         <div class="callout bad">
           <b>絶対に変更しないでください</b>
