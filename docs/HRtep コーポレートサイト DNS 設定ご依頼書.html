@@ -480,32 +480,31 @@
         <h3>お名前.com Navi での操作手順</h3>
         <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">画面遷移と各レコードの入力欄を、操作順にすべて記載します。事前確認の結果、現在 <code>www.hrtep.com</code> は A レコードで <code>118.27.122.212</code> を指しているため、<strong>行 8 は「既存 A レコードの削除 → 新規 CNAME の追加」の 2 操作</strong>になります（A から CNAME への TYPE 変更は不可のため）。</p>
 
-        <h4 style="margin-top:18px;">Step 1. ログイン〜 DNS レコード設定画面まで</h4>
+        <h4 style="margin-top:18px;">Step 1. ログイン〜 DNSレコード設定画面まで</h4>
         <ol style="font-size:14px; padding-left:22px;">
           <li>ブラウザで <code>https://navi.onamae.com/login</code> を開く</li>
           <li>お名前 ID（会員 ID）とパスワードを入力 →「ログイン」</li>
-          <li>上部メニュー「ドメイン」をクリック</li>
-          <li>左メニュー「ドメイン機能一覧」 →「DNS関連機能の設定」をクリック<br><span style="font-size:12.5px; color:var(--muted);">（古い UI では「ドメイン設定」 →「DNS設定 / 転送設定」と表記される場合があります）</span></li>
-          <li>ドメイン一覧から <code>hrtep.com</code> の行を選択（チェックボックスを入れる）→「次へ進む」</li>
-          <li>機能選択画面で「DNSレコード設定を利用する」の「設定する」をクリック</li>
-          <li>DNSレコード設定画面が開き、現在登録されているレコード一覧（MX 6 件、A 2 件、TXT 等）が表示される</li>
+          <li><strong>左メニュー「ネームサーバー/DNS」</strong>（サブテキスト「Webサイト&メールのご利用ならこちら」）にマウスを合わせ、表示されるサブメニューから <strong>「ドメインDNS設定」</strong> をクリック</li>
+          <li>「DNS設定」欄に表示される対象ドメイン一覧から <code>hrtep.com</code> の行の <strong>「ドメインDNS」</strong> リンクをクリック</li>
+          <li>機能選択画面で <strong>「DNSレコード設定」</strong> をクリック</li>
+          <li>DNSレコード設定画面が開き、画面上部に「レコード追加」タブ／「登録済レコード」タブの 2 タブ構造が表示される</li>
         </ol>
 
         <div class="callout warn">
-          <b>ここで現在の状態を必ず確認</b>
-          画面下部の「現在 DNS レコード設定」一覧で、以下のレコードが残っていることを必ず目視確認してください。これらは作業終了まで一切触れません。
+          <b>「登録済レコード」タブで現在の状態を必ず確認</b>
+          画面上部の「登録済レコード」タブをクリックし、以下のレコードが残っていることを目視確認してください。これらは作業終了まで一切触れません。
           <ul style="margin:8px 0 0 18px; font-size:13.5px;">
             <li>MX（<code>aspmx.l.google.com</code> 等の Google Workspace 系 5 件 + <code>mail74.onamae.ne.jp</code> 1 件 = 計 6 件）</li>
             <li>TXT @（apex SPF：<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）</li>
             <li>TXT @（Google site verification：<code>google-site-verification=Ug3jABUVGPbGte0RAFkevh6O5owhVgntGGFWNaXXulc</code>）</li>
             <li>TXT _dmarc（DMARC：<code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code>）</li>
-            <li>A @（apex：<code>118.27.122.212</code>）← <strong>行 7 で値を変更します</strong></li>
-            <li>A www（<code>118.27.122.212</code>）← <strong>行 8 でこのレコードを削除し、CNAME を追加します</strong></li>
+            <li>A @（apex：<code>118.27.122.212</code>）← <strong>Step 3 で値を変更します</strong></li>
+            <li>A www（<code>118.27.122.212</code>）← <strong>Step 4 でこのレコードを削除し、CNAME を追加します</strong></li>
           </ul>
         </div>
 
-        <h4 style="margin-top:24px;">Step 2. 行 1〜6（新規追加 6 件）の入力</h4>
-        <p style="font-size:13.5px; color:var(--muted);">画面上部の「DNSレコード設定」フォームに、1 件ずつ入力 →「追加」ボタンで行を増やしていきます。<strong>「ホスト名」欄は末尾の <code>.hrtep.com</code> が自動付加</strong>されるため、ドメイン部分は入力しないでください。<strong>TTL は既定の 3600 のまま</strong>で問題ありません。</p>
+        <h4 style="margin-top:24px;">Step 2.「レコード追加」タブで行 1〜6（新規 6 件）+ 行 8 の新 CNAME を追加</h4>
+        <p style="font-size:13.5px; color:var(--muted);">画面上部の <strong>「レコード追加」タブ</strong> をクリックし、入力フォームで 1 件ずつ入力 →「追加」ボタンで行を増やしていきます。<strong>「ホスト名」欄は <code>xxx.hrtep.com</code> の <code>xxx</code> の部分のみ入力</strong>（ドメイン部分は自動付加）。<strong>TTL は既定値（3600 推奨。範囲は 60〜86400）</strong>。<strong>TYPE プルダウンの選択肢</strong>：A / AAAA / CNAME / MX / NS / TXT / SRV / DS / CAA。</p>
 
         <table>
           <thead>
@@ -518,50 +517,45 @@
             <tr><td>4</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td></tr>
             <tr><td>5</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（先頭 <code>_</code> 付きの長いハッシュ。末尾 <code>.hrtep.com</code> は除いた形で記入済）</span></td><td>CNAME</td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（<code>_yyyyy....acm-validations.aws</code> 形式）</span></td></tr>
             <tr><td>6</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（先頭 <code>_</code> 付きハッシュ + <code>.www</code>。末尾 <code>.hrtep.com</code> は除いた形で記入済）</span></td><td>CNAME</td><td>本書面記載のとおり<br><span style="font-size:11.5px; color:var(--muted);">（<code>_yyyyy....acm-validations.aws</code> 形式）</span></td></tr>
+            <tr style="background:#fff8e0;"><td>8 の新規分</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>www</code></td><td>CNAME</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code></td></tr>
           </tbody>
         </table>
 
         <p style="font-size:13.5px;">
           <strong>各行の入力手順</strong>：<br>
-          ① ホスト名欄に上記「ホスト名」をコピペ ／ ② TYPE プルダウンから <code>CNAME</code> または <code>TXT</code> を選択 ／ ③ TTL は <code>3600</code> のまま ／ ④ VALUE 欄に上記「VALUE」をコピペ ／ ⑤「追加」ボタン押下で 1 件確定<br>
-          1〜6 をすべて追加すると、画面下部の「現在 DNS レコード設定」一覧に追加した 6 件が並びます。
+          ① ホスト名欄に上記「ホスト名」をコピペ ／ ② TYPE プルダウンから <code>CNAME</code> または <code>TXT</code> を選択 ／ ③ TTL は <code>3600</code> のまま ／ ④ VALUE 欄に上記「VALUE」をコピペ ／ ⑤ 入力フォーム下の「<strong>追加</strong>」ボタンを押下で 1 件確定（フォームがクリアされ次の入力ができる）<br>
+          <strong>行 8 の新 CNAME（最下段）も「レコード追加」タブで先に追加しておきます</strong>（既存 A の削除は Step 4 で実施）。
         </p>
 
-        <h4 style="margin-top:24px;">Step 3. 行 7（apex A レコードの値を変更）</h4>
+        <div class="callout warn">
+          <b>行 8 の追加時の警告ダイアログ</b>
+          <code>www</code> ホストの CNAME を追加する際、お名前.com 側で「<code>www</code> に既に A レコードが存在します」という旨の警告が出る場合があります。**この時点では行 8 の旧 A レコードは残ったまま**で、確認画面前に Step 4 で削除します。警告は無視して「追加」を完了してください（最終的な確認画面で削除と追加が同時にコミットされます）。
+        </div>
+
+        <h4 style="margin-top:24px;">Step 3.「登録済レコード」タブで行 7（apex A）の値を編集</h4>
         <ol style="font-size:14px; padding-left:22px;">
-          <li>「現在 DNS レコード設定」一覧の中から <strong>ホスト名が空欄（apex）で TYPE が A、VALUE が <code>118.27.122.212</code></strong> の行を探す</li>
-          <li>その行の右端「修正」ボタン（または鉛筆アイコン）をクリック</li>
-          <li>編集モードで <strong>VALUE 欄の <code>118.27.122.212</code> を、本書面記載の Amplify 確定 IP（数字 4 ブロック）に置換</strong></li>
-          <li>「修正」または「確定」ボタン押下</li>
+          <li>画面上部の <strong>「登録済レコード」タブ</strong> をクリック</li>
+          <li>一覧の中から <strong>ホスト名が空欄（apex / @）で TYPE が A、VALUE が <code>118.27.122.212</code></strong> の行を探す</li>
+          <li>その行の <strong>VALUE 欄</strong>（直接編集可能）の <code>118.27.122.212</code> を、本書面記載の Amplify 確定 IP に書き換え</li>
         </ol>
 
-        <h4 style="margin-top:24px;">Step 4. 行 8（www の A レコード削除 → CNAME 追加）</h4>
-        <p style="font-size:13.5px; color:var(--bad-deep); margin-bottom:6px;"><strong>注意</strong>：A から CNAME への TYPE 変更は UI 上不可のため、以下の 2 操作で行います。</p>
+        <h4 style="margin-top:24px;">Step 4.「登録済レコード」タブで行 8 の旧 A レコードを削除</h4>
         <ol style="font-size:14px; padding-left:22px;">
-          <li>「現在 DNS レコード設定」一覧の中から <strong>ホスト名が <code>www</code> で TYPE が A、VALUE が <code>118.27.122.212</code></strong> の行を探す</li>
-          <li>その行の右端「<strong>削除</strong>」ボタン（または ✕ / ゴミ箱アイコン）をクリック → 確認ダイアログで「OK」</li>
-          <li>続いて画面上部の「DNSレコード設定」フォームに新規 CNAME を入力<br>
-            　ホスト名: <code>www</code><br>
-            　TYPE: <code>CNAME</code><br>
-            　VALUE: <code>main.d3561ojkga3nyn.amplifyapp.com</code><br>
-            　TTL: <code>3600</code> のまま
-          </li>
-          <li>「追加」ボタン押下</li>
+          <li>引き続き <strong>「登録済レコード」タブ</strong> で、ホスト名 <code>www</code>・TYPE A・VALUE <code>118.27.122.212</code> の行を探す</li>
+          <li>その行の <strong>「削除」チェックボックス</strong>（行右端）にチェックを入れる</li>
+          <li>Step 2 で追加した <code>www</code> CNAME（main.d3561...amplifyapp.com）が「登録済レコード」タブにも追加で表示されていることを確認</li>
         </ol>
 
         <h4 style="margin-top:24px;">Step 5. 反映確定</h4>
         <ol style="font-size:14px; padding-left:22px;">
-          <li>画面下部の「現在 DNS レコード設定」一覧で、以下を最終確認：
-            <ul style="font-size:13.5px; margin-top:6px;">
-              <li>追加された 7 件（行 1〜6 の新規 6 件 + 行 8 の新 CNAME）が一覧にある</li>
-              <li>行 7 の apex A レコードの VALUE が新しい IP になっている</li>
-              <li>www の A レコード（旧 <code>118.27.122.212</code>）が消えている</li>
-              <li>MX 6 件・apex SPF・DMARC・Google site verification・行 7 を除く既存 A は無傷</li>
+          <li>画面下部 <strong>「確認画面へ進む」</strong> ボタンをクリック</li>
+          <li>変更内容のサマリ画面で <strong>追加 7 件（行 1〜6 + 行 8 新 CNAME）／ 修正 1 件（行 7 apex A）／ 削除 1 件（行 8 旧 A）</strong> の計 9 操作が表示されることを確認</li>
+          <li>続いて表示される <strong>ドメインプロテクション</strong>（不正な DNS 改ざんからドメインを守るオプション）の選択画面では、必要に応じて「設定する」または「設定しない」を選択
+            <ul style="font-size:12.5px; color:var(--muted); margin-top:4px;">
+              <li>本作業のために新規加入する必要はありません。既に契約済の場合は既定の選択のまま進んでください。</li>
             </ul>
           </li>
-          <li>画面下部「確認画面へ進む」ボタンをクリック</li>
-          <li>変更内容のサマリ画面で全 9 操作（追加 7 件・修正 1 件・削除 1 件）を確認</li>
-          <li>「設定する」ボタンをクリック</li>
+          <li>最終確認画面で <strong>「設定する」</strong> ボタンをクリック</li>
           <li>「DNSレコードの設定が完了しました」のメッセージが表示されれば完了</li>
         </ol>
 
