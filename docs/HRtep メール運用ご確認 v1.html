@@ -174,11 +174,6 @@
           <p class="label">ご確認事項</p>
           <p>① <strong style="color:#fff;">tsukahira@hrtep.com</strong> を受信先にしてよいか／② <strong style="color:#fff;">info@hrtep.com</strong> から返信できる設定（任意）。</p>
         </div>
-        <div class="meta">
-          <span>宛先: <b>HRtep 株式会社 津賀平 様</b></span>
-          <span>差出: <b>LeadX 株式会社</b></span>
-          <span>更新: <b>2026-05-02</b></span>
-        </div>
       </div>
     </header>
 
@@ -305,47 +300,71 @@
         </div>
       </section>
 
-      <!-- ▼ §3 ご対応② info@ 返信設定 -->
+      <!-- ▼ §3 ご対応② 返信運用パターン -->
       <section id="s03">
-        <h2><span class="num">3</span>ご対応② <code>info@hrtep.com</code> から返信できる設定（任意）</h2>
-        <p class="lead">問合せに返信する際、差出人を <code>info@hrtep.com</code> にしたい場合のみ実施いただく任意の設定です。設定しない場合は <code>tsukahira@hrtep.com</code> から返信する運用となります。</p>
+        <h2><span class="num">3</span>ご対応② 返信運用パターンのご選択</h2>
+        <p class="lead">問合せに返信する際にどのアドレスを差出人として使うかを決めていただきます。現実的に取り得る 5 パターンを整理しました。ご希望のパターンを LeadX 社までお知らせください。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:5%">#</th>
+              <th style="width:24%">パターン</th>
+              <th style="width:14%">受信</th>
+              <th style="width:14%">送信</th>
+              <th>必要な作業 / 補足</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>①</strong></td>
+              <td><strong>既存 <code>info@</code> で完結</strong></td>
+              <td><code>info@</code>（既存）</td>
+              <td><code>info@</code></td>
+              <td>すでに <code>info@hrtep.com</code> が運用中の場合のみ。LeadX 側で受信先を <code>info@</code> に変更するだけ。HRtep 様の追加作業はありません。</td>
+            </tr>
+            <tr>
+              <td><strong>②</strong></td>
+              <td><strong><code>info@</code> を新規取得して完結</strong></td>
+              <td><code>info@</code>（新規）</td>
+              <td><code>info@</code></td>
+              <td>Workspace で <code>info@</code> ユーザーまたはグループを新規作成。問合せが多くなってきたタイミングで会社代表アドレスを本格運用するならこの機会に取得が自然です。</td>
+            </tr>
+            <tr style="background: var(--decision-bg);">
+              <td><strong>③</strong></td>
+              <td><strong><code>tsukahira@</code> 受信 + <code>info@</code> 送信（Alias）</strong></td>
+              <td><code>tsukahira@</code></td>
+              <td><code>info@</code>（Alias）</td>
+              <td>Workspace 管理者: <code>tsukahira@</code> に <code>info@</code> を Email Alias 追加。個人: Gmail の Send mail as 設定。設定後は通知メールに「返信」を押すと自動的に <code>info@</code> から送信されます。</td>
+            </tr>
+            <tr>
+              <td><strong>④</strong></td>
+              <td><strong><code>tsukahira@</code> 受信 + 新規 <code>info@</code> 送信（転送）</strong></td>
+              <td><code>tsukahira@</code><br><span style="font-size:12px; color:var(--muted);">（<code>info@</code> 宛は <code>tsukahira@</code> へ転送）</span></td>
+              <td><code>info@</code>（新規）</td>
+              <td>Workspace で <code>info@</code> を独立アカウントとして新規取得し、<code>info@</code> → <code>tsukahira@</code> への自動転送を設定。個人: Gmail の Send mail as 設定。<code>info@</code> を将来別途独立活用したい場合に有効。</td>
+            </tr>
+            <tr>
+              <td><strong>⑤</strong></td>
+              <td><strong><code>tsukahira@</code> 単独</strong>（<code>info@</code> 不使用）</td>
+              <td><code>tsukahira@</code></td>
+              <td><code>tsukahira@</code></td>
+              <td>追加作業なし。最もシンプル。返信は個人名アドレスからとなり、会社代表アドレスは使いません。後日 ①〜④ への切替も可能です。</td>
+            </tr>
+          </tbody>
+        </table>
 
         <div class="callout">
-          <b>この設定の効果</b>
-          通知メール（<code>tsukahira@</code> 宛）を受けた後、Gmail の「返信」を押すだけで、自動的に <strong><code>info@hrtep.com</code> から返信メールが送信</strong>されます。会社代表アドレスからの返信としたい場合に有効な設定です。
+          <b>ご回答方法</b>
+          上記 ①〜⑤ のうちご希望のパターンを LeadX 社までお知らせください。お選びいただいた後、必要に応じて Workspace の具体的な操作手順をご案内いたします（パターン ⑤ なら作業不要、即対応可）。
         </div>
 
-        <h3>Phase A: Workspace 管理者作業（<code>info</code> Alias の追加）</h3>
-        <p style="font-size:14px;">Google Workspace の管理者権限をお持ちの方が、<code>tsukahira@hrtep.com</code> ユーザーに <code>info@</code> をエイリアスとして追加します。所要 3〜5 分。</p>
-        <ol style="font-size:13.5px;">
-          <li>Google Admin Console（<code>admin.google.com</code>）に管理者アカウントでログイン</li>
-          <li>左メニュー「ディレクトリ」→「ユーザー」</li>
-          <li>ユーザー一覧から <code>tsukahira@hrtep.com</code> を選択</li>
-          <li>「ユーザー情報」→「メールエイリアス」→「エイリアスを追加」</li>
-          <li>「エイリアスのメール アドレス」欄に <code>info</code> を入力（ドメインは自動で <code>@hrtep.com</code>）→「保存」</li>
-          <li>数分後、<code>info@hrtep.com</code> 宛のメールが <code>tsukahira@</code> の受信トレイに届くようになります</li>
-        </ol>
-
-        <h3>Phase B: 津賀平様 個人作業（Gmail の Send mail as 設定）</h3>
-        <p style="font-size:14px;">Phase A 完了後、津賀平様ご自身の Gmail で「<code>info@</code> から送信できるようにする」設定を行います。所要 1〜2 分。</p>
-        <ol style="font-size:13.5px;">
-          <li>Gmail（<code>mail.google.com</code>）に <code>tsukahira@hrtep.com</code> でログイン</li>
-          <li>右上の歯車アイコン →「すべての設定を表示」</li>
-          <li>「アカウント」タブ →「他のメールアドレスを追加」</li>
-          <li>名前: <code>HRtep 株式会社</code>（任意の表示名）／ メールアドレス: <code>info@hrtep.com</code></li>
-          <li>「エイリアスとして扱う」にチェック →「次のステップ」→「アカウントを追加」（Phase A の Alias 設定済なら確認コード不要、即追加）</li>
-          <li>同じ「アカウント」タブ内の「メールを送信する場合」で「<strong>メールを受信したアドレスから返信する</strong>」を選択</li>
-        </ol>
-
-        <div class="callout warn">
-          <b>設定後の挙動</b>
-          お問合せフォーム経由で届いた通知メール（<code>tsukahira@</code> 宛）に「返信」を押すと、自動的に <code>info@hrtep.com</code> から送信されます。手動で <code>tsukahira@</code> や別アドレスから送信することも引き続き可能です。
-        </div>
-
-        <h3>設定しない場合の運用</h3>
-        <p style="font-size:14px;">
-          Phase A・B のいずれも実施しない場合、返信は <code>tsukahira@hrtep.com</code> から送信されます。問合せ対応に支障はなく、設定有無は完全に運用上のご判断です。後日設定することも可能です。
-        </p>
+        <h3>ご参考: 判断軸</h3>
+        <ul style="font-size:14px; line-height:1.85;">
+          <li><strong>会社代表アドレスで受信＆返信したい</strong> → ① または ②（既存 <code>info@</code> の有無で分岐）</li>
+          <li><strong>会社代表アドレスで返信したいが、受信は今のまま <code>tsukahira@</code> で見たい</strong> → ③（最も手軽）または ④（<code>info@</code> も独立運用したい場合）</li>
+          <li><strong>個人名アドレスで完結したい</strong> → ⑤（追加作業ゼロ）</li>
+        </ul>
       </section>
 
       <footer>
