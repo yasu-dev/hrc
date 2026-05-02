@@ -163,16 +163,61 @@
         .ask, .diagram, .callout, table { break-inside: avoid; }
         h2, h3 { break-after: avoid; }
       }
+
+      /* パターンカード */
+      .pgroup { margin: 22px 0 0; }
+      .pgroup h3 { margin-top: 18px; font-size: 16px; }
+      .pgroup-desc { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+      .pcards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .pcards.single { grid-template-columns: 1fr; max-width: 580px; }
+      .pcard {
+        background: #fff;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        padding: 16px 18px 14px;
+        position: relative;
+      }
+      .pcard.recommend { border-color: var(--decision); background: linear-gradient(180deg, var(--decision-bg) 0%, #fff 50%); }
+      .pcard .pnum {
+        position: absolute;
+        top: -12px; left: 14px;
+        width: 28px; height: 28px;
+        line-height: 28px;
+        text-align: center;
+        background: var(--navy-deep);
+        color: #fff;
+        border-radius: 50%;
+        font-size: 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+      }
+      .pcard.recommend .pnum { background: var(--decision); }
+      .pcard .ptitle { font-weight: 700; color: var(--navy-deep); font-size: 15px; margin: 4px 0 8px; line-height: 1.45; }
+      .pcard .pmini {
+        display: flex; gap: 10px; flex-wrap: wrap;
+        font-size: 11.5px; color: var(--muted);
+        font-family: 'JetBrains Mono', monospace;
+        margin: 0 0 10px;
+      }
+      .pcard .pmini span { background: var(--bg-soft); padding: 2px 8px; border-radius: 4px; }
+      .pcard .pmini b { color: var(--navy-deep); font-weight: 600; }
+      .pcard .pdesc { font-size: 13px; color: var(--ink); margin: 0 0 8px; line-height: 1.7; }
+      .pcard .pwhen { font-size: 12.5px; color: var(--decision); margin: 6px 0 0; font-weight: 600; }
+      .pcard .ptodo { font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+      .pcard .ptodo b { color: var(--navy-deep); font-weight: 600; }
+      @media (max-width: 720px) {
+        .pcards { grid-template-columns: 1fr; }
+      }
     </style>
   </head>
   <body>
     <header class="hero">
       <div class="wrap">
         <h1>HRtep コーポレートサイト メール運用ご確認</h1>
-        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">新サイトのお問合せフォームから届くメールについて、2 点だけご確認とご対応をお願いいたします。所要 5 分程度です。</p>
+        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">新サイトのお問合せフォームから届くメールについて、受信先と返信運用に関する 2 点をご確認・ご決定いただきたく、ご相談申し上げます。</p>
         <div class="now">
           <p class="label">ご確認事項</p>
-          <p>① <strong style="color:#fff;">tsukahira@hrtep.com</strong> を受信先にしてよいか／② <strong style="color:#fff;">info@hrtep.com</strong> から返信できる設定（任意）。</p>
+          <p>① 問合せ通知の<strong style="color:#fff;">受信先アドレス</strong>のご確認／② 返信時の<strong style="color:#fff;">差出人アドレス</strong>の運用パターンのご選択。</p>
         </div>
       </div>
     </header>
@@ -303,68 +348,163 @@
       <!-- ▼ §3 ご対応② 返信運用パターン -->
       <section id="s03">
         <h2><span class="num">3</span>ご対応② 返信運用パターンのご選択</h2>
-        <p class="lead">問合せに返信する際にどのアドレスを差出人として使うかを決めていただきます。現実的に取り得る 5 パターンを整理しました。ご希望のパターンを LeadX 社までお知らせください。</p>
+        <p class="lead">問合せ通知を「どのアドレスで受け取り」、「どのアドレスから返信するか」をご決定いただきます。現実的に取り得る 5 パターンを 3 グループに整理いたしました。</p>
 
-        <table>
-          <thead>
-            <tr>
-              <th style="width:5%">#</th>
-              <th style="width:24%">パターン</th>
-              <th style="width:14%">受信</th>
-              <th style="width:14%">送信</th>
-              <th>必要な作業 / 補足</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>①</strong></td>
-              <td><strong>既存 <code>info@</code> で完結</strong></td>
-              <td><code>info@</code>（既存）</td>
-              <td><code>info@</code></td>
-              <td>すでに <code>info@hrtep.com</code> が運用中の場合のみ。LeadX 側で受信先を <code>info@</code> に変更するだけ。HRtep 様の追加作業はありません。</td>
-            </tr>
-            <tr>
-              <td><strong>②</strong></td>
-              <td><strong><code>info@</code> を新規取得して完結</strong></td>
-              <td><code>info@</code>（新規）</td>
-              <td><code>info@</code></td>
-              <td>Workspace で <code>info@</code> ユーザーまたはグループを新規作成。問合せが多くなってきたタイミングで会社代表アドレスを本格運用するならこの機会に取得が自然です。</td>
-            </tr>
-            <tr style="background: var(--decision-bg);">
-              <td><strong>③</strong></td>
-              <td><strong><code>tsukahira@</code> 受信 + <code>info@</code> 送信（Alias）</strong></td>
-              <td><code>tsukahira@</code></td>
-              <td><code>info@</code>（Alias）</td>
-              <td>Workspace 管理者: <code>tsukahira@</code> に <code>info@</code> を Email Alias 追加。個人: Gmail の Send mail as 設定。設定後は通知メールに「返信」を押すと自動的に <code>info@</code> から送信されます。</td>
-            </tr>
-            <tr>
-              <td><strong>④</strong></td>
-              <td><strong><code>tsukahira@</code> 受信 + 新規 <code>info@</code> 送信（転送）</strong></td>
-              <td><code>tsukahira@</code><br><span style="font-size:12px; color:var(--muted);">（<code>info@</code> 宛は <code>tsukahira@</code> へ転送）</span></td>
-              <td><code>info@</code>（新規）</td>
-              <td>Workspace で <code>info@</code> を独立アカウントとして新規取得し、<code>info@</code> → <code>tsukahira@</code> への自動転送を設定。個人: Gmail の Send mail as 設定。<code>info@</code> を将来別途独立活用したい場合に有効。</td>
-            </tr>
-            <tr>
-              <td><strong>⑤</strong></td>
-              <td><strong><code>tsukahira@</code> 単独</strong>（<code>info@</code> 不使用）</td>
-              <td><code>tsukahira@</code></td>
-              <td><code>tsukahira@</code></td>
-              <td>追加作業なし。最もシンプル。返信は個人名アドレスからとなり、会社代表アドレスは使いません。後日 ①〜④ への切替も可能です。</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="diagram">
+          <svg viewBox="0 0 980 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="返信運用パターン選択フロー">
+            <style>
+              .q-lbl { font: 600 13px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .q-sm { font: 12px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .q-pat { font: 700 14px 'JetBrains Mono', monospace; fill: #fff; }
+              .q-box { fill: #fff; stroke: #6e4cff; stroke-width: 1.8; }
+              .q-pat-box-A { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 2; }
+              .q-pat-box-B { fill: #efeaff; stroke: #6e4cff; stroke-width: 2; }
+              .q-pat-box-C { fill: #f5f7fb; stroke: #95a3b9; stroke-width: 2; }
+              .q-arrow { stroke: #556073; stroke-width: 1.5; fill: none; marker-end: url(#qa); }
+              .q-edge { font: 11px 'Noto Sans JP', sans-serif; fill: #6e4cff; font-weight: 600; }
+            </style>
+            <defs>
+              <marker id="qa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#556073"/>
+              </marker>
+            </defs>
+
+            <text x="490" y="22" text-anchor="middle" class="q-lbl" style="font-size:14px;">ご判断のための質問フロー</text>
+
+            <rect x="350" y="40" width="280" height="50" rx="8" class="q-box"/>
+            <text x="490" y="60" text-anchor="middle" class="q-lbl">Q1. 会社代表アドレス <tspan style="font-family:'JetBrains Mono',monospace;">info@hrtep.com</tspan></text>
+            <text x="490" y="78" text-anchor="middle" class="q-lbl">を使用しますか？</text>
+
+            <path d="M490,90 L490,110 L160,110 L160,135" class="q-arrow"/>
+            <text x="320" y="106" class="q-edge">いいえ（個人アドレスで完結）</text>
+
+            <rect x="40" y="135" width="240" height="56" rx="8" class="q-pat-box-C"/>
+            <text x="65" y="158" class="q-pat" style="fill:#1a2d4d;">⑤</text>
+            <text x="160" y="158" text-anchor="middle" class="q-lbl"><tspan style="font-family:'JetBrains Mono',monospace;">tsukahira@</tspan> 単独運用</text>
+            <text x="160" y="176" text-anchor="middle" class="q-sm">グループ C</text>
+
+            <path d="M490,90 L490,135" class="q-arrow"/>
+            <text x="500" y="115" class="q-edge">はい</text>
+
+            <rect x="350" y="135" width="280" height="50" rx="8" class="q-box"/>
+            <text x="490" y="155" text-anchor="middle" class="q-lbl">Q2. <tspan style="font-family:'JetBrains Mono',monospace;">info@</tspan> は既に</text>
+            <text x="490" y="173" text-anchor="middle" class="q-lbl">運用中ですか？</text>
+
+            <path d="M490,185 L490,205 L160,205 L160,230" class="q-arrow"/>
+            <text x="350" y="201" class="q-edge">はい（既存）</text>
+
+            <rect x="40" y="230" width="240" height="56" rx="8" class="q-pat-box-A"/>
+            <text x="65" y="253" class="q-pat" style="fill:#0b5a78;">①</text>
+            <text x="160" y="253" text-anchor="middle" class="q-lbl">既存 <tspan style="font-family:'JetBrains Mono',monospace;">info@</tspan> で完結</text>
+            <text x="160" y="271" text-anchor="middle" class="q-sm">グループ A</text>
+
+            <path d="M490,185 L490,230" class="q-arrow"/>
+            <text x="500" y="210" class="q-edge">いいえ（新規取得）</text>
+
+            <rect x="350" y="230" width="280" height="50" rx="8" class="q-box"/>
+            <text x="490" y="250" text-anchor="middle" class="q-lbl">Q3. 受信先も <tspan style="font-family:'JetBrains Mono',monospace;">info@</tspan> に</text>
+            <text x="490" y="268" text-anchor="middle" class="q-lbl">集約しますか？</text>
+
+            <path d="M460,280 L460,310" class="q-arrow"/>
+            <text x="375" y="300" class="q-edge">はい（受信も info@）</text>
+            <rect x="340" y="310" width="240" height="56" rx="8" class="q-pat-box-A"/>
+            <text x="365" y="333" class="q-pat" style="fill:#0b5a78;">②</text>
+            <text x="460" y="333" text-anchor="middle" class="q-lbl"><tspan style="font-family:'JetBrains Mono',monospace;">info@</tspan> 新規取得・集約</text>
+            <text x="460" y="351" text-anchor="middle" class="q-sm">グループ A</text>
+
+            <path d="M630,255 L780,255 L780,310" class="q-arrow"/>
+            <text x="640" y="245" class="q-edge">いいえ（受信は個人）</text>
+            <rect x="660" y="310" width="280" height="56" rx="8" class="q-pat-box-B"/>
+            <text x="685" y="333" class="q-pat" style="fill:#3d2d8f;">③/④</text>
+            <text x="800" y="333" text-anchor="middle" class="q-lbl"><tspan style="font-family:'JetBrains Mono',monospace;">tsukahira@</tspan> 受信 + <tspan style="font-family:'JetBrains Mono',monospace;">info@</tspan> 送信</text>
+            <text x="800" y="351" text-anchor="middle" class="q-sm">グループ B（③ 別名 / ④ 独立アカウント）</text>
+          </svg>
+          <p class="caption">5 パターンを 3 グループに分類: <span style="color:#1aa0c8;">青系（A）</span>= info@ で受信＆送信を集約 ／ <span style="color:#6e4cff;">紫系（B）</span>= 受信は個人・返信時のみ info@ ／ <span style="color:#556073;">グレー（C）</span>= info@ 不使用</p>
+        </div>
+
+        <!-- グループ A: info@ で本格運用 -->
+        <div class="pgroup">
+          <h3>グループ A：会社代表アドレス <code>info@hrtep.com</code> で受信・送信を集約</h3>
+          <p class="pgroup-desc">受信通知も返信送信も <code>info@</code> に集約する運用。会社代表アドレスを正式に問合せ窓口として位置付ける形になります。</p>
+          <div class="pcards">
+            <div class="pcard">
+              <div class="pnum">①</div>
+              <p class="ptitle">既存 <code>info@</code> をそのまま使用</p>
+              <div class="pmini">
+                <span>受信: <b><code>info@</code></b></span>
+                <span>送信: <b><code>info@</code></b></span>
+              </div>
+              <p class="pdesc">既に <code>info@hrtep.com</code> を運用されている場合、そのまま受信先・送信元として継続使用します。</p>
+              <p class="pwhen">想定される選択理由: 現状すでに <code>info@</code> で問合せ対応されている</p>
+              <p class="ptodo"><b>HRtep 様の作業:</b> 不要（LeadX 側で受信先設定の変更のみ）</p>
+            </div>
+            <div class="pcard">
+              <div class="pnum">②</div>
+              <p class="ptitle"><code>info@</code> を新規取得して集約</p>
+              <div class="pmini">
+                <span>受信: <b><code>info@</code></b>（新規）</span>
+                <span>送信: <b><code>info@</code></b></span>
+              </div>
+              <p class="pdesc">この機会に <code>info@hrtep.com</code> を Google Workspace で新規取得し、受信＆送信ともそこに集約します。</p>
+              <p class="pwhen">想定される選択理由: 問合せ件数の増加を機に会社代表アドレスを正式運用したい</p>
+              <p class="ptodo"><b>HRtep 様の作業:</b> Google Workspace の管理者権限で <code>info@</code> ユーザーまたはグループを新規作成</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- グループ B: tsukahira で受け、info で返す -->
+        <div class="pgroup">
+          <h3>グループ B：受信は個人 <code>tsukahira@</code>、返信のみ <code>info@</code> から送信</h3>
+          <p class="pgroup-desc">問合せ通知の受信は普段ご利用の個人 Gmail で行い、返信送信のみ会社代表アドレスからとして送り出す運用。社外向け表示と社内運用を切り分ける形です。</p>
+          <div class="pcards">
+            <div class="pcard recommend">
+              <div class="pnum">③</div>
+              <p class="ptitle"><code>info@</code> を <code>tsukahira@</code> の別名（Email Alias）として登録</p>
+              <div class="pmini">
+                <span>受信: <b><code>tsukahira@</code></b></span>
+                <span>送信: <b><code>info@</code></b>（別名）</span>
+              </div>
+              <p class="pdesc"><code>tsukahira@</code> ユーザーに <code>info@</code> を「別名（Email Alias）」として Google Workspace に登録します。<code>info@</code> 宛のメールは <code>tsukahira@</code> の受信トレイに届き、Gmail の「返信」操作で差出人が <code>info@</code> に切り替わって送信されます。</p>
+              <p class="pwhen">想定される選択理由: 受信は個人 Gmail で対応したい／対外的には会社代表アドレスから返信したい</p>
+              <p class="ptodo"><b>HRtep 様の作業:</b> ① Workspace 管理者作業として <code>tsukahira@</code> に <code>info@</code> を Email Alias 追加 ／ ② 個人 Gmail で <code>info@</code> からの送信設定（Send mail as）</p>
+            </div>
+            <div class="pcard">
+              <div class="pnum">④</div>
+              <p class="ptitle"><code>info@</code> を独立アカウントとして登録（自動転送経由）</p>
+              <div class="pmini">
+                <span>受信: <b><code>tsukahira@</code></b><br><span style="font-weight:400; font-size:10.5px;">（info@ 宛は転送）</span></span>
+                <span>送信: <b><code>info@</code></b>（独立）</span>
+              </div>
+              <p class="pdesc"><code>info@</code> を独立した Workspace ユーザーとして新規取得し、<code>info@</code> 宛のメールは <code>tsukahira@</code> へ自動転送する設定にします。普段の挙動はパターン ③ と同等ですが、<code>info@</code> を将来的に複数人で共有する等の独立運用に発展させることが可能です。</p>
+              <p class="pwhen">想定される選択理由: 当面は ③ と同じ運用方式だが、将来 <code>info@</code> を独立運用する可能性を残したい</p>
+              <p class="ptodo"><b>HRtep 様の作業:</b> ① Workspace 管理者作業として <code>info@</code> ユーザー新規作成 + <code>tsukahira@</code> への自動転送設定 ／ ② 個人 Gmail で <code>info@</code> からの送信設定（Send mail as）</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- グループ C: tsukahira 単独 -->
+        <div class="pgroup">
+          <h3>グループ C：個人 <code>tsukahira@</code> 単独運用（<code>info@</code> 不使用）</h3>
+          <p class="pgroup-desc">会社代表アドレスは使用せず、受信・返信ともに個人アドレスで完結する運用。後日 ①〜④ への切替も可能です。</p>
+          <div class="pcards single">
+            <div class="pcard">
+              <div class="pnum">⑤</div>
+              <p class="ptitle"><code>tsukahira@</code> 単独で受信・返信</p>
+              <div class="pmini">
+                <span>受信: <b><code>tsukahira@</code></b></span>
+                <span>送信: <b><code>tsukahira@</code></b></span>
+              </div>
+              <p class="pdesc">問合せ通知は <code>tsukahira@</code> に届き、返信もそのまま <code>tsukahira@</code> から送信されます。<code>info@</code> は使用しません。</p>
+              <p class="pwhen">想定される選択理由: 会社代表アドレスの導入は現状必要としない／運用パターンを後日改めて検討したい</p>
+              <p class="ptodo"><b>HRtep 様の作業:</b> 不要</p>
+            </div>
+          </div>
+        </div>
 
         <div class="callout">
           <b>ご回答方法</b>
-          上記 ①〜⑤ のうちご希望のパターンを LeadX 社までお知らせください。お選びいただいた後、必要に応じて Workspace の具体的な操作手順をご案内いたします（パターン ⑤ なら作業不要、即対応可）。
+          ①〜⑤ のうちご希望のパターンを LeadX 社までお知らせください。お選びいただいた後、必要に応じて Google Workspace の操作手順を個別にご案内いたします。後日 ①〜④ への切替・⑤ から会社代表アドレス運用への移行も可能ですので、現時点での運用方針として最も合うパターンをご選択ください。
         </div>
-
-        <h3>ご参考: 判断軸</h3>
-        <ul style="font-size:14px; line-height:1.85;">
-          <li><strong>会社代表アドレスで受信＆返信したい</strong> → ① または ②（既存 <code>info@</code> の有無で分岐）</li>
-          <li><strong>会社代表アドレスで返信したいが、受信は今のまま <code>tsukahira@</code> で見たい</strong> → ③（最も手軽）または ④（<code>info@</code> も独立運用したい場合）</li>
-          <li><strong>個人名アドレスで完結したい</strong> → ⑤（追加作業ゼロ）</li>
-        </ul>
       </section>
 
       <footer>
