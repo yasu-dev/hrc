@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HRtep コーポレートサイト Web ホスティング刷新 計画書 v4</title>
+    <title>HRtep コーポレートサイト DNS 設定ご依頼書</title>
     <style>
       :root {
         --navy-deep: #0b1a30;
@@ -309,7 +309,7 @@
   <body>
     <header class="hero">
       <div class="wrap">
-        <h1>HRtep コーポレートサイト DNS 設定ご依頼書 <span style="color: var(--cyan); font-size: 22px;">v4</span></h1>
+        <h1>HRtep コーポレートサイト DNS 設定ご依頼書</h1>
         <p style="color:#c4cfe0; margin: 0; font-size: 15px;">HRtep 株式会社のコーポレートサイトを AWS Amplify Hosting に切替えるため、お名前.com Navi で DNS レコード 8 件のご設定をお願いする依頼書です。</p>
         <div class="now">
           <p class="label">ご依頼内容</p>
@@ -319,7 +319,6 @@
           <span>対象ドメイン: <b>hrtep.com</b></span>
           <span>レジストラ・DNS 管理: <b>お名前.com Navi</b></span>
           <span>更新: <b>2026-05-02</b></span>
-          <span>版数: <b>v4</b></span>
         </div>
       </div>
     </header>
@@ -345,13 +344,13 @@
 
         <h3>変更の趣旨（3 つの目的）</h3>
         <ul style="font-size:14px; line-height:1.85;">
-          <li><strong>① サイト本体の置き場所を切替</strong>：<code>hrtep.com</code> apex / www の値を、現行 WP の IP から Amplify が払い出す値に変更します（行 5・行 6）</li>
-          <li><strong>② お問合せフォームの送信メールに DKIM 認証を追加</strong>：Amazon SES で送信するため、新規サブドメイン <code>send.hrtep.com</code> 配下に DKIM CNAME 3 件 + SPF TXT 1 件を追加します（行 1〜4）</li>
-          <li><strong>③ HTTPS 化のための ACM 証明書検証</strong>：apex / www 用に ACM 検証 CNAME 2 件を追加します（行 7・行 8）</li>
+          <li><strong>① お問合せフォームの送信メールに DKIM 認証を追加</strong>：Amazon SES で送信するため、新規サブドメイン <code>send.hrtep.com</code> 配下に DKIM CNAME 3 件 + SPF TXT 1 件を追加します（行 1〜4）</li>
+          <li><strong>② HTTPS 化のための ACM 証明書検証</strong>：apex / www 用に ACM 検証 CNAME 2 件を追加します（行 5・行 6）</li>
+          <li><strong>③ サイト本体の置き場所を切替</strong>：<code>hrtep.com</code> apex / www の値を、現行 WP の IP から Amplify が払い出す値に変更します（行 7・行 8、最後に実施）</li>
         </ul>
         <p style="font-size:13.5px; color:var(--muted); margin-top:14px;">
           ※ 既存の MX（受信メール）・apex SPF・DMARC・その他のレコードには一切手を加えません（第 1 章末尾「絶対に変更しないでください」を参照）。<br>
-          ※ 行 5・7・8 の VALUE は、LeadX 社が依頼送付直前に Amplify から払い出される確定値を表に記入したうえでお渡しします。行 1〜4・行 6 は固定値です。
+          ※ 行 5・6・7 の VALUE は、LeadX 社が依頼送付直前に Amplify から払い出される確定値を表に記入したうえでお渡しします。行 1〜4・行 8 は固定値です。
         </p>
       </section>
 
@@ -360,14 +359,9 @@
         <h2><span class="num">1</span>設定していただく DNS 8 件</h2>
         <p class="lead">お名前.com Navi で行っていただく 8 件のレコード操作の一覧と手順です。新規追加 6 件＋既存値変更 2 件、所要 20〜25 分程度の見込み。</p>
 
-        <div class="callout">
-          <b>表中の VALUE について</b>
-          下表のうち <strong>行 5・7・8</strong> の VALUE は、AWS の Amplify Custom Domain 関連付け結果として払い出される値です。LeadX 社が本書面送付直前に値を確定させて記入のうえお渡ししますので、安井様には記載のとおりご入力いただくだけで完結します。
-        </div>
-
         <h3>設定していただく 8 件のレコード</h3>
         <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">
-          内訳: <strong>新規追加 6 件</strong>（DKIM CNAME 3 + SPF TXT 1 + ACM 証明書検証用 CNAME 2）+ <strong>既存変更 2 件</strong>（A レコード apex / CNAME www）。1〜4 はメール送信に関する追加、5〜6 は新サイト本番化のための既存レコード置換、7〜8 は HTTPS 化に必要な ACM 証明書の所有権検証用です。
+          内訳: <strong>新規追加 6 件</strong>（DKIM CNAME 3 + SPF TXT 1 + ACM 証明書検証用 CNAME 2）+ <strong>既存変更 2 件</strong>（A レコード apex / CNAME www）。1〜4 はメール送信に関する追加、5〜6 は HTTPS 化に必要な ACM 証明書の所有権検証用追加、7〜8 は新サイト本番化のための既存レコード置換です。先に追加 6 件 → 最後に変更 2 件の順で操作いただくことで、HTTPS 警告期間を最小化できます。
         </p>
 
         <div class="diagram">
@@ -421,35 +415,35 @@
             <text x="170" y="366" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 4: SPF TXT</text>
             <text x="170" y="384" text-anchor="middle" class="d-mono">send / v=spf1 ...</text>
 
-            <!-- Group ② サイト切替 (rows 5-6) -->
-            <rect x="330" y="100" width="280" height="200" rx="8" class="d-change"/>
-            <text x="470" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">② 新サイト切替</text>
-            <text x="470" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">既存変更 2 件 (rows 5〜6)</text>
-            <text x="470" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">apex / www のレコード値置換</text>
-            <line x1="350" y1="170" x2="590" y2="170" stroke="#ffb258" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <!-- Group ② HTTPS 検証 (rows 5-6) -->
+            <rect x="330" y="100" width="280" height="200" rx="8" class="d-add"/>
+            <text x="470" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">② HTTPS 化（ACM 検証）</text>
+            <text x="470" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新規追加 2 件 (rows 5〜6)</text>
+            <text x="470" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">SSL 証明書の所有権検証用</text>
+            <line x1="350" y1="170" x2="590" y2="170" stroke="#c89c00" stroke-width="0.8" stroke-dasharray="2 2"/>
 
-            <rect x="350" y="180" width="240" height="48" rx="4" class="d-row-change"/>
-            <text x="470" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 5: A（apex）</text>
-            <text x="470" y="216" text-anchor="middle" class="d-mono">@ → Amplify IP（依頼直前確定）</text>
+            <rect x="350" y="180" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="470" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 5: ACM 検証 CNAME（apex 用）</text>
+            <text x="470" y="216" text-anchor="middle" class="d-mono">_xxx → _yyy.acm-validations.aws</text>
 
-            <rect x="350" y="236" width="240" height="48" rx="4" class="d-row-change"/>
-            <text x="470" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 6: CNAME（www）</text>
-            <text x="470" y="272" text-anchor="middle" class="d-mono">main.d3561ojkga3nyn.amplifyapp.com</text>
+            <rect x="350" y="236" width="240" height="48" rx="4" class="d-row-add"/>
+            <text x="470" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 6: ACM 検証 CNAME（www 用）</text>
+            <text x="470" y="272" text-anchor="middle" class="d-mono">_xxx.www → _yyy.acm-validations.aws</text>
 
-            <!-- Group ③ HTTPS 検証 (rows 7-8) -->
-            <rect x="630" y="100" width="280" height="200" rx="8" class="d-add"/>
-            <text x="770" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">③ HTTPS 化（ACM 検証）</text>
-            <text x="770" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">新規追加 2 件 (rows 7〜8)</text>
-            <text x="770" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">SSL 証明書の所有権検証用</text>
-            <line x1="650" y1="170" x2="890" y2="170" stroke="#c89c00" stroke-width="0.8" stroke-dasharray="2 2"/>
+            <!-- Group ③ サイト切替 (rows 7-8) -->
+            <rect x="630" y="100" width="280" height="200" rx="8" class="d-change"/>
+            <text x="770" y="124" text-anchor="middle" class="d-grp-hdr" style="fill:#8b5a00;">③ 新サイト切替</text>
+            <text x="770" y="142" text-anchor="middle" class="d-sm" style="fill:#8b5a00;">既存変更 2 件 (rows 7〜8)</text>
+            <text x="770" y="158" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-style:italic;">apex / www のレコード値置換（最後に実施）</text>
+            <line x1="650" y1="170" x2="890" y2="170" stroke="#ffb258" stroke-width="0.8" stroke-dasharray="2 2"/>
 
-            <rect x="650" y="180" width="240" height="48" rx="4" class="d-row-add"/>
-            <text x="770" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 7: ACM 検証 CNAME（apex 用）</text>
-            <text x="770" y="216" text-anchor="middle" class="d-mono">_xxx → _yyy.acm-validations.aws</text>
+            <rect x="650" y="180" width="240" height="48" rx="4" class="d-row-change"/>
+            <text x="770" y="198" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 7: A（apex）</text>
+            <text x="770" y="216" text-anchor="middle" class="d-mono">@ → Amplify IP（依頼直前確定）</text>
 
-            <rect x="650" y="236" width="240" height="48" rx="4" class="d-row-add"/>
-            <text x="770" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 8: ACM 検証 CNAME（www 用）</text>
-            <text x="770" y="272" text-anchor="middle" class="d-mono">_xxx.www → _yyy.acm-validations.aws</text>
+            <rect x="650" y="236" width="240" height="48" rx="4" class="d-row-change"/>
+            <text x="770" y="254" text-anchor="middle" class="d-sm" style="fill:#8b5a00; font-weight:700;">行 8: CNAME（www）</text>
+            <text x="770" y="272" text-anchor="middle" class="d-mono">main.d3561ojkga3nyn.amplifyapp.com</text>
 
             <!-- 触らない既存レコードの注記 -->
             <rect x="330" y="320" width="580" height="80" rx="8" class="d-keep"/>
@@ -457,9 +451,9 @@
             <text x="620" y="360" text-anchor="middle" class="d-sm" style="fill:#1d6d3c;">MX（Google Workspace 6 件）／ apex SPF TXT ／ DMARC TXT ／ その他</text>
             <text x="620" y="378" text-anchor="middle" class="d-sm" style="fill:#1d6d3c; font-style:italic;">受信メール・既存サービスに影響なし</text>
 
-            <text x="470" y="438" text-anchor="middle" class="d-sm" style="font-size:12px;">緑 = 触らない既存／黄色 = 新規追加（① メール 4 件 + ③ HTTPS 2 件）／オレンジ = 既存値の変更（② 切替 2 件）</text>
+            <text x="470" y="438" text-anchor="middle" class="d-sm" style="font-size:12px;">緑 = 触らない既存／黄色 = 新規追加（① メール 4 件 + ② HTTPS 2 件 = 計 6 件）／オレンジ = 既存値の変更（③ 切替 2 件）</text>
           </svg>
-          <p class="caption">3 グループ計 8 件。① メール送信認証は <code>send.hrtep.com</code> 配下、② サイト切替は <code>hrtep.com</code> apex / www の値変更、③ HTTPS 化は ACM 証明書の所有権検証用 CNAME。受信メールに使う MX / SPF / DMARC は触りません。</p>
+          <p class="caption">3 グループ計 8 件。① メール送信認証は <code>send.hrtep.com</code> 配下、② HTTPS 化は ACM 証明書の所有権検証用 CNAME、③ サイト切替は <code>hrtep.com</code> apex / www の値変更（最後に実施）。受信メールに使う MX / SPF / DMARC は触りません。</p>
         </div>
 
         <table>
@@ -471,16 +465,17 @@
             <tr><td>2</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td><td>3600</td></tr>
             <tr><td>3</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td><td>3600</td></tr>
             <tr><td>4</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td><td>3600</td></tr>
-            <tr style="background:#fff4e5;"><td>5</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>@</code>（apex / 入力欄空欄）</td><td>A</td><td><strong>LeadX 社が依頼送付直前に Amplify から払い出される確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);">現行 <code>118.27.122.212</code> を、Amplify が払い出す A レコード値（IP アドレス）に置換</span></td><td>3600</td></tr>
-            <tr style="background:#fff4e5;"><td>6</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>www</code></td><td>CNAME</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code><br><span style="font-size:11.5px; color:var(--muted);">既存値（現行 WP の IP <code>118.27.122.212</code> 等）を、左記の値に置換</span></td><td>3600</td></tr>
-            <tr><td>7</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx</code> 形式（apex 用 ACM 検証）</span></td><td>CNAME</td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyyyyyyyyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>3600</td></tr>
-            <tr><td>8</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx.www</code> 形式（www 用 ACM 検証）</span></td><td>CNAME</td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyyyyyyyyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>3600</td></tr>
+            <tr><td>5</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx</code> 形式（apex 用 ACM 検証）</span></td><td>CNAME</td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyyyyyyyyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>3600</td></tr>
+            <tr><td>6</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx.www</code> 形式（www 用 ACM 検証）</span></td><td>CNAME</td><td><strong>LeadX 社が依頼送付直前に確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyyyyyyyyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>3600</td></tr>
+            <tr style="background:#fff4e5;"><td>7</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>@</code>（apex / 入力欄空欄）</td><td>A</td><td><strong>LeadX 社が依頼送付直前に Amplify から払い出される確定値を記入</strong><br><span style="font-size:11.5px; color:var(--muted);">現行 <code>118.27.122.212</code> を、Amplify が払い出す A レコード値（IP アドレス）に置換</span></td><td>3600</td></tr>
+            <tr style="background:#fff4e5;"><td>8</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">変更</span></td><td><code>www</code></td><td>CNAME</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code><br><span style="font-size:11.5px; color:var(--muted);">既存値（現行 WP の IP <code>118.27.122.212</code> 等）を、左記の値に置換</span></td><td>3600</td></tr>
           </tbody>
         </table>
         <p style="font-size:13px; color:var(--muted); margin-top:6px;">
           お名前.com Navi のホスト名欄では、末尾の <code>.hrtep.com</code> が自動的に付加されます。TTL はすべて既定値 3600 のままで問題ありません。<br>
-          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への追加（メール送信認証用）。5〜6 は新サイト本番化のための既存レコード置換、7〜8 は HTTPS 化のための ACM 証明書検証用 CNAME 追加です。<br>
-          <strong>5・7・8 の値は、LeadX 社が依頼送付直前に Amplify から払い出される確定値を記入したうえでお渡しします。6 は固定値です。</strong>
+          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への追加（メール送信認証用）。5〜6 は HTTPS 化のための ACM 証明書検証用 CNAME 追加、7〜8 は新サイト本番化のための既存レコード置換です。<br>
+          <strong>5・6・7 の値は、LeadX 社が依頼送付直前に Amplify から払い出される確定値を記入したうえでお渡しします。8 は固定値です。</strong><br>
+          <strong style="color:var(--bad-deep);">作業順は表の上から（1 → 8）でお願いいたします。先に追加 6 件（1〜6）を済ませてから最後に変更 2 件（7〜8）を行うことで、新サイト切替時の HTTPS 警告を避けられます。</strong>
         </p>
 
         <h3>お名前.com Navi での操作手順</h3>
@@ -491,11 +486,11 @@
           <li>「DNSレコード設定を利用する」を選択して「次へ」</li>
           <li>上記 8 件を以下の要領で操作
             <ul style="font-size:13.5px; margin-top:6px;">
-              <li><strong>1〜3（CNAME 追加）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
-              <li><strong>4（TXT 追加）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
-              <li><strong>5（A レコード変更）</strong>: ホスト名欄を空欄（apex 用）／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 確定値に置換</li>
-              <li><strong>6（www CNAME 変更）</strong>: ホスト名 <code>www</code> ／ 既存値を <code>main.d3561ojkga3nyn.amplifyapp.com</code> に置換（TYPE が A の場合は CNAME に変更）</li>
-              <li><strong>7〜8（ACM 検証 CNAME 追加）</strong>: ホスト名欄・VALUE ともに依頼書記載のとおり入力／ TYPE: <code>CNAME</code>／ ホスト名は末尾の <code>.hrtep.com</code> を除いた部分のみ入力（自動付加されます）</li>
+              <li><strong>1〜3（DKIM CNAME 追加）</strong>: ホスト名欄に <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx._domainkey.send</code> の部分のみ入力（末尾の <code>.hrtep.com</code> は自動付加）／ TYPE: <code>CNAME</code> ／ VALUE: 表の値</li>
+              <li><strong>4（SPF TXT 追加）</strong>: ホスト名欄に <code>send</code> のみ入力／ TYPE: <code>TXT</code> ／ VALUE: <code>v=spf1 include:amazonses.com ~all</code></li>
+              <li><strong>5〜6（ACM 検証 CNAME 追加）</strong>: ホスト名欄・VALUE ともに依頼書記載のとおり入力／ TYPE: <code>CNAME</code>／ ホスト名は末尾の <code>.hrtep.com</code> を除いた部分のみ入力（自動付加されます）</li>
+              <li><strong>7（A レコード変更）</strong>: ホスト名欄を空欄（apex 用）／ 既存の VALUE <code>118.27.122.212</code> を、依頼書記載の Amplify 確定値に置換</li>
+              <li><strong>8（www CNAME 変更）</strong>: ホスト名 <code>www</code> ／ 既存値を <code>main.d3561ojkga3nyn.amplifyapp.com</code> に置換（TYPE が A の場合は CNAME に変更）</li>
             </ul>
           </li>
           <li>8 件分すべて操作後「確認画面へ進む」 → 内容確認の上「設定する」を押下</li>
@@ -514,7 +509,7 @@
 
         <div class="callout ok">
           <b>受信メールへの影響なし</b>
-          1〜4 は新サブドメイン <code>send.hrtep.com</code> 配下への新規追加、5〜6 は apex / www の A レコード値の置換です。MX・apex SPF・DMARC レコードには一切手を加えません。Google Workspace ご利用の受信メールには影響しません。
+          1〜6 は新規追加（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）、7〜8 は apex / www の値置換です。MX・apex SPF・DMARC レコードには一切手を加えません。Google Workspace ご利用の受信メールには影響しません。
         </div>
 
         <h3>設定完了後のご連絡</h3>
@@ -617,7 +612,7 @@
       </section>
 
       <footer>
-        <p>HRtep コーポレートサイト DNS 設定ご依頼書 v4 — 2026-05-02</p>
+        <p>HRtep コーポレートサイト DNS 設定ご依頼書 — 2026-05-02</p>
       </footer>
 
     </div>
