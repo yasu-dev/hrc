@@ -507,9 +507,67 @@
           </div>
         </div>
 
+        <h3>判断材料: 5 パターンの比較</h3>
+        <p style="font-size:13.5px; color:var(--muted); margin-bottom:8px;">ご状況・作業負荷・適合する条件でパターンを横並びに比較しました。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:6%">#</th>
+              <th style="width:22%">パターン</th>
+              <th style="width:32%">向いているご状況</th>
+              <th>HRtep 様の作業</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>①</strong></td>
+              <td>運用中アドレス継続</td>
+              <td>すでに <code>hrtep.com</code> のいずれかのアドレスで問合せ対応中</td>
+              <td>なし（運用中アドレスを LeadX 社へお知らせいただくのみ）</td>
+            </tr>
+            <tr>
+              <td><strong>②</strong></td>
+              <td><code>info@</code> 新規取得・集約</td>
+              <td>問合せ対応の正式窓口として会社代表アドレスを新たに立ち上げたい</td>
+              <td>Workspace 管理者: <code>info@</code> ユーザーまたはグループの新規作成</td>
+            </tr>
+            <tr style="background: var(--decision-bg);">
+              <td><strong>③</strong></td>
+              <td><code>info@</code> を <code>tsukahira@</code> の Alias で運用</td>
+              <td>受信は普段の個人 Gmail で対応したい／対外的には会社代表アドレスから返信したい</td>
+              <td>Workspace 管理者: Email Alias 追加 + 個人 Gmail で送信設定</td>
+            </tr>
+            <tr>
+              <td><strong>④</strong></td>
+              <td>独立 <code>info@</code> + <code>tsukahira@</code> へ転送</td>
+              <td>当面は ③ と同等の運用＋将来 <code>info@</code> を独立運用に発展させる可能性</td>
+              <td>Workspace 管理者: <code>info@</code> ユーザー新規作成 + 自動転送設定 + 個人 Gmail で送信設定</td>
+            </tr>
+            <tr>
+              <td><strong>⑤</strong></td>
+              <td><code>tsukahira@</code> 単独</td>
+              <td>会社代表アドレスは現状不要／後日あらためて検討したい</td>
+              <td>なし</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:12.5px; color:var(--muted); margin: 0 0 18px;">いずれのパターンも、運用開始後に他のパターンへ変更可能です。</p>
+
+        <div class="callout">
+          <b>判断にお迷いの場合</b>
+          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
+            <li><strong>現在ご利用中のアドレスが分からない場合</strong> → LeadX 社にて Workspace のご状況を確認させていただきます（多くの場合 ① で対応可能）</li>
+            <li><strong>急ぎ稼働させたい場合</strong> → ⑤ で開始すれば追加作業なくスタートでき、後日 ①〜④ へ切替できます</li>
+            <li><strong>受信側の運用は変えず、対外表示だけ会社代表アドレスにしたい場合</strong> → ③ が該当します（最小の追加作業）</li>
+            <li><strong>会社代表アドレスを問合せ窓口として正式に位置付けたい場合</strong> → ① か ② をご検討ください</li>
+          </ul>
+        </div>
+
         <div class="callout">
           <b>ご回答方法</b>
-          ①〜⑤ のうち希望のパターンを LeadX 社までお伝えください。選んでいただいたあと、必要に応じて Google Workspace の操作手順を個別にご案内します。後日 ①〜④ への切替・⑤ から会社代表アドレス運用への移行も可能なので、現時点で最も合うパターンを選んでください。
+          ①〜⑤ のうち希望のパターンを LeadX 社までお伝えください。選んでいただいたあと、必要に応じて Google Workspace の操作手順を個別にご案内します。後日 ①〜④ への切替・⑤ から会社代表アドレス運用への移行も可能なので、現時点でのご状況に近いパターンを選んでください。
         </div>
       </section>
 
