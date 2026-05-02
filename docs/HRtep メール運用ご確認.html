@@ -155,13 +155,69 @@
         header.hero h1 { font-size: 22px; }
       }
       @media print {
-        @page { size: A4 portrait; margin: 8mm; }
-        body { margin: 0; }
-        .wrap { max-width: 100%; padding: 0 4mm 4mm; }
-        header.hero { margin-bottom: 6mm; padding: 8mm 0; }
-        section { margin-bottom: 5mm; break-inside: auto; }
-        .ask, .diagram, .callout, table { break-inside: avoid; }
-        h2, h3 { break-after: avoid; }
+        @page { size: A4 portrait; margin: 5mm; }
+        html, body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { font-size: 14px; line-height: 1.7; }
+        .wrap { max-width: 100%; padding: 0 4mm 2mm; }
+
+        /* ヒーローを省スペース化（A4 1 ページの導入を圧縮） */
+        header.hero { margin-bottom: 3mm; padding: 5mm 0; break-after: avoid; }
+        header.hero h1 { font-size: 22px; margin: 0 0 8px; }
+        header.hero .now { padding: 10px 16px; margin-top: 10px; }
+        header.hero .now p { font-size: 13px; line-height: 1.55; }
+        header.hero .now .label { font-size: 10px; margin: 0 0 3px; }
+
+        /* セクション間隔を圧縮 */
+        section { margin-bottom: 3mm; break-inside: auto; }
+        section > h2 { font-size: 18px; margin: 0 0 4px; break-after: avoid; }
+        section > h2 .num { width: 24px; height: 24px; line-height: 24px; font-size: 12px; }
+        section > .lead { font-size: 13px; margin: 0 0 8px; break-after: avoid; }
+
+        /* 見出しと直後コンテンツを分断させない */
+        h3 { font-size: 15px; margin: 14px 0 6px; break-after: avoid; }
+        h4 { font-size: 13.5px; margin: 10px 0 4px; break-after: avoid; }
+        h3 + p, h3 + ol, h3 + ul, h3 + table, h3 + .callout, h3 + .pgroup-desc, h3 + .pcards,
+        h4 + p, h4 + ol, h4 + ul, h4 + table,
+        .pgroup-desc + .pcards { break-before: avoid; }
+
+        /* ブロック要素の分断防止 */
+        .ask, .diagram, .callout, table, .pcard, .pgroup { break-inside: avoid; }
+
+        /* テーブル・コールアウト・段落の縦詰め */
+        table { margin: 6px 0 10px; font-size: 12.5px; }
+        table th, table td { padding: 6px 9px; }
+        table th { font-size: 11.5px; }
+        .callout { margin: 8px 0; padding: 10px 14px; font-size: 12.5px; }
+        .callout b { font-size: 11px; margin-bottom: 3px; }
+        p { margin: 0 0 8px; }
+        ul, ol { margin: 0 0 8px; }
+        ul.check li, .callout ul li { font-size: 12.5px; padding: 2px 0 2px 22px; }
+
+        /* ASK カード */
+        .ask { padding: 14px 18px; margin: 10px 0; }
+        .ask-title { font-size: 15px; }
+        .ask-q { font-size: 13px; margin: 6px 0 10px; line-height: 1.6; }
+
+        /* ダイアグラム */
+        .diagram { padding: 12px; margin: 8px 0 12px; }
+        .diagram .caption { font-size: 11.5px; margin-top: 6px; }
+
+        /* パターンカード */
+        .pgroup { margin-top: 12px; }
+        .pgroup h3 { margin-top: 10px; }
+        .pgroup-desc { font-size: 12px; margin: 0 0 8px; }
+        .pcards { gap: 10px; }
+        .pcard { padding: 12px 14px 10px; }
+        .pcard .pnum { width: 22px; height: 22px; line-height: 22px; font-size: 12px; top: -10px; }
+        .pcard .ptitle { font-size: 13px; margin: 2px 0 6px; }
+        .pcard .pmini { font-size: 10.5px; margin: 0 0 6px; }
+        .pcard .pdesc { font-size: 11.5px; margin: 0 0 6px; line-height: 1.55; }
+        .pcard .pwhen { font-size: 11px; margin: 4px 0 0; }
+        .pcard .ptodo { font-size: 11px; margin: 4px 0 0; }
+
+        /* フッタを直前要素にぶら下げる */
+        footer { margin-top: 4mm; padding-top: 6px; break-before: avoid; break-inside: avoid; }
+        footer p { font-size: 10.5px; margin: 2px 0; }
       }
 
       /* パターンカード */
