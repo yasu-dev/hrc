@@ -379,7 +379,7 @@
 
             <rect x="350" y="40" width="280" height="50" rx="8" class="q-box"/>
             <text x="490" y="60" text-anchor="middle" class="q-lbl">Q1. 問合せ対応に</text>
-            <text x="490" y="78" text-anchor="middle" class="q-lbl">会社代表アドレスを使う？</text>
+            <text x="490" y="78" text-anchor="middle" class="q-lbl">お問合せ窓口アドレスを使う？</text>
 
             <path d="M490,90 L490,110 L160,110 L160,135" class="q-arrow"/>
             <text x="320" y="106" class="q-edge">いいえ（個人アドレスで完結）</text>
@@ -394,7 +394,7 @@
 
             <rect x="350" y="135" width="280" height="50" rx="8" class="q-box"/>
             <text x="490" y="155" text-anchor="middle" class="q-lbl">Q2. 既に運用中の</text>
-            <text x="490" y="173" text-anchor="middle" class="q-lbl">代表アドレスがある？</text>
+            <text x="490" y="173" text-anchor="middle" class="q-lbl">窓口アドレスがある？</text>
 
             <path d="M490,185 L490,205 L160,205 L160,230" class="q-arrow"/>
             <text x="350" y="201" class="q-edge">はい（既存）</text>
@@ -425,13 +425,13 @@
             <text x="800" y="333" text-anchor="middle" class="q-lbl"><tspan style="font-family:'JetBrains Mono',monospace;">tsukahira@</tspan> 受信 + <tspan style="font-family:'JetBrains Mono',monospace;">info@</tspan> 送信</text>
             <text x="800" y="351" text-anchor="middle" class="q-sm">グループ B（③ 別名 / ④ 独立アカウント）</text>
           </svg>
-          <p class="caption">5 パターンを 3 グループに分類: <span style="color:#1aa0c8;">青系（A）</span>= 会社代表アドレスで受信＆送信を集約 ／ <span style="color:#6e4cff;">紫系（B）</span>= 受信は個人・返信時のみ info@ ／ <span style="color:#556073;">グレー（C）</span>= 個人アドレスのみで完結</p>
+          <p class="caption">5 パターンを 3 グループに分類: <span style="color:#1aa0c8;">青系（A）</span>= お問合せ窓口アドレスで受信＆送信を集約 ／ <span style="color:#6e4cff;">紫系（B）</span>= 受信は個人・返信時のみ info@ ／ <span style="color:#556073;">グレー（C）</span>= 個人アドレスのみで完結</p>
         </div>
 
         <!-- グループ A: info@ で本格運用 -->
         <div class="pgroup">
-          <h3>グループ A：会社代表アドレスで受信・送信を集約</h3>
-          <p class="pgroup-desc">受信通知も返信送信も会社代表アドレスでまとめる運用。会社代表アドレスを問合せ窓口として位置付ける形です（既存のアドレスを継続するか、<code>info@</code> を新規取得するかの 2 通り）。</p>
+          <h3>グループ A：お問合せ窓口アドレスで受信・送信を集約</h3>
+          <p class="pgroup-desc">受信通知も返信送信もお問合せ窓口アドレスに集約する運用。問合せ対応の窓口を一本化する形です（既存のアドレスを継続するか、<code>info@</code> を新規取得するかの 2 通り）。</p>
           <div class="pcards">
             <div class="pcard">
               <div class="pnum">①</div>
@@ -441,7 +441,7 @@
                 <span>送信: <b>同上</b></span>
               </div>
               <p class="pdesc">現在 <code>hrtep.com</code> で問合せ対応にお使いのアドレスがある場合（<code>info@</code> でも、それ以外でも）、そのアドレスを継続して受信先・送信元に使用します。</p>
-              <p class="pwhen">こんな場合: 既に運用中の代表アドレス（<code>info@</code> またはその他）で問合せ対応している</p>
+              <p class="pwhen">こんな場合: すでに運用中のお問合せ窓口アドレス（<code>info@</code> またはその他）で対応している</p>
               <p class="ptodo"><b>HRtep 様の作業:</b> なし（現在ご利用中のアドレスを LeadX 社にお伝えください。LeadX 側で受信先設定を変更します）</p>
             </div>
             <div class="pcard">
@@ -452,7 +452,7 @@
                 <span>送信: <b><code>info@</code></b></span>
               </div>
               <p class="pdesc">この機会に <code>info@hrtep.com</code> を Google Workspace で新しく作って、受信も送信もそこにまとめます。</p>
-              <p class="pwhen">こんな場合: 問合せが増えてきたので、会社代表アドレスを正式に使い始めたい</p>
+              <p class="pwhen">こんな場合: 問合せが増えてきたので、お問合せ窓口アドレスを正式に立ち上げたい</p>
               <p class="ptodo"><b>HRtep 様の作業:</b> Google Workspace 管理者で <code>info@</code> ユーザーまたはグループを新規作成</p>
             </div>
           </div>
@@ -461,7 +461,7 @@
         <!-- グループ B: tsukahira で受け、info で返す -->
         <div class="pgroup">
           <h3>グループ B：受信は個人 <code>tsukahira@</code>、返信のみ <code>info@</code> から送信</h3>
-          <p class="pgroup-desc">問合せ通知は普段の個人 Gmail で受け取って、返信を出すときだけ差出人を会社代表アドレスに切り替える運用。社外向けの見え方と社内の使い勝手を分けたい場合の形です。</p>
+          <p class="pgroup-desc">問合せ通知は普段の個人 Gmail で受け取って、返信を出すときだけ差出人をお問合せ窓口アドレスに切り替える運用。社外向けの見え方と社内の使い勝手を分けたい場合の形です。</p>
           <div class="pcards">
             <div class="pcard recommend">
               <div class="pnum">③</div>
@@ -471,7 +471,7 @@
                 <span>送信: <b><code>info@</code></b>（別名）</span>
               </div>
               <p class="pdesc"><code>tsukahira@</code> ユーザーに <code>info@</code> を「別名（Email Alias）」として Google Workspace に登録します。<code>info@</code> 宛のメールは <code>tsukahira@</code> の受信トレイに届き、Gmail で「返信」を押すと差出人が <code>info@</code> に切り替わって送信されます。</p>
-              <p class="pwhen">こんな場合: 受信は個人 Gmail で対応したい／対外的には会社代表アドレスから返信したい</p>
+              <p class="pwhen">こんな場合: 受信は個人 Gmail で対応したい／対外的にはお問合せ窓口アドレスから返信したい</p>
               <p class="ptodo"><b>HRtep 様の作業:</b> ① Workspace 管理者で <code>tsukahira@</code> に <code>info@</code> を Email Alias として追加 ／ ② 個人 Gmail で <code>info@</code> から送る設定（Send mail as）</p>
             </div>
             <div class="pcard">
@@ -491,7 +491,7 @@
         <!-- グループ C: tsukahira 単独 -->
         <div class="pgroup">
           <h3>グループ C：個人 <code>tsukahira@</code> 単独運用（<code>info@</code> 不使用）</h3>
-          <p class="pgroup-desc">会社代表アドレスは使わず、受信も返信も個人アドレスだけで完結する運用。後日 ①〜④ に切り替えることもできます。</p>
+          <p class="pgroup-desc">お問合せ窓口アドレスは設けず、受信も返信も個人アドレスだけで完結する運用。後日 ①〜④ に切り替えることもできます。</p>
           <div class="pcards single">
             <div class="pcard">
               <div class="pnum">⑤</div>
@@ -501,7 +501,7 @@
                 <span>送信: <b><code>tsukahira@</code></b></span>
               </div>
               <p class="pdesc">問合せ通知は <code>tsukahira@</code> に届き、返信もそのまま <code>tsukahira@</code> から送ります。<code>info@</code> は使いません。</p>
-              <p class="pwhen">こんな場合: 会社代表アドレスは今は不要／運用パターンを後日あらためて検討したい</p>
+              <p class="pwhen">こんな場合: お問合せ窓口アドレスは現時点で不要／運用パターンを後日あらためて検討したい</p>
               <p class="ptodo"><b>HRtep 様の作業:</b> なし</p>
             </div>
           </div>
@@ -529,13 +529,13 @@
             <tr>
               <td><strong>②</strong></td>
               <td><code>info@</code> 新規取得・集約</td>
-              <td>問合せ対応の正式窓口として会社代表アドレスを新たに立ち上げたい</td>
+              <td>お問合せ窓口アドレスを新たに立ち上げて問合せ対応の正式窓口にしたい</td>
               <td>Workspace 管理者: <code>info@</code> ユーザーまたはグループの新規作成</td>
             </tr>
             <tr style="background: var(--decision-bg);">
               <td><strong>③</strong></td>
               <td><code>info@</code> を <code>tsukahira@</code> の Alias で運用</td>
-              <td>受信は普段の個人 Gmail で対応したい／対外的には会社代表アドレスから返信したい</td>
+              <td>受信は普段の個人 Gmail で対応したい／対外的にはお問合せ窓口アドレスから返信したい</td>
               <td>Workspace 管理者: Email Alias 追加 + 個人 Gmail で送信設定</td>
             </tr>
             <tr>
@@ -547,7 +547,7 @@
             <tr>
               <td><strong>⑤</strong></td>
               <td><code>tsukahira@</code> 単独</td>
-              <td>会社代表アドレスは現状不要／後日あらためて検討したい</td>
+              <td>お問合せ窓口アドレスは現時点で不要／後日あらためて検討したい</td>
               <td>なし</td>
             </tr>
           </tbody>
@@ -560,14 +560,14 @@
           <ul style="margin:8px 0 0 18px; font-size:13.5px;">
             <li><strong>現在ご利用中のアドレスが分からない場合</strong> → LeadX 社にて Workspace のご状況を確認させていただきます（多くの場合 ① で対応可能）</li>
             <li><strong>急ぎ稼働させたい場合</strong> → ⑤ で開始すれば追加作業なくスタートでき、後日 ①〜④ へ切替できます</li>
-            <li><strong>受信側の運用は変えず、対外表示だけ会社代表アドレスにしたい場合</strong> → ③ が該当します（最小の追加作業）</li>
-            <li><strong>会社代表アドレスを問合せ窓口として正式に位置付けたい場合</strong> → ① か ② をご検討ください</li>
+            <li><strong>受信側の運用は変えず、対外表示だけお問合せ窓口アドレスにしたい場合</strong> → ③ が該当します</li>
+            <li><strong>お問合せ窓口アドレスを正式に運用したい場合</strong> → ① か ② をご検討ください</li>
           </ul>
         </div>
 
         <div class="callout">
           <b>ご回答方法</b>
-          ①〜⑤ のうち希望のパターンを LeadX 社までお伝えください。選んでいただいたあと、必要に応じて Google Workspace の操作手順を個別にご案内します。後日 ①〜④ への切替・⑤ から会社代表アドレス運用への移行も可能なので、現時点でのご状況に近いパターンを選んでください。
+          ①〜⑤ のうち希望のパターンを LeadX 社までお伝えください。選んでいただいたあと、必要に応じて Google Workspace の操作手順を個別にご案内します。後日 ①〜④ への切替・⑤ からお問合せ窓口アドレス運用への移行も可能なので、現時点でのご状況に近いパターンを選んでください。
         </div>
       </section>
 
