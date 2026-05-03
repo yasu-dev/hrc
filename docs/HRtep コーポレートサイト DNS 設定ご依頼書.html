@@ -309,15 +309,17 @@
   <body>
     <header class="hero">
       <div class="wrap">
-        <h1>HRtep コーポレートサイト DNS 設定書</h1>
-        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">HRtep 株式会社のコーポレートサイトを AWS Amplify Hosting に切替えるため、お名前.com Navi で実施する DNS レコード 8 件の設定内容と操作手順をまとめた文書です。</p>
+        <h1>HRtep コーポレートサイト DNS 設定実施手順書</h1>
+        <p style="color:#c4cfe0; margin: 0; font-size: 15px;">HRtep 株式会社のコーポレートサイトを AWS Amplify Hosting に切替えるため、お名前.com Navi で実施する DNS レコード 8 件の設定内容と操作手順、ならびに前後の AWS 工程・動作確認・ロールバックを LeadX 社実施用にまとめた文書です。</p>
         <div class="now">
           <p class="label">設定内容</p>
-          <p><strong style="color:#fff;">お名前.com Navi で DNS レコード 8 件を設定します。</strong>新規追加 6 件（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）+ 既存値変更 2 件（apex A / www CNAME）。受信メール（MX）には影響しません。</p>
+          <p><strong style="color:#fff;">お名前.com Navi で DNS レコード 8 件を設定します。</strong>新規追加 6 件（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）+ 既存値変更 2 件（apex A / www CNAME）。受信メール（MX）には影響しません。<br><strong style="color:#fff;">実施: LeadX 社（HRtep 社 TSUKAHIRA 様より 2026-05-02 にお名前.com Navi 資格情報を共有済）。</strong><br><span style="color:#ffd089;"><strong>着手期限: §1 Step A-4（AWS Amplify Custom Domain 関連付け）で ACM 検証 CNAME が払い出された時点から 72 時間以内に §2 DNS 設定を完了させる必要があります。</strong></span></p>
         </div>
         <div class="meta">
           <span>対象ドメイン: <b>hrtep.com</b></span>
           <span>レジストラ・DNS 管理: <b>お名前.com Navi</b></span>
+          <span>メール運用パターン: <b>①「運用中アドレス継続」(info@hrtep.com)</b></span>
+          <span>SES 運用形態: <b>サンドボックス継続</b></span>
           <span>更新: <b>2026-05-02</b></span>
         </div>
       </div>
@@ -328,14 +330,15 @@
       <!-- ▼ §0 ご依頼の概要 -->
       <section id="s00">
         <h2><span class="num">0</span>本書面の概要</h2>
-        <p class="lead">HRtep 株式会社のコーポレートサイトを、現行の WordPress（お名前.com 共用ホスティング）から AWS Amplify Hosting へ切替えます。これに伴い、お名前.com Navi で DNS レコード 8 件を設定します。本書面はその設定内容と操作手順を記述したもので、HRtep 社・安井様・LeadX 社のいずれが実施する場合でも参照可能です。</p>
+        <p class="lead">HRtep 株式会社のコーポレートサイトを、現行の WordPress（お名前.com 共用ホスティング）から AWS Amplify Hosting へ切替えます。これに伴い、お名前.com Navi で DNS レコード 8 件を設定します。本書面はその設定内容と操作手順を記述した実施手順書で、LeadX 社が直接実施します（2026-05-02 に HRtep 社 TSUKAHIRA 様よりお名前.com Navi 資格情報を共有済）。</p>
 
         <table>
           <thead><tr><th style="width:30%">項目</th><th>内容</th></tr></thead>
           <tbody>
             <tr><td><strong>対象ドメイン</strong></td><td><code>hrtep.com</code></td></tr>
             <tr><td><strong>対象企業</strong></td><td>HRtep 株式会社</td></tr>
-            <tr><td><strong>技術設計・運用</strong></td><td>LeadX 株式会社</td></tr>
+            <tr><td><strong>技術設計・運用・DNS 設定実施</strong></td><td>LeadX 株式会社（資格情報受領日 2026-05-02）</td></tr>
+            <tr><td><strong>メール運用パターン</strong></td><td>パターン①「運用中アドレス継続」(受信先 <code>info@hrtep.com</code>)<br><span style="font-size:12.5px; color:var(--muted);">2026-05-02 に HRtep 社 TSUKAHIRA 様より確定。送信側は SES 検証ドメイン <code>send.hrtep.com</code> 経由で DKIM/SPF を有効化（行 1〜4）</span></td></tr>
             <tr><td><strong>設定内容</strong></td><td>お名前.com Navi での DNS 設定。新規追加 6 件 + 既存値変更 2 件 = 計 8 件のレコード操作</td></tr>
             <tr><td><strong>受信メール（Google Workspace）への影響</strong></td><td><strong style="color:var(--ok-deep);">なし</strong>（MX レコードには触れません）</td></tr>
           </tbody>
@@ -348,15 +351,70 @@
           <li><strong>③ サイト本体の置き場所を切替</strong>：<code>hrtep.com</code> apex / www の値を、現行 WP の IP から Amplify が払い出す値に変更します（行 7・行 8、最後に実施）</li>
         </ul>
         <p style="font-size:13.5px; color:var(--muted); margin-top:14px;">
-          ※ 既存の MX（受信メール）・apex SPF・DMARC・その他のレコードには一切手を加えません（第 1 章末尾「絶対に変更しないでください」を参照）。<br>
-          ※ 行 5・6・7 の VALUE は、AWS の Amplify Custom Domain 関連付け結果として払い出される値です。LeadX 社で取得した確定値を、設定実施直前に表へ記入します。行 1〜4・行 8 は固定値です。
+          ※ 既存の MX（受信メール）・apex SPF・DMARC・その他のレコードには一切手を加えません（第 2 章末尾「絶対に変更しないでください」を参照）。<br>
+          ※ 行 5・6・7 の VALUE は、AWS Amplify Custom Domain 関連付けの結果として払い出される値です（取得手順は第 1 章 Step A-4 を参照）。LeadX 社で取得した確定値を、設定実施直前に第 2 章の表へ記入してから DNS 設定に着手します。行 1〜4・行 8 は固定値です。<br>
+          ※ SES は本案件ではサンドボックス継続運用です（想定流量 月 30 通以下のためサンドボックス制限内で完結。Production Access 申請は不要）。サンドボックスでは送信先（To）も Verified Identity 登録が必須のため、第 1 章 Step A-2 で <code>info@hrtep.com</code> を SES Verified Identity 登録します（受信メール経路には影響なし）。
         </p>
       </section>
 
-      <!-- ▼ §1 設定していただく DNS 8 件 -->
-      <section id="s04">
-        <h2><span class="num">1</span>設定する DNS 8 件</h2>
-        <p class="lead">お名前.com Navi で実施する 8 件のレコード操作の一覧と手順です。新規追加 6 件＋既存値変更 2 件。</p>
+      <!-- ▼ §1 AWS 事前準備（72 時間タイマー起点） -->
+      <section id="s01">
+        <h2><span class="num">1</span>AWS 事前準備（72 時間タイマーの起点）</h2>
+        <p class="lead">DNS 設定（§2）に着手する前に、AWS Console で以下 5 ステップを完了させ、ACM 検証 CNAME 値（行 5・6）と Amplify が指示する apex A レコード値（行 7）を取得します。Step A-4 で AWS が ACM 検証 CNAME を払い出した時点から 72 時間以内に §2 を完了させなければ、ACM 証明書発行リクエストがタイムアウトし再関連付けが必要になります。</p>
+
+        <div class="callout warn">
+          <b>72 時間制約の根拠と運用</b>
+          AWS Certificate Manager は DNS validation 用 CNAME を発行してから 72 時間以内に DNS 反映が確認できないとリクエスト状態を <code>VALIDATION_TIMED_OUT</code> に変えてリクエストを無効化します。本書の §2 DNS 設定（数分の操作）+ DNS 伝播待ち（最大 24h）+ AWS の検証ポーリング（数時間〜数回）を考慮し、<strong>Step A-4 完了から §2 着手までの実質的な許容遅延は 24h 以内、可能なら同日内</strong>。タイムアウト時は再 <code>create-domain-association</code> で新しい検証 CNAME 値を払い出し、本書の行 5・6・7 を再記入する必要があります。
+        </div>
+
+        <h3>Step A-1. AWS Console（ap-northeast-1）ログイン</h3>
+        <p style="font-size:14px;">LeadX 側で MFA 設定済のため、ユーザー協力なしで Console アクセス可能。リージョン: <code>ap-northeast-1</code>（東京）。Amplify アプリ ID: <code>d3561ojkga3nyn</code>。</p>
+
+        <h3>Step A-2. SES Verified Identity に <code>info@hrtep.com</code> を登録（HRtep 様の Verification リンククリック 1 件発生）</h3>
+        <ol style="font-size:14px; padding-left:22px;">
+          <li>AWS Console &gt; Amazon SES &gt; 左メニュー <strong>Verified identities</strong> →「Create identity」</li>
+          <li>Identity type: <strong>Email address</strong> を選択 → <code>info@hrtep.com</code> を入力 →「Create identity」</li>
+          <li>AWS が <code>info@hrtep.com</code> 宛に「Amazon SES Email Address Verification Request」メールを送信</li>
+          <li><strong>HRtep 社（TSUKAHIRA 様または info@ 受信担当）に Verification リンクのクリックを LINE で依頼</strong>（リンク有効期限 24h）</li>
+          <li>クリック後、SES Console の Verified identities 画面で <code>info@hrtep.com</code> の Verification status が <strong><code>Verified</code></strong> になることを確認</li>
+        </ol>
+        <p style="font-size:13px; color:var(--muted);">※ サンドボックス運用では送信先（To）も Verified Identity 登録が必須。受信メール経路（Google Workspace + onamae.ne.jp）には影響なし。本作業は SES の認証対象として登録するだけで、メール受信動作には介入しない。</p>
+
+        <h3>Step A-3. SES 既存設定（Phase 2 構築済）の状態確認</h3>
+        <p style="font-size:14px;">以下が既に整備されているか Console で確認。未整備があれば個別に作成（既に Phase 2 で構築済の想定）。</p>
+        <ul style="font-size:14px;">
+          <li>Domain Identity <code>send.hrtep.com</code> の DKIM Status（DNS 反映後に <strong><code>SUCCESS</code></strong> になる予定。本 Step 時点では <code>Pending verification</code> でも問題なし）</li>
+          <li>Configuration Set <code>hrtep-default</code> 存在確認</li>
+          <li>SNS Topic <code>ses-bounces-complaints</code> 存在確認・SES からの publish が許可されている</li>
+          <li>CloudWatch Alarm 4 件（bounce-rate-warning/critical, complaint-rate-warning/critical）すべて <code>OK</code> 状態</li>
+        </ul>
+
+        <h3>Step A-4. Amplify Custom Domain 関連付け実行（★ここから 72 時間カウントダウン開始）</h3>
+        <p style="font-size:14px;">以下を実行し、ACM 検証 CNAME 値（apex 用 / www 用）と Amplify が指示する apex A レコード値を払い出します。</p>
+        <pre style="background:var(--bg-soft); padding:12px 16px; border-radius:6px; font-size:12.5px; overflow-x:auto; margin: 8px 0 14px;"><code>aws --profile hrtep --region ap-northeast-1 amplify create-domain-association \
+  --app-id d3561ojkga3nyn \
+  --domain-name hrtep.com \
+  --enable-auto-sub-domain \
+  --sub-domain-settings prefix=,branchName=main prefix=www,branchName=main</code></pre>
+        <p style="font-size:14px;">レスポンス（およびその後 <code>aws amplify get-domain-association</code>）から以下 3 値を抽出して記録:</p>
+        <ul style="font-size:14px;">
+          <li><strong>行 5</strong>: ACM 検証 CNAME（apex 用） — ホスト名（<code>_xxxxxxxxxxxx.hrtep.com</code> 形式）+ VALUE（<code>_yyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式）</li>
+          <li><strong>行 6</strong>: ACM 検証 CNAME（www 用） — ホスト名（<code>_xxxxxxxxxxxx.www.hrtep.com</code> 形式）+ VALUE</li>
+          <li><strong>行 7</strong>: Amplify が指示する apex A レコード値（複数の場合は全件。お名前.com Navi では同一ホスト名に複数 A レコード追加可）</li>
+        </ul>
+        <div class="callout bad">
+          <b>★この時点から 72 時間カウントダウン開始</b>
+          §2 DNS 設定は当日中の着手を強く推奨。72h を超過した場合は ACM が <code>VALIDATION_TIMED_OUT</code> となり、<code>aws amplify delete-domain-association</code> → <code>create-domain-association</code> の再実行で新しい検証 CNAME 値を払い出し、本書の行 5・6・7 を全て書き換える必要があります。
+        </div>
+
+        <h3>Step A-5. §2 表への確定値記入</h3>
+        <p style="font-size:14px;">本書 §2 の表「設定する 8 件のレコード」の行 5・6・7 の <strong>「設定実施直前に LeadX 社が確定値を記入」</strong> 箇所に、Step A-4 で取得した値を記入。記入完了後、§2 操作を開始します。</p>
+      </section>
+
+      <!-- ▼ §2 設定する DNS 8 件 -->
+      <section id="s02">
+        <h2><span class="num">2</span>DNS 8 件の設定（お名前.com Navi 操作）</h2>
+        <p class="lead">お名前.com Navi で実施する 8 件のレコード操作の一覧と手順です。新規追加 6 件＋既存値変更 2 件。<strong style="color:var(--bad-deep);">本作業は §1 Step A-4 完了から 72 時間以内に着手・完了させてください。</strong></p>
 
         <h3>設定する 8 件のレコード</h3>
         <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">
@@ -483,7 +541,7 @@
         <h4 style="margin-top:18px;">Step 1. ログイン〜 DNSレコード設定画面まで</h4>
         <ol style="font-size:14px; padding-left:22px;">
           <li>ブラウザで <code>https://navi.onamae.com/login</code> を開く</li>
-          <li>お名前 ID（会員 ID）とパスワードを入力 →「ログイン」</li>
+          <li>お名前 ID（会員 ID）とパスワードを入力 →「ログイン」<br><span style="font-size:12.5px; color:var(--muted);">※ 資格情報は 2026-05-02 に HRtep 社 TSUKAHIRA 様より共有済（社内安全管理）。二段階認証は未設定の前提</span></li>
           <li><strong>左メニュー「ネームサーバー/DNS」</strong>（サブテキスト「Webサイト&メールのご利用ならこちら」）にマウスを合わせ、表示されるサブメニューから <strong>「ドメインDNS設定」</strong> をクリック</li>
           <li>「DNS設定」欄に表示される対象ドメイン一覧から <code>hrtep.com</code> の行の <strong>「ドメインDNS」</strong> リンクをクリック</li>
           <li>機能選択画面で <strong>「DNSレコード設定」</strong> をクリック</li>
@@ -583,16 +641,16 @@
           1〜6 は新規追加（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2）、7〜8 は apex / www の値置換です。MX・apex SPF・DMARC レコードには一切手を加えません。Google Workspace 利用中の受信メールには影響しません。
         </div>
 
-        <h3>設定完了後の連絡</h3>
+        <h3>§2 完了後の挙動（人手なしで進む工程）</h3>
         <p style="font-size:14px;">
-          DNS 設定完了後、LeadX 社まで連絡を入れます（HRtep 社・安井様が実施した場合は LeadX 社へ一報、LeadX 社で実施した場合は社内連携）。以降の流れ（DNS 反映確認 → SES 登録 → SSL 発行 → 本番化）は LeadX 社が自動で進めます。詳細は第 2 章を参照。
+          §2 DNS 設定完了後、§1 Step A-4 で関連付け済の Amplify が DNS 伝播を検知し、AWS 側で <strong>ACM 証明書発行 → SSL 有効化 → DKIM Status SUCCESS</strong> が自動進行します。LeadX が反映状況を監視し、第 3 章の動作確認まで完遂します。HRtep 社（TSUKAHIRA 様）への完了報告は第 3 章の動作確認完了時点で LeadX 社からお送りします。
         </p>
       </section>
 
-      <!-- ▼ §2 設定後の流れ -->
-      <section id="s05">
-        <h2><span class="num">2</span>設定後の流れ（参考）</h2>
-        <p class="lead">DNS 設定完了後、LeadX 社が以下の流れで本番化を進めます。本書面の DNS 設定が完了すれば、以降は LeadX 社で完了させます（途中、HRtep 社で Verification メールのリンクをクリックする作業が 1 件発生します）。</p>
+      <!-- ▼ §3 設定後の流れ・動作確認・ロールバック -->
+      <section id="s03">
+        <h2><span class="num">3</span>設定後の流れ・動作確認・ロールバック</h2>
+        <p class="lead">§2 DNS 設定完了後の本番化フロー、動作確認の最終テスト項目、および問題発生時のロールバック手順をまとめます。</p>
 
         <div class="diagram">
           <svg viewBox="0 0 980 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="設定後の本番化フロー">
@@ -615,75 +673,115 @@
               </marker>
             </defs>
 
-            <text x="20" y="22" class="f-lbl" style="font-size:13px;">DNS 設定後の本番化フロー</text>
+            <text x="20" y="22" class="f-lbl" style="font-size:13px;">本番化フロー（5 工程）</text>
             <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
 
-            <rect x="40" y="50" width="220" height="60" rx="8" class="f-box-yasui"/>
-            <circle cx="60" cy="70" r="14" class="f-circle-yasui"/>
-            <text x="60" y="74" text-anchor="middle" class="f-num">1</text>
-            <text x="84" y="68" class="f-who" style="fill:#8b5a00;">DNS 設定担当</text>
-            <text x="84" y="86" class="f-lbl">DNS 8 件を設定（本書面）</text>
-            <text x="84" y="102" class="f-sm">お名前.com Navi で操作</text>
+            <rect x="20" y="50" width="180" height="80" rx="8" class="f-box-yasui"/>
+            <circle cx="40" cy="70" r="13" class="f-circle-yasui"/>
+            <text x="40" y="74" text-anchor="middle" class="f-num">1</text>
+            <text x="62" y="70" class="f-who" style="fill:#8b5a00;">LeadX + HRtep</text>
+            <text x="110" y="92" text-anchor="middle" class="f-lbl">AWS 事前準備（§1）</text>
+            <text x="110" y="108" text-anchor="middle" class="f-sm">SES Identity 登録 + Amplify 関連付け</text>
+            <text x="110" y="122" text-anchor="middle" class="f-sm" style="fill:#8a1e1e; font-weight:600;">★72h タイマー起点</text>
 
-            <rect x="280" y="50" width="220" height="60" rx="8" class="f-box-us"/>
-            <circle cx="300" cy="70" r="14" class="f-circle-us"/>
-            <text x="300" y="74" text-anchor="middle" class="f-num">2</text>
-            <text x="324" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="324" y="86" class="f-lbl">DNS 反映確認・SES 登録</text>
-            <text x="324" y="102" class="f-sm">数時間〜24h（自動）</text>
+            <path d="M200,90 L220,90" class="f-arrow"/>
 
-            <path d="M260,80 L280,80" class="f-arrow"/>
+            <rect x="220" y="50" width="180" height="80" rx="8" class="f-box-us"/>
+            <circle cx="240" cy="70" r="13" class="f-circle-us"/>
+            <text x="240" y="74" text-anchor="middle" class="f-num">2</text>
+            <text x="262" y="70" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="310" y="92" text-anchor="middle" class="f-lbl">DNS 8 件を設定（§2）</text>
+            <text x="310" y="108" text-anchor="middle" class="f-sm">お名前.com Navi 操作</text>
+            <text x="310" y="122" text-anchor="middle" class="f-sm" style="fill:#8a1e1e; font-weight:600;">★72h 以内</text>
 
-            <rect x="520" y="50" width="220" height="60" rx="8" class="f-box-client"/>
-            <circle cx="540" cy="70" r="14" class="f-circle-client"/>
-            <text x="540" y="74" text-anchor="middle" class="f-num">3</text>
-            <text x="564" y="68" class="f-who" style="fill:#6e4cff;">HRtep社</text>
-            <text x="564" y="86" class="f-lbl">Verification リンクをクリック</text>
-            <text x="564" y="102" class="f-sm">受信トレイから操作</text>
+            <path d="M400,90 L420,90" class="f-arrow"/>
 
-            <path d="M500,80 L520,80" class="f-arrow"/>
+            <rect x="420" y="50" width="180" height="80" rx="8" class="f-box-us"/>
+            <circle cx="440" cy="70" r="13" class="f-circle-us"/>
+            <text x="440" y="74" text-anchor="middle" class="f-num">3</text>
+            <text x="462" y="70" class="f-who" style="fill:#1aa0c8;">AWS 自動</text>
+            <text x="510" y="92" text-anchor="middle" class="f-lbl">DNS 反映 + ACM 検証</text>
+            <text x="510" y="108" text-anchor="middle" class="f-sm">DKIM Status → SUCCESS</text>
+            <text x="510" y="122" text-anchor="middle" class="f-sm">数時間〜24h</text>
 
-            <rect x="760" y="50" width="200" height="60" rx="8" class="f-box-us"/>
-            <circle cx="780" cy="70" r="14" class="f-circle-us"/>
-            <text x="780" y="74" text-anchor="middle" class="f-num">4</text>
-            <text x="804" y="68" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
-            <text x="804" y="86" class="f-lbl">SSL 発行・E2E テスト</text>
-            <text x="804" y="102" class="f-sm">AWS が自動発行</text>
+            <path d="M600,90 L620,90" class="f-arrow"/>
 
-            <path d="M740,80 L760,80" class="f-arrow"/>
+            <rect x="620" y="50" width="180" height="80" rx="8" class="f-box-us"/>
+            <circle cx="640" cy="70" r="13" class="f-circle-us"/>
+            <text x="640" y="74" text-anchor="middle" class="f-num">4</text>
+            <text x="662" y="70" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="710" y="92" text-anchor="middle" class="f-lbl">SSL 発行 + 動作確認</text>
+            <text x="710" y="108" text-anchor="middle" class="f-sm">E2E + MX 経路特定</text>
+            <text x="710" y="122" text-anchor="middle" class="f-sm">フォーム送信稼働</text>
 
-            <rect x="280" y="160" width="440" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
-            <circle cx="300" cy="180" r="14" fill="#2ea85a"/>
-            <text x="300" y="184" text-anchor="middle" class="f-num">✓</text>
-            <text x="324" y="178" class="f-who" style="fill:#1d6d3c;">完了</text>
-            <text x="324" y="196" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働 + フォーム送信稼働</text>
-            <text x="324" y="212" class="f-sm">hrtep.com で表示・問合せメール送信が機能</text>
+            <path d="M800,90 L820,90 L820,160" class="f-arrow"/>
 
-            <path d="M860,110 L860,140 L500,140 L500,160" class="f-arrow"/>
+            <rect x="280" y="170" width="440" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
+            <circle cx="300" cy="190" r="13" fill="#2ea85a"/>
+            <text x="300" y="194" text-anchor="middle" class="f-num">✓</text>
+            <text x="324" y="188" class="f-who" style="fill:#1d6d3c;">完了</text>
+            <text x="324" y="206" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働 + フォーム送信稼働</text>
+            <text x="324" y="222" class="f-sm">hrtep.com で表示・問合せメール送信が機能</text>
+
+            <path d="M820,160 L500,160 L500,170" class="f-arrow"/>
           </svg>
-          <p class="caption">青 = LeadX 社作業 ／ 紫 = HRtep 社作業 ／ オレンジ = DNS 設定作業（実施者は HRtep 社・安井様・LeadX 社のいずれか）</p>
+          <p class="caption">オレンジ = LeadX + HRtep 共同作業（HRtep 様の SES Verification リンククリック 1 件含む） ／ 青 = LeadX 単独作業 + AWS 自動工程 ／ 緑 = 完了状態</p>
         </div>
 
-        <h3>切替直後の一時的なフォーム送信不通について</h3>
-        <div class="callout warn">
-          <b>DNS 反映待ち中（最大 24 時間）の留意点</b>
-          DNS 設定後、<strong>DKIM 認証が完了するまで（数時間〜最大 24 時間）の間、新サイト <code>hrtep.com</code> でのお問合せフォーム送信時にメール送信が一時的に失敗する可能性</strong>があります。<br>
-          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
-            <li>DKIM 認証は DNS 反映後に AWS が自動完了する処理。手動操作は不要</li>
-            <li>DKIM 反映待ち期間に新サイトへ送信されたフォーム入力が影響対象</li>
-            <li>DKIM 完了後は自動で正常稼働。LeadX 社が反映状況を監視します</li>
+        <h3>動作確認（最終テスト）</h3>
+        <p style="font-size:14px;">DKIM Status SUCCESS および ACM 証明書 AVAILABLE 確認後、以下を順次実施します。</p>
+        <table>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:25%">確認項目</th><th>確認内容・合格条件</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>HTTPS 接続</strong></td><td><code>https://hrtep.com</code> および <code>https://www.hrtep.com</code> でブラウザアクセス。証明書チェーンが ACM 発行のもの、警告表示なし、新サイトが表示</td></tr>
+            <tr><td>2</td><td><strong>旧 WP URL の 301 リダイレクト</strong></td><td>旧 URL（<code>/blog/</code>、<code>/company</code> 等）にアクセス → 新 URL（<code>/</code>、<code>/about</code> 等）に 301 で誘導されることを Network タブで確認</td></tr>
+            <tr><td>3</td><td><strong>お問合せフォーム E2E（SES 経由）</strong></td><td>フォームから送信 → reCAPTCHA 通過 → SES 送信 → <code>info@hrtep.com</code> で受信。Reply-To ヘッダにフォーム送信者アドレスが入っており、Gmail の「返信」で送信者本人へ直接返信できることを確認</td></tr>
+            <tr><td>4</td><td><strong>MX 受信経路特定</strong></td><td>受信した通知メールの全 <code>Received:</code> ヘッダ行を辿り、<code>mail74.onamae.ne.jp</code> 経由か Google Workspace 直接受信かを判定。<a href="dns-baseline-pre-migration.md">dns-baseline-pre-migration.md</a> §4 で警告した MX 異常パターン（preference 1 で <code>mail74</code> 混在）の実態を確定させ、Phase 4（旧 WP 解約）時の影響有無を判断する材料とする</td></tr>
+            <tr><td>5</td><td><strong>CloudWatch Alarm 状態</strong></td><td><code>hrtep-ses-bounce-rate-warning/critical</code>、<code>hrtep-ses-complaint-rate-warning/critical</code> 4 件すべて <code>OK</code></td></tr>
+            <tr><td>6</td><td><strong>CloudWatch Logs エラー監視</strong></td><td>Amplify SSR ログ（<code>/aws/amplify/d3561ojkga3nyn</code>）に <code>[Contact] SES SendEmail エラー</code> が出ていないこと</td></tr>
+            <tr><td>7</td><td><strong>DNS 差分（baseline 比較）</strong></td><td>切替後の MX / apex SPF / DMARC が <a href="dns-baseline-pre-migration.md">dns-baseline-pre-migration.md</a> と完全一致（差分ゼロ）</td></tr>
+            <tr><td>8</td><td><strong>24h 観察</strong></td><td>404 / 5xx の急増なし、Core Web Vitals が baseline 比 30% 以上悪化しない</td></tr>
+          </tbody>
+        </table>
+
+        <h3>切替過渡期の挙動（参考）</h3>
+        <div class="callout">
+          <b>DNS 伝播中（数分〜数時間）の挙動</b>
+          §2 完了直後は、解決元キャッシュ次第でアクセス毎に旧 WP / 新 Amplify のどちらかが返されます。これは正常挙動。お名前.com Navi の TTL は 3600 秒（1 時間）のため、最長でも 1 時間で全 DNS リゾルバが新値に揃います。<br>
+          <strong>DKIM 認証は §1 Step A-2 でも未完了で、§2 Step 2（行 1〜4）追加と DNS 伝播後に AWS が自動検証して SUCCESS になります。</strong>本書の手順通り「§1 Step A-4 → §2（72h以内）→ §3」の順で進めば、新サイト切替時には DKIM SUCCESS 済み状態となり、フォーム送信は初回から稼働します。
+        </div>
+
+        <h3>ロールバック手順</h3>
+        <div class="callout bad">
+          <b>即時ロールバック発火条件</b>
+          <ul style="margin:6px 0 0 18px; font-size:13.5px;">
+            <li>HTTPS 表示不可（証明書エラー、新サイト不到達）</li>
+            <li>お問合せフォーム送信が一切成功しない</li>
+            <li><strong>受信メール（MX）に意図せず変更が起きた</strong> ← 最優先</li>
           </ul>
         </div>
-
-        <h3>もしものときのロールバック</h3>
-        <p style="font-size:14px;">
-          切替後に問題（HTTPS 表示不可・受信メール影響など）が発生した場合は、A レコードを元の値（<code>118.27.122.212</code>）に戻すだけで旧サイトに復帰します。DNS の TTL は 1 時間設定なので、最長 1 時間で完全復旧。<br>
-          特に <strong>受信メール（MX レコード）に意図せず変更が起きた場合は最優先でロールバック</strong>とする運用です。
+        <p style="font-size:14px; margin-top:12px;">お名前.com Navi で以下 3 操作を行い、apex / www を旧 WordPress（<code>118.27.122.212</code>）に戻します。</p>
+        <table>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:10%">操作</th><th style="width:25%">対象</th><th>内容</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>R-1</td><td><span class="tag" style="background:#ffb258;color:#8b5a00;">編集</span></td><td><code>@</code> A レコード</td><td>VALUE 欄を §1 Step A-4 払い出し値から <code>118.27.122.212</code> に書き戻し</td></tr>
+            <tr><td>R-2</td><td><span class="tag" style="background:#fdecec;color:#8a1e1e;">削除</span></td><td><code>www</code> CNAME レコード</td><td>§2 で追加した CNAME（<code>main.d3561ojkga3nyn.amplifyapp.com</code>）を「削除」チェック</td></tr>
+            <tr><td>R-3</td><td><span class="tag" style="background:#fff8d6;color:#8b5a00;">追加</span></td><td><code>www</code> A レコード</td><td>「レコード追加」タブで <code>www</code> / A / <code>118.27.122.212</code> を新規追加（旧値の復元）</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13.5px; color:var(--muted);">
+          DNS の TTL は 3600 秒（1 時間）のため、確認画面コミット後 <strong>最長 1 時間で完全復旧</strong>。<br>
+          ACM 検証 CNAME（行 5・6）と DKIM CNAME（行 1〜3）・SPF TXT（行 4）は残置で問題ありません（旧 WP 復旧時に害なし）。再切替を行う場合に再度活用可能です。
         </p>
       </section>
 
       <footer>
-        <p>HRtep コーポレートサイト DNS 設定書 — 2026-05-02</p>
+        <p>HRtep コーポレートサイト DNS 設定実施手順書 — 2026-05-02 更新</p>
+        <p>LeadX 株式会社（実施主体） — HRtep 株式会社（対象企業）</p>
       </footer>
 
     </div>

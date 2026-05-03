@@ -1,0 +1,2016 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HRtep コーポレートサイト Web ホスティング刷新 計画書 v5</title>
+    <style>
+      :root {
+        --navy-deep: #0b1a30;
+        --navy: #1a2d4d;
+        --cyan: #22b8e6;
+        --cyan-soft: #d4f2fb;
+        --cyan-line: #1aa0c8;
+        --ink: #0e1726;
+        --muted: #556073;
+        --line: #dfe5ee;
+        --bg: #ffffff;
+        --bg-soft: #f5f7fb;
+        --warn-bg: #fff4e5;
+        --warn-line: #ffb258;
+        --warn-deep: #8b5a00;
+        --ok-bg: #e8f7ee;
+        --ok-line: #2ea85a;
+        --ok-deep: #1d6d3c;
+        --bad-bg: #fdecec;
+        --bad-line: #d84040;
+        --bad-deep: #8a1e1e;
+        --winner: #ffd84a;
+        --winner-line: #c89c00;
+        --aws-orange: #ff9900;
+        --aws-dark: #232f3e;
+        --decision: #6e4cff;
+        --decision-bg: #efeaff;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.85;
+        font-size: 15.5px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      code, pre, kbd, .mono {
+        font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', 'Liberation Mono', monospace;
+      }
+
+      .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 96px; }
+
+      header.hero {
+        background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+        color: #fff;
+        padding: 64px 0 56px;
+        margin-bottom: 40px;
+      }
+
+      header.hero .wrap { padding-bottom: 0; }
+
+      header.hero .eyebrow {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin: 0 0 12px;
+      }
+
+      header.hero h1 {
+        font-size: 32px;
+        line-height: 1.3;
+        margin: 0 0 14px;
+        letter-spacing: 0.01em;
+        font-weight: 700;
+      }
+
+      header.hero p.lead {
+        color: #c4cfe0;
+        margin: 0;
+        max-width: 820px;
+        font-size: 16px;
+      }
+
+      header.hero .meta {
+        margin-top: 26px;
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 12px;
+        color: #8ea1bc;
+      }
+
+      header.hero .meta span b { color: #fff; font-weight: 500; }
+
+      .tldr {
+        background: linear-gradient(135deg, #fff8d6, #fff5b8);
+        border: 2px solid var(--winner-line);
+        border-left: 6px solid var(--winner-line);
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin-bottom: 32px;
+      }
+
+      .tldr h2 {
+        margin: 0 0 14px;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--navy-deep);
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+      }
+
+      .tldr ol { margin: 0; padding-left: 24px; font-size: 15.5px; color: var(--navy-deep); }
+      .tldr ol li { padding: 4px 0; line-height: 1.7; }
+
+      .decision-banner {
+        background: var(--decision-bg);
+        border: 2px solid var(--decision);
+        border-left: 6px solid var(--decision);
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 18px 0 32px;
+      }
+
+      .decision-banner h3 {
+        margin: 0 0 6px;
+        font-size: 13px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        letter-spacing: 0.14em;
+        color: var(--decision);
+        text-transform: uppercase;
+      }
+
+      .decision-banner p { margin: 0; font-size: 15px; color: var(--navy-deep); }
+
+      nav.toc {
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin-bottom: 56px;
+      }
+
+      nav.toc h2 {
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 14px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-weight: 600;
+      }
+
+      nav.toc ul { margin: 0; padding-left: 16px; list-style: none; }
+      nav.toc li { padding: 3px 0; font-size: 14px; }
+      nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+      nav.toc a:hover { border-bottom-color: var(--cyan); }
+
+      section { margin-bottom: 60px; scroll-margin-top: 24px; }
+
+      section > h2 {
+        font-size: 22px;
+        margin: 0 0 6px;
+        color: var(--navy-deep);
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      section > h2 .num {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        color: var(--cyan);
+        font-size: 13px;
+        margin-right: 10px;
+        font-weight: 600;
+        vertical-align: 2px;
+      }
+
+      section > h2.decision-h .num { color: var(--decision); }
+      section > h2.exec-h .num { color: var(--warn-line); }
+      section > h2.lesson-h .num { color: var(--ok-line); }
+
+      section > .subtitle { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+
+      .oneliner {
+        display: block;
+        background: var(--bg-soft);
+        border-left: 4px solid var(--navy);
+        padding: 14px 18px;
+        border-radius: 0 8px 8px 0;
+        margin: 16px 0 24px;
+        font-size: 15px;
+        color: var(--navy-deep);
+      }
+
+      .oneliner b {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-right: 10px;
+        font-weight: 600;
+      }
+
+      h3 { font-size: 17px; color: var(--navy); margin: 30px 0 10px; }
+      h4 { font-size: 14px; color: var(--navy-deep); margin: 18px 0 8px; }
+
+      p { margin: 0 0 14px; }
+      strong { color: var(--navy-deep); }
+      a { color: var(--navy); }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0 22px;
+        font-size: 14.5px;
+      }
+
+      table th, table td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+
+      table th {
+        background: var(--bg-soft);
+        color: var(--navy-deep);
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      table td code { font-size: 13px; }
+
+      code {
+        background: var(--bg-soft);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13.5px;
+        color: var(--navy-deep);
+      }
+
+      pre {
+        background: var(--bg-soft);
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        overflow-x: auto;
+        margin: 8px 0 14px;
+        border: 1px solid var(--line);
+      }
+
+      .callout {
+        border-left: 4px solid var(--cyan);
+        background: var(--cyan-soft);
+        padding: 14px 18px;
+        border-radius: 0 8px 8px 0;
+        margin: 18px 0;
+        font-size: 14.5px;
+      }
+
+      .callout.warn { border-color: var(--warn-line); background: var(--warn-bg); }
+      .callout.bad  { border-color: var(--bad-line);  background: var(--bad-bg); }
+      .callout.ok   { border-color: var(--ok-line);   background: var(--ok-bg); }
+
+      .callout b {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--navy-deep);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+      }
+
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+      .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 14px 0 22px; }
+      .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 14px 0 22px; }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px 18px;
+        background: #fff;
+      }
+
+      .card h4 { margin: 0 0 8px; font-size: 14px; color: var(--navy-deep); }
+      .card p { font-size: 13.5px; color: var(--muted); margin: 0; }
+
+      ul.check { list-style: none; padding: 0; margin: 14px 0; }
+      ul.check li { padding: 6px 0 6px 28px; position: relative; }
+      ul.check li::before {
+        content: '✓';
+        position: absolute;
+        left: 4px;
+        color: var(--ok-line);
+        font-weight: 700;
+      }
+      ul.cross li::before { content: '✗'; color: var(--bad-line); }
+
+      .figure {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 22px;
+        margin: 20px 0 24px;
+        text-align: center;
+      }
+
+      .figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+      .figure .caption {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 14px;
+        text-align: center;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        letter-spacing: 0.05em;
+        vertical-align: middle;
+      }
+
+      .tag.safe    { background: var(--ok-bg);  color: var(--ok-deep); }
+      .tag.danger  { background: var(--bad-bg); color: var(--bad-deep); }
+      .tag.neutral { background: var(--bg-soft); color: var(--muted); }
+      .tag.warn    { background: var(--warn-bg); color: var(--warn-deep); }
+      .tag.winner  { background: #fff4d6;       color: var(--winner-line); border: 1px solid var(--winner-line); }
+      .tag.alt     { background: #efeaff;       color: var(--decision);    border: 1px solid var(--decision); }
+
+      .lesson-card {
+        border: 1px solid var(--ok-line);
+        border-left: 5px solid var(--ok-line);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin: 14px 0;
+        background: #fff;
+      }
+
+      .lesson-card .l-no {
+        display: inline-block;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: var(--ok-deep);
+        margin-bottom: 6px;
+        text-transform: uppercase;
+      }
+
+      .lesson-card .l-title {
+        font-size: 15.5px;
+        font-weight: 700;
+        color: var(--navy-deep);
+        margin: 0 0 8px;
+      }
+
+      .lesson-card .l-body { font-size: 14px; color: var(--ink); margin: 0 0 8px; }
+
+      .lesson-card .l-takeaway {
+        font-size: 13px;
+        color: var(--ok-deep);
+        background: var(--ok-bg);
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin-top: 8px;
+      }
+
+      .lesson-card .l-takeaway b {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        color: var(--ok-deep);
+        margin-right: 8px;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 56px;
+        padding-top: 24px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+      }
+
+      footer p { margin: 4px 0; }
+
+      @media (max-width: 720px) {
+        .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+        header.hero h1 { font-size: 24px; }
+      }
+
+      @media print {
+        @page {
+          size: A4 portrait;
+          margin: 5mm;
+        }
+
+        html, body {
+          background: #fff;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        body {
+          margin: 0;
+        }
+
+        .wrap {
+          max-width: 100%;
+          margin: 0;
+          padding: 0 4mm 4mm;
+        }
+
+        header.hero {
+          margin-bottom: 8mm;
+          padding: 14mm 0 10mm;
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        header.hero .wrap { padding: 0 4mm; }
+
+        nav.toc {
+          break-after: page;
+          page-break-after: always;
+          break-inside: avoid;
+          page-break-inside: avoid;
+          margin-bottom: 0;
+        }
+
+        .tldr,
+        .decision-banner {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        section {
+          margin-bottom: 6mm;
+          break-inside: auto;
+          page-break-inside: auto;
+        }
+
+        h2, h3, h4 {
+          break-after: avoid;
+          page-break-after: avoid;
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        h3 + *, h4 + * {
+          break-before: avoid;
+          page-break-before: avoid;
+        }
+
+        section > h2 + .subtitle,
+        section > h2 + .subtitle + .oneliner,
+        section > h2 + .oneliner {
+          break-before: avoid;
+          page-break-before: avoid;
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        .subtitle,
+        p.subtitle {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        table,
+        .callout,
+        .figure,
+        .card,
+        .lesson-card,
+        .oneliner,
+        ul.check,
+        ol,
+        pre {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        thead { display: table-header-group; }
+        tfoot { display: table-footer-group; }
+        tr {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        .grid-2, .grid-3, .grid-4 {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        svg {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          max-width: 100%;
+          height: auto;
+        }
+
+        p, li {
+          widows: 3;
+          orphans: 3;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        footer {
+          break-before: avoid;
+          page-break-before: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Hosting Migration Plan — Rev. 5</p>
+        <h1>HRtep コーポレートサイト<br>Web ホスティング刷新 計画書 <span style="color: var(--cyan); font-size: 22px; vertical-align: 4px;">v5</span></h1>
+        <p class="lead">
+          現行の WordPress サイト（お名前.com 上）を、Next.js + Tailwind CSS で再構築した新サイトへ刷新するにあたっての、Web ホスティング先・問合せフォーム送信経路・DNS 切替の全体計画。レジストラ・権威 DNS・受信メールは現行のまま据え置き、変更範囲を最小化した上でランニングコストと運用負荷の低減を図る。
+          <br><br>
+          <strong style="color: #fff;">v5 改訂趣旨</strong>: v3（2026-04 起案）は安井様への DNS 設定取次を前提に DNS 操作を絞り込んだ v4 派生となっていた。2026-05-02 に HRtep 様より お名前.com Navi の資格情報共有を受け、LeadX が直接 DNS 操作を実施する体制に切替。本書は <strong>LeadX が単独実施できる全体手順書</strong>として v3 の章立てを踏襲し、現状確定要素を反映、Phase 3（DNS 切替）の実施詳細を §11〜§13 として吸収、設計判断の根拠と教訓を §14 として追加した。
+        </p>
+        <div class="meta">
+          <span>対象ドメイン: <b>hrtep.com</b></span>
+          <span>ホスティング先: <b>AWS Amplify Hosting（東京）</b></span>
+          <span>送信メール: <b>Amazon SES（サンドボックス継続）</b></span>
+          <span>実施主体: <b>LeadX 株式会社</b></span>
+          <span>版数: <b>v5</b></span>
+          <span>更新: <b>2026-05-02</b></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+
+      <!-- TL;DR -->
+      <div class="tldr">
+        <h2>本計画の要旨</h2>
+        <ol>
+          <li><b>Web ホスティング:</b> <strong>AWS Amplify Hosting（東京リージョン）</strong>。HRtep 様既存 AWS 環境（アカウント <code>688518755365</code>）内に同居。月額は実質 <strong>0〜750 円</strong>（Free Tier 内）。Phase 1 構築完了済（App ID <code>d3561ojkga3nyn</code>、仮 URL 動作確認済）。</li>
+          <li><b>問合せフォーム送信:</b> <strong>Amazon SES サンドボックス継続運用</strong>。想定流量月 30 通以下のためサンドボックス制限内（24h あたり 200 通・Verified Identity 宛のみ）で完結。<strong>Production Access 申請は不要</strong>。送信先 <code>info@hrtep.com</code> を Verified Identity 登録することで運用成立（§11 Step A-2）。</li>
+          <li><b>変更を加えない領域:</b> ① レジストラ（お名前.com）／ ② 権威 DNS（お名前.com）の MX・apex SPF・DMARC ／ ④ 受信メール（Google Workspace + onamae.ne.jp 並列）。MX レコードに一切触れないため、メール受信は移行期間中も停止しない。</li>
+          <li><b>体制:</b> v3 の安井様取次前提を撤回。<strong>LeadX が お名前.com Navi にて DNS 設定を直接実施</strong>（資格情報受領日 2026-05-02）。AWS MFA は LeadX 側で完結のため、HRtep 様の継続的な協力は <strong>SES Verified Identity の Verification リンククリック 1 件のみ</strong>。</li>
+        </ol>
+      </div>
+
+      <nav class="toc">
+        <h2>目次</h2>
+        <ul>
+          <li><a href="#s01">1. 移行の背景と範囲</a></li>
+          <li><a href="#s02">2. 現状の構成（hrtep.com）</a></li>
+          <li><a href="#s03">3. 移行後の構成 — 4 レイヤーで整理</a></li>
+          <li><a href="#s04">4. Web ホスティング先 — AWS Amplify Hosting</a></li>
+          <li><a href="#s05">5. ホスティング候補比較</a></li>
+          <li><a href="#s06">6. 問合せフォーム送信経路（SES サンドボックス継続運用）</a></li>
+          <li><a href="#s07">7. ランニングコスト試算</a></li>
+          <li><a href="#s08">8. 移行プロセスの全体像と検証手段</a></li>
+          <li><a href="#s09">9. 完了条件とスケジュール想定</a></li>
+          <li><a href="#s10">10. 構築済み AWS リソース・確定事項</a></li>
+          <li style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);"><a href="#s11"><b>11. Phase 3 — AWS 事前準備（72 時間期限の起算点）</b></a></li>
+          <li><a href="#s12"><b>12. Phase 3 — DNS 9 操作の実施（RS plan コントロールパネル DNS UI）</b></a></li>
+          <li><a href="#s13"><b>13. Phase 3 — 設定後の流れ・動作確認・ロールバック</b></a></li>
+          <li style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);"><a href="#s14"><b>14. 設計判断と教訓</b></a></li>
+        </ul>
+      </nav>
+
+      <!-- 01 背景 -->
+      <section id="s01">
+        <h2><span class="num">01</span>移行の背景と範囲</h2>
+        <p class="subtitle">移行の目的、変更を加える範囲・加えない範囲、現時点の合意済み事項を冒頭で確定する。</p>
+
+        <span class="oneliner"><b>結論</b>HRtep 様新方針（IT 事業の訴求）と整合する Next.js + Tailwind CSS 構成で新サイトを構築済み。本計画では「Web ホスティング」と「問合せフォーム送信経路」のみを刷新対象とし、レジストラ・権威 DNS（MX/SPF/DMARC）・受信メールには変更を加えない。</span>
+
+        <h3>1.1 移行の目的</h3>
+        <ul class="check">
+          <li>外国人材紹介事業に加え、IT 事業（DX 支援・AI 業務効率化・システム開発・Web アプリ開発）を訴求するという HRtep 様新方針と、現行 WordPress サイトの訴求力との乖離を解消する</li>
+          <li>WordPress 運用に伴う保守負荷（プラグインのバージョン更新、PHP / MySQL のバージョン管理、脆弱性対応）からの解放</li>
+          <li>新サイトは Next.js 16 + React 19 + TypeScript + Tailwind CSS v4 でゼロベースから構築済み（Amplify 仮 URL <code>https://main.d3561ojkga3nyn.amplifyapp.com</code> で稼働中）</li>
+        </ul>
+
+        <h3>1.2 変更を加える範囲・加えない範囲</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 28%">項目</th>
+              <th style="width: 18%">扱い</th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>レジストラ（お名前.com）</td>
+              <td><span class="tag neutral">据え置き</span></td>
+              <td>ドメイン契約は現行のまま継続。本計画の対象外</td>
+            </tr>
+            <tr>
+              <td>権威 DNS（お名前.com）の MX/SPF/DMARC</td>
+              <td><span class="tag neutral">据え置き</span></td>
+              <td>MX 6 件・apex SPF・DMARC は完全凍結（受信メール影響回避）</td>
+            </tr>
+            <tr>
+              <td>権威 DNS（お名前.com）の A/CNAME/TXT</td>
+              <td><span class="tag winner">本計画で操作</span></td>
+              <td>お名前.com Navi で 8 件操作（DKIM CNAME 3 + SPF TXT 1 + ACM 検証 CNAME 2 + apex A 1 + www CNAME 1）。詳細は §11〜§12</td>
+            </tr>
+            <tr>
+              <td>受信メール（Google Workspace + onamae.ne.jp 並列）</td>
+              <td><span class="tag neutral">据え置き</span></td>
+              <td>MX レコード無変更。Phase 4 解約時の影響有無は §13 動作確認で実態判定</td>
+            </tr>
+            <tr style="background:#fff4d6">
+              <td><strong>Web ホスティング（お名前.com 上の WordPress）</strong></td>
+              <td><span class="tag winner">本計画で刷新</span></td>
+              <td>AWS Amplify Hosting に切替（Phase 3）。並行稼働 1〜2 週間後に旧 WP 解約（Phase 4）</td>
+            </tr>
+            <tr style="background:#fff4d6">
+              <td><strong>問合せフォーム送信（Contact Form 7）</strong></td>
+              <td><span class="tag winner">本計画で刷新</span></td>
+              <td>Next.js 16 Server Action + Amazon SES サンドボックスへ置換（実装済み・<code>app/contact/actions.ts</code>）</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <b>お名前.com 関連作業の体制（v3 から変更）</b>
+          v3 では「お名前.com 関連作業は安井様（HRtep 様システム管理者）にご対応いただく」前提だったが、2026-05-02 に HRtep 様（TSUKAHIRA 様）より お名前.com Navi の資格情報共有を受け、<strong>LeadX が DNS レコード操作を直接実施する体制</strong>に切替えた。HRtep 様にお願いする作業は SES Verified Identity の Verification リンククリック 1 件のみ（§11 Step A-2、所要 1 分以内）。
+        </div>
+
+        <h3>1.3 確定済み合意事項</h3>
+        <p class="subtitle">本計画書策定にあたり、HRtep 様・LeadX 間で確定済みの事項。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 28%">項目</th>
+              <th>確定内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AWS アカウント配置</td>
+              <td>HRtep 様の既存 AWS アカウント（ID <code>688518755365</code>、人材データベース等を運用中）に同居</td>
+            </tr>
+            <tr>
+              <td>AWS 操作権限</td>
+              <td>LeadX 側で MFA 設定済（<code>claude-code-operator</code> IAM ユーザー）。HRtep 様の継続的協力は不要（コード共有不要）</td>
+            </tr>
+            <tr>
+              <td>お名前.com Navi 操作</td>
+              <td>2026-05-02 に資格情報受領済。LeadX が直接ログイン → RS plan コントロールパネルへ遷移して DNS レコード編集を実施（Option Y）</td>
+            </tr>
+            <tr>
+              <td>メール運用パターン</td>
+              <td>パターン①「運用中アドレス継続」(受信先 <code>info@hrtep.com</code>)。2026-05-02 確定</td>
+            </tr>
+            <tr>
+              <td>SES 運用形態</td>
+              <td>サンドボックス継続運用（Production Access 申請は不要）。送信先 <code>info@hrtep.com</code> を Verified Identity 登録</td>
+            </tr>
+            <tr>
+              <td>問合せフォームのスパム対策</td>
+              <td>既存 Google reCAPTCHA v3 を継続利用。サーバー側で <code>verifyRecaptcha</code> 検証後に SES 送信</td>
+            </tr>
+            <tr>
+              <td>コンテンツ移行範囲</td>
+              <td>Netlify レビュー環境（<code>hrtep-corporate.netlify.app</code>）でご承認済の版にて全面刷新。WordPress からの個別記事引継ぎは行わない</td>
+            </tr>
+            <tr>
+              <td>301 リダイレクト方針</td>
+              <td>新サイトに対応のない旧 WP URL 8 群（<code>/blog/</code>、<code>/helpful/</code> 等）はトップへ 301 集約。<code>next.config.ts</code> の <code>redirects()</code> で実装済</td>
+            </tr>
+            <tr>
+              <td>並行稼働期間と旧サイト停止</td>
+              <td>DNS 切替（Phase 3）完了後、<strong>1〜2 週間の並行稼働期間</strong>を経た上で旧 WordPress 環境を停止（Phase 4）。ロールバック猶予期間の確保が目的</td>
+            </tr>
+            <tr>
+              <td>本番リリース希望時期</td>
+              <td>HRtep 様より「準備でき次第」のご指示。LeadX 側準備完了後、HRtep 様に着手指示をいただいた段階で実施</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 02 現状 -->
+      <section id="s02">
+        <h2><span class="num">02</span>現状の構成（hrtep.com）</h2>
+        <p class="subtitle">公開情報および DNS 実値から確認した現行構成を整理する。</p>
+
+        <span class="oneliner"><b>結論</b>典型的な WordPress 構成 + お名前.com 共用ホスティング。受信メールは Google Workspace と onamae.ne.jp の MX 並列構成（要 Phase 4 前に実態確認）。</span>
+
+        <h3>2.1 公開情報から確認できる事項（技術スタック）</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 26%">レイヤー</th>
+              <th>確認値</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>CMS</td><td>WordPress</td></tr>
+            <tr><td>テーマ</td><td>Twenty Twenty-One（WordPress 公式デフォルトテーマ）</td></tr>
+            <tr><td>主要プラグイン</td><td>WP-PageNavi、Contact Form 7、Yoast SEO</td></tr>
+            <tr><td>Web サーバー</td><td>Nginx（IP <code>118.27.122.212</code>）</td></tr>
+            <tr><td>言語 / DB</td><td>PHP / MySQL</td></tr>
+            <tr><td>JavaScript ライブラリ</td><td>core-js、jQuery、jQuery Migrate</td></tr>
+            <tr><td>スパム対策</td><td>Google reCAPTCHA</td></tr>
+            <tr><td>その他</td><td>RSS / Open Graph / Twitter Emoji (Twemoji)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.2 現行 DNS レコード（baseline 凍結値）</h3>
+        <p class="subtitle">2026-05-01 に Google Public DNS（8.8.8.8）にて取得。Phase 3 切替前後の差分確認用の凍結参照値。</p>
+        <table>
+          <thead>
+            <tr><th style="width:18%">TYPE</th><th style="width:24%">ホスト</th><th>VALUE</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A</td><td><code>hrtep.com</code></td><td><code>118.27.122.212</code> ← Phase 3 で変更</td></tr>
+            <tr><td>A</td><td><code>www.hrtep.com</code></td><td><code>118.27.122.212</code> ← Phase 3 で削除 + CNAME 追加</td></tr>
+            <tr><td rowspan="6">MX</td><td rowspan="6"><code>hrtep.com</code></td><td>preference 1: <code>mail74.onamae.ne.jp</code> ← <strong>onamae.ne.jp 並列</strong></td></tr>
+            <tr><td>preference 1: <code>aspmx.l.google.com</code></td></tr>
+            <tr><td>preference 5: <code>alt1.aspmx.l.google.com</code></td></tr>
+            <tr><td>preference 5: <code>alt2.aspmx.l.google.com</code></td></tr>
+            <tr><td>preference 5: <code>alt3.aspmx.l.google.com</code></td></tr>
+            <tr><td>preference 5: <code>alt4.aspmx.l.google.com</code></td></tr>
+            <tr><td>TXT (SPF)</td><td><code>hrtep.com</code></td><td><code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code></td></tr>
+            <tr><td>TXT</td><td><code>hrtep.com</code></td><td><code>google-site-verification=Ug3jABUVGPbGte0RAFkevh6O5owhVgntGGFWNaXXulc</code></td></tr>
+            <tr><td>TXT (DMARC)</td><td><code>_dmarc.hrtep.com</code></td><td><code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code></td></tr>
+            <tr><td>NS</td><td><code>hrtep.com</code></td><td><code>ns-rs1.gmoserver.jp</code> / <code>ns-rs2.gmoserver.jp</code></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout warn">
+          <b>MX 並列構成の実態未確認</b>
+          <code>mail74.onamae.ne.jp</code>（preference 1）と Google Workspace（preference 1 / 5）が並列に存在。受信実態は (a) お名前.com 経由 → 転送で Google Workspace、(b) 過去残骸で実態は Google Workspace のみ、(c) 両方並列受信、のいずれか不明。<strong>Phase 4（旧 WP 解約）前に最終テスト（§13.2 #4）で受信ヘッダ解析により実態確定し、必要なら解約対象範囲を調整</strong>。
+        </div>
+      </section>
+
+      <!-- 03 移行後構成 -->
+      <section id="s03">
+        <h2><span class="num">03</span>移行後の構成 — 4 レイヤーで整理</h2>
+        <p class="subtitle">「ドメイン」「DNS」「Web ホスティング」「メール」は構成上それぞれ独立したレイヤーとして扱われる。この分離が、サイト切替期間中も受信メールが停止しないことの根拠となる。</p>
+
+        <div class="figure">
+          <svg viewBox="0 0 960 380" role="img" aria-label="Before/After 図">
+            <text x="240" y="32" text-anchor="middle" font-size="14" fill="#0b1a30" font-weight="700">BEFORE（現状）</text>
+            <text x="720" y="32" text-anchor="middle" font-size="14" fill="#0b1a30" font-weight="700">AFTER（移行後）</text>
+
+            <rect x="40" y="50" width="400" height="280" rx="10" fill="#fdecec" stroke="#d84040" stroke-width="1.5"/>
+
+            <rect x="60" y="70" width="160" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="140" y="95" text-anchor="middle" font-size="12" fill="#0b1a30">① お名前.com（据置）</text>
+
+            <rect x="240" y="70" width="180" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="330" y="95" text-anchor="middle" font-size="12" fill="#0b1a30">② お名前.com DNS（据置）</text>
+
+            <rect x="60" y="130" width="360" height="60" rx="6" fill="#ffd6d6" stroke="#d84040"/>
+            <text x="240" y="155" text-anchor="middle" font-size="13" fill="#8a1e1e" font-weight="700">③ お名前.com（WordPress）</text>
+            <text x="240" y="175" text-anchor="middle" font-size="11" fill="#8a1e1e">PHP + MySQL + CF7 + reCAPTCHA</text>
+
+            <rect x="60" y="210" width="360" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="240" y="235" text-anchor="middle" font-size="12" fill="#0b1a30">④ Google Workspace + onamae.ne.jp 並列</text>
+
+            <rect x="60" y="265" width="360" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="240" y="290" text-anchor="middle" font-size="12" fill="#0b1a30">⑤ 送信: WordPress + Contact Form 7</text>
+
+            <rect x="520" y="50" width="400" height="280" rx="10" fill="#e8f7ee" stroke="#2ea85a" stroke-width="1.5"/>
+
+            <rect x="540" y="70" width="160" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="620" y="95" text-anchor="middle" font-size="12" fill="#0b1a30">① お名前.com（据置）</text>
+
+            <rect x="720" y="70" width="180" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="810" y="95" text-anchor="middle" font-size="12" fill="#0b1a30">② お名前.com DNS（据置）</text>
+
+            <rect x="540" y="130" width="360" height="60" rx="6" fill="#fff4d6" stroke="#ff9900" stroke-width="2"/>
+            <text x="720" y="155" text-anchor="middle" font-size="13" fill="#0b1a30" font-weight="700">③ AWS Amplify Hosting</text>
+            <text x="720" y="175" text-anchor="middle" font-size="11" fill="#ff9900">Next.js 16 + Tailwind v4 / 月 ¥0〜750</text>
+
+            <rect x="540" y="210" width="360" height="40" rx="6" fill="#fff" stroke="#dfe5ee"/>
+            <text x="720" y="235" text-anchor="middle" font-size="12" fill="#0b1a30">④ Google Workspace + onamae.ne.jp（無変更）</text>
+
+            <rect x="540" y="265" width="360" height="40" rx="6" fill="#e8f7ee" stroke="#2ea85a"/>
+            <text x="720" y="290" text-anchor="middle" font-size="12" fill="#1d6d3c" font-weight="700">⑤ 送信: Amazon SES（サンドボックス）</text>
+
+            <line x1="445" y1="160" x2="515" y2="160" stroke="#0b1a30" stroke-width="3"/>
+            <polygon points="515,160 505,154 505,166" fill="#0b1a30"/>
+          </svg>
+          <p class="caption">変更を加えるのは ③ Web ホスティングと ⑤ 送信メールのみ。①② はお名前.com 内でレコードの編集を行うのみ、④ には変更を加えない。</p>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%">レイヤー</th>
+              <th>移行前</th>
+              <th>移行後</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>① レジストラ</td><td>お名前.com</td><td>お名前.com（変更なし）</td></tr>
+            <tr><td>② 権威 DNS</td><td>お名前.com DNS</td><td>お名前.com DNS（A/CNAME/TXT を計 8 件操作、MX/SPF/DMARC は無変更）</td></tr>
+            <tr style="background:#fff4d6"><td><strong>③ Web ホスティング</strong></td><td>お名前.com（WordPress on Nginx、IP 118.27.122.212）</td><td><strong>AWS Amplify Hosting</strong>（Next.js 16 + Tailwind v4、App ID d3561ojkga3nyn）</td></tr>
+            <tr><td>④ 受信メール</td><td>Google Workspace + onamae.ne.jp 並列</td><td>変更なし（Phase 4 前に実態確認）</td></tr>
+            <tr style="background:#fff4d6"><td><strong>⑤ 送信メール</strong></td><td>Contact Form 7 + WordPress <code>wp_mail()</code></td><td><strong>Amazon SES サンドボックス</strong>（送信ドメイン send.hrtep.com）</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout ok">
+          <b>受信メールの安全性について</b>
+          ④ 受信メール（Google Workspace + onamae.ne.jp 並列）の MX レコードには一切の変更を加えない。送信メール用の DKIM・SPF レコードはサブドメイン <code>send.hrtep.com</code> 配下に追加する構成のため、apex ドメイン <code>hrtep.com</code> の MX には影響しない。Web ホスティング切替期間中もメール受信は停止しない。
+        </div>
+      </section>
+
+      <!-- 04 Webホスティング -->
+      <section id="s04">
+        <h2><span class="num">04</span>Web ホスティング先 — AWS Amplify Hosting</h2>
+        <p class="subtitle">HRtep 様の既存 AWS ご利用環境との親和性が高く、4 つの観点で他候補を上回る。</p>
+
+        <span class="oneliner"><b>結論</b>Web ホスティング先は <strong>AWS Amplify Hosting（東京リージョン / ap-northeast-1）</strong>。月額は実質 0〜750 円、Free Tier 内で完結する。既存 AWS 環境との一体的な運用が可能であり、Next.js 16 を <code>amplify.yml</code> 経由で動作させる。</span>
+
+        <h3>4.1 推奨理由（4 つの優位性）</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h4>① 既存 AWS 環境との統合</h4>
+            <p>HRtep 様の既存 AWS 環境（アカウント 688518755365）と同一アカウント内にリソースを配置することで、請求・IAM・運用知見を一元化できる。新たなクラウドベンダーを追加することなく、既にご評価いただいている AWS のセキュリティ・契約条件をそのまま適用可能。</p>
+          </div>
+          <div class="card">
+            <h4>② ランニングコストが実質 0 円</h4>
+            <p>Amplify Hosting の Free Tier（ビルド 1,000 分・ストレージ 5 GB・データ転送 15 GB・SSR リクエスト 50 万件 ／月）に対し、HRtep 様サイトの想定アクセス規模では数 % 以下の消費に留まる見込み。Vercel Pro / Netlify Pro（年額 36,000 円相当）と比較して大幅に安価。</p>
+          </div>
+          <div class="card">
+            <h4>③ 旧 WordPress 解約による費用相殺</h4>
+            <p>移行完了後（Phase 4）に お名前.com の WordPress ホスティング契約を解約することで、新ホスティング費用との純差額がプラスとなる。加えて、WordPress のプラグイン更新・PHP/MySQL バージョン管理・脆弱性対応に伴う運用負荷も発生しない。</p>
+          </div>
+          <div class="card">
+            <h4>④ Next.js 16 への対応</h4>
+            <p>Next.js の SSR・Server Action・ISR を <code>amplify.yml</code> 経由でフルサポート。問合せフォームの送信処理を Server Action（<code>app/contact/actions.ts</code>）で完結できるため、別途 API 用のインスタンスを用意する必要がない。HTTPS 証明書（ACM）も自動発行・自動更新となり、証明書更新の運用工数は発生しない。</p>
+          </div>
+        </div>
+
+        <h3>4.2 Free Tier 消費の想定値</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>無料枠（月）</th>
+              <th>想定消費</th>
+              <th>消費率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>ビルド時間</td><td>1,000 分</td><td>5〜15 分</td><td><span class="tag safe">0.5〜1.5%</span></td></tr>
+            <tr><td>ストレージ</td><td>5 GB</td><td>50〜200 MB</td><td><span class="tag safe">1〜4%</span></td></tr>
+            <tr><td>データ転送</td><td>15 GB</td><td>50〜500 MB</td><td><span class="tag safe">0.3〜3%</span></td></tr>
+            <tr><td>SSR リクエスト</td><td>500,000 件</td><td>1,000〜10,000 件</td><td><span class="tag safe">0.2〜2%</span></td></tr>
+            <tr><td>SSR 実行時間</td><td>100 GB-時</td><td>0.1〜1 GB-時</td><td><span class="tag safe">0.1〜1%</span></td></tr>
+          </tbody>
+        </table>
+        <p class="subtitle">※ 想定消費はコーポレートサイトの一般的な値に基づく。Free Tier 内に収束する見込みであり、本試算は概数として扱う。</p>
+
+        <h3>4.3 Next.js 16 と Amplify Hosting の対応</h3>
+        <div class="callout">
+          <b>本案件における取り扱い</b>
+          AWS Amplify Hosting の公式 Adapter は Next.js のメジャーバージョン更新への対応に遅延が生じることがあるため、本案件では公式 Adapter の対応有無に依存しない構成を採用。リポジトリにビルド定義ファイル <code>amplify.yml</code> をコミットし、Amplify CI 上で <code>npm run build</code> を実行する形式とする。Phase 1 構築時の初回ビルドは BUILD/DEPLOY/VERIFY 全 SUCCEED（所要 2 分 40 秒）、主要 7 ページ HTTP 200 を確認済。
+        </div>
+      </section>
+
+      <!-- 05 候補比較 -->
+      <section id="s05">
+        <h2><span class="num">05</span>ホスティング候補比較</h2>
+        <p class="subtitle">AWS 以外も含めた候補について、いずれの観点でも AWS Amplify が劣位とならないことを確認した上で結論に至った経緯を示す。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%">候補</th>
+              <th style="width: 14%">月額目安</th>
+              <th style="width: 14%">Next.js 対応</th>
+              <th>採否と理由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff4d6">
+              <td><strong>AWS Amplify Hosting</strong></td>
+              <td><strong>0〜750 円</strong></td>
+              <td>○ amplify.yml + 自前ビルド</td>
+              <td><span class="tag winner">採用</span> 既存 AWS 環境との統合、低コスト、Next.js 16 を <code>amplify.yml</code> 経由で稼働可能、HTTPS 自動化。HRtep 様の運用方針との親和性が高い</td>
+            </tr>
+            <tr>
+              <td>Vercel Pro</td>
+              <td>3,000 円</td>
+              <td>◎ 公式</td>
+              <td><span class="tag neutral">不採用</span> Next.js への対応は良好だが、想定利用規模に対して年額 36,000 円は費用対効果が見合わない。外貨建て請求の経理処理も負担</td>
+            </tr>
+            <tr>
+              <td>Netlify Pro</td>
+              <td>3,000 円</td>
+              <td>○ Adapter</td>
+              <td><span class="tag neutral">不採用</span> Vercel Pro と同価格帯で、AWS 環境との統合上の利点を得られない</td>
+            </tr>
+            <tr>
+              <td>Cloudflare Pages</td>
+              <td>0〜750 円</td>
+              <td>△ ランタイム制約</td>
+              <td><span class="tag neutral">不採用</span> 月額は最も低廉だが、Cloudflare Workers ランタイム（<code>workerd</code>）における Next.js 機能の一部に制約があり、HRtep 様の既存 AWS 環境とは運用が分散する</td>
+            </tr>
+            <tr>
+              <td>S3 + CloudFront による静的配信</td>
+              <td>10〜50 円</td>
+              <td>× SSR 不可</td>
+              <td><span class="tag neutral">不採用</span> Amplify が Free Tier 内で運用可能なためコスト削減効果は得られず、問合せフォーム用の API を別途構築する必要があり工数が 2〜3 日増加</td>
+            </tr>
+            <tr>
+              <td>EC2 / ECS による自前構築</td>
+              <td>3,000 円〜</td>
+              <td>○ 自由度高</td>
+              <td><span class="tag neutral">不採用</span> 運用工数が大きく、コーポレートサイト用途には過剰な構成</td>
+            </tr>
+            <tr>
+              <td>お名前.com 共用ホスティングでの Next.js 運用</td>
+              <td>1,000 円〜</td>
+              <td>× Node 制約</td>
+              <td><span class="tag neutral">不採用</span> 共用サーバーは Node.js による Next.js SSR の安定運用には適さない構成</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <b>評価方針について</b>
+          候補選定にあたっては、AWS が劣位となる領域がないかを意識的に確認した。コスト・Next.js への対応・運用負荷・既存環境との統合性のいずれの観点においても、AWS Amplify が最有力もしくは同等であり、他候補を選択する積極的根拠は確認できなかった。Cloudflare Pages は月額単価で競合するものの、Workers ランタイム起因の機能制約と AWS 環境からの運用分散を考慮し、AWS 以外を選択する根拠としては十分でないと判断した。
+        </div>
+      </section>
+
+      <!-- 06 送信メール（SES サンドボックス） -->
+      <section id="s06">
+        <h2><span class="num">06</span>問合せフォーム送信経路（SES サンドボックス継続運用）</h2>
+        <p class="subtitle">送信経路は Amazon SES、ただし Production Access 申請せず<strong>サンドボックス継続運用</strong>の方針。本章で根拠と運用条件を整理する。</p>
+
+        <span class="oneliner"><b>決定</b>送信メールは <strong>Amazon SES サンドボックス</strong>を採用。想定流量月 30 通以下のためサンドボックス制限内で完結。Production Access 申請は不要（流量増加時のみ申請）。送信先 <code>info@hrtep.com</code> を Verified Identity 登録（§11 Step A-2）。</span>
+
+        <h3>6.1 評価対象候補</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%">候補</th>
+              <th style="width: 16%">無料枠</th>
+              <th style="width: 16%">超過時単価</th>
+              <th style="width: 14%">Next.js 連携</th>
+              <th>本案件における評価</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff4d6">
+              <td><strong>Amazon SES（サンドボックス）</strong></td>
+              <td>—（24h 200 通制限）</td>
+              <td>$0.10 / 1,000 通</td>
+              <td>○ AWS SDK</td>
+              <td><span class="tag winner">採用</span> 既存 AWS 環境と整合。想定流量月 30 通以下で制限内完結、Production Access 申請不要</td>
+            </tr>
+            <tr style="background:#efeaff">
+              <td><strong>Resend</strong></td>
+              <td>3,000 通/月・100 通/日</td>
+              <td>$20/月（5 万通）</td>
+              <td>◎ 専用 SDK</td>
+              <td><span class="tag alt">候補（不採用）</span> 開発生産性に優れるが、新規ベンダー契約と外貨建て請求の発生が SES に対する相対的不利点</td>
+            </tr>
+            <tr>
+              <td>Google Workspace SMTP relay</td>
+              <td>10,000 通/日（既存契約内）</td>
+              <td>—</td>
+              <td>△ SMTP 認証</td>
+              <td><span class="tag neutral">非採用</span> サーバーレス環境からの SMTP 認証および IP 許可リスト運用が煩雑</td>
+            </tr>
+            <tr>
+              <td>SendGrid</td>
+              <td>（無料枠あり）</td>
+              <td>$19.95/月〜</td>
+              <td>○ HTTPS API</td>
+              <td><span class="tag neutral">非採用</span> 提供機能が本案件には過剰、SES への優位性が確認できない</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>6.2 Amazon SES を採用する根拠</h3>
+        <ul class="check">
+          <li><strong>ベンダー統合</strong>: Web ホスティング（Amplify）と同一クラウド内で完結し、請求・IAM・監査ログ・障害対応窓口が AWS に集約</li>
+          <li><strong>セキュリティ評価の継承</strong>: 既に AWS のセキュリティ・契約条件をご評価いただいている前提を活用、新たな業者選定不要</li>
+          <li><strong>コスト</strong>: サンドボックスは送信料無料、Production 段階でも月 1,000 通で年額 18 円程度</li>
+          <li><strong>運用</strong>: Amplify の IAM ロール（<code>hrtep-amplify-compute-role</code>）から直接 SES を呼び出すため、API キーの個別管理が不要</li>
+        </ul>
+
+        <h3>6.3 サブドメイン送信元構成（送信ドメイン分離）</h3>
+        <div class="callout ok">
+          <b>採用構成: noreply@send.hrtep.com</b>
+          送信ドメインを apex の <code>hrtep.com</code> から分離し、<strong>サブドメイン <code>send.hrtep.com</code></strong> として SES Domain Identity を登録。これにより:<br>
+          ・apex の SPF（<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>）に <code>include:amazonses.com</code> を追加する必要がない（apex 無変更）<br>
+          ・apex の DMARC アラインメント設計に影響なし<br>
+          ・DKIM CNAME 3 件（AWS Easy DKIM、RSA 2048bit）も <code>send.hrtep.com</code> 配下に集約され、apex 配下のレコード群と区別が明瞭<br>
+          受信メール（Google Workspace + onamae.ne.jp）への影響はゼロ。
+        </div>
+
+        <h3>6.4 サンドボックス運用の成立条件と制限</h3>
+        <table>
+          <thead>
+            <tr><th style="width:30%">項目</th><th style="width:30%">サンドボックス制限</th><th>本案件想定値</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>24h あたり送信数</td><td>200 通</td><td>1〜2 通／日（月 30 通以下）<br><span class="tag safe">制限の 1% 以下</span></td></tr>
+            <tr><td>1 秒あたり送信数</td><td>1 通</td><td>約 0.001 通／秒<br><span class="tag safe">制限の 0.1%</span></td></tr>
+            <tr><td>送信先（To）の制限</td><td>Verified Identity 登録済アドレスのみ</td><td>送信先は <code>info@hrtep.com</code> 1 件のみ → §11 Step A-2 で Verified Identity 登録</td></tr>
+            <tr><td>送信元（From）の制限</td><td>Verified Identity 登録済ドメイン/アドレスのみ</td><td><code>noreply@send.hrtep.com</code> → DKIM CNAME 反映で <code>send.hrtep.com</code> ドメインが Verified（§12）</td></tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:14px; margin-top:16px;">
+          <strong>サンドボックスでの運用判断根拠</strong>: 既存 WordPress + Contact Form 7 における過去 12 ヶ月の問合せ件数実績は月平均 30 件以下。マーケティング施策による急激な問合せ増加の予定はなく、AWS Trust &amp; Safety 審査（24h〜数日要する）を経て Production Access を取得する積極的根拠が現時点でない。流量急増時の Production Access 申請文書は <code>docs/ses-production-access-request.md</code> に整備済（即時申請可能）。
+        </p>
+
+        <div class="callout warn">
+          <b>サンドボックス運用での運用上の留意点</b>
+          ・送信先アドレス（<code>info@hrtep.com</code>）を変更する場合は、新アドレスを Verified Identity 登録 → Verification リンククリックの作業が必要<br>
+          ・誤って外部アドレスへの送信ロジックを実装すると <code>MessageRejected</code> エラーで送信失敗（実装上は <code>app/contact/actions.ts</code> で送信先固定なので発生しない）<br>
+          ・流量が月 100 通を超え始めたら Production Access 申請を再検討（残バッファとして 2〜3 倍の余裕を確保）
+        </div>
+      </section>
+
+      <!-- 07 ランニングコスト -->
+      <section id="s07">
+        <h2><span class="num">07</span>ランニングコスト試算</h2>
+        <p class="subtitle">移行前後でのコーポレートサイト関連のランニングコスト変動を整理する。</p>
+
+        <span class="oneliner"><b>結論</b>HRtep 様の RSプラン支払いは <strong>月払い確定</strong>（スクショ「まとめ払い利用期限: -」+「更新: 自動更新」より、まとめ払い未利用の月単位自動更新）。Phase 4 完了後の年額削減効果は <strong>約 27,362 円（移行前比 約 91% 削減）</strong>。Phase 4 完了後の年間ランニングコストは <strong>約 2,789 円</strong>（ドメイン更新 + ドメインプロテクション + Whois 代行メール転送 + AWS Amplify/SES）に収束。</span>
+
+        <h3>7.1 HRtep 様契約状態（スクショ確認済）</h3>
+        <table>
+          <thead><tr><th style="width: 30%">項目</th><th>確認値</th></tr></thead>
+          <tbody>
+            <tr><td>プラン</td><td><strong>RSプラン</strong>（契約番号 1594051、お申込み 2021/09/22、稼働中・自動更新 ON）</td></tr>
+            <tr><td>まとめ払い利用期限</td><td><strong>「-」</strong>（まとめ払い未利用 = <strong>月払い確定</strong>、自動更新 ON とあわせて 1 ヶ月単位の自動更新）</td></tr>
+            <tr><td>永久無料対象ドメイン</td><td><code>hrtep.com</code>（RSプラン継続中はドメイン更新無料）</td></tr>
+            <tr><td>ドメインプロテクション</td><td>サービス利用中</td></tr>
+            <tr><td>Whois 情報公開代行</td><td>サービス利用中</td></tr>
+            <tr><td>Whois 代行メール転送オプション</td><td>サービス利用中</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7.2 公式料金（WebFetch 一次ソース確認済）</h3>
+        <table>
+          <thead><tr><th>項目</th><th>料金</th><th>出典</th></tr></thead>
+          <tbody>
+            <tr><td>RSプラン 1ヶ月払い</td><td>2,398 円/月（年 28,776 円）</td><td>onamae.com/server/rs/price/</td></tr>
+            <tr><td>RSプラン 12ヶ月払い</td><td>1,078 円/月（年 12,936 円）</td><td>同上</td></tr>
+            <tr><td>RSプラン 24ヶ月払い</td><td>990 円/月（年 11,880 円）</td><td>同上</td></tr>
+            <tr><td>RSプラン 36ヶ月払い</td><td>891 円/月（年 10,692 円）</td><td>同上</td></tr>
+            <tr><td>ドメインプロテクション</td><td><strong>1,078 円/年（税込）</strong></td><td>onamae.com/service/protectoption/</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7.3 公式ページ未取得・公開情報ベース（請求書照合推奨）</h3>
+        <table>
+          <thead><tr><th>項目</th><th>推定値</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>Whois 代行メール転送オプション</td><td>約 297 円/年</td><td>公式ページ 404 で WebFetch 失敗、公開情報の一般値</td></tr>
+            <tr><td>Whois 情報公開代行</td><td>0 円</td><td>標準無料（要 HRtep 様契約照合）</td></tr>
+            <tr><td>.com ドメイン更新（永久無料特典消失後）</td><td>約 1,408 円/年</td><td>公式 d-price ページで具体額未開示、公開情報の一般値</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7.4 年間コスト試算（月払い確定）</h3>
+        <p class="subtitle">スクショ「まとめ払い: -」+「自動更新」より月単位自動更新確定。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 30%">項目</th>
+              <th style="width: 16%">移行前（現状）</th>
+              <th style="width: 22%">並行稼働期間中<br>（Phase 3 完了 〜 Phase 4 着手、推奨 14 日）</th>
+              <th style="width: 16%">Phase 4 完了後</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff4d6">
+              <td>RSプラン</td>
+              <td style="text-align:right;">28,776 円</td>
+              <td style="text-align:right;">28,776 円</td>
+              <td style="text-align:right;"><strong>0 円</strong></td>
+              <td>Phase 4 で解約</td>
+            </tr>
+            <tr>
+              <td>.com ドメイン更新</td>
+              <td style="text-align:right;">0 円</td>
+              <td style="text-align:right;">0 円</td>
+              <td style="text-align:right;">約 1,408 円</td>
+              <td>RSプラン解約で永久無料特典消失</td>
+            </tr>
+            <tr>
+              <td>ドメインプロテクション</td>
+              <td style="text-align:right;">1,078 円</td>
+              <td style="text-align:right;">1,078 円</td>
+              <td style="text-align:right;">1,078 円</td>
+              <td>継続</td>
+            </tr>
+            <tr>
+              <td>Whois 代行メール転送</td>
+              <td style="text-align:right;">約 297 円</td>
+              <td style="text-align:right;">約 297 円</td>
+              <td style="text-align:right;">約 297 円</td>
+              <td>継続（推定値）</td>
+            </tr>
+            <tr>
+              <td>Whois 情報公開代行</td>
+              <td style="text-align:right;">0 円</td>
+              <td style="text-align:right;">0 円</td>
+              <td style="text-align:right;">0 円</td>
+              <td>標準無料</td>
+            </tr>
+            <tr style="background:#e8f7ee">
+              <td>AWS Amplify Hosting</td>
+              <td style="text-align:right;">—</td>
+              <td style="text-align:right;">0 円</td>
+              <td style="text-align:right;">0 円</td>
+              <td>Free Tier 内、想定流量では超過しない</td>
+            </tr>
+            <tr style="background:#e8f7ee">
+              <td>AWS SES（サンドボックス）</td>
+              <td style="text-align:right;">—</td>
+              <td style="text-align:right;">約 6 円</td>
+              <td style="text-align:right;">約 6 円</td>
+              <td>30 通/月 × $0.10/1,000 通</td>
+            </tr>
+            <tr style="background:#e8f7ee">
+              <td>AWS ACM</td>
+              <td style="text-align:right;">—</td>
+              <td style="text-align:right;">0 円</td>
+              <td style="text-align:right;">0 円</td>
+              <td>Amplify 経由 Public Certificate 無料</td>
+            </tr>
+            <tr style="background:var(--bg-soft)">
+              <td><strong>本案件関連 年額合計</strong></td>
+              <td style="text-align:right;"><strong>約 30,151 円</strong></td>
+              <td style="text-align:right;"><strong>約 30,157 円</strong></td>
+              <td style="text-align:right;"><strong>約 2,789 円</strong></td>
+              <td>—</td>
+            </tr>
+            <tr style="background:var(--ok-bg)">
+              <td colspan="3" style="text-align:right;"><strong>Phase 4 完了後の削減差額（年）</strong></td>
+              <td style="text-align:right;"><strong>約 27,362 円</strong></td>
+              <td>移行前比 約 91% 削減</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>7.5 並行稼働期間中の追加コスト</h3>
+        <div class="callout">
+          <b>Phase 3 完了 〜 Phase 4 着手の 14 日間</b>
+          RSプランと AWS の両方が課金される一時的増加期間。月単位課金の場合、丸 1 ヶ月分（約 2,398 円）の追加。AWS 側は Free Tier 内でほぼゼロ。並行稼働は緊急ロールバック猶予が目的のため、コスト増は許容。
+        </div>
+
+        <h3>7.6 不確定要素（HRtep 様確認推奨、本案件影響度 低）</h3>
+        <ul class="check">
+          <li>過去のキャンペーン適用（初回特別価格・継続割引）の有無 — 月額に微小影響</li>
+          <li>Whois 代行メール転送の年額確定値（公式ページ 404 で取得不能、推定 297 円）</li>
+          <li>.com ドメイン更新料金の確定値（永久無料特典消失後、推定 1,408 円）</li>
+          <li>Google Workspace（HRtep 様契約、本案件対象外、月額不明）</li>
+          <li>SendGrid（HRtep 様運用、本案件対象外、月額不明）</li>
+        </ul>
+        <p style="font-size:13.5px; color:var(--muted);">→ 正確な金額確定には HRtep 様の請求書 or 契約書での照合が必要。本試算は公式料金 + 一般公開情報ベースの目安。</p>
+      </section>
+
+      <!-- 08 移行プロセス -->
+      <section id="s08">
+        <h2><span class="num">08</span>移行プロセスの全体像と検証手段</h2>
+        <p class="subtitle">全 4 フェーズで進行。Phase 1・2 は完了済、Phase 3 は §11〜§13 で詳述、Phase 4 は §13.5 で接続条件を示す。</p>
+
+        <span class="oneliner"><b>結論</b>4 フェーズ構成。DNS 切替（Phase 3）の前に Amplify 仮 URL 上で動作確認済（Phase 1）、SES 構築済（Phase 2）。受信メールは作業期間中を通じて停止しない。</span>
+
+        <h3>8.1 4 フェーズの構成と現状</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 14%">フェーズ</th>
+              <th style="width: 24%">作業</th>
+              <th style="width: 14%">状態</th>
+              <th>主担当 / 詳細</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:var(--ok-bg);">
+              <td>Phase 1</td>
+              <td>AWS Amplify 構築 / 新サイトデプロイ</td>
+              <td><span class="tag safe">完了</span></td>
+              <td>LeadX。App ID <code>d3561ojkga3nyn</code>、仮 URL 動作確認済（主要 7 ページ HTTP 200、301 リダイレクト 11 件動作）</td>
+            </tr>
+            <tr style="background:var(--ok-bg);">
+              <td>Phase 2</td>
+              <td>送信メール（Amazon SES サンドボックス）構築</td>
+              <td><span class="tag safe">完了（サンドボックス）</span></td>
+              <td>LeadX。Domain Identity <code>send.hrtep.com</code>（DKIM Pending、DNS 反映で SUCCESS）、Configuration Set <code>hrtep-default</code>、SNS Topic 2 件、CloudWatch Alarm 4 件、Suppression List 有効化済</td>
+            </tr>
+            <tr style="background:var(--warn-bg);">
+              <td>Phase 3</td>
+              <td>AWS 事前準備 → DNS 切替 → 動作確認</td>
+              <td><span class="tag warn">未着手</span></td>
+              <td>LeadX。本計画書 §11〜§13 で詳述。Step A-4 から 72h 以内に DNS 設定完了が制約</td>
+            </tr>
+            <tr>
+              <td>Phase 4</td>
+              <td>並行稼働期間（1〜2 週間）→ 旧 WordPress 環境の解約</td>
+              <td><span class="tag neutral">未着手</span></td>
+              <td>LeadX + HRtep。Phase 3 完了後 14 日以上の並行稼働を経て、HRtep 様より お名前.com 共用ホスティング契約の解約手続き</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>8.2 検証手段（各 Phase で実施）</h3>
+        <ul class="check">
+          <li><strong>Phase 1 検証</strong>（完了）: 仮 URL <code>main.d3561ojkga3nyn.amplifyapp.com</code> で全ページ HTTP 200、Lighthouse 各スコア（Performance / SEO / Accessibility）が WordPress 同等以上</li>
+          <li><strong>Phase 2 検証</strong>（完了）: SES Console で Domain Identity 登録、Configuration Set 経路確認、CloudWatch Alarm 4 件 OK 状態</li>
+          <li><strong>Phase 3 検証</strong>: §13.2「動作確認（最終テスト）」8 項目（HTTPS / 301 / フォーム E2E / MX 経路 / Alarm / Logs / DNS 差分 / 24h 観察）</li>
+          <li><strong>DNS 切替前後の比較</strong>: <code>nslookup</code> / <code>dig</code> により MX / SPF（apex）/ DMARC レコードに差分が発生していないことを確認（受信メール無影響を担保）</li>
+          <li><strong>HTTPS 証明書</strong>: ブラウザ鍵マーク、発行者 Amazon、ACM の自動更新により運用工数発生せず</li>
+          <li><strong>301 リダイレクト</strong>: <code>next.config.ts</code> 設定済の 11 件（個別 3 件 + ワイルドカード 8 群）が正常動作（SEO 評価の引継ぎ）</li>
+          <li><strong>ロールバック手順</strong>: §13.4 の 3 操作（apex A 編集 + www CNAME 削除 + www A 再追加）で旧 WP 復帰、最長 1 時間で完全復旧</li>
+        </ul>
+      </section>
+
+      <!-- 09 完了条件・スケジュール -->
+      <section id="s09">
+        <h2><span class="num">09</span>完了条件とスケジュール想定</h2>
+        <p class="subtitle">「移行完了」と判定する具体的な状態を先に定義する。</p>
+
+        <h3>9.1 完了条件</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 36%">完了条件</th>
+              <th>判定方法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>https://hrtep.com</code> で新サイトが配信される</td>
+              <td>ブラウザで開いて新サイトの内容が表示される</td>
+            </tr>
+            <tr>
+              <td><code>https://www.hrtep.com</code> も新サイトに到達</td>
+              <td>同上</td>
+            </tr>
+            <tr>
+              <td>HTTPS 証明書が成立</td>
+              <td>ブラウザ鍵マーク、発行者が Amazon、ACM Certificate Status が <code>ISSUED</code></td>
+            </tr>
+            <tr>
+              <td>問合せフォームから <code>info@hrtep.com</code> にメールが到達する</td>
+              <td>テスト送信を行い、実物の受信を確認（受信ヘッダで MX 経路も判定）</td>
+            </tr>
+            <tr>
+              <td>Google Workspace + onamae.ne.jp 並列でのメール受信が継続している</td>
+              <td>外部から <code>info@hrtep.com</code> 等にテスト送信し、受信ヘッダで経路確認</td>
+            </tr>
+            <tr>
+              <td>SES DKIM Status が <code>SUCCESS</code></td>
+              <td>SES Console &gt; Verified identities &gt; <code>send.hrtep.com</code> &gt; DKIM Status</td>
+            </tr>
+            <tr>
+              <td>お名前.com 上の旧 WordPress ホスティングが解約済み（Phase 4）</td>
+              <td>HRtep 様にて解約手続きを実施、結果を LeadX に共有</td>
+            </tr>
+            <tr>
+              <td>翌月以降のお名前.com 月額費用が想定通り削減</td>
+              <td>請求書および口座引落明細にて前月との比較</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>9.2 スケジュール想定</h3>
+        <p class="subtitle">本計画書ご承認後、HRtep 様の着手指示をいただいた段階で実施。Day 0 は Phase 3 着手日を起点とする。</p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 18%">タイミング</th>
+              <th>マイルストーン</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Day 0 午前</td>
+              <td>Phase 3 着手指示。LeadX が §11 事前準備（Step A-1 〜 A-5）を実施。HRtep 様は SES Verification リンクを 1 件クリック（Step A-2）</td>
+            </tr>
+            <tr>
+              <td>Day 0 午後</td>
+              <td>LeadX が §12 DNS 8 件設定を お名前.com Navi で実施（Step A-4 から 72h 以内）</td>
+            </tr>
+            <tr>
+              <td>Day 0 〜 Day +1</td>
+              <td>DNS 反映 + ACM 検証 + DKIM Status SUCCESS が AWS 側で自動進行（数時間〜24h）</td>
+            </tr>
+            <tr>
+              <td>Day +1</td>
+              <td>LeadX が §13.2 動作確認（最終テスト 8 項目）。HRtep 様への完了報告</td>
+            </tr>
+            <tr>
+              <td>Day +1 〜 Day +14（並行稼働期間）</td>
+              <td>404 / 5xx の発生監視、CloudWatch Alarm 監視、Search Console での新サイトクロール開始確認</td>
+            </tr>
+            <tr>
+              <td>Day +14 以降</td>
+              <td>Phase 4 着手。HRtep 様より お名前.com 共用ホスティング契約の解約手続き。MX 経路次第で「お名前メール」プラン解約可否を判断</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- 10 構築済みリソース -->
+      <section id="s10">
+        <h2><span class="num">10</span>構築済み AWS リソース・確定事項</h2>
+        <p class="subtitle">Phase 1・2 で構築済みの AWS リソース、整備済みドキュメント、Phase 3 着手前に確定済みの事項を整理する。</p>
+
+        <h3>10.1 構築済み AWS リソース</h3>
+
+        <h4>① IAM（CLI 操作用ユーザー）</h4>
+        <table>
+          <tbody>
+            <tr><td style="width:28%">AWS アカウント ID</td><td><code>688518755365</code>（HRtep 様既存）</td></tr>
+            <tr><td>IAM ユーザー名</td><td><code>claude-code-operator</code>（CLI 専用、コンソールログイン無効）</td></tr>
+            <tr><td>MFA</td><td>LeadX 側で設定済（HRtep 様の継続協力なしで Console 操作可能）</td></tr>
+            <tr><td>アタッチ済みポリシー（9 件・全て AWS マネージド）</td><td>AdministratorAccess-Amplify ／ AmazonSESFullAccess ／ AWSSupportAccess ／ ServiceQuotasFullAccess ／ AmazonSNSFullAccess ／ CloudWatchFullAccess ／ CloudWatchFullAccessV2 ／ AmazonRoute53ReadOnlyAccess ／ IAMReadOnlyAccess</td></tr>
+          </tbody>
+        </table>
+
+        <h4>② Amazon SES — 送信ドメイン</h4>
+        <table>
+          <tbody>
+            <tr><td style="width:28%">Domain Identity</td><td><code>send.hrtep.com</code>（apex の hrtep.com とは別のサブドメイン）</td></tr>
+            <tr><td>DKIM 認証方式</td><td>AWS SES Easy DKIM (RSA 2048bit)</td></tr>
+            <tr><td>DKIM Verification Status</td><td><span class="tag warn">PENDING</span> § 12 DNS 反映で <span class="tag safe">SUCCESS</span> に遷移</td></tr>
+            <tr><td>DKIM トークン（CNAME 用）</td><td>
+              <code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno</code><br>
+              <code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt</code><br>
+              <code>u26vbziy4iyaasumb2krlslkwdlqy6nk</code>
+            </td></tr>
+            <tr><td>リージョン</td><td><code>ap-northeast-1</code></td></tr>
+          </tbody>
+        </table>
+
+        <h4>③ Amazon SES — Verified Identity（受信側）</h4>
+        <table>
+          <tbody>
+            <tr><td style="width:28%"><code>tbnkin@gmail.com</code>（テスト送信用）</td><td><span class="tag safe">Verified</span> サンドボックス段階のテスト送信先</td></tr>
+            <tr><td><code>info@hrtep.com</code>（本番運用用）</td><td><span class="tag warn">未登録</span> § 11 Step A-2 で登録、HRtep 様が Verification リンクをクリック後 <code>Verified</code> に</td></tr>
+          </tbody>
+        </table>
+
+        <h4>④ Amazon SNS — 通知トピック</h4>
+        <table>
+          <tbody>
+            <tr><td><code>arn:aws:sns:ap-northeast-1:688518755365:ses-bounces-complaints</code></td><td>SES Bounce / Complaint / Delivery / Delay / Reject イベント受信</td></tr>
+            <tr><td><code>arn:aws:sns:ap-northeast-1:688518755365:hrtep-cloudwatch-alarms</code></td><td>CloudWatch Alarm 発火時の通知（購読: tbnkin@gmail.com）</td></tr>
+          </tbody>
+        </table>
+
+        <h4>⑤ SES Configuration Set</h4>
+        <table>
+          <tbody>
+            <tr><td style="width:28%">名前</td><td><code>hrtep-default</code></td></tr>
+            <tr><td>Reputation Metrics</td><td>有効</td></tr>
+            <tr><td>Event Destination</td><td>BOUNCE / COMPLAINT / DELIVERY / DELIVERY_DELAY / REJECT を SNS に配信</td></tr>
+          </tbody>
+        </table>
+
+        <h4>⑥ CloudWatch Alarms（4 件・全て OK 状態）</h4>
+        <table>
+          <thead><tr><th>名前</th><th>メトリクス</th><th>閾値</th></tr></thead>
+          <tbody>
+            <tr><td><code>hrtep-ses-bounce-rate-warning</code></td><td>Reputation.BounceRate</td><td>4%</td></tr>
+            <tr><td><code>hrtep-ses-bounce-rate-critical</code></td><td>Reputation.BounceRate</td><td>5%（AWS 自動停止閾値）</td></tr>
+            <tr><td><code>hrtep-ses-complaint-rate-warning</code></td><td>Reputation.ComplaintRate</td><td>0.05%</td></tr>
+            <tr><td><code>hrtep-ses-complaint-rate-critical</code></td><td>Reputation.ComplaintRate</td><td>0.1%</td></tr>
+          </tbody>
+        </table>
+
+        <h4>⑦ SES Account-level Suppression list</h4>
+        <div class="callout ok">
+          <b>有効化済み</b>
+          BOUNCE / COMPLAINT を Suppressed Reasons に設定。バウンスもしくは苦情を発生させたアドレスは AWS が自動的に以後の送信対象から除外。
+        </div>
+
+        <h4>⑧ AWS Amplify Hosting</h4>
+        <table>
+          <tbody>
+            <tr><td style="width:28%">アプリ名</td><td><code>hrtep-corporate</code></td></tr>
+            <tr><td>App ID</td><td><code>d3561ojkga3nyn</code></td></tr>
+            <tr><td>Platform</td><td><code>WEB_COMPUTE</code>（Next.js 16 SSR 対応）</td></tr>
+            <tr><td>リポジトリ</td><td><code>https://github.com/yasu-dev/hrc</code>（<strong>LeadX 社所有・push 権限保有確認済</strong>、auto-build 有効、push 時に自動デプロイ）</td></tr>
+            <tr><td>監視ブランチ</td><td><code>main</code>（Stage: PRODUCTION、AutoBuild: true、Backend Environment: なし）</td></tr>
+            <tr><td>仮 URL</td><td><code>https://main.d3561ojkga3nyn.amplifyapp.com</code></td></tr>
+            <tr><td>初回ビルド</td><td>BUILD / DEPLOY / VERIFY 全 SUCCEED（所要 2 分 40 秒）、最新ビルド Job 42（2026-05-02 13:21 SUCCEED）</td></tr>
+            <tr><td>動作確認</td><td>主要 7 ページ HTTP 200、301 リダイレクト 11 件期待通り動作</td></tr>
+            <tr><td>環境変数（App level）</td><td><code>NEXT_PUBLIC_RECAPTCHA_SITE_KEY</code> / <code>RECAPTCHA_SECRET_KEY</code> 設定済。<strong><code>CONTACT_EMAIL_TO</code> 未設定 → §11.6 Step A-5 で <code>info@hrtep.com</code> を設定</strong></td></tr>
+            <tr><td>環境変数（Branch level）</td><td>null（App level の値が継承）</td></tr>
+          </tbody>
+        </table>
+
+        <h4>⑨ IAM Compute Role（Amplify SSR → SES）</h4>
+        <table>
+          <tbody>
+            <tr><td style="width:28%">ロール名</td><td><code>hrtep-amplify-compute-role</code></td></tr>
+            <tr><td>App level ComputeRoleArn</td><td><code>arn:aws:iam::688518755365:role/hrtep-amplify-compute-role</code>（<strong>App level でアタッチ済確認</strong>）</td></tr>
+            <tr><td>Branch level override</td><td>なし（main Branch の BackendEnv: null、App level の Compute Role が有効）</td></tr>
+            <tr><td>信頼関係</td><td><code>amplify.amazonaws.com</code></td></tr>
+            <tr><td>アタッチ Policy</td><td><code>HRtepAmplifyComputePolicy</code>（カスタム最小権限）</td></tr>
+            <tr><td>許可</td><td><code>ses:SendEmail</code> / <code>ses:SendRawEmail</code>（<code>send.hrtep.com</code> Identity と <code>hrtep-default</code> Configuration Set のみ）</td></tr>
+          </tbody>
+        </table>
+
+        <h3>10.2 整備済みドキュメント</h3>
+        <table>
+          <thead><tr><th style="width: 38%">ファイル</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td><code>docs/HRtep コーポレートサイト DNS 設定ご依頼書.html</code></td><td>DNS 設定実施手順書（§11〜§13 として本計画書に統合済）</td></tr>
+            <tr><td><code>docs/HRtep メール運用ご確認.html</code></td><td>メール運用パターン①「運用中アドレス継続」の確定書</td></tr>
+            <tr><td><code>docs/ses-production-access-request.md</code></td><td>SES Production Access 申請文（流量増加時の予備、現時点では使用しない）</td></tr>
+            <tr><td><code>docs/dns-baseline-pre-migration.md</code></td><td>移行前 DNS レコード値の凍結（§2.2 で参照）</td></tr>
+            <tr><td><code>docs/phase3-cutover-plan.md</code></td><td>Phase 3 切替計画（本計画書 §11〜§13 で詳述）</td></tr>
+            <tr><td><code>docs/operations-manual.md</code></td><td>運用マニュアル（CloudWatch / SES / Amplify 操作）</td></tr>
+            <tr><td><code>app/contact/actions.ts</code></td><td>Server Action — SES SendEmailCommand 実装済</td></tr>
+            <tr><td><code>amplify.yml</code></td><td>Amplify Hosting のビルド定義</td></tr>
+            <tr><td><code>next.config.ts</code></td><td>301 リダイレクト 11 件設定済</td></tr>
+          </tbody>
+        </table>
+
+        <h3>10.3 確定事項</h3>
+        <p class="subtitle">v3 §11 で「ご確認依頼」とした事項のうち、2026-05-02 までに確定済となったもの。</p>
+
+        <table>
+          <thead><tr><th style="width:32%">事項</th><th>確定内容</th><th style="width:14%">確定日</th></tr></thead>
+          <tbody>
+            <tr><td>301 リダイレクト方針</td><td>新サイトに対応のない旧 WP URL 8 群（<code>/blog/</code>、<code>/helpful/</code> 等）はトップへ 301 集約。<code>next.config.ts</code> で実装済</td><td>2026-04 確定</td></tr>
+            <tr><td>問合せ送信先（CONTACT_EMAIL_TO）</td><td><code>info@hrtep.com</code>（メール運用パターン①）</td><td>2026-05-02</td></tr>
+            <tr><td>SES 運用形態</td><td>サンドボックス継続（Production Access 申請なし）</td><td>2026-05-02</td></tr>
+            <tr><td>DNS 操作 UI</td><td>RS plan コントロールパネル DNS UI（Option Y）。お名前.com Navi 経由は不採用（NS 移管で既存レコード消失リスクのため）</td><td>2026-05-03</td></tr>
+            <tr><td>AWS MFA</td><td>LeadX 側で完結（HRtep 様の継続協力なし）</td><td>2026-04-30</td></tr>
+            <tr><td>DMARC 受信先</td><td><code>mori@hrtep.com</code> 継続使用</td><td>2026-04 確定</td></tr>
+            <tr><td>SES リソース残置物</td><td>既存の <code>hrtep.net</code> Domain Identity、<code>no-reply@hrtep.com</code> Email Identity（FAILED）、<code>HRtep</code> Configuration Set には一切触れない</td><td>2026-04 確定</td></tr>
+            <tr><td>GitHub リポジトリ所有</td><td><code>https://github.com/yasu-dev/hrc</code> = <strong>LeadX 社所有</strong>、push 権限保有。コード変更デプロイで HRtep 様 / 安井様連携不要</td><td>2026-05-03 確定</td></tr>
+            <tr><td>hrtep.com DNS 管理形態</td><td><strong>RS plan コントロールパネル DNS UI で全 19 件編集可（Option Y 採用）</strong>。NS 移管不要、既存全レコード保持で新規追加のみ。実機検証 7 ステップで確定済</td><td>2026-05-03 確定</td></tr>
+          </tbody>
+        </table>
+
+        <h3>10.4 残課題</h3>
+        <div class="callout warn">
+          <b>MX 受信経路の実態確認</b>
+          §2.2 で示した MX 並列構成（<code>mail74.onamae.ne.jp</code> + Google Workspace）の受信実態は未確定。Step 2 で「他社のメールサーバーを利用する: ON」設定確認済 → mail74 経由は休止状態、Google Workspace 経由が実態と推定。<strong>§13.2 動作確認 #4「MX 受信経路特定」で受信ヘッダの <code>Received:</code> 行解析により最終確定し、Phase 4 解約時の対象範囲（お名前メールプランも解約するか）を判断</strong>する。
+        </div>
+
+        <div class="callout">
+          <b>ドメインプロテクション影響評価（Z3 解消）</b>
+          HRtep 様契約: ドメインプロテクション「サービス利用中」（Step 1 確認）。お名前.com 公式によると保護対象は「ネームサーバー変更」「Whois 情報変更」「DNS 関連機能の設定」「メール転送設定」「URL 転送設定」「ドメイン移管ロック」「ドメイン売買」「ドメイン自動更新設定」（出典: onamae.com/service/protectoption/）。<br>
+          <strong>本案件で実施する <code>hrtep.com</code> の DNS 編集は RS plan コントロールパネル経由</strong>（お名前.com Navi 「ドメインDNS設定」メニューではない）。RS plan UI 経由の DNS レコード追加・変更・削除がドメインプロテクションの保護対象に含まれるかは公式記載なし。<br>
+          <strong>運用方針</strong>: §12 着手時の最初の 1 件追加（行 P1: DKIM CNAME #1）コミット時に追加認証ダイアログが出たら一旦キャンセル → ドメインプロテクション影響と判断 → §11 に立ち戻り「ドメインプロテクション一時解除」を §10.3 GitHub 同様 LeadX が Navi で実施可能か確認 → 不能の場合は HRtep 様協力（最大限の流用方針上、初回のみ）。出ない場合は影響なしと判定して §12 全件続行。
+        </div>
+
+        <div class="callout">
+          <b>GitHub コミット方針（Z4 解消）</b>
+          現状 worktree に未コミット変更 11 件以上（v5.html 含む docs / public 画像）。本日 v5 確定後に LeadX が <code>git add</code> / <code>git commit</code> / <code>git push origin main</code> で <code>yasu-dev/hrc</code>（LeadX 社所有）に反映。Phase 3 着手前の確定状態として保全。Amplify auto-build が走る点は <code>docs/</code> 配下のドキュメント変更のみのため <code>amplify.yml</code> は影響なし（ビルドは成功する）。
+        </div>
+
+        <h3>10.5 hrtep.net 既存システムとの分離方針（参考）</h3>
+        <div class="callout">
+          <b>hrtep.net は HRtep 様の業務システムとして本番稼働中</b>
+          スクショで確認した hrtep.net の DNS 状態:
+          <ul style="margin:6px 0 0 18px; font-size:13.5px;">
+            <li>NS: <code>01-04.dnsv.jp</code>（DNSレコード設定メニュー利用可能形態）</li>
+            <li>本番系: apex / <code>api</code> / <code>www</code> → <code>52.194.96.119</code>、<code>api2</code> / <code>tmp</code> → <code>133.242.143.55</code>、<code>mng</code> → <code>18.176.68.65</code>、<code>mng2</code> → <code>133.242.140.208</code></li>
+            <li>ステージング系: <code>stg</code> / <code>stg-api</code> → <code>35.73.31.220</code>、<code>stg2</code> / <code>stg-api2</code> → <code>153.126.136.196</code>、<code>stg-mng</code> → <code>54.178.20.23</code>、<code>stg-mng2</code> → <code>153.120.37.179</code></li>
+            <li>SES: DKIM CNAME 3 件（<code>*.dkim.amazonses.com</code> 形式）、<code>_amazonses</code> TXT、<code>mail.hrtep.net</code> MX（<code>feedback-smtp.ap-northeast-1.amazonses.com</code> priority 10）+ TXT（<code>v=spf1 include:amazonses.com ~all</code>）</li>
+            <li>Let's Encrypt: <code>_acme-challenge.hrtep.net</code> TXT（TTL 60）</li>
+          </ul>
+          <strong>本案件（hrtep.com）は hrtep.net の既存リソースに一切触れない</strong>方針。AWS リソースは別アカウント同居でもネーム空間（Domain Identity / Configuration Set / IAM Role 等）が分離されており、衝突リスクなし。
+        </div>
+      </section>
+
+      <!-- 11 Phase 3 AWS 事前準備 -->
+      <section id="s11">
+        <h2 class="exec-h"><span class="num">11</span>Phase 3 — AWS 事前準備（72 時間期限の起算点）</h2>
+        <p class="subtitle">DNS 設定（§12）の前に AWS 側で完了させる 5 ステップ（A-1〜A-5）。Step A-4 完了から 72 時間以内に §12 を完了させる必要がある。お名前.com 側の DNS 管理形態は実機検証 7 ステップ（2026-05-03）で <strong>RS plan コントロールパネル DNS UI 採用（Option Y）</strong>に確定済（§10.3）。</p>
+
+        <span class="oneliner"><b>狙い</b>ACM 検証 CNAME 値（行 P5・P6）と Amplify A レコード値（行 P7）を §12 表に記入できる状態にする。Step A-2 で HRtep 様の Verification リンククリック 1 件発生（所要 1 分以内）、Step A-5 で <code>CONTACT_EMAIL_TO</code> 環境変数設定。</span>
+
+        <div class="callout warn">
+          <b>72 時間制約の根拠と運用</b>
+          AWS Certificate Manager は DNS validation 用 CNAME を発行してから 72 時間以内に DNS 反映が確認できないとリクエスト状態を <code>VALIDATION_TIMED_OUT</code> に変えてリクエストを無効化する（出典: <a href="https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html">AWS ACM User Guide</a> "If ACM is not able to validate the domain name within 72 hours from the time it generates a CNAME value for you, ACM changes the certificate status to Validation timed out"）。本書 §12 の DNS 設定（数分）+ DNS 伝播待ち（最大 24h）+ AWS 検証ポーリング（数時間〜数回）を考慮し、<strong>Step A-4 完了から §12 着手までは同日内が安全</strong>。タイムアウト時は <code>aws amplify delete-domain-association</code> → <code>create-domain-association</code> 再実行で新しい検証 CNAME 値を払い出し、§12 の行 P5・P6・P7 を全て書き換え。
+        </div>
+
+        <h3>11.1 Step A-1. AWS Console（ap-northeast-1）ログイン</h3>
+        <p>LeadX 側で MFA 設定済のため、HRtep 様の継続協力なしで Console アクセス可能。リージョン: <code>ap-northeast-1</code>（東京）。Amplify アプリ ID: <code>d3561ojkga3nyn</code>。AWS CLI プロファイル: <code>hrtep</code>。</p>
+
+        <h3>11.2 Step A-2. SES Verified Identity に <code>info@hrtep.com</code> を登録（HRtep 様の Verification リンククリック 1 件発生）</h3>
+        <ol>
+          <li>AWS Console &gt; Amazon SES &gt; 左メニュー <strong>Verified identities</strong> →「Create identity」</li>
+          <li>Identity type: <strong>Email address</strong> を選択 → <code>info@hrtep.com</code> を入力 →「Create identity」</li>
+          <li>AWS が <code>info@hrtep.com</code> 宛に「Amazon SES Email Address Verification Request」メール送信</li>
+          <li><strong>HRtep 様（TSUKAHIRA 様または info@ 受信担当）に Verification リンクのクリックを LINE 等で依頼</strong>（リンク有効期限 24h）</li>
+          <li>クリック後、SES Console の Verified identities 画面で <code>info@hrtep.com</code> の Verification status が <strong><code>Verified</code></strong> になることを確認</li>
+        </ol>
+        <p style="font-size:13px; color:var(--muted);">※ サンドボックス運用では送信先（To）も Verified Identity 登録が必須。受信メール経路（Google Workspace 経由が実態、§10.4 残課題で最終確定予定）には影響なし。</p>
+
+        <h3>11.3 Step A-3. SES + Amplify 既存設定の状態確認</h3>
+        <p>本日 2026-05-03 検証済の AWS リソース状態を着手直前に再確認:</p>
+        <ul>
+          <li>SES Domain Identity <code>send.hrtep.com</code> の DKIM Status（本 Step 時点では <code>PENDING</code>、§12 反映後に <code>SUCCESS</code>）</li>
+          <li>SES Configuration Set <code>hrtep-default</code> 存在</li>
+          <li>SES Account ProductionAccess: false（サンドボックス）/ Sending: true / Max24HourSend: 200 / MaxSendRate: 1（<code>aws sesv2 get-account</code>）</li>
+          <li>SNS Topic <code>ses-bounces-complaints</code> / <code>hrtep-cloudwatch-alarms</code> 両方存在</li>
+          <li>CloudWatch Alarm 4 件すべて <code>OK</code></li>
+          <li><strong>IAM Compute Role 確認（Z5 解消）</strong>: <code>aws amplify get-app --app-id d3561ojkga3nyn --query 'app.computeRoleArn'</code> → <code>arn:aws:iam::688518755365:role/hrtep-amplify-compute-role</code> であること</li>
+          <li><strong>Branch level Compute Role override 確認</strong>: <code>aws amplify get-branch --app-id d3561ojkga3nyn --branch-name main --query 'branch.backendEnvironmentArn'</code> → <code>null</code>（App level Role が継承される）</li>
+          <li><code>HRtepAmplifyComputePolicy</code>（カスタム Policy）が <code>hrtep-amplify-compute-role</code> にアタッチ済</li>
+        </ul>
+
+        <h3>11.4 Step A-4. Amplify Custom Domain 関連付け実行（★72 時間期限の起算開始）</h3>
+        <p>以下を実行し、ACM 検証 CNAME 値（apex 用 / www 用）と Amplify が指示する apex A レコード値を払い出す。</p>
+        <pre><code>aws --profile hrtep --region ap-northeast-1 amplify create-domain-association \
+  --app-id d3561ojkga3nyn \
+  --domain-name hrtep.com \
+  --enable-auto-sub-domain \
+  --sub-domain-settings prefix=,branchName=main prefix=www,branchName=main</code></pre>
+        <p>レスポンス（およびその後 <code>aws amplify get-domain-association</code>）から以下 3 値を抽出して記録:</p>
+        <ul>
+          <li><strong>行 P5</strong>: ACM 検証 CNAME（apex 用） — ホスト名（<code>_xxxxxxxxxxxx.hrtep.com</code> 形式）+ VALUE（<code>_yyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式）</li>
+          <li><strong>行 P6</strong>: ACM 検証 CNAME（www 用） — ホスト名（<code>_xxxxxxxxxxxx.www.hrtep.com</code> 形式）+ VALUE</li>
+          <li><strong>行 P7</strong>: Amplify が指示する apex A レコード値（複数の場合は全件、RS plan UI で同一ホスト名に複数 A 登録可）</li>
+        </ul>
+        <div class="callout bad">
+          <b>★この時点から 72 時間期限の起算開始</b>
+          §12 DNS 設定は当日中の着手を強く推奨。72h を超過した場合は ACM が <code>VALIDATION_TIMED_OUT</code> となり、<code>aws amplify delete-domain-association</code> → <code>create-domain-association</code> の再実行で新しい検証 CNAME 値を払い出し、§12 の行 P5・P6・P7 を全て書き換える必要がある。
+        </div>
+
+        <h3>11.5 Step A-5. §12 表への確定値記入 + Amplify 環境変数 <code>CONTACT_EMAIL_TO</code> 設定（Z2 解消）</h3>
+        <p><strong>5-a. §12 表への確定値記入</strong>: 本書 §12 の表「設定する 8 件のレコード」の行 P5・P6・P7 の <strong>「Step A-4 で取得した確定値」</strong> 箇所に、Step A-4 で取得した値を記入。</p>
+
+        <p><strong>5-b. Amplify App level 環境変数 <code>CONTACT_EMAIL_TO=info@hrtep.com</code> 設定</strong> — 未設定だと <code>app/contact/actions.ts:31-38</code> の分岐で「メール送信スキップ + 受付完了表示」のサイレント失敗状態になる:</p>
+        <pre><code># 既存 App level 環境変数取得
+EXISTING=$(aws --profile hrtep --region ap-northeast-1 amplify get-app \
+  --app-id d3561ojkga3nyn --query 'app.environmentVariables' --output json)
+
+# CONTACT_EMAIL_TO を追加して update-app（注: --environment-variables は全置換、既存値とマージして渡す）
+aws --profile hrtep --region ap-northeast-1 amplify update-app \
+  --app-id d3561ojkga3nyn \
+  --environment-variables \
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=&lt;既存値&gt;,RECAPTCHA_SECRET_KEY=&lt;既存値&gt;,CONTACT_EMAIL_TO=info@hrtep.com
+
+# 設定反映後に main ブランチで再ビルドをトリガー
+aws --profile hrtep --region ap-northeast-1 amplify start-job \
+  --app-id d3561ojkga3nyn --branch-name main --job-type RELEASE</code></pre>
+        <div class="callout warn">
+          <b><code>--environment-variables</code> は全置換</b>
+          <code>amplify update-app --environment-variables</code> は指定した変数だけが残る挙動。既存の <code>RECAPTCHA_*</code> 2 件を必ず先に <code>get-app</code> で取得してから merge して update する。漏れると本番 reCAPTCHA 検証が壊れる。
+        </div>
+
+        <p>記入・設定・再ビルド完了後、§12 操作に進む。</p>
+      </section>
+
+      <!-- 12 Phase 3 DNS 9 操作 (Option Y: RS plan UI) -->
+      <section id="s12">
+        <h2 class="exec-h"><span class="num">12</span>Phase 3 — DNS 9 操作の実施（RS plan コントロールパネル DNS UI）</h2>
+        <p class="subtitle">RS plan コントロールパネルの DNS UI で実施する 9 操作（追加 7 + 変更 1 + 削除 1）。NS 移管なし、既存 19 件レコード保持で新規追加と必要変更のみ。<strong>§11 Step A-4 完了から 72 時間以内に着手・完了。</strong></p>
+
+        <span class="oneliner"><b>結論</b>Option Y 採用（実機検証 7 ステップ確定済）により、お名前.com Navi の DNS メニューや NS 移管は使用せず、RS plan コントロールパネル経由で全操作完結。既存 19 件レコード（SendGrid CNAME 5 / Google MX 6 / DKIM TXT 2 / SPF apex / DMARC / google-site-verification / RSプラン apex+ml-cp+www の A 等）は変更対象 2 件を除き保持。</span>
+
+        <h3>12.1 既存 19 件レコード（保持対象、現状確認用）</h3>
+        <p style="font-size:13.5px; color:var(--muted);">RS plan コントロールパネル DNS UI で確認済み（実機検証 Step 4）。本作業では行 #10（apex A）と行 #18（www A）以外には一切触れない。</p>
+        <table>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:9%">TYPE</th><th style="width:30%">ホスト名</th><th>VALUE</th><th style="width:14%">扱い</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>CNAME</td><td><code>35248145.hrtep.com</code></td><td><code>sendgrid.net</code></td><td><span class="tag safe">保持</span> SendGrid</td></tr>
+            <tr><td>2</td><td>CNAME</td><td><code>358._domainkey.hrtep.com</code></td><td>SendGrid DKIM #1</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>3</td><td>CNAME</td><td><code>3582._domainkey.hrtep.com</code></td><td>SendGrid DKIM #2</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>4</td><td>TXT</td><td><code>default._domainkey.hrtep.com</code>（初期）</td><td>RS plan 初期 DKIM</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>5</td><td>CNAME</td><td><code>em9561.hrtep.com</code></td><td><code>u35248145.wl146.sendgrid.net</code></td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>6</td><td>TXT</td><td><code>google._domainkey.hrtep.com</code></td><td>Google Workspace DKIM</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>7</td><td>MX</td><td><code>hrtep.com</code></td><td><code>alt3.aspmx.l.google.com</code> 優先 5</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>8</td><td>MX</td><td><code>hrtep.com</code>（初期）</td><td><code>mail74.onamae.ne.jp</code> 優先 1</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>9</td><td>TXT</td><td><code>hrtep.com</code></td><td><code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code></td><td><span class="tag safe">保持</span></td></tr>
+            <tr style="background:var(--warn-bg);"><td>10</td><td>A</td><td><code>hrtep.com</code>（初期）</td><td><code>118.27.122.212</code></td><td><span class="tag warn">変更（P7）</span></td></tr>
+            <tr><td>11</td><td>MX</td><td><code>hrtep.com</code></td><td><code>alt4.aspmx.l.google.com</code> 優先 5</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>12</td><td>MX</td><td><code>hrtep.com</code></td><td><code>alt2.aspmx.l.google.com</code> 優先 5</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>13</td><td>MX</td><td><code>hrtep.com</code></td><td><code>alt1.aspmx.l.google.com</code> 優先 5</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>14</td><td>MX</td><td><code>hrtep.com</code></td><td><code>aspmx.l.google.com</code> 優先 1</td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>15</td><td>TXT</td><td><code>hrtep.com</code></td><td><code>google-site-verification=Ug3jABUVGPbGte0RAFkevh6O5owhVgntGGFWNaXXulc</code></td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>16</td><td>A</td><td><code>ml-cp.hrtep.com</code>（初期）</td><td><code>118.27.122.208</code></td><td><span class="tag safe">保持</span></td></tr>
+            <tr><td>17</td><td>CNAME</td><td><code>url5092.hrtep.com</code></td><td><code>sendgrid.net</code></td><td><span class="tag safe">保持</span></td></tr>
+            <tr style="background:var(--bad-bg);"><td>18</td><td>A</td><td><code>www.hrtep.com</code>（初期）</td><td><code>118.27.122.212</code></td><td><span class="tag danger">削除（P8a）</span></td></tr>
+            <tr><td>19</td><td>TXT</td><td><code>_dmarc.hrtep.com</code></td><td><code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code></td><td><span class="tag safe">保持</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3>12.2 設定する 9 操作（追加 7 + 変更 1 + 削除 1）</h3>
+        <p style="font-size:13.5px; color:var(--muted);">P1〜P4 = メール送信認証、P5・P6 = HTTPS 化（ACM 検証）、P7 = apex 切替、P8a/P8b = www 切替（削除 + 追加）。</p>
+        <table>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:9%">操作</th><th style="width:32%">ホスト名（入力値）</th><th style="width:8%">TYPE</th><th>VALUE</th><th style="width:7%">TTL</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>P1</td><td><span class="tag winner">追加</span></td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send</code></td><td>CNAME</td><td><code>qwfs5s5br25c2c2rjwimt3wqxgyv4cno.dkim.amazonses.com</code></td><td>600</td></tr>
+            <tr><td>P2</td><td><span class="tag winner">追加</span></td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt._domainkey.send</code></td><td>CNAME</td><td><code>x4mutpss3vfs5vb4u27cjdxqg2bumxyt.dkim.amazonses.com</code></td><td>600</td></tr>
+            <tr><td>P3</td><td><span class="tag winner">追加</span></td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk._domainkey.send</code></td><td>CNAME</td><td><code>u26vbziy4iyaasumb2krlslkwdlqy6nk.dkim.amazonses.com</code></td><td>600</td></tr>
+            <tr><td>P4</td><td><span class="tag winner">追加</span></td><td><code>send</code></td><td>TXT</td><td><code>v=spf1 include:amazonses.com ~all</code></td><td>600</td></tr>
+            <tr><td>P5</td><td><span class="tag winner">追加</span></td><td><strong>§11 Step A-4 取得値（apex 用 ACM 検証）</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx</code> 形式</span></td><td>CNAME</td><td><strong>§11 Step A-4 取得値</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_yyyyyyyy.xxxxxxxxxx.acm-validations.aws</code> 形式</span></td><td>600</td></tr>
+            <tr><td>P6</td><td><span class="tag winner">追加</span></td><td><strong>§11 Step A-4 取得値（www 用 ACM 検証）</strong><br><span style="font-size:11.5px; color:var(--muted);"><code>_xxxxxxxxxxxxxxxxxxxx.www</code> 形式</span></td><td>CNAME</td><td><strong>§11 Step A-4 取得値</strong></td><td>600</td></tr>
+            <tr style="background:var(--warn-bg);"><td>P7</td><td><span class="tag warn">変更</span></td><td><code>hrtep.com</code>（既存行 #10、初期レコード）</td><td>A</td><td><strong>§11 Step A-4 取得値（Amplify A）</strong><br><span style="font-size:11.5px; color:var(--muted);">現行 <code>118.27.122.212</code> を置換</span></td><td>600</td></tr>
+            <tr style="background:var(--bad-bg);"><td>P8a</td><td><span class="tag danger">削除</span></td><td><code>www.hrtep.com</code>（既存行 #18、初期レコード）</td><td>A</td><td><code>118.27.122.212</code> を削除</td><td>—</td></tr>
+            <tr><td>P8b</td><td><span class="tag winner">追加</span></td><td><code>www</code></td><td>CNAME</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code></td><td>600</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13px; color:var(--muted);">
+          ホスト名欄末尾の <code>.hrtep.com</code> は自動付加（実機検証 Step 5 確認）。TTL は既定 600 秒（範囲 300〜604800）。<br>
+          <strong style="color:var(--bad-deep);">作業順は P1 → P8b。先に追加 7 件（P1〜P6 + P8b）→ 変更 1 件（P7）→ 削除 1 件（P8a）の順で、新サイト切替時の HTTPS 警告期間を最小化。</strong>
+        </p>
+
+        <p style="font-size:13px; color:var(--muted); margin-top:6px;">
+          RS plan コントロールパネル DNS UI のホスト名欄では末尾の <code>.hrtep.com</code> が自動付加（実機検証で確認）。<br>
+          <strong style="color:var(--bad-deep);">作業順は表の上から（1 → 8）。先に追加 6 件（1〜6）を済ませてから最後に変更 2 件（7〜8）を行うことで、新サイト切替時の HTTPS 警告期間を最小化。</strong>
+        </p>
+
+        <h3>12.3 RS plan コントロールパネル経由の操作手順</h3>
+
+        <h4>Step 1. ログイン〜 hrtep.com の DNSレコード画面まで</h4>
+        <ol>
+          <li>ブラウザで <code>https://navi.onamae.com/login</code> を開き、お名前 ID（93206297）+ パスワードでログイン<br><span style="font-size:12.5px; color:var(--muted);">※ 資格情報は 2026-05-02 に HRtep 様より共有済（社内安全管理）。二段階認証は未設定の前提</span></li>
+          <li>左メニュー <strong>「レンタルサーバー」</strong>をクリック</li>
+          <li>RSプラン（契約番号 1594051、ドメイン hrtep.com、ステータス 稼働中）の行の <strong>「コントロールパネル: ログイン」</strong>ボタンをクリック → RS plan コントロールパネルが別タブで開く</li>
+          <li>左メニュー <strong>「ドメイン」</strong>をクリック</li>
+          <li>ドメイン一覧で <code>hrtep.com</code> 行（hrtep.net ではない）の <strong>「DNS」</strong>ボタン（鉛筆アイコン）をクリック → DNSレコード画面が開く</li>
+          <li>「選択中のドメイン: hrtep.com」「+ DNSレコードを追加」ボタン、各既存レコード行に「変更」「削除」ボタン表示を確認</li>
+        </ol>
+
+        <h4>Step 2. 既存 19 件レコードの現状確認（凍結確認）</h4>
+        <p>ページ 1・2 で 19 件全件表示されていることを確認（§12.1 表参照）。MX 6 件・apex SPF・DMARC・google-site-verification・SendGrid 関連 5 件・初期レコード 4 件などが揃っていることを目視確認。これら（行 #10/#18 を除く）は作業終了まで一切触れない。</p>
+
+        <h4>Step 3. 新規 7 件追加（P1〜P6 + P8b）</h4>
+        <p>「+ DNSレコードを追加」ボタンをクリック → 入力フォーム展開。各行ごとに以下を実施:</p>
+        <ol>
+          <li><strong>タイプ</strong>プルダウンから CNAME / TXT / A を選択</li>
+          <li><strong>ホスト名</strong>欄に §12.2 表のホスト名（<code>.hrtep.com</code> 以前の部分のみ、apex の場合は空欄/@）を入力。右側に「.hrtep.com」自動付加表示で確認</li>
+          <li><strong>TTL</strong> は 600 のまま（範囲 300〜604800）</li>
+          <li><strong>VALUE</strong> 欄に §12.2 表の VALUE をコピー入力</li>
+          <li><strong>状態</strong>は「有効」のまま</li>
+          <li><strong>「確認する」</strong>ボタンクリック → 確認ダイアログで内容確認 → コミット</li>
+          <li>確認ダイアログで追加認証要求が出た場合は §10.4「ドメインプロテクション影響評価」callout に従い対応（出ない場合は影響なしとして次の行へ）</li>
+        </ol>
+        <p style="font-size:13.5px;">P1 〜 P6 と P8b（<code>www</code> CNAME → <code>main.d3561ojkga3nyn.amplifyapp.com</code>）の計 7 件を順次追加。</p>
+
+        <div class="callout warn">
+          <b>P8b 追加時の警告（既存行 #18 と競合）</b>
+          P8b（<code>www</code> CNAME）追加時、<code>www</code> ホストには既に行 #18（A レコード）が存在するため UI 上で警告が出る可能性。Step 5 で行 #18 を削除する前提のため、警告が出ても「確認する」を進めて追加完了。並存中も DNS 解決上は A が優先されるため新サイト切替には影響しない。
+        </div>
+
+        <h4>Step 4. 行 #10 apex A レコード値変更（P7）</h4>
+        <ol>
+          <li>既存レコード一覧で <strong>行 #10「<code>hrtep.com</code>（初期レコード）/ A / <code>118.27.122.212</code>」</strong>の右端「変更」ボタンをクリック</li>
+          <li>「DNSレコードの変更」モーダル展開（タイプ A・ホスト名 hrtep.com は静的表示・編集不可、TTL と値のみ編集可）</li>
+          <li>VALUE 欄を <code>118.27.122.212</code> から <strong>§11 Step A-4 取得の Amplify A レコード値</strong>に書換</li>
+          <li><strong>「上記の注意事項を確認しました」チェックボックスを ON</strong> → 「変更する」ボタン活性化 → クリックでコミット</li>
+          <li>追加認証要求が出た場合は §10.4 ドメインプロテクション影響評価に従い対応</li>
+        </ol>
+
+        <h4>Step 5. 行 #18 www A レコード削除（P8a）</h4>
+        <ol>
+          <li>既存レコード一覧で <strong>行 #18「<code>www.hrtep.com</code>（初期レコード）/ A / <code>118.27.122.212</code>」</strong>の右端「削除」ボタンをクリック</li>
+          <li>削除確認ダイアログで内容を確認してコミット</li>
+          <li>Step 3 で追加した P8b の <code>www</code> CNAME（<code>main.d3561ojkga3nyn.amplifyapp.com</code>）が一覧に残っていることを確認</li>
+        </ol>
+
+        <div class="callout">
+          <b>反映確認コマンド</b>
+          各操作完了後、ターミナルで反映状況を確認可能。RS plan の DNS 反映時間は注記「実反映には数分程度」（公式 UI 表記）。<br>
+          <code>nslookup -type=cname qwfs5s5br25c2c2rjwimt3wqxgyv4cno._domainkey.send.hrtep.com 8.8.8.8</code><br>
+          <code>nslookup -type=txt send.hrtep.com 8.8.8.8</code><br>
+          <code>nslookup -type=a hrtep.com 8.8.8.8</code>（P7 反映後に新 IP）<br>
+          <code>nslookup -type=cname www.hrtep.com 8.8.8.8</code>（P8 反映後に CNAME）<br>
+          <strong>baseline 維持確認</strong>: <code>nslookup -type=mx hrtep.com 8.8.8.8</code> で 6 件、<code>nslookup -type=txt hrtep.com 8.8.8.8</code> で SPF + google-site-verification、<code>nslookup -type=txt _dmarc.hrtep.com 8.8.8.8</code> で DMARC が変動なしを確認。
+        </div>
+
+        <div class="callout bad">
+          <b>絶対に変更しないでください（行 #1〜#9 / #11〜#17 / #19）</b>
+          以下のレコードに触れると受信メール・ドメイン認証・既存メール送信機能が壊れる:
+          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
+            <li><code>hrtep.com</code> の MX 6 件（行 #7・#8・#11・#12・#13・#14、Google Workspace 5 + <code>mail74.onamae.ne.jp</code> 1）</li>
+            <li><code>hrtep.com</code> apex の SPF（行 #9）</li>
+            <li><code>_dmarc.hrtep.com</code> DMARC（行 #19）</li>
+            <li><code>hrtep.com</code> の google-site-verification（行 #15）</li>
+            <li>SendGrid 関連 5 件（行 #1・#2・#3・#5・#17）</li>
+            <li>RS plan 初期 DKIM TXT（行 #4 default._domainkey）と Google Workspace DKIM TXT（行 #6）</li>
+            <li><code>ml-cp.hrtep.com</code>（行 #16、RS plan 初期）</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 13 Phase 3 設定後の流れ・動作確認・ロールバック -->
+      <section id="s13">
+        <h2 class="exec-h"><span class="num">13</span>Phase 3 — 設定後の流れ・動作確認・ロールバック</h2>
+        <p class="subtitle">§12 完了後の本番化フロー、動作確認の最終テスト 8 項目、問題発生時のロールバック手順、Phase 4 への接続条件を整理する。</p>
+
+        <h3>13.1 本番化フロー（5 工程）</h3>
+        <div class="figure">
+          <svg viewBox="0 0 980 280" role="img" aria-label="本番化フロー">
+            <style>
+              .f-lbl { font: 600 11.5px 'Noto Sans JP', sans-serif; fill: #0e1726; }
+              .f-sm { font: 10.5px 'Noto Sans JP', sans-serif; fill: #556073; }
+              .f-num { font: 700 13px 'JetBrains Mono', monospace; fill: #fff; }
+              .f-who { font: 600 10px 'JetBrains Mono', monospace; }
+              .f-box-us { fill: #d4f2fb; stroke: #1aa0c8; stroke-width: 1.5; }
+              .f-box-yasui { fill: #fff4e5; stroke: #ffb258; stroke-width: 1.5; }
+              .f-circle-us { fill: #1aa0c8; }
+              .f-circle-yasui { fill: #ffb258; }
+              .f-arrow { stroke: #556073; stroke-width: 1.5; fill: none; marker-end: url(#fa); }
+            </style>
+            <defs>
+              <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#556073"/>
+              </marker>
+            </defs>
+
+            <text x="20" y="22" class="f-lbl" style="font-size:13px;">本番化フロー（5 工程）</text>
+            <line x1="20" y1="30" x2="960" y2="30" stroke="#dfe5ee"/>
+
+            <rect x="20" y="50" width="180" height="80" rx="8" class="f-box-yasui"/>
+            <circle cx="40" cy="70" r="13" class="f-circle-yasui"/>
+            <text x="40" y="74" text-anchor="middle" class="f-num">1</text>
+            <text x="62" y="70" class="f-who" style="fill:#8b5a00;">LeadX + HRtep</text>
+            <text x="110" y="92" text-anchor="middle" class="f-lbl">AWS 事前準備（§11）</text>
+            <text x="110" y="108" text-anchor="middle" class="f-sm">SES Identity 登録 + Amplify 関連付け</text>
+            <text x="110" y="122" text-anchor="middle" class="f-sm" style="fill:#8a1e1e; font-weight:600;">★72h 期限の起算</text>
+
+            <path d="M200,90 L220,90" class="f-arrow"/>
+
+            <rect x="220" y="50" width="180" height="80" rx="8" class="f-box-us"/>
+            <circle cx="240" cy="70" r="13" class="f-circle-us"/>
+            <text x="240" y="74" text-anchor="middle" class="f-num">2</text>
+            <text x="262" y="70" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="310" y="92" text-anchor="middle" class="f-lbl">DNS 9 操作（§12）</text>
+            <text x="310" y="108" text-anchor="middle" class="f-sm">RS plan コントロールパネル DNS UI</text>
+            <text x="310" y="122" text-anchor="middle" class="f-sm" style="fill:#8a1e1e; font-weight:600;">★72h 以内</text>
+
+            <path d="M400,90 L420,90" class="f-arrow"/>
+
+            <rect x="420" y="50" width="180" height="80" rx="8" class="f-box-us"/>
+            <circle cx="440" cy="70" r="13" class="f-circle-us"/>
+            <text x="440" y="74" text-anchor="middle" class="f-num">3</text>
+            <text x="462" y="70" class="f-who" style="fill:#1aa0c8;">AWS 自動</text>
+            <text x="510" y="92" text-anchor="middle" class="f-lbl">DNS 反映 + ACM 検証</text>
+            <text x="510" y="108" text-anchor="middle" class="f-sm">DKIM Status → SUCCESS</text>
+            <text x="510" y="122" text-anchor="middle" class="f-sm">数時間〜24h</text>
+
+            <path d="M600,90 L620,90" class="f-arrow"/>
+
+            <rect x="620" y="50" width="180" height="80" rx="8" class="f-box-us"/>
+            <circle cx="640" cy="70" r="13" class="f-circle-us"/>
+            <text x="640" y="74" text-anchor="middle" class="f-num">4</text>
+            <text x="662" y="70" class="f-who" style="fill:#1aa0c8;">LeadX社</text>
+            <text x="710" y="92" text-anchor="middle" class="f-lbl">SSL 発行 + 動作確認</text>
+            <text x="710" y="108" text-anchor="middle" class="f-sm">E2E + MX 経路特定</text>
+            <text x="710" y="122" text-anchor="middle" class="f-sm">フォーム送信稼働</text>
+
+            <path d="M800,90 L820,90 L820,160" class="f-arrow"/>
+
+            <rect x="280" y="170" width="440" height="60" rx="8" fill="#e8f7ee" stroke="#2ea85a" stroke-width="2"/>
+            <circle cx="300" cy="190" r="13" fill="#2ea85a"/>
+            <text x="300" y="194" text-anchor="middle" class="f-num">✓</text>
+            <text x="324" y="188" class="f-who" style="fill:#1d6d3c;">完了</text>
+            <text x="324" y="206" class="f-lbl" style="fill:#1d6d3c;">新サイト本番稼働 + フォーム送信稼働</text>
+            <text x="324" y="222" class="f-sm">hrtep.com で表示・問合せメール送信が機能</text>
+
+            <path d="M820,160 L500,160 L500,170" class="f-arrow"/>
+          </svg>
+          <p class="caption">オレンジ = LeadX + HRtep 共同作業（HRtep 様の SES Verification リンククリック 1 件含む） ／ 青 = LeadX 単独作業 + AWS 自動工程 ／ 緑 = 完了状態</p>
+        </div>
+
+        <h3>13.2 動作確認（最終テスト 8 項目）</h3>
+        <p>DKIM Status SUCCESS および ACM 証明書 AVAILABLE 確認後、以下を順次実施。</p>
+        <table>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:25%">確認項目</th><th>確認内容・合格条件</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>HTTPS 接続</strong></td><td><code>https://hrtep.com</code> および <code>https://www.hrtep.com</code> でブラウザアクセス。証明書チェーンが ACM 発行のもの、警告表示なし、新サイト表示</td></tr>
+            <tr><td>2</td><td><strong>旧 WP URL の 301 リダイレクト</strong></td><td>旧 URL（<code>/blog/</code>、<code>/company</code> 等）にアクセス → 新 URL（<code>/</code>、<code>/about</code> 等）に 301 で誘導。Network タブで Status Code 確認</td></tr>
+            <tr><td>3</td><td><strong>お問合せフォーム E2E（SES 経由）</strong></td><td>フォームから送信 → reCAPTCHA 通過 → SES 送信 → <code>info@hrtep.com</code> で受信。Reply-To ヘッダにフォーム送信者アドレスが入っており、Gmail の「返信」で送信者本人へ直接返信できることを確認</td></tr>
+            <tr><td>4</td><td><strong>MX 受信経路特定</strong></td><td>受信した通知メールの全 <code>Received:</code> ヘッダ行を辿り、<code>mail74.onamae.ne.jp</code> 経由か Google Workspace 直接受信かを判定。§2.2 で警告した MX 並列構成の実態を確定し、Phase 4 解約時の影響有無の判断材料とする</td></tr>
+            <tr><td>5</td><td><strong>CloudWatch Alarm 状態</strong></td><td><code>hrtep-ses-bounce-rate-warning/critical</code>、<code>hrtep-ses-complaint-rate-warning/critical</code> 4 件すべて <code>OK</code></td></tr>
+            <tr><td>6</td><td><strong>CloudWatch Logs エラー監視</strong></td><td>Amplify SSR ログ（<code>/aws/amplify/d3561ojkga3nyn</code>）に <code>[Contact] SES SendEmail エラー</code> が出ていない</td></tr>
+            <tr><td>7</td><td><strong>DNS 差分（baseline 比較）</strong></td><td>切替後の MX / apex SPF / DMARC が <code>docs/dns-baseline-pre-migration.md</code> と完全一致（差分ゼロ）</td></tr>
+            <tr><td>8</td><td><strong>24h 観察</strong></td><td>404 / 5xx の急増なし、Core Web Vitals が baseline 比 30% 以上悪化しない</td></tr>
+          </tbody>
+        </table>
+
+        <h3>13.3 切替過渡期の挙動</h3>
+        <div class="callout">
+          <b>DNS 伝播中（数分〜数時間）の挙動</b>
+          §12 完了直後はリゾルバキャッシュ次第でアクセス毎に旧 WP / 新 Amplify のどちらかが返される。これは正常挙動。RS plan の DNS TTL は 600 秒（10 分）のため、最長でも 10 分で全 DNS リゾルバが新値に揃う。<br>
+          <strong>DKIM 認証は §11 Step A-2 でも未完了で、§12 Step 2（行 1〜4）追加と DNS 伝播後に AWS が自動検証して SUCCESS に。</strong>本書の手順通り「§11 Step A-4 → §12（72h 以内）→ §13」の順で進めば、新サイト切替時には DKIM SUCCESS 済み状態となり、フォーム送信は初回から稼働する。
+        </div>
+
+        <h3>13.4 ロールバック手順（RS plan コントロールパネル DNS UI）</h3>
+        <div class="callout bad">
+          <b>即時ロールバック発火条件</b>
+          <ul style="margin:6px 0 0 18px; font-size:13.5px;">
+            <li>HTTPS 表示不可（証明書エラー、新サイト不到達）</li>
+            <li>お問合せフォーム送信が一切成功しない（CONTACT_EMAIL_TO 設定済の前提で）</li>
+            <li><strong>受信メール（MX）に意図せず変更が起きた</strong> ← 最優先</li>
+          </ul>
+        </div>
+        <p style="font-size:14px; margin-top:12px;">RS plan コントロールパネル → ドメイン → hrtep.com 行「DNS」ボタンで以下 3 操作を実施し、apex / www を旧 WordPress（<code>118.27.122.212</code>）に戻す。</p>
+        <table>
+          <thead>
+            <tr><th style="width:5%">#</th><th style="width:10%">操作</th><th style="width:30%">対象</th><th>内容</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>R-1</td><td><span class="tag warn">変更</span></td><td>行 #10 <code>hrtep.com</code> A（初期レコード）</td><td>「変更」ボタン → モーダルで VALUE を §11 Step A-4 払い出し値から <code>118.27.122.212</code> に書戻 → 注意事項チェック ON → 「変更する」</td></tr>
+            <tr><td>R-2</td><td><span class="tag danger">削除</span></td><td>P8b で追加した <code>www</code> CNAME</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code> 行の「削除」ボタン → 確認 → コミット</td></tr>
+            <tr><td>R-3</td><td><span class="tag winner">追加</span></td><td><code>www</code> A レコード</td><td>「+ DNSレコードを追加」→ タイプ A / ホスト名 <code>www</code> / TTL 600 / 値 <code>118.27.122.212</code> → 「確認する」 → コミット（旧値の復元）</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13.5px; color:var(--muted);">
+          DNS の TTL は 600 秒（10 分）のため、コミット後 <strong>最長 10 分程度で完全復旧</strong>。NS は gmoserver.jp のまま無変更（NS 移管なし）のため伝播時間は短い。<br>
+          ACM 検証 CNAME（行 P5・P6）と DKIM CNAME（行 P1〜P3）・SPF TXT（行 P4）は残置で問題なし（旧 WP 復旧時に害なし）。再切替時に再活用可能。
+        </p>
+        <div class="callout warn">
+          <b>受信メール影響発生時の最優先対応</b>
+          MX/SPF/DMARC が意図せず変更された兆候が見えた場合、Step 1-7 の検証で確認した既存 19 件レコード一覧（§12.1）と現状の DNS UI を即比較し、消失・変更されたレコードを「+ DNSレコードを追加」で復元。これは R-1〜R-3 と並行・優先実施。RS plan UI には削除済レコードの「履歴復元」機能はないため、§12.1 の凍結値が復元元の唯一の真正情報。
+        </div>
+
+        <h3>13.5 Phase 4 接続条件</h3>
+        <div class="callout">
+          <b>並行稼働期間（推奨 14 日以上）後に Phase 4 着手</b>
+          14 日間の根拠: DNS の TTL × Google の再クロール周期 × Search Console での新 URL 認識。この期間内であれば緊急ロールバックでお名前.com 共用ホスティングに戻すことが可能。<br>
+          <strong>Phase 4 解約対象範囲は §13.2 #4 の MX 経路特定結果次第:</strong>
+          <ul style="margin:8px 0 0 18px; font-size:13.5px;">
+            <li>(a) Google Workspace のみ受信していた → お名前.com 共用ホスティング契約 + お名前メール（あれば）を全解約可</li>
+            <li>(b) <code>mail74.onamae.ne.jp</code> 経由で受信あり → お名前メールプラン継続要、Web ホスティングのみ解約</li>
+            <li>(c) 両方並列受信 → (b) と同じ運用に</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 14 設計判断と教訓 -->
+      <section id="s14">
+        <h2 class="lesson-h"><span class="num">14</span>設計判断と教訓</h2>
+        <p class="subtitle">本案件で行った設計判断の根拠と、想定される失敗パターンを、類似プロジェクト・引継ぎ先での再現に資する形で記録する。</p>
+
+        <span class="oneliner"><b>狙い</b>「なぜこの構成にしたのか」「どのような失敗が想定されるか」を言語化することで、本構成を再現しやすくし、他プロジェクトへの転用判断を容易にする。</span>
+
+        <h3>14.1 なぜ AWS Amplify Hosting か（vs 他選択肢）</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 01 / Hosting Decision</div>
+          <p class="l-title">既存環境との統合 &gt; 単体性能</p>
+          <p class="l-body">Vercel / Netlify は Next.js への対応が最も洗練されているが、<strong>既に AWS を使っている顧客</strong>に対しては「新規ベンダー追加コスト」（契約・経理・セキュリティ評価・運用知見の分散）が想定以上に重い。Cloudflare Pages は安いが Workers ランタイム制約があり、AWS 環境からの分散も生じる。</p>
+          <p class="l-body">AWS Amplify は Next.js 公式 Adapter の対応に遅延が出る場合があるが、<code>amplify.yml</code> でビルド定義を自前管理すれば回避可能。既存 AWS 環境内で Free Tier に収まるコーポレートサイトであれば、ベンダー統合のメリットが他候補の単体性能を上回る。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>候補比較は「単体性能」だけでなく「顧客の既存環境との統合性」を主軸に評価する。新規ベンダー追加のコストは月額単価に現れない</div>
+        </div>
+
+        <h3>14.2 なぜ送信ドメインを <code>send.hrtep.com</code> に分離するのか</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 02 / Email Domain Separation</div>
+          <p class="l-title">apex の SPF/DMARC を編集すると受信に副作用が出る</p>
+          <p class="l-body">apex の <code>hrtep.com</code> は既存 SPF（<code>include:_spf.onamae.ne.jp include:_spf.google.com</code>）と DMARC（<code>p=none, rua=mori@hrtep.com</code>）が稼働中。ここに SES 送信を追加するため <code>include:amazonses.com</code> を apex SPF に追記すると、既存メール送信の SPF 評価が変わり、Google Workspace の DMARC アラインメントが再設計対象になる。</p>
+          <p class="l-body">サブドメイン <code>send.hrtep.com</code> を切り出して SES Domain Identity を登録し、DKIM CNAME 3 件と SPF TXT 1 件をその配下に集約することで、<strong>apex は完全無変更</strong>を維持。受信メール（MX）への副作用がゼロ。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>既存メールインフラのある apex に手を入れる前に、送信専用サブドメインへの分離を検討する。受信影響ゼロの最短経路</div>
+        </div>
+
+        <h3>14.3 なぜ SES サンドボックスで足りるのか（流量設計）</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 03 / SES Sandbox Sufficiency</div>
+          <p class="l-title">流量実績を見てサンドボックス内で完結するか先に判断する</p>
+          <p class="l-body">SES のデフォルト動作はサンドボックス（24h 200 通制限・Verified Identity 宛のみ）。多くのプロジェクトでは「いずれ Production Access が必要」と仮定して即申請するが、本案件は実流量月 30 通以下（既存 WP + CF7 過去 12 ヶ月実績）。サンドボックス制限の 0.5% 以下に収まるため申請不要。</p>
+          <p class="l-body">送信先（To）も Verified Identity 登録が必要だが、本案件は固定 1 件（<code>info@hrtep.com</code>）のため Verification リンククリック 1 回で済む。<strong>申請しないことで AWS Trust &amp; Safety 審査（24h〜数日）の待機が不要</strong>になり、リードタイムが短縮。</p>
+          <p class="l-body">流量増加時の Production Access 申請文書（<code>docs/ses-production-access-request.md</code>）はテンプレ化済で、必要時に即提出可能。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>SES Production Access は「必要な時に必要なだけ」。流量実績を確認せず即申請するのは過剰</div>
+        </div>
+
+        <h3>14.4 なぜ MX に触らないか</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 04 / MX Untouchability</div>
+          <p class="l-title">既存メールインフラの全貌を理解せずに MX を変更すると受信障害を起こす</p>
+          <p class="l-body">本案件の MX 6 件は Google Workspace 5 件 + <code>mail74.onamae.ne.jp</code> 1 件の並列構成。priority 1 で並列に存在し、受信実態が文書化されていない。考えられるパターン:</p>
+          <ul>
+            <li>(a) <code>mail74</code> がプライマリ、転送経由で Google Workspace</li>
+            <li>(b) 過去設定の残骸で実態は Google Workspace のみ</li>
+            <li>(c) 両方並列受信</li>
+          </ul>
+          <p class="l-body">Phase 3 では MX を一切触らず、Phase 4（旧 WP 解約）前の最終テスト（§13.2 #4）で受信ヘッダの <code>Received:</code> 行解析により実態確定する。実態が判明する前にお名前メールプランを解約すると、(a)/(c) の場合に受信が突然止まる事故になる。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>MX は「動いている」=「触らない」が大原則。実態が文書化されていない場合は、変更ではなくテスト送信での経路特定を先に</div>
+        </div>
+
+        <h3>14.5 72 時間制約の意味（ACM 仕様）</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 05 / ACM 72h Timeout</div>
+          <p class="l-title">DNS validation は払い出しから 72h 以内に DNS 反映が必須</p>
+          <p class="l-body">AWS Certificate Manager の DNS validation は CNAME 発行から 72 時間以内に DNS が反映されないとリクエスト状態が <code>VALIDATION_TIMED_OUT</code> に遷移してリクエスト無効化。Amplify Custom Domain は内部で ACM 証明書を発行するため同じ制約が適用。</p>
+          <p class="l-body">タイムアウトしても再関連付け（<code>delete-domain-association</code> → <code>create-domain-association</code>）で再払い出し可能だが、<strong>検証 CNAME 値は別の値になる</strong>ので DNS 設定書の行 5・6・7 を全て書き直す必要がある。実用上の許容遅延は DNS 伝播時間（最大 24h）を引いた 48h、安全マージン込みで「同日内に DNS 設定」を運用ルールにする。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>AWS の検証 CNAME 払い出しは「期限が起算される」操作。事前準備が完了してから払い出しを実行する</div>
+        </div>
+
+        <h3>14.6 DKIM/SPF/DMARC の役割分担</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 06 / Email Auth Architecture</div>
+          <p class="l-title">3 つは独立して機能、サブドメイン分離で影響範囲を制御</p>
+          <p class="l-body"><strong>DKIM</strong>: 送信ドメインの真正性をデジタル署名で証明（送信者がドメインの持ち主であることを示す。本案件は <code>send.hrtep.com</code> 配下に CNAME 3 件、AWS Easy DKIM RSA 2048bit）。</p>
+          <p class="l-body"><strong>SPF</strong>: 送信元 IP がドメインから許可されているかを宣言（メールサーバーの IP リストを TXT で公開。本案件は <code>send.hrtep.com</code> に <code>v=spf1 include:amazonses.com ~all</code>）。</p>
+          <p class="l-body"><strong>DMARC</strong>: DKIM/SPF の検証失敗時の挙動指定（quarantine/reject/none）+ レポート送信先（rua）。本案件は apex の DMARC を無変更（<code>p=none, fo=1, rua=mori@hrtep.com</code>）。</p>
+          <p class="l-body">3 つは独立に機能するため、<strong>サブドメイン分離は DKIM/SPF の影響範囲をコントロールする手段</strong>。apex DMARC のアラインメント設計を再検討せずに済む。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>メール認証 3 兄弟（DKIM/SPF/DMARC）は独立。「変えなくて済むものは変えない」設計が安全</div>
+        </div>
+
+        <h3>14.7 お名前.com の DNS 管理形態の見極め（Navi vs RS plan UI）</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 07 / Onamae DNS UI Selection</div>
+          <p class="l-title">RS plan 利用ドメインは RS plan コントロールパネルの DNS UI が最良経路</p>
+          <p class="l-body">お名前.com には DNS を編集できる UI が複数存在し、ドメインの契約形態で利用可否が分かれる:</p>
+          <ul>
+            <li><strong>お名前.com Navi 「ドメインDNS設定」 → 「DNSレコード設定」</strong>: NS が <code>01-04.dnsv.jp</code> 必須。利用時に NS 移管チェックボックスで切替可能だが、移管後は dnsv.jp ゾーンが空のため <strong>既存の MX/SPF/DMARC が消失する致命的リスク</strong>がある（実機検証で発覚）</li>
+            <li><strong>RS plan コントロールパネル → ドメイン → DNS</strong>: NS = <code>ns-rs1/2.gmoserver.jp</code>（RS plan bundled）のドメインで利用可。既存全レコードが UI に表示・編集可、新規追加・削除・変更すべて対応。NS 移管不要。本案件で採用（Option Y）</li>
+            <li><strong>AWS Route53 等の外部 DNS</strong>: NS を Route53 NS に移管する大移行。本案件では不採用（コスト + 手間 + 既存最大限活用方針）</li>
+          </ul>
+          <p class="l-body">本案件で実機検証 7 ステップを経て判明した事実:</p>
+          <ul>
+            <li>HRtep 様契約の <code>hrtep.com</code> は RS plan bundled NS（<code>ns-rs1/2.gmoserver.jp</code>）→ Navi の DNSレコード設定メニューを使うには NS 移管が必要だが、dnsv.jp ゾーンが空のため危険</li>
+            <li>RS plan コントロールパネルには独立した DNS 編集 UI があり、<strong>既存 19 件レコード（SendGrid/Google MX/SPF/DMARC/DKIM 等）を完全に保持しつつ新規追加・既存変更・削除が可能</strong></li>
+            <li>RS plan UI の安全機構: 変更時「上記の注意事項を確認しました」チェックボックス必須、UPSERT 動作、削除前の確認ダイアログ</li>
+            <li>「初期レコード」マーク付きレコードでも値・TTL は変更可能（タイプ・ホスト名は変更不可）</li>
+            <li>ホスト名末尾の <code>.hrtep.com</code> 自動付加、TTL 範囲 300〜604800、TYPE プルダウン A/AAAA/CNAME/MX/TXT/SRV 対応</li>
+          </ul>
+          <div class="l-takeaway"><b>TAKEAWAY</b>「お名前.com で DNS を編集する」と一括りにせず、ドメインの契約形態（RS plan / dnsv.jp NS / 共用サーバー / VPS / 他社外部）で UI と制約が異なることを最初に把握する。RS plan ユーザーは<strong>必ず RS plan UI を使う</strong>（Navi 経由は NS 移管リスクで危険）</div>
+        </div>
+
+        <h3>14.8 AWS Amplify Custom Domain と ACM の連動</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 08 / Amplify-ACM Linkage</div>
+          <p class="l-title">Custom Domain 関連付けで ACM 証明書発行は自動化される</p>
+          <p class="l-body">Custom Domain を関連付けると Amplify が内部で:</p>
+          <ol>
+            <li>ACM 証明書発行リクエストを作成（DNS validation モード）</li>
+            <li>検証 CNAME と Custom Domain ALIAS（apex は A）を返す</li>
+            <li>DNS 反映後、ACM が CNAME を検証 → 証明書発行</li>
+            <li>Amplify が証明書を自動関連付け</li>
+            <li>その後の更新（90 日）も AWS が自動実施</li>
+          </ol>
+          <p class="l-body">全工程は数時間〜24h 程度（DNS 伝播時間に依存）。<strong>証明書更新の運用工数はゼロ</strong>。</p>
+          <div class="l-takeaway"><b>TAKEAWAY</b>Amplify Custom Domain = ACM 証明書管理の自動化。証明書更新カレンダーや監視は不要</div>
+        </div>
+
+        <h3>14.9 典型的な失敗パターンと予防策</h3>
+        <div class="lesson-card">
+          <div class="l-no">Lesson 09 / Pitfalls</div>
+          <p class="l-title">本案件で予防した（または予防すべき）失敗パターン</p>
+          <ul>
+            <li><strong>(a) 順序逆転</strong>: Amplify Custom Domain 関連付け前に DNS を変更してしまう → ACM 検証 CNAME が分からないまま切替が始まり HTTPS 表示不可。順序は「AWS 事前準備 → DNS 設定」固定</li>
+            <li><strong>(b) 過剰申請</strong>: 不要なケースで SES Production Access を申請 → AWS から「サンドボックスで運用可能なユースケースですね」と却下。流量根拠を明示すれば承認されるが、そもそも申請が必要かを先に判断</li>
+            <li><strong>(c) apex SPF 編集</strong>: <code>include:amazonses.com</code> を apex SPF に追記 → 既存 Google Workspace の SPF アラインメントが壊れて受信側で SPF FAIL の可能性。サブドメイン分離で回避</li>
+            <li><strong>(d) MX 変更</strong>: 受信メール停止の最重大リスク。本計画では一切触らない</li>
+            <li><strong>(e) 警告無視できる事象を止める</strong>: <code>www</code> CNAME 追加時の「A レコード残存」警告は確認画面で同時コミットされるので無視して OK。止めると 2 段階作業の意義がなくなる</li>
+            <li><strong>(f) DKIM CNAME を apex 配下に置く</strong>: AWS が apex を SES Identity として要求してしまう。サブドメイン送信元構成が不可能になる</li>
+            <li><strong>(g) ACM 検証 CNAME 払い出し後の長期放置</strong>: 72h タイムアウトで再関連付けが必要。事前準備が完了してから払い出すルール</li>
+            <li><strong>(h) ホスト名入力欄に <code>.hrtep.com</code> を含める</strong>: お名前.com Navi は自動付加するため、含めると <code>xxx.hrtep.com.hrtep.com</code> になる</li>
+            <li><strong>(i) DNS 反映前に SES サンドボックス解除を申請</strong>: DKIM Status が PENDING のまま申請しても AWS から「DKIM 認証完了後に再申請を」と却下される</li>
+            <li><strong>(j) DNS 管理形態を実機確認せずに作業着手</strong>: お名前.com には複数の DNS 編集 UI（Navi DNSレコード設定 / RS plan コントロールパネル / 外部 DNS）があり、契約形態で利用可否と制約が異なる。本案件では Navi DNSレコード設定で「8 件追加 + NS 移管」を計画していたが、dnsv.jp ゾーンが空であることが実機検証で判明し既存 MX/SPF/DMARC 消失の致命的リスクが発覚 → RS plan コントロールパネル UI 採用に Pivot。<strong>計画段階では実 UI と既存ゾーン状態を最初に確認する</strong></li>
+            <li><strong>(k) 同一お名前.com アカウント内の他ドメイン（hrtep.net）リソースに触れる</strong>: 既存の hrtep.net は別の業務システム本番稼働中。本案件は hrtep.com のみが対象、hrtep.net の DNS / SES / Amplify には一切触れない</li>
+            <li><strong>(l) Amplify 環境変数 <code>CONTACT_EMAIL_TO</code> を設定し忘れる</strong>: <code>app/contact/actions.ts</code> は未設定時に「メール送信スキップ + 受付完了表示」のサイレント失敗分岐に入る。ユーザー画面では「お問合せを受け付けました」と表示されるが実メール送信されない。<strong>Phase 3 着手前に必ず Amplify App level 環境変数で <code>CONTACT_EMAIL_TO=info@hrtep.com</code> 設定 + 再ビルド</strong>（§11.5 Step A-5）</li>
+            <li><strong>(m) ドメインプロテクションの保護対象を実機で検証せずに作業</strong>: お名前.com 公式は「DNS 関連機能の設定」を保護対象としているが、RS plan コントロールパネル経由の DNS 編集が含まれるかは未明文化。最初の 1 件追加コミット時に追加認証が出るかで判定する運用が必要</li>
+          </ul>
+          <div class="l-takeaway"><b>TAKEAWAY</b>失敗パターンの多くは「順序」と「範囲」のミス。事前計画で順序を固定し、変更範囲を最小化する</div>
+        </div>
+
+        <h3>14.10 本案件で採用した設計原則（再利用可能）</h3>
+        <ul class="check">
+          <li><strong>変更範囲の最小化</strong>: 受信メール（MX/apex SPF/DMARC）は触らない、サブドメイン分離で apex 無変更</li>
+          <li><strong>既存環境との統合性優先</strong>: 顧客の既存クラウド環境内で完結する選択を最優先</li>
+          <li><strong>流量実績ドリブンの設計</strong>: SES サンドボックス vs Production の判断は仮定ではなく実流量で</li>
+          <li><strong>72h 制約の運用ルール化</strong>: AWS 側払い出しから DNS 反映まで「同日内」を目標、ACM タイムアウトで手戻りしない</li>
+          <li><strong>段階的切替（4 Phase）</strong>: AWS 構築 → SES 構築 → DNS 切替 → 旧 WP 解約。各 Phase で動作確認、問題発生時は前 Phase に戻れる</li>
+          <li><strong>ロールバック手順の事前明示</strong>: 切替前にロールバック発火条件と手順を文書化、緊急時に判断で迷わない</li>
+          <li><strong>並行稼働期間 14 日</strong>: 緊急ロールバック猶予と Search Console 再認識を兼ねる</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>HRtep コーポレートサイト Web ホスティング刷新 計画書 / v5</p>
+        <p>2026-05-02 作成 / LeadX 株式会社</p>
+        <p>v3 ベース、§11〜§13 に DNS 設定実施手順書を統合、§14 に設計判断と教訓を追加</p>
+      </footer>
+
+    </div>
+  </body>
+</html>
