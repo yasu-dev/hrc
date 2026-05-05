@@ -21,6 +21,29 @@ export const metadata: Metadata = {
 
 const icons = [Users, ClipboardList, GraduationCap, Briefcase];
 
+const serviceJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  provider: {
+    '@type': 'Organization',
+    name: 'ＨＲｔｅｐ株式会社',
+  },
+  serviceType: 'Foreign Talent Recruitment Support',
+  areaServed: 'JP',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: '外国人材事業サービス',
+    itemListElement: HR_SERVICES.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.description,
+      },
+    })),
+  },
+};
+
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -37,6 +60,10 @@ const faqJsonLd = {
 export default function HrServicePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

@@ -3,6 +3,7 @@ import { Container } from '@/components/ui/Container';
 import { PageHero } from '@/components/ui/PageHero';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { ContactForm } from '@/components/contact/ContactForm';
+import { SITE_URL, SITE_NAME, COMPANY } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'お問い合わせ',
@@ -16,9 +17,46 @@ export const metadata: Metadata = {
   },
 };
 
+const contactPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${SITE_URL}/contact`,
+  url: `${SITE_URL}/contact`,
+  name: 'お問い合わせ',
+  description: 'ＨＲｔｅｐ株式会社へのお問い合わせ窓口',
+  inLanguage: 'ja',
+  isPartOf: { '@id': `${SITE_URL}#website` },
+  about: { '@id': `${SITE_URL}#organization` },
+  mainEntity: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        telephone: COMPANY.tel,
+        url: `${SITE_URL}/contact`,
+        areaServed: 'JP',
+        availableLanguage: ['Japanese', 'English'],
+        hoursAvailable: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:00',
+          closes: '18:00',
+        },
+      },
+    ],
+  },
+};
+
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageJsonLd) }}
+      />
       <PageHero title="Contact" subtitle="お問い合わせ" />
       <Container>
         <Breadcrumb items={[{ label: 'お問い合わせ' }]} />
