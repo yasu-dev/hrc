@@ -41,6 +41,7 @@ export default async function NewsDetailPage({ params }: Props) {
     '@type': 'NewsArticle',
     headline: item.title,
     description: item.excerpt,
+    image: `${SITE_URL}/news/${item.slug}/opengraph-image`,
     datePublished: new Date(item.date).toISOString(),
     dateModified: new Date(item.date).toISOString(),
     author: {
@@ -54,6 +55,8 @@ export default async function NewsDetailPage({ params }: Props) {
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_URL}/images/logo-current.png`,
+        width: 595,
+        height: 109,
       },
     },
     mainEntityOfPage: {
