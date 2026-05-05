@@ -1,0 +1,1179 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HRtep 様コーポレートサイト Web ホスティング 構成書</title>
+    <style>
+      :root {
+        --navy-deep: #0b1a30;
+        --navy: #1a2d4d;
+        --cyan: #22b8e6;
+        --cyan-soft: #d4f2fb;
+        --cyan-line: #1aa0c8;
+        --ink: #0e1726;
+        --muted: #556073;
+        --line: #dfe5ee;
+        --bg: #ffffff;
+        --bg-soft: #f5f7fb;
+        --warn-bg: #fff4e5;
+        --warn-line: #ffb258;
+        --warn-deep: #8b5a00;
+        --ok-bg: #e8f7ee;
+        --ok-line: #2ea85a;
+        --ok-deep: #1d6d3c;
+        --bad-bg: #fdecec;
+        --bad-line: #d84040;
+        --bad-deep: #8a1e1e;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.85;
+        font-size: 15.5px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      code, pre, kbd { font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace; }
+
+      .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 96px; }
+
+      header.hero {
+        background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+        color: #fff;
+        padding: 64px 0 56px;
+        margin-bottom: 40px;
+      }
+
+      header.hero .wrap { padding-bottom: 0; }
+
+      header.hero .eyebrow {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        color: var(--cyan);
+        text-transform: uppercase;
+        margin: 0 0 12px;
+      }
+
+      header.hero h1 {
+        font-size: 32px;
+        line-height: 1.3;
+        margin: 0 0 14px;
+        letter-spacing: 0.01em;
+        font-weight: 700;
+      }
+
+      header.hero p.lead {
+        color: #e6edf7;
+        margin: 0;
+        max-width: 820px;
+        font-size: 16px;
+      }
+      header.hero p.lead strong { color: #ffffff; }
+      header.hero p.lead code {
+        background: rgba(255,255,255,0.12);
+        color: #ffffff;
+        padding: 1px 6px;
+        border-radius: 3px;
+      }
+
+      header.hero .meta {
+        margin-top: 26px;
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 12px;
+        color: #8ea1bc;
+      }
+
+      header.hero .meta span b { color: #fff; font-weight: 500; }
+
+      nav.toc {
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin-bottom: 56px;
+      }
+
+      nav.toc h2 {
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 14px;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-weight: 600;
+      }
+
+      nav.toc ul { margin: 0; padding-left: 16px; list-style: none; }
+      nav.toc li { padding: 3px 0; font-size: 14px; }
+      nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+      nav.toc a:hover { border-bottom-color: var(--cyan); }
+
+      section { margin-bottom: 60px; scroll-margin-top: 24px; }
+
+      section > h2 {
+        font-size: 22px;
+        margin: 0 0 6px;
+        color: var(--navy-deep);
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      section > h2 .num {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        color: var(--cyan);
+        font-size: 13px;
+        margin-right: 10px;
+        font-weight: 600;
+        vertical-align: 2px;
+      }
+
+      section > .subtitle { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+
+      h3 { font-size: 17px; color: var(--navy); margin: 30px 0 10px; }
+      h4 { font-size: 14px; color: var(--navy-deep); margin: 18px 0 8px; }
+
+      p { margin: 0 0 14px; }
+      strong { color: var(--navy-deep); }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0 22px;
+        font-size: 14.5px;
+      }
+
+      table th, table td {
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+
+      table th {
+        background: var(--bg-soft);
+        color: var(--navy-deep);
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      table td code { font-size: 13px; }
+
+      code {
+        background: var(--bg-soft);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13.5px;
+        color: var(--navy-deep);
+      }
+
+      pre {
+        background: var(--bg-soft);
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        overflow-x: auto;
+        margin: 8px 0 14px;
+        border: 1px solid var(--line);
+      }
+
+      .callout {
+        border-left: 4px solid var(--cyan);
+        background: var(--cyan-soft);
+        padding: 14px 18px;
+        border-radius: 0 8px 8px 0;
+        margin: 18px 0;
+        font-size: 14.5px;
+      }
+
+      .callout.warn { border-color: var(--warn-line); background: var(--warn-bg); }
+      .callout.bad  { border-color: var(--bad-line);  background: var(--bad-bg); }
+      .callout.ok   { border-color: var(--ok-line);   background: var(--ok-bg); }
+
+      .callout b {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--navy-deep);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+      }
+
+      ul.check { list-style: none; padding: 0; margin: 14px 0; }
+      ul.check li { padding: 6px 0 6px 28px; position: relative; }
+      ul.check li::before {
+        content: '✓';
+        position: absolute;
+        left: 4px;
+        color: var(--ok-line);
+        font-weight: 700;
+      }
+
+      /* === ブラッシュアップ追加スタイル === */
+
+      /* Hero 下の 3 行サマリ */
+      .tldr {
+        background: var(--cyan-soft);
+        border: 1px solid var(--cyan-line);
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 0 0 40px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px 16px;
+        font-size: 14.5px;
+      }
+      .tldr dt {
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 11px;
+        letter-spacing: 0.10em;
+        color: var(--navy-deep);
+        font-weight: 600;
+        align-self: center;
+        white-space: nowrap;
+      }
+      .tldr dd { margin: 0; align-self: center; }
+
+      /* 各章冒頭の「ひとことで言うと」要点ボックス */
+      .summary-box {
+        background: var(--bg-soft);
+        border-left: 3px solid var(--cyan);
+        padding: 14px 18px;
+        border-radius: 0 6px 6px 0;
+        margin: 0 0 22px;
+        font-size: 14.5px;
+        color: var(--ink);
+      }
+      .summary-box .label {
+        display: inline-block;
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 11px;
+        letter-spacing: 0.10em;
+        color: var(--cyan-line);
+        font-weight: 600;
+        margin-right: 10px;
+        vertical-align: 1px;
+      }
+
+      /* SVG 図解ラッパー */
+      figure.diagram {
+        margin: 18px 0 24px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 22px 18px 14px;
+        text-align: center;
+      }
+      figure.diagram svg { max-width: 100%; height: auto; }
+      figure.diagram figcaption {
+        margin-top: 10px;
+        font-size: 12.5px;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+      }
+
+      /* 用語集 */
+      dl.glossary {
+        margin: 14px 0 0;
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 8px 18px;
+        font-size: 14px;
+      }
+      dl.glossary dt {
+        font-weight: 600;
+        color: var(--navy-deep);
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 13px;
+      }
+      dl.glossary dd { margin: 0; color: var(--ink); }
+
+      @media (max-width: 720px) {
+        .tldr { grid-template-columns: 1fr; gap: 4px 0; }
+        .tldr dt { margin-top: 6px; }
+        dl.glossary { grid-template-columns: 1fr; }
+        dl.glossary dt { margin-top: 6px; }
+      }
+
+      @media print {
+        figure.diagram { break-inside: avoid; page-break-inside: avoid; }
+        .summary-box, .tldr { break-inside: avoid; page-break-inside: avoid; }
+        dl.glossary { break-inside: avoid; page-break-inside: avoid; }
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        margin-top: 56px;
+        padding-top: 24px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: 'JetBrains Mono', 'Consolas', monospace;
+      }
+
+      footer p { margin: 4px 0; }
+
+      @media (max-width: 720px) {
+        header.hero h1 { font-size: 24px; }
+      }
+
+      @media print {
+        @page { size: A4 portrait; margin: 5mm; }
+        html, body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body { margin: 0; font-size: 10.5pt; line-height: 1.7; orphans: 3; widows: 3; }
+        .wrap { max-width: 100%; margin: 0; padding: 0 6mm 4mm; }
+        header.hero { margin-bottom: 6mm; padding: 12mm 0 9mm; break-after: avoid; page-break-after: avoid; }
+        header.hero .wrap { padding: 0 6mm; }
+        header.hero h1 { font-size: 22pt; }
+        header.hero p.lead { font-size: 10.5pt; }
+        .tldr { break-inside: avoid; page-break-inside: avoid; margin-bottom: 6mm; }
+        nav.toc { break-after: page; page-break-after: always; break-inside: avoid; page-break-inside: avoid; margin-bottom: 0; }
+        section { margin-bottom: 6mm; }
+        section > h2 { font-size: 14pt; }
+        h3 { font-size: 12pt; }
+        h4 { font-size: 11pt; }
+        h2, h3, h4 { break-after: avoid; page-break-after: avoid; break-inside: avoid; page-break-inside: avoid; }
+        h2 + *, h3 + *, h4 + * { break-before: avoid; page-break-before: avoid; }
+        p { orphans: 3; widows: 3; }
+        .callout, ul.check, ol, pre { break-inside: avoid; page-break-inside: avoid; }
+        .summary-box { break-inside: avoid; page-break-inside: avoid; break-after: avoid; page-break-after: avoid; }
+        figure.diagram { break-inside: avoid; page-break-inside: avoid; padding: 12px 10px 8px; }
+        dl.glossary { font-size: 9.5pt; }
+        dl.glossary > dt, dl.glossary > dd { break-inside: avoid; page-break-inside: avoid; }
+        thead { display: table-header-group; }
+        tfoot { display: table-footer-group; }
+        tr { break-inside: avoid; page-break-inside: avoid; }
+        a { color: inherit; text-decoration: none; }
+        footer { break-before: avoid; page-break-before: avoid; }
+        pre { white-space: pre-wrap; word-break: break-all; font-size: 8.5pt; }
+        code { word-break: break-word; }
+        table { font-size: 9.5pt; }
+        table td, table th { padding: 6px 8px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Hosting Configuration Document</p>
+        <h1>HRtep 様コーポレートサイト<br>Web ホスティング 構成書</h1>
+        <p class="lead">
+          HRtep 様コーポレートサイト (<code>hrtep.com</code>) の現行構成と、旧 WordPress 環境の解約手順を記録する文書。
+          <br><br>
+          <strong>権威 DNS は AWS Route 53 へ移管</strong>、<strong>Web ホスティングは AWS Amplify Hosting (東京リージョン)</strong> に統合した。レジストラ (お名前.com) と受信メール (Google Workspace + onamae.ne.jp 並列) は据え置き、MX/SPF/DMARC は完全保持しているため、ドメイン契約・受信メールには本案件で一切の変更が及んでいない。Route 53 へ移管した理由は、Amplify Hosting が apex (<code>hrtep.com</code>) の解決先として CloudFront ディストリビューションへ向けるために <strong>ALIAS レコードが必須</strong>であり、お名前.com 標準 DNS には ALIAS 機能が存在しなかったため。
+        </p>
+        <div class="meta">
+          <span>対象ドメイン: <b>hrtep.com</b></span>
+          <span>権威 DNS: <b>AWS Route 53</b></span>
+          <span>ホスティング: <b>AWS Amplify Hosting (東京)</b></span>
+          <span>送信メール: <b>Amazon SES (サンドボックス)</b></span>
+          <span>レジストラ: <b>お名前.com</b></span>
+          <span>受信メール: <b>Google Workspace + onamae.ne.jp (据置)</b></span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+      <dl class="tldr">
+        <dt>本書要旨</dt>
+        <dd>HRtep 様コーポレートサイトを <strong>旧 WordPress (お名前.com RSプラン)</strong> から <strong>AWS Amplify Hosting + Route 53</strong> へ全面移行した。</dd>
+        <dt>変更範囲</dt>
+        <dd>権威 DNS (お名前.com 標準 → Route 53) と Web ホスティング (RSプラン → Amplify)、問合せフォームの送信経路 (新規に Amazon SES) の 3 点。</dd>
+        <dt>維持範囲</dt>
+        <dd>ドメイン契約・受信メール・MX/SPF/DMARC は完全保持。<strong>HRtep 様が日常使用する Gmail 受信経路に本案件で一切の変更が及んでいない</strong>。</dd>
+        <dt>達成効果</dt>
+        <dd>年額コスト 約 30,151 円 → 約 8,339 円 (削減 約 72%)、SSR 対応 Next.js への刷新、SES によるなりすまし耐性のあるフォーム送信経路の確立。</dd>
+      </dl>
+
+      <nav class="toc">
+        <h2>目次</h2>
+        <ul>
+          <li><a href="#s01">1. 全体構成</a></li>
+          <li><a href="#s02">2. リソース一覧</a></li>
+          <li><a href="#s03">3. ランニングコスト</a></li>
+          <li><a href="#s04">4. 問合せフォーム送信経路</a></li>
+          <li><a href="#s05">5. 受信メール</a></li>
+          <li><a href="#s06">6. 緊急時ロールバック</a></li>
+          <li><a href="#s07">7. Phase 4 — 旧 WordPress 解約</a></li>
+          <li><a href="#s08">8. 保守時の注意事項・運用知見</a></li>
+          <li><a href="#s09">9. 用語集</a></li>
+        </ul>
+      </nav>
+
+      <section id="s01">
+        <h2><span class="num">01</span>全体構成</h2>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          一般訪問者は <strong>Route 53 (DNS) → Amplify (Web)</strong> で新サイトを閲覧する。問合せフォームは <strong>SES 経由</strong>で HRtep 様 Gmail に届く。<strong>受信メールはこれまで通り</strong> Google Workspace と onamae.ne.jp が並列で受け取る。
+        </div>
+
+        <figure class="diagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" role="img" aria-labelledby="diag1-title">
+            <title id="diag1-title">全体構成 ブロック図</title>
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1a2d4d"/>
+              </marker>
+              <marker id="arrCyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1aa0c8"/>
+              </marker>
+              <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1d6d3c"/>
+              </marker>
+              <marker id="arrRoute" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#0369a1"/>
+              </marker>
+            </defs>
+            <style>
+              .box { fill:#fff; stroke:#1a2d4d; stroke-width:1.5; }
+              .box-aws { fill:#fff; stroke:#1aa0c8; stroke-width:1.5; }
+              .box-registrar { fill:#fef3c7; stroke:#a16207; stroke-width:1.5; }
+              .box-endpoint { fill:#e8f7ee; stroke:#1d6d3c; stroke-width:1.5; }
+              .box-route { fill:#e0f2fe; stroke:#0369a1; stroke-width:1.5; }
+              .box-user { fill:#0b1a30; stroke:#0b1a30; }
+              .lbl { font: 600 13px 'Inter','Noto Sans JP',sans-serif; fill:#0e1726; }
+              .lbl-w { font: 600 13px 'Inter','Noto Sans JP',sans-serif; fill:#fff; }
+              .sub { font: 11px 'JetBrains Mono','Consolas',monospace; fill:#556073; }
+              .sub-cyan { font: 11px 'JetBrains Mono','Consolas',monospace; fill:#1aa0c8; }
+              .group-lbl { font: 600 11px 'JetBrains Mono','Consolas',monospace; fill:#1aa0c8; letter-spacing:0.12em; }
+              .group-keep { font: 600 12px 'JetBrains Mono','Consolas',monospace; fill:#1d6d3c; letter-spacing:0.08em; }
+              .role-registrar { font: 700 9.5px 'JetBrains Mono','Consolas',monospace; fill:#a16207; letter-spacing:0.16em; }
+              .role-endpoint { font: 700 9.5px 'JetBrains Mono','Consolas',monospace; fill:#1d6d3c; letter-spacing:0.16em; }
+              .role-route { font: 700 9.5px 'JetBrains Mono','Consolas',monospace; fill:#0369a1; letter-spacing:0.16em; }
+              .arrow { stroke:#1a2d4d; stroke-width:1.5; fill:none; }
+              .arrow-cyan { stroke:#1aa0c8; stroke-width:1.7; fill:none; }
+              .arrow-route { stroke:#0369a1; stroke-width:1.5; fill:none; }
+              .flow-lbl { font: 600 11.5px 'Inter','Noto Sans JP',sans-serif; fill:#1a2d4d; }
+              .flow-bg { fill: rgba(255,255,255,0.92); }
+            </style>
+
+            <!-- お名前.com (Registrar — AMBER) -->
+            <rect class="box-registrar" x="30" y="22" width="170" height="96" rx="8"/>
+            <text class="role-registrar" x="115" y="40" text-anchor="middle">レジストラ</text>
+            <text class="lbl" x="115" y="62" text-anchor="middle">お名前.com</text>
+            <text class="sub" x="115" y="82" text-anchor="middle">ドメイン登録代行</text>
+            <text class="sub" x="115" y="100" text-anchor="middle">NS は Route 53 を指す</text>
+
+            <!-- AWS group dashed -->
+            <rect x="240" y="150" width="540" height="340" rx="12" fill="none" stroke="#1aa0c8" stroke-dasharray="4 3"/>
+            <text class="group-lbl" x="260" y="174">AWS (本案件で構築)</text>
+
+            <!-- 訪問者 -->
+            <rect class="box-user" x="30" y="260" width="140" height="76" rx="8"/>
+            <text class="lbl-w" x="100" y="293" text-anchor="middle">サイト訪問者</text>
+            <text x="100" y="313" text-anchor="middle" font-size="11" fill="#8ea1bc">ブラウザ</text>
+
+            <!-- Route 53 -->
+            <rect class="box-aws" x="270" y="200" width="180" height="80" rx="8"/>
+            <text class="lbl" x="360" y="230" text-anchor="middle">Route 53</text>
+            <text class="sub" x="360" y="250" text-anchor="middle">権威 DNS</text>
+            <text class="sub" x="360" y="266" text-anchor="middle">hrtep.com 名前解決</text>
+
+            <!-- Amplify Hosting -->
+            <rect class="box-aws" x="500" y="280" width="250" height="106" rx="8"/>
+            <text class="lbl" x="625" y="310" text-anchor="middle">Amplify Hosting</text>
+            <text class="sub" x="625" y="330" text-anchor="middle">CloudFront + Next.js SSR</text>
+            <text class="sub" x="625" y="346" text-anchor="middle">Tokyo / ap-northeast-1</text>
+            <text class="sub-cyan" x="625" y="368" text-anchor="middle">ACM 証明書 (自動更新)</text>
+
+            <!-- SES -->
+            <rect class="box-aws" x="500" y="410" width="250" height="68" rx="8"/>
+            <text class="lbl" x="625" y="436" text-anchor="middle">Amazon SES</text>
+            <text class="sub" x="625" y="455" text-anchor="middle">送信元: send.hrtep.com</text>
+            <text class="sub" x="625" y="470" text-anchor="middle">サンドボックス継続</text>
+
+            <!-- HRtep Gmail (Mail Endpoint — GREEN) -->
+            <rect class="box-endpoint" x="820" y="212" width="140" height="100" rx="8"/>
+            <text class="role-endpoint" x="890" y="230" text-anchor="middle">受信エンドポイント</text>
+            <text class="lbl" x="890" y="252" text-anchor="middle">HRtep 様 Gmail</text>
+            <text class="sub" x="890" y="274" text-anchor="middle">information@</text>
+            <text class="sub" x="890" y="288" text-anchor="middle">hrtep.com</text>
+
+            <!-- 受信メール経路 (Mail Infrastructure — BLUE) -->
+            <rect class="box-route" x="820" y="372" width="140" height="118" rx="8"/>
+            <text class="role-route" x="890" y="390" text-anchor="middle">受信インフラ</text>
+            <text class="lbl" x="890" y="412" text-anchor="middle">メールサーバ</text>
+            <text class="sub" x="890" y="434" text-anchor="middle">Google Workspace</text>
+            <text class="sub" x="890" y="450" text-anchor="middle">+ onamae.ne.jp</text>
+            <text class="sub" x="890" y="468" text-anchor="middle">(MX 6 件 据置)</text>
+
+            <!-- A1: お名前.com → Route 53 (NS 委任, 黒破線) -->
+            <path class="arrow" d="M115,120 L115,180 L268,212" marker-end="url(#arr)" stroke-dasharray="4 3"/>
+            <rect class="flow-bg" x="138" y="148" width="64" height="18" rx="3"/>
+            <text class="flow-lbl" x="170" y="162" text-anchor="middle">NS 委任</text>
+
+            <!-- A2: 訪問者 → Route 53 (①名前解決) -->
+            <path class="arrow-cyan" d="M170,278 L268,238" marker-end="url(#arrCyan)"/>
+            <rect class="flow-bg" x="178" y="244" width="78" height="18" rx="3"/>
+            <text class="flow-lbl" x="217" y="258" text-anchor="middle">①名前解決</text>
+
+            <!-- A3: 訪問者 → Amplify (②HTTPS閲覧 / ③フォーム送信) — Route 53 の下を通る -->
+            <path class="arrow-cyan" d="M170,318 L498,328" marker-end="url(#arrCyan)"/>
+            <rect class="flow-bg" x="200" y="296" width="232" height="18" rx="3"/>
+            <text class="flow-lbl" x="316" y="310" text-anchor="middle">②HTTPS 閲覧 / ③フォーム送信</text>
+
+            <!-- A4: Amplify → SES (④Server Action) -->
+            <path class="arrow-cyan" d="M625,388 L625,408" marker-end="url(#arrCyan)"/>
+            <rect class="flow-bg" x="638" y="389" width="100" height="18" rx="3"/>
+            <text class="flow-lbl" x="688" y="403" text-anchor="middle">④Server Action</text>
+
+            <!-- A5: SES → HRtep Gmail (⑤メール送信) -->
+            <path class="arrow-cyan" d="M750,440 Q800,440 800,330 L818,262" marker-end="url(#arrCyan)"/>
+            <rect class="flow-bg" x="760" y="356" width="80" height="18" rx="3"/>
+            <text class="flow-lbl" x="800" y="370" text-anchor="middle">⑤メール送信</text>
+
+            <!-- A6: 受信メールインフラ → Gmail (青破線、受信フロー) -->
+            <path class="arrow-route" d="M890,372 L890,314" marker-end="url(#arrRoute)" stroke-dasharray="4 3"/>
+
+            <!-- 凡例キャプション (最下部、ボックスと干渉しない位置) -->
+            <text class="role-route" x="490" y="528" text-anchor="middle" style="font-size:11.5px; letter-spacing:0.06em;">受信メールは Google Workspace + onamae.ne.jp で従来通り受信 (本案件で一切変更なし)</text>
+          </svg>
+          <figcaption>図 1.0 ─ 全体構成 (シアン=AWS で構築、橙=ドメイン登録代行、緑=HRtep 様メール受信先、青=受信メールインフラ、黒破線=NS 委任)</figcaption>
+        </figure>
+
+        <table>
+          <thead>
+            <tr><th style="width:25%">レイヤー</th><th>サービス・値</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>レジストラ</td><td>お名前.com (<code>hrtep.com</code> ドメイン契約・ドメインプロテクションは継続。RSプラン契約は Phase 4 で解約予定)</td></tr>
+            <tr><td>権威 DNS</td><td>AWS Route 53</td></tr>
+            <tr><td>Web ホスティング</td><td>AWS Amplify Hosting (東京リージョン、Next.js 16 + React 19 + TypeScript + Tailwind CSS v4)</td></tr>
+            <tr><td>SSL/TLS 証明書</td><td>AWS Certificate Manager (Amplify Managed、DNS validation により自動発行・自動更新)</td></tr>
+            <tr><td>送信メール</td><td>Amazon SES サンドボックス (Domain Identity <code>send.hrtep.com</code>、Easy DKIM RSA 2048bit)</td></tr>
+            <tr><td>受信メール</td><td>Google Workspace + onamae.ne.jp 並列 (MX 6 件据置、本案件で一切変更なし)</td></tr>
+            <tr><td>フォームバリデーション</td><td>Google reCAPTCHA v3 (threshold 0.5、action <code>contact_submit</code>)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>1.1 権威 DNS を Route 53 へ移管した理由</h3>
+        <p>Amplify Hosting は apex (<code>hrtep.com</code>) の解決先として CloudFront ディストリビューションへ向ける必要があるが、apex を CloudFront に向けるには ALIAS レコードが必須である。RFC 1912 で apex の CNAME は禁止されており、CloudFront IP は変動するため A レコード直書きも運用不可。お名前.com 標準 DNS には ALIAS 機能が存在しないため、AWS 標準で apex ALIAS を提供する Route 53 への移管が事実上の唯一解だった。</p>
+
+        <p>Route 53 への移管に伴い、お名前.com 側で稼働していた既存 19 件のレコード (MX 6 件 / apex SPF / DMARC / SendGrid DKIM / Google Workspace DKIM 等) はすべて値完全保持で Route 53 にコピー移植した。MX/SPF/DMARC の値は変更ゼロのため受信メールへの影響はない。apex / www の A レコードのみ ALIAS A に置換し Amplify CloudFront に解決する。<strong>移管完了以降、お名前.com Navi 側の DNS レコード設定は権威系統から切り離されており、参照されない</strong> (NS 委任先が Route 53 の 4 件であるため)。</p>
+
+        <p>Phase 3 完了後に Search Console プロパティを新オーナー <code>kishigami@leadx-grp.com</code> へ移管する目的で、apex TXT に <code>google-site-verification=RCKEIS0h3XQdw1ZY8uvVUF2mTn3IZkquyNNpE-g4LPA</code> を <strong>Route 53 配下の同一 TXT レコードに UPSERT で追加</strong>した (旧 SC 認証値および SPF を保持しつつ追加)。詳細は §5.2 参照。</p>
+      </section>
+
+      <section id="s02">
+        <h2><span class="num">02</span>リソース一覧</h2>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          障害対応・契約更新・運用引継ぎ時に参照する識別子 (ID・FQDN・リソース名) を 1 表に集約。<strong>本節は本案件における逆引き索引</strong>として位置付ける。
+        </div>
+
+        <table>
+          <thead>
+            <tr><th style="width:30%">項目</th><th>値</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>AWS Account ID</td><td><code>688518755365</code></td></tr>
+            <tr><td>Region</td><td><code>ap-northeast-1</code> (東京)</td></tr>
+            <tr><td>AWS CLI Profile</td><td><code>hrtep</code></td></tr>
+            <tr><td>Amplify App ID</td><td><code>d3561ojkga3nyn</code></td></tr>
+            <tr><td>Amplify Default Domain</td><td><code>main.d3561ojkga3nyn.amplifyapp.com</code></td></tr>
+            <tr><td>Amplify CloudFront FQDN</td><td><code>d3u3xuwk9ma2bd.cloudfront.net</code></td></tr>
+            <tr><td>CloudFront ALIAS HostedZoneId</td><td><code>Z2FDTNDATAQYW2</code> (Route 53 ALIAS 投入時の固定値)</td></tr>
+            <tr><td>Route 53 Hosted Zone ID</td><td><code>Z03225321XVWO8YLGYFVZ</code></td></tr>
+            <tr><td>Route 53 NS 4 件</td><td><code>ns-610.awsdns-12.net</code><br><code>ns-21.awsdns-02.com</code><br><code>ns-1842.awsdns-38.co.uk</code><br><code>ns-1256.awsdns-29.org</code></td></tr>
+            <tr><td>SES Domain Identity</td><td><code>send.hrtep.com</code> (DKIM SUCCESS、Verified=true、送信元ドメイン)</td></tr>
+            <tr><td>SES Email Identity</td><td><code>information@hrtep.com</code> (Verified=true、送信先 = HRtep 様 Gmail)</td></tr>
+            <tr><td>SES Configuration Set</td><td><code>hrtep-default</code> (bounce/complaint アラーム連携)</td></tr>
+            <tr><td>Amplify 環境変数 (App level)</td><td><code>NEXT_PUBLIC_RECAPTCHA_SITE_KEY</code><br><code>RECAPTCHA_SECRET_KEY</code><br><code>CONTACT_EMAIL_TO=information@hrtep.com</code></td></tr>
+            <tr><td>IAM Compute Role</td><td><code>hrtep-amplify-compute-role</code> (Amplify SSR が SES SendEmail 実行に使用)</td></tr>
+            <tr><td>CloudWatch Alarms</td><td><code>hrtep-ses-bounce-rate-warning/critical</code><br><code>hrtep-ses-complaint-rate-warning/critical</code></td></tr>
+            <tr><td>SNS Topic</td><td><code>ses-bounces-complaints</code><br><code>hrtep-cloudwatch-alarms</code></td></tr>
+            <tr><td>AWS Budget</td><td><code>hrtep-monthly-1000jpy</code> ($7 USD ≒ 1,000 円、月次、80%/100% で <code>kishigami@leadx-grp.com</code> 通知)</td></tr>
+            <tr><td>GitHub リポジトリ</td><td><code>https://github.com/yasu-dev/hrc</code> (LeadX 社所有、main ブランチ push で Amplify 自動ビルド・デプロイ)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout warn">
+          <b>HRtep 様 AWS アカウントの構造</b>
+          AWS アカウント <code>688518755365</code> には本案件以外の事業 (人材プラットフォーム関連の RDS / VPC / EC2 / S3 / Global Accelerator 等) が同居している。本構成書の運用判断は本案件範囲のリソース (Amplify / Route 53 / SES / ACM / CloudWatch / SNS / Budgets) のみが対象。
+        </div>
+      </section>
+
+      <section id="s03">
+        <h2><span class="num">03</span>ランニングコスト</h2>
+        <p class="subtitle">本案件の AWS リソースに対する実測ベースの月額・年額。HRtep 様 AWS アカウント全体ではなく本案件範囲のサービスのみを集計した値。</p>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          月額 <strong>約 463 円 (税込)</strong>・年額 <strong>約 5,556 円</strong>。Phase 4 完了後の年額総コスト (AWS + ドメイン + プロテクション + Whois 代行) は <strong>約 8,339 円</strong>で、移行前の約 30,151 円から <strong>約 72% 削減</strong>。
+        </div>
+
+        <h3>3.1 安定運用月額 (税抜)</h3>
+        <table>
+          <thead>
+            <tr><th style="width:35%">サービス</th><th style="width:15%">月額</th><th>備考</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>AWS Amplify Hosting</td><td style="text-align:right;">約 320 円</td><td>SSR Compute / Build minutes / Data transfer の合算。HRtep 様 AWS アカウントは新規 12 ヶ月 Free Tier 終了済のため微小課金が発生</td></tr>
+            <tr><td>Amazon Route 53</td><td style="text-align:right;">約 95 円</td><td>Hosted Zone $0.50/月 + 標準クエリ料</td></tr>
+            <tr><td>Amazon SES (サンドボックス)</td><td style="text-align:right;">約 6 円</td><td>月 30 通想定 × $0.10/1,000 通</td></tr>
+            <tr><td>AWS Certificate Manager</td><td style="text-align:right;">0 円</td><td>Amplify Managed Certificate は無料</td></tr>
+            <tr><td>CloudWatch / SNS / AWS Budgets</td><td style="text-align:right;">0 円</td><td>Free Tier 内</td></tr>
+            <tr style="background:#e8f7ee">
+              <td><strong>月額合計 (税抜)</strong></td>
+              <td style="text-align:right;"><strong>約 421 円</strong></td>
+              <td>—</td>
+            </tr>
+            <tr style="background:#e8f7ee">
+              <td><strong>月額合計 (税込 10%)</strong></td>
+              <td style="text-align:right;"><strong>約 463 円</strong></td>
+              <td>—</td>
+            </tr>
+            <tr style="background:#e8f7ee">
+              <td><strong>年額合計 (税込)</strong></td>
+              <td style="text-align:right;"><strong>約 5,556 円</strong></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3.2 移行効果 (年額・税込)</h3>
+        <table>
+          <thead>
+            <tr><th>項目</th><th style="width:25%">金額</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>移行前 (旧 RSプラン 28,776 + ドメインプロテクション 1,078 + Whois 代行メール転送 約 297)</td><td style="text-align:right;">約 30,151 円</td></tr>
+            <tr><td>Phase 4 完了後 (AWS 5,556 + ドメイン更新 1,408 + ドメインプロテクション 1,078 + Whois 代行メール 297)</td><td style="text-align:right;">約 8,339 円</td></tr>
+            <tr style="background:var(--ok-bg)">
+              <td><strong>年額削減</strong></td>
+              <td style="text-align:right;"><strong>約 21,812 円 (約 72%)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:13.5px; color:var(--muted);">※ ドメイン契約 (お名前.com の <code>hrtep.com</code> 自体) は本案件で解約しない。RSプラン解約により永久無料特典が消失するため、ドメイン更新料金 (推定 1,408 円/年) が新たに発生する。</p>
+      </section>
+
+      <section id="s04">
+        <h2><span class="num">04</span>問合せフォーム送信経路</h2>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          訪問者がフォーム入力 → <strong>reCAPTCHA で bot 排除</strong> → <strong>Server Action が SES でメール送信</strong> → HRtep 様 Gmail に着信。送信元は専用サブドメイン <code>send.hrtep.com</code> に分離し、apex の SPF/DMARC へ副作用を出さない設計。
+        </div>
+
+        <figure class="diagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 380" role="img" aria-labelledby="diag4-title">
+            <title id="diag4-title">問合せフォーム送信経路 シーケンス図</title>
+            <defs>
+              <marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1aa0c8"/>
+              </marker>
+              <marker id="arr4d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#d84040"/>
+              </marker>
+            </defs>
+            <style>
+              .stepbox { fill:#fff; stroke:#1a2d4d; stroke-width:1.4; }
+              .stepbox-cyan { fill:#fff; stroke:#1aa0c8; stroke-width:1.4; }
+              .stepbox-endpoint { fill:#e8f7ee; stroke:#1d6d3c; stroke-width:1.4; }
+              .step-num { font: 700 13px 'JetBrains Mono','Consolas',monospace; fill:#1aa0c8; }
+              .step-num-endpoint { font: 700 13px 'JetBrains Mono','Consolas',monospace; fill:#1d6d3c; }
+              .step-ttl { font: 600 12.5px 'Inter','Noto Sans JP',sans-serif; fill:#0e1726; }
+              .step-sub { font: 10.5px 'JetBrains Mono','Consolas',monospace; fill:#556073; }
+              .step-role { font: 700 9.5px 'JetBrains Mono','Consolas',monospace; letter-spacing:0.14em; }
+              .arr4 { stroke:#1aa0c8; stroke-width:1.5; fill:none; }
+              .arr4-bad { stroke:#d84040; stroke-width:1.4; fill:none; stroke-dasharray:4 3; }
+              .reject { font: 600 10.5px 'JetBrains Mono','Consolas',monospace; fill:#8a1e1e; }
+              .lane { font: 600 10.5px 'JetBrains Mono','Consolas',monospace; fill:#556073; letter-spacing:0.12em; }
+            </style>
+
+            <!-- レーン区切り -->
+            <line x1="20" y1="60" x2="920" y2="60" stroke="#dfe5ee"/>
+            <text class="lane" x="80" y="42">CLIENT (ブラウザ)</text>
+            <text class="lane" x="370" y="42">SERVER (Amplify SSR)</text>
+            <text class="lane" x="700" y="42">EXTERNAL (SES / Google)</text>
+            <line x1="280" y1="60" x2="280" y2="370" stroke="#dfe5ee" stroke-dasharray="3 3"/>
+            <line x1="640" y1="60" x2="640" y2="370" stroke="#dfe5ee" stroke-dasharray="3 3"/>
+
+            <!-- ① 入力 + zod -->
+            <rect class="stepbox" x="30" y="80" width="240" height="60" rx="6"/>
+            <text class="step-num" x="46" y="103">①</text>
+            <text class="step-ttl" x="68" y="103">フォーム入力 + クライアント検証</text>
+            <text class="step-sub" x="46" y="122">react-hook-form + zod</text>
+
+            <!-- ② reCAPTCHA token -->
+            <rect class="stepbox" x="30" y="160" width="240" height="60" rx="6"/>
+            <text class="step-num" x="46" y="183">②</text>
+            <text class="step-ttl" x="68" y="183">reCAPTCHA token 取得</text>
+            <text class="step-sub" x="46" y="202">grecaptcha.execute(action)</text>
+
+            <!-- ③ Server Action -->
+            <rect class="stepbox-cyan" x="290" y="80" width="340" height="60" rx="6"/>
+            <text class="step-num" x="306" y="103">③</text>
+            <text class="step-ttl" x="328" y="103">submitContact (Server Action)</text>
+            <text class="step-sub" x="306" y="122">app/contact/actions.ts</text>
+
+            <!-- ④ verify recaptcha -->
+            <rect class="stepbox-cyan" x="290" y="160" width="340" height="60" rx="6"/>
+            <text class="step-num" x="306" y="183">④</text>
+            <text class="step-ttl" x="328" y="183">reCAPTCHA token 検証 (score &lt; 0.5 で拒否)</text>
+            <text class="step-sub" x="306" y="202">Google Verify API</text>
+
+            <!-- ⑤ SES Send (位置を下げて bot 分岐用の余白を確保) -->
+            <rect class="stepbox-cyan" x="290" y="290" width="340" height="60" rx="6"/>
+            <text class="step-num" x="306" y="314">⑤</text>
+            <text class="step-ttl" x="328" y="314">SESv2 SendEmailCommand</text>
+            <text class="step-sub" x="306" y="334">FROM=send.hrtep.com / Reply-To=送信者</text>
+
+            <!-- ⑥ Gmail 着信 (受信エンドポイント=緑、fig 1.0 と一貫) -->
+            <rect class="stepbox-endpoint" x="650" y="290" width="270" height="60" rx="6"/>
+            <text class="step-num-endpoint" x="666" y="314">⑥</text>
+            <text class="step-ttl" x="688" y="314">HRtep 様 Gmail に着信</text>
+            <text class="step-sub" x="666" y="334">information@hrtep.com</text>
+
+            <!-- 矢印 (正常系・青) -->
+            <path class="arr4" d="M150,140 L150,160" marker-end="url(#arr4)"/>
+            <path class="arr4" d="M270,110 L290,110" marker-end="url(#arr4)"/>
+            <path class="arr4" d="M270,190 L290,190" marker-end="url(#arr4)"/>
+            <path class="arr4" d="M460,140 L460,160" marker-end="url(#arr4)"/>
+            <path class="arr4" d="M460,220 L460,290" marker-end="url(#arr4)"/>
+            <path class="arr4" d="M630,320 L650,320" marker-end="url(#arr4)"/>
+
+            <!-- bot 拒否分岐 (赤破線) — ④ から下へ降り ② 直下へ回り込み、② 底面に進入 (UI 再表示) -->
+            <path class="arr4-bad" d="M295,220 L295,238 L150,238 L150,221" marker-end="url(#arr4d)"/>
+            <text class="reject" x="310" y="258">bot/低スコア時は ⑤ を実行せず</text>
+            <text class="reject" x="310" y="274">UI にエラー応答 (② に戻る)</text>
+          </svg>
+          <figcaption>図 4.1 ─ フォーム送信シーケンス (紺=ブラウザ側、シアン=AWS Server Action、緑=HRtep 様 Gmail (受信エンドポイント)、赤破線=bot 拒否時の戻り)</figcaption>
+        </figure>
+
+        <h3>4.1 動作フロー</h3>
+        <ol>
+          <li>ユーザーがフォームに入力 → <code>react-hook-form</code> + <code>zod</code> によるクライアントバリデーション</li>
+          <li>送信ボタン押下 → <code>grecaptcha.execute</code> で reCAPTCHA v3 token 取得</li>
+          <li>Server Action <code>submitContact</code> に POST</li>
+          <li>サーバー側で Google Verify API により reCAPTCHA token 検証 (score &lt; 0.5 で拒否、ヘッドレスブラウザ等の bot を排除)</li>
+          <li>SESv2 Client で <code>SendEmailCommand</code> 実行</li>
+          <li>HRtep 様 Gmail にメール着信、Reply-To で送信者本人へ直接返信可能</li>
+        </ol>
+
+        <h3>4.2 送信パラメータ</h3>
+        <table>
+          <thead>
+            <tr><th style="width:30%">項目</th><th>値</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>FROM_ADDRESS</td><td><code>noreply@send.hrtep.com</code> (送信専用、送信ドメイン分離)</td></tr>
+            <tr><td>送信先 (CONTACT_EMAIL_TO)</td><td><code>information@hrtep.com</code> (HRtep 様 Gmail)</td></tr>
+            <tr><td>Reply-To</td><td>フォーム送信者の入力メールアドレス (Gmail で「返信」を押した際に送信者本人宛になる)</td></tr>
+            <tr><td>Configuration Set</td><td><code>hrtep-default</code></td></tr>
+            <tr><td>件名</td><td><code>[お問い合わせ] {種別} - {会社名}</code></td></tr>
+            <tr><td>実装ファイル</td><td><code>app/contact/actions.ts</code> (Server Action)<br><code>components/contact/ContactForm.tsx</code> (Client Component)<br><code>lib/recaptcha.ts</code> (reCAPTCHA 検証)<br><code>lib/validation.ts</code> (zod スキーマ)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>4.3 送信ドメイン分離 (なぜ <code>send.hrtep.com</code> か)</h3>
+        <p>送信元を apex (<code>hrtep.com</code>) ではなくサブドメイン (<code>send.hrtep.com</code>) に分離した理由:</p>
+        <ul>
+          <li>apex の SPF (<code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code>) に <code>include:amazonses.com</code> を追加せずに済む</li>
+          <li>apex の DMARC アラインメント設計 (<code>p=none, rua=mori@hrtep.com</code>) に影響しない</li>
+          <li>受信メール (Google Workspace + onamae.ne.jp) への副作用ゼロ</li>
+          <li>DKIM CNAME 3 件と SPF TXT 1 件をすべて <code>send.hrtep.com</code> 配下に集約、apex 配下のレコードと区別が明瞭</li>
+        </ul>
+
+        <h3>4.4 SES サンドボックス継続</h3>
+        <p>SES は Production Access を申請せず、サンドボックス継続運用とする。送信先は Verified Identity 登録済みの <code>information@hrtep.com</code> 1 件のみのため、サンドボックスの「Verified Identity 宛のみ送信可」制約に抵触しない。流量上限 (24h あたり 200 通) に対し想定流量は月 30 通程度で十分余裕がある。流量が急増し月 100 通超の兆候が出た場合に Production Access 申請を検討する。</p>
+      </section>
+
+      <section id="s05">
+        <h2><span class="num">05</span>受信メール</h2>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          受信メールは <strong>本案件で一切変更していない</strong>。MX 6 件・SPF・DMARC は移管前と完全同値。<strong>MX レコード変更は即時に受信障害を引き起こす</strong>ため、保守時の禁止対象として §8.1 にて再掲する。
+        </div>
+
+        <h3>5.1 MX 構成 (Route 53 移管後も値不変)</h3>
+        <table>
+          <thead>
+            <tr><th style="width:15%">Priority</th><th>Mail Server</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><code>mail74.onamae.ne.jp</code></td></tr>
+            <tr><td>1</td><td><code>aspmx.l.google.com</code></td></tr>
+            <tr><td>5</td><td><code>alt1.aspmx.l.google.com</code></td></tr>
+            <tr><td>5</td><td><code>alt2.aspmx.l.google.com</code></td></tr>
+            <tr><td>5</td><td><code>alt3.aspmx.l.google.com</code></td></tr>
+            <tr><td>5</td><td><code>alt4.aspmx.l.google.com</code></td></tr>
+          </tbody>
+        </table>
+
+        <p>SPF (apex): <code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code><br>
+        DMARC: <code>v=DMARC1; p=none; fo=1; rua=mailto:mori@hrtep.com</code></p>
+
+        <h3>5.2 apex TXT レコード一覧 (Route 53)</h3>
+        <p>apex (<code>hrtep.com</code>) の TXT は Phase 3 移管時の SPF 1 件に加え、Google Search Console 所有権認証 TXT を旧 + 新オーナーの 2 値並列保持している。<strong>SPF を含む 3 値とも 1 つの TXT レコードに UPSERT で同居させる仕様</strong>のため、追加・削除時は <code>list-resource-record-sets</code> で現値全件を取得し、保持対象を含めて UPSERT する必要がある (DELETE 時は値完全一致が必須)。</p>
+        <table>
+          <thead>
+            <tr><th style="width:30%">用途</th><th>値</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SPF (受信メール送信元宣言)</td><td><code>v=spf1 include:_spf.onamae.ne.jp include:_spf.google.com ~all</code></td></tr>
+            <tr><td>Google Search Console 認証 (旧)</td><td><code>google-site-verification=Ug3jABUVGPbGte0RAFkevh6O5owhVgntGGFWNaXXulc</code></td></tr>
+            <tr><td>Google Search Console 認証 (新オーナー <code>kishigami@leadx-grp.com</code>)</td><td><code>google-site-verification=RCKEIS0h3XQdw1ZY8uvVUF2mTn3IZkquyNNpE-g4LPA</code></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13.5px; color:var(--muted);">※ 旧 SC 認証 TXT は所有者・現役性が未確定。Search Console プロパティ移管が完了し旧プロパティが不要と確定するまでは保持する (削除すると旧オーナーのプロパティが verification 失効する可能性があるため)。<br>※ <code>send.hrtep.com</code> 配下の SES SPF / DKIM 群、<code>_dmarc.hrtep.com</code> の DMARC、<code>default._domainkey.hrtep.com</code> / <code>google._domainkey.hrtep.com</code> の DKIM は別レコード (apex TXT とは別管理)。</p>
+
+        <div class="callout warn">
+          <b>MX レコード変更禁止</b>
+          MX は priority 1 で <code>mail74.onamae.ne.jp</code> と Google Workspace が並列。受信実態 (どちらが実質的に受信しているか) は文書化されていない。Phase 4 着手前のテスト送信で受信ヘッダの <code>Received:</code> 行解析により実態を特定する (§7.2 参照)。実態確定前に MX を変更すると受信障害を起こすリスクがある。
+        </div>
+      </section>
+
+      <section id="s06">
+        <h2><span class="num">06</span>緊急時ロールバック</h2>
+        <p class="subtitle">運用開始後に致命的な問題が発生した場合の旧 WordPress 環境への復帰手順。</p>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          発火条件 (HTTPS 不到達 / フォーム継続失敗 / 受信メール異変 / DNS 解決異常) のいずれかを満たしたら、お名前.com Navi で <strong>NS を「お名前.com の設定を利用」に戻す</strong>。Route 53 hosted zone は削除せず保持し、再切替に備える。<strong>受信メール異変は最優先発火条件</strong>。
+        </div>
+
+        <h3>6.1 即時ロールバック発火条件</h3>
+        <ul>
+          <li><code>https://hrtep.com</code> または <code>https://www.hrtep.com</code> が HTTPS で表示できない (証明書エラー / 5xx 連続)</li>
+          <li>お問合せフォーム送信が継続的に失敗する</li>
+          <li><strong>受信メールに意図しない変更が発生した</strong> (最優先発火条件)</li>
+          <li>DNS 解決異常 (apex/www が長時間解決できない)</li>
+        </ul>
+
+        <h3>6.2 ロールバック手順</h3>
+        <ol>
+          <li>お名前.com Navi にログイン (お名前 ID <code>93206297</code>)</li>
+          <li>ドメインプロテクションを一時解除 (SMS 認証発生時は HRtep 様協力)</li>
+          <li>「ドメイン機能一覧」→「ネームサーバー設定」→ <code>hrtep.com</code> → <strong>「お名前.com の設定を利用」</strong> (<code>ns-rs1/2.gmoserver.jp</code>) を選択 → 確定</li>
+          <li><code>nslookup -type=NS hrtep.com 8.8.8.8</code> で旧 NS への切戻り確認</li>
+          <li>受信メール / Web 表示の復旧確認 (<code>nslookup -type=MX hrtep.com 8.8.8.8</code> で 6 件すべて baseline 一致を確認)</li>
+          <li>ドメインプロテクションを再設定</li>
+        </ol>
+
+        <p style="font-size:13.5px; color:var(--muted);">※ Route 53 hosted zone は削除しない。再切替時にそのまま再利用可能で、保持しても月課金は $0.50 のみ。</p>
+
+        <h3>6.3 ロールバック後の伝播時間</h3>
+        <p>NS の TTL は通常 172,800 秒 (2 日)。Phase 3 切替時に短縮しなかった場合、最大 2 日のキャッシュ残留が発生する。緊急時は NS 戻しを最優先で実施し、伝播待ちは並行で進める。.com TLD 権威レベルでは即時反映 (実測 1 分以内) されるが、世界中の resolver キャッシュが切り替わるまでにはタイムラグがある。</p>
+      </section>
+
+      <section id="s07">
+        <h2><span class="num">07</span>Phase 4 — 旧 WordPress 解約</h2>
+        <p class="subtitle">Phase 3 完了 (2026-05-04) から並行稼働期間 14 日以上を経た後に着手する旧環境解約フェーズ。受信メール経路の実態に応じて解約範囲が分岐する。</p>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          解約対象は <strong>RSプラン</strong>と <strong>ml-cp.hrtep.com の A レコード</strong>。<strong>お名前メール</strong>は受信経路の実態によって解約可否が分岐するため、受信ヘッダ解析でケース (a)/(b)/(c) を判定した上で決定する。<strong>判定確実性が低い場合は「継続」(=安全側) を選択する</strong>。
+        </div>
+
+        <figure class="diagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 410" role="img" aria-labelledby="diag7-title">
+            <title id="diag7-title">Phase 4 受信経路ケース判定 フローチャート</title>
+            <defs>
+              <marker id="arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#1a2d4d"/>
+              </marker>
+            </defs>
+            <style>
+              .start { fill:#0b1a30; stroke:#0b1a30; }
+              .deci { fill:#fff; stroke:#1aa0c8; stroke-width:1.4; }
+              .case-safe { fill:#e8f7ee; stroke:#1d6d3c; stroke-width:1.5; }
+              .case-deny { fill:#fdecec; stroke:#d84040; stroke-width:1.5; }
+              .case-hold { fill:#fff4e5; stroke:#d97706; stroke-width:1.5; }
+              .lbl7 { font: 600 12.5px 'Inter','Noto Sans JP',sans-serif; fill:#0e1726; }
+              .lbl7-w { font: 600 12.5px 'Inter','Noto Sans JP',sans-serif; fill:#fff; }
+              .sub7 { font: 10.5px 'JetBrains Mono','Consolas',monospace; fill:#556073; }
+              .sub7-safe { font: 10.5px 'JetBrains Mono','Consolas',monospace; fill:#1d6d3c; }
+              .sub7-deny { font: 10.5px 'JetBrains Mono','Consolas',monospace; fill:#8a1e1e; }
+              .sub7-hold { font: 10.5px 'JetBrains Mono','Consolas',monospace; fill:#8b5a00; }
+              .role-safe { font: 700 11px 'JetBrains Mono','Consolas',monospace; fill:#1d6d3c; letter-spacing:0.10em; }
+              .role-deny { font: 700 11px 'JetBrains Mono','Consolas',monospace; fill:#8a1e1e; letter-spacing:0.10em; }
+              .role-hold { font: 700 11px 'JetBrains Mono','Consolas',monospace; fill:#8b5a00; letter-spacing:0.10em; }
+              .arr-line { stroke:#1a2d4d; stroke-width:1.5; fill:none; }
+              .branch-lbl { font: 600 11px 'JetBrains Mono','Consolas',monospace; fill:#1a2d4d; }
+              .branch-bg { fill: rgba(255,255,255,0.94); }
+            </style>
+
+            <!-- 開始 -->
+            <rect class="start" x="290" y="20" width="360" height="48" rx="24"/>
+            <text class="lbl7-w" x="470" y="48" text-anchor="middle">受信メールの Received: ヘッダを解析</text>
+
+            <!-- 判定 (菱形) -->
+            <polygon class="deci" points="470,100 700,170 470,240 240,170"/>
+            <text class="lbl7" x="470" y="163" text-anchor="middle">mail74.onamae.ne.jp 系</text>
+            <text class="lbl7" x="470" y="180" text-anchor="middle">の登場有無で 3 ケース分類</text>
+
+            <!-- (a) GREEN = 解約可 (factual safe) -->
+            <rect class="case-safe" x="30" y="290" width="270" height="100" rx="8"/>
+            <text class="role-safe" x="165" y="312" text-anchor="middle">▶ 解約可</text>
+            <text class="lbl7" x="165" y="334" text-anchor="middle">ケース (a) — Google 単独</text>
+            <text class="sub7-safe" x="165" y="356" text-anchor="middle">RSプラン 解約 / お名前メール 解約</text>
+            <text class="sub7-safe" x="165" y="372" text-anchor="middle">ml-cp 削除</text>
+
+            <!-- (b) RED = 解約禁止 (factual deny) -->
+            <rect class="case-deny" x="335" y="290" width="270" height="100" rx="8"/>
+            <text class="role-deny" x="470" y="312" text-anchor="middle">✕ 解約禁止 (経路稼働中)</text>
+            <text class="lbl7" x="470" y="334" text-anchor="middle">ケース (b) — 直列 (お名前 → Google)</text>
+            <text class="sub7-deny" x="470" y="356" text-anchor="middle">RSプラン 解約 / お名前メール 継続</text>
+            <text class="sub7-deny" x="470" y="372" text-anchor="middle">ml-cp 削除</text>
+
+            <!-- (c) AMBER = 判定保留 (uncertainty → 継続) -->
+            <rect class="case-hold" x="640" y="290" width="270" height="100" rx="8"/>
+            <text class="role-hold" x="775" y="312" text-anchor="middle">⚠ 判定保留 → 継続</text>
+            <text class="lbl7" x="775" y="334" text-anchor="middle">ケース (c) — 並列／重複／不確定</text>
+            <text class="sub7-hold" x="775" y="356" text-anchor="middle">RSプラン 解約 / お名前メール 継続</text>
+            <text class="sub7-hold" x="775" y="372" text-anchor="middle">ml-cp 削除 (= b 同等扱い)</text>
+
+            <!-- 矢印 -->
+            <path class="arr-line" d="M470,68 L470,100" marker-end="url(#arr7)"/>
+            <path class="arr-line" d="M280,205 Q170,250 170,290" marker-end="url(#arr7)"/>
+            <path class="arr-line" d="M470,240 L470,290" marker-end="url(#arr7)"/>
+            <path class="arr-line" d="M660,205 Q780,250 780,290" marker-end="url(#arr7)"/>
+
+            <!-- 分岐ラベル (矢印と重ならないよう白背景バッジで配置) -->
+            <rect class="branch-bg" x="60" y="248" width="130" height="20" rx="3"/>
+            <text class="branch-lbl" x="125" y="262" text-anchor="middle">(a) 一切登場せず</text>
+
+            <rect class="branch-bg" x="490" y="252" width="160" height="20" rx="3"/>
+            <text class="branch-lbl" x="570" y="266" text-anchor="middle">(b) 経由してから Google</text>
+
+            <rect class="branch-bg" x="740" y="248" width="140" height="20" rx="3"/>
+            <text class="branch-lbl" x="810" y="262" text-anchor="middle">(c) 並列／不確定</text>
+          </svg>
+          <figcaption>図 7.0 ─ 受信経路ケース判定 (緑=解約可・赤=解約禁止 (経路稼働中)・橙=判定保留 → 安全側で継続)</figcaption>
+        </figure>
+
+        <h3>7.1 着手前提条件 (5 件、すべて充足が必須)</h3>
+        <ol>
+          <li>Phase 3 完了から 14 日以上経過 (<strong>2026-05-18 以降</strong>)</li>
+          <li>HRtep 様 Gmail (<code>information@hrtep.com</code>) でテスト送信着信を確認済</li>
+          <li>受信メール経路の実態をケース判定済 (§7.2)</li>
+          <li>新サイトで実問合せ 1 件以上の送受信実績、または Search Console での新ドメイン認識完了</li>
+          <li>旧 WordPress データの最終バックアップ取得済 (§7.4-A)</li>
+        </ol>
+
+        <h3>7.2 受信メール経路ケース判定</h3>
+        <p>HRtep 様から共有される受信メールの全 <code>Received:</code> ヘッダ行を解析し、配送経路を 3 ケースに分類する。</p>
+        <table>
+          <thead>
+            <tr><th style="width:10%">ケース</th><th style="width:35%">Received ヘッダの特徴</th><th>受信経路の解釈</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>(a)</strong></td><td><code>aspmx.l.google.com</code> 系のみ、<code>mail74.onamae.ne.jp</code> 系が一切登場しない</td><td>Google Workspace 単独受信。お名前メール経路は MX 上は宣言されているが実態として未使用</td></tr>
+            <tr><td><strong>(b)</strong></td><td><code>mail74.onamae.ne.jp</code> または <code>onamae.ne.jp</code> サブドメインを経由した後 Google Workspace へ</td><td>お名前メールが MX priority 1 で受信を取り Google Workspace へ転送配信</td></tr>
+            <tr><td><strong>(c)</strong></td><td>並列受信または重複配信 (送信元によって経路が異なる)</td><td>両経路が並列稼働</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7.3 ケース別解約範囲</h3>
+        <table>
+          <thead>
+            <tr><th style="width:8%">ケース</th><th style="width:25%">RSプラン</th><th style="width:30%">お名前メール</th><th><code>ml-cp.hrtep.com</code> A レコード</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:#e8f7ee"><td><strong>(a)</strong></td><td>解約</td><td>解約 (契約があれば)</td><td>削除</td></tr>
+            <tr style="background:#fff4e5"><td><strong>(b)</strong></td><td>解約</td><td><strong>継続</strong> (受信経路として稼働中)</td><td>削除</td></tr>
+            <tr style="background:#fff4e5"><td><strong>(c)</strong></td><td>解約</td><td><strong>継続</strong> ((b) 同等扱い、安全側)</td><td>削除</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13.5px; color:var(--muted);">⚠️ ケース (b)(c) でお名前メールを誤って解約すると、<code>mail74.onamae.ne.jp</code> 経由の受信が即停止し HRtep 様の業務メール (求人問合せ・取引先連絡等) に欠落が発生する。判定確実性が低い場合は (c) 扱いで安全側を選択する。</p>
+
+        <h3>7.4 実行手順</h3>
+
+        <h4>7.4-A. 旧 WordPress データの最終バックアップ</h4>
+        <ol>
+          <li>お名前.com Navi → コントロールパネル → ファイルマネージャーまたは FTP/SFTP 接続</li>
+          <li><code>/public_html/wp-content/uploads/</code>、<code>themes/</code>、<code>plugins/</code> 内のカスタム部分をローカル取得</li>
+          <li><code>wp-config.php</code> をローカル保存 (DB 認証情報を含むため漏洩管理に注意)</li>
+          <li>MySQL データベースを <code>phpMyAdmin</code> または <code>wp-cli db export</code> で SQL ダンプ取得</li>
+          <li>取得物を LeadX 社管理ストレージに保管、ハッシュ値を記録</li>
+        </ol>
+
+        <h4>7.4-B. RSプラン解約申請</h4>
+        <ol>
+          <li>お名前.com Navi → ご利用中のサービス → RSプラン → 「解約申請」</li>
+          <li>解約予定日を確認 (月単位自動更新のため次回更新日まで継続利用可)</li>
+          <li>確認画面で内容確認、申請確定</li>
+        </ol>
+
+        <h4>7.4-C. お名前メール解約 (ケース (a) のみ該当時)</h4>
+        <p>ケース (b)(c) では本手順は<strong>実行しない</strong>。</p>
+        <ol>
+          <li>お名前.com Navi → ご利用中のサービス → お名前メール → 「解約申請」</li>
+        </ol>
+
+        <h4>7.4-D. <code>ml-cp.hrtep.com</code> A レコード削除</h4>
+<pre><code>aws --profile hrtep route53 change-resource-record-sets \
+  --hosted-zone-id Z03225321XVWO8YLGYFVZ \
+  --change-batch '{
+    "Comment": "Phase 4: Remove ml-cp.hrtep.com (legacy WP admin subdomain)",
+    "Changes": [{
+      "Action": "DELETE",
+      "ResourceRecordSet": {
+        "Name": "ml-cp.hrtep.com.",
+        "Type": "A",
+        "TTL": 3600,
+        "ResourceRecords": [{"Value": "118.27.122.208"}]
+      }
+    }]
+  }'</code></pre>
+        <p style="font-size:13px; color:var(--muted);">※ TTL と Value は実レコード値と完全一致が必須 (Route 53 の DELETE 仕様)。事前に <code>list-resource-record-sets</code> で現値を確認のうえ実行する。</p>
+
+        <h4>7.4-E. 解約後 30 日リテンション期間の検証</h4>
+        <p>RSプラン解約後、お名前.com の規約により旧 WordPress 環境は 30 日間ホスティング側で保持される (即時削除されない)。この期間に以下を検証する。</p>
+        <ul>
+          <li>第三者が <code>https://hrtep.com</code> にアクセスして新サイトが表示されること</li>
+          <li>HRtep 様 Gmail で受信メールに欠落・遅延が発生していないこと (ケース (a) で解約した場合は特に重要)</li>
+          <li>Google Search Console で旧 URL からのリダイレクトが認識され、新 URL のインデックスが進行していること</li>
+          <li>ドメイン更新料金が永久無料特典消失により通常料金 (推定 1,408 円/年) に変動することを次回更新時請求書で確認</li>
+        </ul>
+
+        <h3>7.5 Phase 4 中止判定</h3>
+        <div class="callout bad">
+          <b>Phase 4 中止条件</b>
+          <ul style="margin:6px 0 0 18px;">
+            <li>並行稼働期間中に新サイトの HTTPS 不到達 / 5xx 多発 / フォーム送信エラー多発のいずれかが発生</li>
+            <li>HRtep 様 Gmail で受信メール欠落・遅延が観測される</li>
+            <li>受信経路ケース判定 (§7.2) が確定不能</li>
+          </ul>
+        </div>
+        <p>中止時は §6 のロールバック手順を即時実行し、Phase 4 は無期限延期。原因究明後に再判定する。</p>
+      </section>
+
+      <section id="s08">
+        <h2><span class="num">08</span>保守時の注意事項・運用知見</h2>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          MX・apex SPF/DMARC・ドメインプロテクション・他事業由来の AWS リソース・既存の SES 別 Identity の <strong>5 項目は変更禁止対象</strong>。Amplify 環境変数は全置換仕様のため、変更時は <strong>3 件すべて含めて指定</strong>した上で再ビルドのトリガが必須。Domain Association 再作成時は <strong>CloudFront FQDN が変動する場合があり、Route 53 ALIAS Target の手動 UPSERT を要する</strong>。
+        </div>
+
+        <h3>8.1 変更禁止項目</h3>
+        <ul class="check">
+          <li><strong>MX レコード</strong>: 受信メール経路に直結。値変更は受信障害の直接原因となる</li>
+          <li><strong>apex SPF / DMARC</strong>: 既存メールインフラとアラインメントしている。送信ドメイン追加は <code>send.hrtep.com</code> サブドメイン側で行う</li>
+          <li><strong>ドメインプロテクション</strong>: 常時 ON 維持。NS 変更等の保守時のみ一時解除し、作業完了後すぐ再設定</li>
+          <li><strong>HRtep 様 AWS アカウント内の他事業由来リソース</strong>: 同 AWS アカウント内に人材プラットフォーム関連の RDS / VPC / EC2 / S3 / Global Accelerator が同居。本案件範囲外につき関与対象外</li>
+          <li><strong>SES の <code>hrtep.net</code> Domain Identity / <code>HRtep</code> Configuration Set</strong>: 既存の他用途リソース。本案件で関与しない</li>
+        </ul>
+
+        <h3>8.2 コスト監視</h3>
+        <ul>
+          <li>AWS Budgets <code>hrtep-monthly-1000jpy</code> が月 $7 (約 1,000 円) 超過で <code>tbnkin@gmail.com</code> 通知。本案件の安定運用月額 (約 463 円・税込) に対し十分なバッファ</li>
+          <li>Cost Explorer での内訳確認は <code>claude-code-operator</code> IAM ユーザーに <code>AWSBillingReadOnlyAccess</code> + <code>AWSCertificateManagerReadOnly</code> インラインポリシーが付与済。サービス別フィルタで本案件のみ抽出可能</li>
+          <li>HRtep 様 AWS アカウント全体の月額には他事業由来の課金 (RDS/VPC/EC2/S3/Global Accelerator で月 約 $440) が含まれる。Budget 超過判定時は本案件由来か他事業由来かを切り分ける</li>
+        </ul>
+
+        <h3>8.3 Amplify のデプロイ</h3>
+        <ul>
+          <li>GitHub <code>main</code> ブランチへの push で自動ビルド・自動デプロイ</li>
+          <li>環境変数を変更する場合、<code>aws amplify update-app --environment-variables</code> は<strong>全置換</strong>のため、既存の <code>NEXT_PUBLIC_RECAPTCHA_SITE_KEY</code> / <code>RECAPTCHA_SECRET_KEY</code> / <code>CONTACT_EMAIL_TO</code> をすべて含めて指定する</li>
+          <li>環境変数変更後は <code>aws amplify start-job --job-type RELEASE</code> で再ビルドをトリガーする (build phase で <code>.env.production</code> に書き出されるため、再ビルドしないと反映されない)</li>
+        </ul>
+
+        <h3>8.4 SES の運用知見</h3>
+        <ul>
+          <li>DKIM 検証が FAILED 状態で停滞した場合、<code>signing-enabled</code> の toggle では再起動しない。<code>delete-email-identity</code> + <code>create-email-identity</code> による Identity 再生成で内部 polling が確実に再起動される。Easy DKIM の Tokens は AWS account 単位で決定論的に払い出されるため、再生成しても Route 53 CNAME の再投入は通常不要</li>
+          <li>送信先 (<code>information@hrtep.com</code>) の Verified Identity 登録は SES サンドボックス継続の前提条件。HRtep 様 Gmail を変更する場合は、新アドレスを Verified Identity 登録 + Verification リンククリックが必要</li>
+          <li>bounce/complaint rate が想定 (5% / 0.1%) を超過すると CloudWatch Alarm 発火 → SNS Topic <code>hrtep-cloudwatch-alarms</code> 経由で通知</li>
+        </ul>
+
+        <h3>8.5 Free Tier 12 ヶ月終了済の影響</h3>
+        <p>HRtep 様 AWS アカウントは新規作成から 12 ヶ月以上経過しており、AWS Free Tier (新規アカウント 12 ヶ月限定枠) は終了している。Amplify Hosting は SSR Compute / Build minutes / Data transfer のいずれかで月 約 320 円の微小課金が発生する。低トラフィックのコーポレートサイトでは月 数百円規模で安定する見込み。</p>
+
+        <h3>8.6 Amplify Custom Domain と ACM の連動</h3>
+        <p>Amplify Custom Domain Association を関連付けると Amplify が ACM 証明書を自動発行・自動関連付け・自動更新する (DNS validation 方式、Amplify Managed Certificate)。証明書更新の運用工数はゼロ、HRtep 様の検証メールクリック等は発生しない。証明書発行から DNS 反映までの 72 時間制約があり、関連付け実行から 72h 以内に検証 CNAME を Route 53 で解決可能にする必要がある。タイムアウトした場合は <code>delete-domain-association</code> + <code>create-domain-association</code> で再関連付け可能で、検証 CNAME 値は決定論的に同一値が再払い出される。</p>
+
+        <h3>8.7 Amplify Custom Domain 関連付け再作成時の注意</h3>
+        <p>Domain Association を delete-create で再作成すると Amplify CloudFront FQDN が変わる場合がある (例: <code>d1r3kbuaudozwk.cloudfront.net</code> → <code>d3u3xuwk9ma2bd.cloudfront.net</code>)。Route 53 上の apex/www の ALIAS Target は <strong>Amplify が自動更新しない</strong>ため、新 FQDN への手動 UPSERT が必要。Amplify ステータス <code>AWAITING_APP_CNAME</code> はこの状態を示す。</p>
+
+        <h3>8.8 NS 切替の伝播</h3>
+        <p>NS 切替は権威 DNS (<code>.com</code> TLD レベル) では即時反映 (実測 1 分以内)。ただし世界中の resolver キャッシュは TTL 残留により伝播完了まで最大 2 日要する場合がある。ロールバック時は NS 戻し直後から正常応答が始まるが、最大 2 日のキャッシュ残留が並行する点に注意する。</p>
+      </section>
+
+      <section id="s09">
+        <h2><span class="num">09</span>用語集</h2>
+
+        <div class="summary-box">
+          <span class="label">本節要旨</span>
+          本書で頻出する技術用語のうち、運用引継ぎ・障害対応の場で <strong>意味を取り違えると判断ミスにつながるもの</strong>に絞って簡潔に定義する。
+        </div>
+
+        <dl class="glossary">
+          <dt>apex (zone apex)</dt>
+          <dd>サブドメインを伴わないドメイン本体 (<code>hrtep.com</code> のこと)。RFC 1912 により apex に CNAME を投入することは禁止。Amplify への apex 解決には ALIAS レコードが必須となるため Route 53 を採用した。</dd>
+
+          <dt>ALIAS レコード</dt>
+          <dd>Route 53 固有の拡張レコード型。CNAME と異なり apex に対しても投入でき、AWS リソース (CloudFront / ELB / S3 等) のターゲット FQDN を直接指定できる。お名前.com 標準 DNS には存在しないため、本案件で Route 53 へ移管した最大の理由。</dd>
+
+          <dt>権威 DNS (Authoritative DNS)</dt>
+          <dd>そのドメインのレコードを <strong>正本として保持する</strong>サーバ。世界中のリゾルバはここに問い合わせる。本案件では Route 53 が権威 DNS、お名前.com はレジストラ (登録代行) のみ。</dd>
+
+          <dt>NS (Name Server) 切替</dt>
+          <dd>レジストラに登録するネームサーバ情報を Route 53 の 4 件に変更する操作。.com TLD レベルでは即時反映だが、世界中のリゾルバ・キャッシュへの伝播は最大 2 日要する場合がある。</dd>
+
+          <dt>MX レコード</dt>
+          <dd>そのドメイン宛のメールをどのメールサーバに配送するかを宣言するレコード。本案件で 6 件 (Priority 1 が onamae.ne.jp と Google Workspace、Priority 5 が Google の予備 4 件) を完全保持。<strong>変更時は即時に受信障害が発生する</strong>。</dd>
+
+          <dt>SPF / DKIM / DMARC</dt>
+          <dd>送信ドメイン認証の三点セット。SPF は送信元 IP の許可、DKIM は電子署名、DMARC はそれらが揃わなかった場合の扱い (<code>p=none</code> は観測のみ)。本案件では apex 側 (受信用) は完全保持し、送信用は <code>send.hrtep.com</code> サブドメイン側に分離。</dd>
+
+          <dt>送信ドメイン分離</dt>
+          <dd>送信専用にサブドメイン <code>send.hrtep.com</code> を立て、apex 側の認証設定に副作用を出さない設計。送信側でスパム判定上の問題が発生した場合でも受信側に波及しない安全策として機能する。</dd>
+
+          <dt>ACM (AWS Certificate Manager)</dt>
+          <dd>AWS の SSL/TLS 証明書発行・自動更新サービス。Amplify Managed Certificate は ACM をバックエンドに使い、DNS 検証 + 自動更新で運用工数ゼロ。</dd>
+
+          <dt>CloudFront</dt>
+          <dd>AWS の CDN (世界配信網)。Amplify Hosting は内部で CloudFront ディストリビューションを生成し、apex/www の ALIAS Target がそれを指す。FQDN は Domain Association 再作成時に変わる場合がある (§8.7 参照)。</dd>
+
+          <dt>Server Action</dt>
+          <dd>Next.js App Router のサーバ実行型関数。フォーム送信を API Route なしで直接 SSR から処理できる。本案件では <code>submitContact</code> (<code>app/contact/actions.ts</code>) がこれにあたる。</dd>
+
+          <dt>reCAPTCHA v3</dt>
+          <dd>Google のスコアベース bot 判定。チェックボックス UI を出さず、行動シグナルから 0.0–1.0 の score を返す。本案件は閾値 0.5 で拒否。</dd>
+
+          <dt>SES サンドボックス</dt>
+          <dd>SES 新規アカウントのデフォルト状態。送信先は Verified Identity 登録済アドレスのみ・24h あたり 200 通・1 秒あたり 1 通の制約。本案件は送信先 1 件 + 月 30 通想定で抵触しないため継続運用。</dd>
+
+          <dt>Configuration Set</dt>
+          <dd>SES 送信ジョブにメタデータ (bounce/complaint 通知先・統計等) を紐付ける設定束。本案件では <code>hrtep-default</code> を使用し、CloudWatch Alarm 連携の起点となる。</dd>
+
+          <dt>bounce / complaint</dt>
+          <dd>bounce は不達 (存在しないアドレス等)、complaint は受信者からのスパム報告。SES では発生率に閾値 (5% / 0.1%) があり、超過すると送信権が制限されうる。本案件は CloudWatch Alarm で監視。</dd>
+
+          <dt>ドメインプロテクション</dt>
+          <dd>お名前.com のオプション。NS 変更・移管等の重要操作時に SMS 認証を要求するセキュリティ機能。本案件では常時 ON、保守時のみ一時解除する運用。</dd>
+
+          <dt>RSプラン</dt>
+          <dd>お名前.com のレンタルサーバ + ドメイン更新永久無料セット。本案件で旧 WordPress を稼働させていたサーバ契約を指す。Phase 4 で解約予定 (永久無料特典は消失し、ドメイン更新料金が新たに発生)。</dd>
+
+          <dt>TTL (Time To Live)</dt>
+          <dd>DNS キャッシュの保持秒数。NS の TTL は通常 172,800 秒 (2 日)。短縮しなかった場合、ロールバック後も最大 2 日のキャッシュ残留が発生する点に注意。</dd>
+
+          <dt>CNAME 検証 (DNS validation)</dt>
+          <dd>ACM 証明書発行時、ドメイン所有を確認するために特定の CNAME レコードを公開する方式。Amplify Custom Domain は自動で Route 53 に投入する。<strong>NS 切替が完了していないと Amplify 側ポーリングが空振りして Domain Association が FAILED になる</strong> (Phase 3 で実際に発生)。</dd>
+        </dl>
+      </section>
+
+      <footer>
+        <p>HRtep 様コーポレートサイト Web ホスティング 構成書</p>
+        <p>株式会社LeadX</p>
+      </footer>
+    </div>
+  </body>
+</html>
