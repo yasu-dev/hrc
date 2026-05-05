@@ -24,6 +24,25 @@ const organizationJsonLd = {
     postalCode: '104-0031',
     addressCountry: 'JP',
   },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      telephone: COMPANY.tel,
+      url: `${SITE_URL}/contact`,
+      areaServed: 'JP',
+      availableLanguage: ['Japanese', 'English'],
+    },
+  ],
+  knowsAbout: [
+    '外国人材採用',
+    '在留資格',
+    '特定技能',
+    'DX支援',
+    'AI活用支援',
+    'システム開発',
+    'Webアプリ開発',
+  ],
   description:
     '外国人材採用支援とIT事業（DX支援・AI活用支援・システム開発・Webアプリ開発）で企業の成長を支援するＨＲｔｅｐ株式会社です。',
 };
