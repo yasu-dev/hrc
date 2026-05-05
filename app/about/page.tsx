@@ -28,6 +28,7 @@ const localBusinessJsonLd = {
   image: `${SITE_URL}/opengraph-image`,
   logo: `${SITE_URL}/images/logo-current.png`,
   telephone: COMPANY.tel,
+  priceRange: 'お見積もり',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '京橋3-12-1 エコー京橋ビル 5階',
