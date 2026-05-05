@@ -25,6 +25,8 @@ const localBusinessJsonLd = {
   '@type': 'LocalBusiness',
   name: 'ＨＲｔｅｐ株式会社',
   url: SITE_URL,
+  image: `${SITE_URL}/opengraph-image`,
+  logo: `${SITE_URL}/images/logo-current.png`,
   telephone: COMPANY.tel,
   address: {
     '@type': 'PostalAddress',

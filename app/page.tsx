@@ -14,6 +14,7 @@ const organizationJsonLd = {
   alternateName: 'ＨＲｔｅｐ Co., Ltd.',
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo-current.png`,
+  image: `${SITE_URL}/opengraph-image`,
   telephone: COMPANY.tel,
   foundingDate: '2021-09-01',
   address: {

@@ -39,6 +39,7 @@ const collectionJsonLd = {
         '@type': 'NewsArticle',
         headline: item.title,
         description: item.excerpt,
+        image: `${SITE_URL}/news/${item.slug}/opengraph-image`,
         datePublished: new Date(item.date).toISOString(),
         url: `${SITE_URL}/news/${item.slug}`,
         author: {
