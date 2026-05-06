@@ -67,3 +67,6 @@ docs/[LINE]*.txt
 
 # claude code internal state
 .claude/scheduled_tasks.lock
+
+# Claude Code per-user permission overrides (do not share)
+.claude/settings.local.json
