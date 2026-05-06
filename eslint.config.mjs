@@ -7,13 +7,29 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   prettier,
-  // Override default ignores of eslint-config-next.
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
   globalIgnores([
-    // Default ignores of eslint-config-next:
     '.next/**',
+    '.netlify/**',
     'out/**',
     'build/**',
     'next-env.d.ts',
+    'tmp/**',
+    'docs/old/**',
+    'docs/**/*.js',
+    'docs/**/*.html',
   ]),
 ]);
 
