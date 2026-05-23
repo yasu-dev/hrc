@@ -12,22 +12,20 @@
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest"]
     },
-    "antv-chart": {
-      "command": "npx",
-      "args": ["-y", "@antv/mcp-server-chart"]
-    },
     "netlify": {
       "command": "npx",
       "args": ["-y", "@netlify/mcp"]
     },
-    "supabase": {
+    "drawio": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@supabase/mcp-server-supabase",
-        "--access-token",
-        "sbp_621d5f1948f701077e17a548ac411aca9f57dced"
-      ]
+      "args": ["-y", "@drawio/mcp"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
     },
     "aws-api": {
       "command": "uvx",
@@ -37,6 +35,21 @@
         "AWS_API_MCP_PROFILE_NAME": "twd-audit",
         "READ_OPERATIONS_ONLY": "false",
         "FASTMCP_LOG_LEVEL": "ERROR"
+      }
+    },
+    "aws-cdk": {
+      "command": "uv",
+      "args": [
+        "tool",
+        "run",
+        "--from",
+        "awslabs.cdk-mcp-server@latest",
+        "awslabs.cdk-mcp-server.exe"
+      ],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+        "AWS_PROFILE": "twd-audit",
+        "AWS_REGION": "ap-northeast-1"
       }
     },
     "aws-docs": {

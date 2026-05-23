@@ -70,3 +70,7 @@ docs/[LINE]*.txt
 
 # Claude Code per-user permission overrides (do not share)
 .claude/settings.local.json
+
+# Cursor MCP config (contains secrets — kept local; see .cursor/mcp.example.json)
+.cursor/mcp.json
+.mcp.json
