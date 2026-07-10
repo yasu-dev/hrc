@@ -19,4 +19,12 @@ Next.js + React + TypeScript + Tailwind CSS。バージョンの権威は `packa
 
 - **アーキテクチャ方針・基本開発ルール・検証コマンド・品質ゲート・環境変更トリガー・テスト構成** は `c:/work/CLAUDE.md` に従う
 - **開発ワークフロー・確認判断基準・AI 提案規範・事実断定検証・開発体制・ルール育成・横断俯瞰** は `~/.claude/CLAUDE.md` に従う
-- 本書には HRC 固有事項のみ記載（現時点で固有事項なし）
+
+## HRC 固有事項
+
+### AWS 操作
+
+- AWS 操作は **`aws-mcp` 経由**（`~/.claude.json` の `C:/work/hrc` プロジェクトスコープに登録済み）
+- 使用プロファイル: `hrtep`（HRtep 専用 IAM ユーザ）
+- 主な利用サービス: Amplify Hosting（コーポレートサイト）
+- ツール使い分け・IAM 設計原則・運用上の注意は `aws-mcp` スキル本文（`~/.claude/skills/aws-mcp/SKILL.md`）に委譲
